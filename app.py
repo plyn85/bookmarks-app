@@ -16,7 +16,7 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
 @app.route("/")
 def index():
-    return "hello world rename test"
+    return render_template('base.html')
 
 
 if __name__ == '__main__':
