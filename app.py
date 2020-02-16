@@ -15,8 +15,23 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
 
 @app.route("/")
-def index():
+def base():
     return render_template('base.html')
+
+
+@app.route("/index")
+def index():
+    return render_template('index.html')
+
+
+@app.route("/register")
+def register():
+    return render_template('register.html')
+
+
+@app.route("/login")
+def login():
+    return render_template('login.html')
 
 
 if __name__ == '__main__':
