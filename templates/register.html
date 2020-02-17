@@ -1,14 +1,14 @@
 {% extends 'base.html' %} {% block content %}
-<!-- taken from tutorial at  https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-registration-form -->
+<!-- taken an modified from tutorial at  https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-registration-form -->
 <div class="signup-form">
-  <form action="/examples/actions/confirmation.php" method="post">
+  <form action="{{ url_for('register') }}" method="post">
     <h2>Register</h2>
     <p class="hint-text">
       Create your account. It's free and only takes a minute.
     </p>
     <div class="form-group">
       <input
-        type="email"
+        type="name"
         class="form-control"
         name="username"
         placeholder="username"

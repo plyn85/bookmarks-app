@@ -13,10 +13,14 @@ app.config['MONGO_DBNAME'] = os.environ.get('MONGO_DBNAME')
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
+mongo = PyMongo(app)
+
 
 @app.route('/')
 def base():
-    return render_template('base.html')
+    user_collection = mongo.db.users
+    user_collection.insert({'name': 'patrick'})
+    return '<h1> added a user </h1>'
 
 
 @app.route('/index')
@@ -26,15 +30,8 @@ def index():
 
 @app.route('/register')
 def register():
-    return render_template('register.html')
 
-
-@app.route('/login')
-def login():
-    return render_template('login.html')
-
-
-if __name__ == '__main__':
-    app.run(host=os.environ.get('IP'),
-            port=int(os.environ.get('PORT')),
-            debug=False)
+    if __name__ == '__main__':
+        app.run(host=os.environ.get('IP'),
+                port=int(os.environ.get('PORT')),
+                debug=False)
