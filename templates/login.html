@@ -1,8 +1,11 @@
-{% extends "base.html" %} {% block content %}
+{% extends 'base.html' %} {% block content %}
 <!-- taken from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
-<div class="login-form">
+<div class="signup-form">
   <form action="/examples/actions/confirmation.php" method="post">
     <h2 class="text-center">Log in</h2>
+    <p class="hint-text">
+      Login In below an enjoy the use the bookmarks app
+    </p>
     <div class="form-group">
       <input
         type="text"
@@ -22,13 +25,9 @@
     <div class="form-group">
       <button type="submit" class="btn btn-primary btn-block">Log in</button>
     </div>
-    <div class="clearfix">
-      <label class="pull-left checkbox-inline"
-        ><input type="checkbox" /> Remember me</label
-      >
-      <a href="#" class="pull-right">Forgot Password?</a>
-    </div>
   </form>
-  <p class="text-center"><a href="#">Create an Account</a></p>
+  <p class="text-center">
+    <a href="{{url_for('register')}}">Create an Account</a>
+  </p>
 </div>
 {% endblock content %}
