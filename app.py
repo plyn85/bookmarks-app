@@ -1,5 +1,5 @@
 from os import path
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 import bcrypt
 import os
@@ -18,17 +18,18 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
-def base():
-    return render_template('base.html')
-
-
-@app.route('/index')
 def index():
+    if 'username' in session:
+     return 'You are logged in as ' + session['username']
     return render_template('index.html')
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
+    '''Used from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE'''
     if request.method == 'POST':
         users = mongo.db.users
         existing_user = users.find_one({'name': request.form['username']})
@@ -38,16 +39,13 @@ def register():
                 request.form['password'].encode('utf-8'), bcrypt.gensalt())
             users.insert(
                 {'name': request.form['username'], 'password': hashpass})
-            session['username'] = request.form['username']
-
-            return redirect(url_for('index'))
-
+            if  session['username'] == request.form['username']:
+                 flash('You are now regsitered please login!', 'success')
+            return redirect(url_for('login'))
+        else:
+            flash('Registraion Unsuccessful. Please check username and password', 'danger')
     return render_template('register.html')
 
-
-@app.route('/login')
-def login():
-    return render_template('login.html')
 
     if __name__ == '__main__':
         app.run(host=os.environ.get('IP'),
