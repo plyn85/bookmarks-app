@@ -39,8 +39,8 @@ def register():
                 request.form['password'].encode('utf-8'), bcrypt.gensalt())
             users.insert(
                 {'name': request.form['username'], 'password': hashpass})
-            if  session['username'] == request.form['username']:
-                 flash('You are now regsitered please login!', 'success')
+            session['username'] = request.form['username']
+            flash('You are now regsitered please login!', 'success')
             return redirect(url_for('login'))
         else:
             flash('Registraion Unsuccessful. Please check username and password', 'danger')
