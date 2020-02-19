@@ -1,4 +1,4 @@
-from os import path
+
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 import bcrypt
@@ -9,7 +9,6 @@ if path.exists('env.py'):
 
 
 app = Flask(__name__)
-
 app.config['MONGO_DBNAME'] = os.environ.get('MONGO_DBNAME')
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
@@ -19,13 +18,28 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def index():
-    if 'username' in session:
-     return 'You are logged in as ' + session['username']
+
     return render_template('index.html')
 
-@app.route('/login')
+
+@app.route('/login', methods=['POST', 'GET'])
 def login():
+
+    if request.method == 'POST':
+        users = mongo.db.users
+        login_user = users.find_one({'name': request.form['username']})
+        if login_user:
+            bcrypt.checkpw(login_user['password'], bcrypt.hashpw(
+                request.form['password'].encode('utf-8'), bcrypt.gensalt()))
+            session['username'] = request.form['username']
+            flash(f'You are logged in!', 'success')
+            return redirect(url_for('index'))
+        else:
+            flash(
+                f'Login  Unsuccessful. Please check username and password', 'danger')
+
     return render_template('login.html')
+
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -40,14 +54,14 @@ def register():
             users.insert(
                 {'name': request.form['username'], 'password': hashpass})
             session['username'] = request.form['username']
-            flash('You are now regsitered please login!', 'success')
+            flash(f'You are now regsitered please login!', 'success')
             return redirect(url_for('login'))
         else:
-            flash('Registraion Unsuccessful. Please check username and password', 'danger')
+            flash(
+                f'Registraion Unsuccessful. Please check username and password', 'danger')
     return render_template('register.html')
 
-
     if __name__ == '__main__':
-        app.run(host=os.environ.get('IP'),
-                port=int(os.environ.get('PORT')),
+        app.run(host=os.environ.get('IP', '127.0.0.1'),
+                port=os.environ.get('PORT', '5000'),
                 debug=False)
