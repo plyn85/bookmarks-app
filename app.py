@@ -1,6 +1,7 @@
 
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
+from flask_login import logout_user
 import bcrypt
 import os
 from os import path
@@ -24,7 +25,7 @@ def index():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-
+    # taken an altered from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE
     if request.method == 'POST':
         users = mongo.db.users
         login_user = users.find_one({'name': request.form['username']})
@@ -43,7 +44,7 @@ def login():
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-    '''Used from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE'''
+    '''taken an altered from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE'''
     if request.method == 'POST':
         users = mongo.db.users
         existing_user = users.find_one({'name': request.form['username']})
@@ -60,6 +61,12 @@ def register():
             flash(
                 f'Registraion Unsuccessful. Please check username and password', 'danger')
     return render_template('register.html')
+
+    @app.route('/logout')
+    def logout():
+        session.clear()
+        flash(f'You are now logged out of the bookmarks app', 'primary')
+        return redirect(url_for('index'))
 
     if __name__ == '__main__':
         app.run(host=os.environ.get('IP', '127.0.0.1'),

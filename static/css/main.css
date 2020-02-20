@@ -1,3 +1,98 @@
+@import url("https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Oswald&display=swap:,600,700,800");
+
+/* reusable components */
+.text-oswald {
+  font-family: "Oswald", sans-serif;
+}
+
+.text-barlow {
+  font-family: "Barlow Semi Condensed", sans-serif;
+}
+.white {
+  color: #ffffff;
+}
+
+/* inital set up */
+/* Setting default font size for page */
+body,
+html {
+  font-size: 16px;
+}
+
+/* navbar */
+/* fixed navbar  added here z-index added to put navbar on top of background Image  */
+.navbar-fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+/* removing all margins and padding from bootsrap rows an cols */
+.container-fluid,
+.container,
+.row {
+  margin: 0;
+  padding: 0;
+}
+
+/* end Inital setup */
+
+/* buttons */
+/* targeting the reset data button and callout main text here  */
+
+.data-btn {
+  border-radius: 5px;
+  width: 50%;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+/* main body */
+
+/* setting fonts */
+.callout-main-text,
+.navbar-brand,
+.navbar-nav .nav-link {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* end of navbar section */
+
+/* callout section */
+/* wrapper for callout Image */
+.img-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+/* fixed background Image added here to take up full view height */
+.callout-container {
+  height: 100vh;
+  background: url("https://res.cloudinary.com/plyn85/image/upload/v1582221083/bookmarks-app/2x-Blog-Best-eLearning-Websites-Update-animation_emlb26.gif")
+    no-repeat fixed;
+  background-position-x: 50%;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+}
+
+/* positioning callout text here  */
+#callout-text {
+  margin-top: 0.4rem;
+  position: relative;
+}
+
 /* taken an modified from tutorial at  https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-registration-form  */
 /* registration from  */
 

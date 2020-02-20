@@ -1,1 +1,21 @@
-{% extends 'base.html' %} {% block content %} {% endblock content %}
+{% extends 'base.html' %} {% block content %}
+<div id="callout-text">
+  <section class="container-fluid img-wrapper callout-container row">
+    <div class="col-10 col-md-8">
+      <p class="text-oswald callout-main-text">
+        Tired of having a long list of bookmarks and no Idea of what you
+        bookmarked, when you bookmarked it and why? The answer to all your
+        problems is here organize your bookmarks with our bookmarks organiser
+        app. Please register and then login In to use the app.
+      </p>
+      <div class="row justify-content-center">
+        <button type="button" class="data-btn col-md-3  btn-primary">
+          <a href="{{url_for('register')}}" class="text-oswald white">
+            Register here</a
+          >
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock content %}
