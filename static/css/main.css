@@ -12,6 +12,10 @@
   color: #ffffff;
 }
 
+.yellow-background {
+  background-color: yellow;
+}
+
 /* inital set up */
 /* Setting default font size for page */
 body,
@@ -59,7 +63,11 @@ html {
   font-weight: 700;
 }
 
-/* end of navbar section */
+.callout-main-text {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #000000;
+}
 
 /* callout section */
 /* wrapper for callout Image */
