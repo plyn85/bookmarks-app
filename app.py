@@ -33,6 +33,7 @@ def login():
         if login_user:
             if bcrypt.hashpw(request.form.get('password').encode('utf-8'), login_user['password']) == login_user['password']:
                 session['username'] = request.form.get('username')
+                session['logged_in'] = True
                 flash(f'You are logged in!', 'success')
                 return redirect(url_for('index'))
             else:
@@ -62,11 +63,12 @@ def register():
                 f'Registraion Unsuccessful. Please check username and password', 'danger')
     return render_template('register.html')
 
-    @app.route('/logout')
-    def logout():
-        session.clear()
-        flash(f'You are now logged out of the bookmarks app', 'primary')
-        return redirect(url_for('index'))
+
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    flash(f'You are now  logged out!', 'danger')
+    return redirect(url_for('index'))
 
     if __name__ == '__main__':
         app.run(host=os.environ.get('IP', '127.0.0.1'),

@@ -45,9 +45,15 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Bookmarks</a>
             </li>
+            {% if session['logged_in'] == True %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+            </li>
+            {% else %}
             <li class="nav-item">
               <a class="nav-link" href="{{url_for('login')}}">Login</a>
             </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link" href="{{url_for('register')}}">Register</a>
             </li>
