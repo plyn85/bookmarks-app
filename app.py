@@ -75,7 +75,13 @@ def logout():
 def bookmarks():
     return render_template('bookmarks.html')
 
-    if __name__ == '__main__':
-        app.run(host=os.environ.get('IP', '127.0.0.1'),
-                port=os.environ.get('PORT', '5000'),
-                debug=False)
+
+@app.route('/add_bookmark')
+def add_bookmark():
+    return render_template('add_bookmark.html')
+
+
+if __name__ == '__main__':
+    app.run(host=os.environ.get('IP'),
+            port=int(os.environ.get('PORT')),
+            debug=True)

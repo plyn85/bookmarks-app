@@ -37,15 +37,15 @@
           id="navbarNav"
         >
           <ul class="navbar-nav">
-            <!-- these four links will only visable when in the book marks section -->
-
-            {% if not url_for('bookmarks') == True %}
-
+            <!-- these four links will only visable when in the bookmarks section -->
+            {% if request.path == url_for('bookmarks')%}
             <li class="nav-item">
               <a class="nav-link" href="">Add Category</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href=""> Add Bookmark</a>
+              <a class="nav-link" href="{{url_for('add_bookmark')}}">
+                Add Bookmark</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="">Update Bookmark</a>
@@ -60,11 +60,11 @@
                 >Home <span class="sr-only">(current)</span></a
               >
             </li>
-            {% if url_for('bookmarks') == True %}
+
+            {% if session['logged_in'] == True %}
             <li class="nav-item">
               <a class="nav-link" href="{{url_for('bookmarks')}}">Bookmarks</a>
             </li>
-            {% endif %} {% if session['logged_in'] == True %}
             <li class="nav-item">
               <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
             </li>
