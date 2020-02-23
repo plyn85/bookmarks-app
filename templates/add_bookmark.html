@@ -2,7 +2,7 @@
 <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
 <section class="yellow-background">
   <div class="signup-form mt-5">
-    <form action="{{ url_for('add_bookmark') }}" method="post">
+    <form action="{{ url_for('insert_bookmark') }}" method="post">
       <h2 class="text-center">Add bookmark</h2>
       <p class="hint-text">
         Copy and paste your bookmark url below
@@ -20,7 +20,7 @@
         Add a description for your bookmark below
       </p>
       <div class="form-group">
-        <textarea class="form-control" name="add_bookmark_description" rows="5">
+        <textarea class="form-control" name="bookmark_description" rows="5">
 Enter text here...</textarea
         >
       </div>

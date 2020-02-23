@@ -71,14 +71,21 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/bookmarks')
-def bookmarks():
-    return render_template('bookmarks.html')
+@app.route('/get_bookmark')
+def get_bookmark():
+    return render_template('bookmarks.html', bookmarks=mongo.db.bookmarks.find())
 
 
 @app.route('/add_bookmark')
 def add_bookmark():
     return render_template('add_bookmark.html')
+
+
+@app.route('/insert_bookmark', methods=['POST'])
+def insert_bookmark():
+    bookmarks = mongo.db.bookmarks
+    bookmarks.insert_one(request.form.to_dict())
+    return redirect(url_for('get_bookmark'))
 
 
 if __name__ == '__main__':
