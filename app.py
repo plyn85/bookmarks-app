@@ -70,6 +70,11 @@ def logout():
     flash(f'You are now  logged out!', 'danger')
     return redirect(url_for('index'))
 
+
+@app.route('/bookmarks')
+def bookmarks():
+    return render_template('bookmarks.html')
+
     if __name__ == '__main__':
         app.run(host=os.environ.get('IP', '127.0.0.1'),
                 port=os.environ.get('PORT', '5000'),

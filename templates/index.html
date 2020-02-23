@@ -11,10 +11,7 @@
       </p>
       {% endif %} {% if session['logged_in'] == True %}
       <p class="text-oswald white callout-main-text">
-        Tired of having a long list of bookmarks and no Idea of what you
-        bookmarked, when you bookmarked it and why? The answer to all your
-        problems is here organize your bookmarks with our bookmarks organiser
-        app. You are now logged In an free to add, delete update and create your
+        You are now logged In an free to add, delete update and create your
         bookmarks please look at our examples below and the head to the
         bookmarks section to begin creating your own unique bookmarks orginser.
       </p>
@@ -24,6 +21,12 @@
         <button type="button" class="data-btn col-md-3  btn-primary">
           <a href="{{url_for('register')}}" class="text-oswald white">
             Register here</a
+          >
+        </button>
+        {% endif %} {% if session['logged_in'] == True %}
+        <button type="button" class="data-btn col-md-3  btn-primary">
+          <a href="{{url_for('bookmarks')}}" class="text-oswald white">
+            Bookmarks</a
           >
         </button>
         {% endif %}
