@@ -114,7 +114,7 @@ targeting flashed messages */
 }
 
 /* taken an modified from tutorial at  https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-registration-form  */
-/* registration from  */
+/* signup/registration/logout/login/bookmarks was reused on all these pages */
 
 .signup-form {
   width: 400px;
@@ -172,4 +172,4 @@ targeting flashed messages */
   text-decoration: none;
 }
 
-/*end  registration from  */
+/*end */

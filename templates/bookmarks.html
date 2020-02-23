@@ -1,24 +1,20 @@
 {% extends 'base.html' %} {% block content %}
-<section class="yellow-background">
-    <div class="signup-form mt-5">
-        {% for book  in bookmarks %}
-  <ul class="list-group">
-  
-    <li class="list-group-item"><a href="" about="blank">{{book.add_bookmark_url}}</a>{{book.add_bookmark_url}}</li>
-    
-    <li class="list-group-item">{{book.bookmark_description}}</li>
-    {% endfor%}
-    <li class="list-group-item">Morbi leo risus</li>
-    <li class="list-group-item">Porta ac consectetur ac</li>
-    <li class="list-group-item">Vestibulum at eros</li>
-    <li class="list-group-item">Morbi leo risus</li>
-    <li class="list-group-item">Porta ac consectetur ac</li>
-    <li class="list-group-item">Vestibulum at eros</li>
-    <li class="list-group-item">Morbi leo risus</li>
-    <li class="list-group-item">Porta ac consectetur ac</li>
-    <li class="list-group-item">Vestibulum at eros</li>
-  </ul>
-</div>
-</div>
-
-{% endblock content%}
+<section class="siginup-form yellow-background">
+  <div class="row justify-content-center bookmarks-page-list">
+    {% for book in bookmarks %}
+    <div class="list-group col-8">
+      <a
+        href="{{book.add_bookmark_url}}"
+        class="list-group-item list-group-item-action flex-column align-items-start active"
+      >
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1 text-barlow">{{book.add_bookmark_url}}</h5>
+        </div>
+        <p class="mb-1 text-barlow">
+          {{book.bookmark_description}}
+        </p>
+      </a>
+    </div>
+    {% endfor%} {% endblock content%}
+  </div>
+</section>
