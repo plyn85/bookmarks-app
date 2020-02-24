@@ -16,7 +16,10 @@
   background-color: #ffc107;
   height: 100vh;
 }
-
+.hr {
+  border: 0.5px solid black;
+  width: 50%;
+}
 /* inital set up */
 /* Setting default font size for page */
 body,
@@ -173,3 +176,9 @@ targeting flashed messages */
 }
 
 /*end */
+
+/* bookmark page */
+
+.bookmark-page {
+  margin-top: 4rem;
+}

@@ -38,7 +38,7 @@
         >
           <ul class="navbar-nav">
             <!-- these four links will only visable when in the bookmarks section -->
-            {% if request.path == url_for('get_bookmark')%}
+            {% if request.path == url_for('user_bookmarks')%}
             <li class="nav-item">
               <a class="nav-link" href="">Add Category</a>
             </li>
@@ -63,7 +63,7 @@
 
             {% if session['logged_in'] == True %}
             <li class="nav-item">
-              <a class="nav-link" href="{{url_for('get_bookmark')}}"
+              <a class="nav-link" href="{{url_for('user_bookmarks')}}"
                 >Bookmarks</a
               >
             </li>
@@ -96,7 +96,7 @@
         {% endif %} {% endwith%}
       </main>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid position-relative">
       {% block content %}{% endblock %}
     </div>
 

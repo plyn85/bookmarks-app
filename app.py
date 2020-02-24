@@ -71,9 +71,10 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/get_bookmark')
-def get_bookmark():
-    return render_template('bookmarks.html', bookmarks=mongo.db.bookmarks.find())
+@app.route('/user_bookmarks')
+def user_bookmarks():
+    bookmarks = mongo.db.bookmarks.find()
+    return render_template('bookmarks.html', bookmarks=bookmarks)
 
 
 @app.route('/add_bookmark')
@@ -85,7 +86,7 @@ def add_bookmark():
 def insert_bookmark():
     bookmarks = mongo.db.bookmarks
     bookmarks.insert_one(request.form.to_dict())
-    return redirect(url_for('get_bookmark'))
+    return redirect(url_for('user_bookmarks'))
 
 
 if __name__ == '__main__':

@@ -1,20 +1,27 @@
 {% extends 'base.html' %} {% block content %}
-<section class="siginup-form yellow-background">
-  <div class="row justify-content-center bookmarks-page-list">
-    {% for book in bookmarks %}
-    <div class="list-group col-8">
-      <a
-        href="{{book.add_bookmark_url}}"
-        class="list-group-item list-group-item-action flex-column align-items-start active"
-      >
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1 text-barlow">{{book.add_bookmark_url}}</h5>
-        </div>
-        <p class="mb-1 text-barlow">
-          {{book.bookmark_description}}
-        </p>
-      </a>
+<section class="yellow-background bookmark-page">
+  <div class="row">
+    <div class="col-8">
+      <h2 class="bookmarks-header text-oswald">
+        Bookmarks for {{session.username}}
+      </h2>
     </div>
-    {% endfor%} {% endblock content%}
   </div>
+  <div class="hr"></div>
+  {% for book in bookmarks %}
+  <div class="row">
+    <div class="col-8 text-barlow">
+      <h3>{{book.bookmark_description}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8 text-barlow">
+      <h4>
+        <a href="{{book.add_bookmark_url}}">{{book.add_bookmark_url}}</a>
+      </h4>
+    </div>
+  </div>
+  {% endfor %}
+  <div class="hr"></div>
 </section>
+{% endblock content%}
