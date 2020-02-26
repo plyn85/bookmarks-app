@@ -1,7 +1,7 @@
-
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 import bcrypt
+from bson.objectid import ObjectId
 
 
 import os
@@ -87,6 +87,16 @@ def insert_bookmark():
     bookmarks = mongo.db.bookmarks
     bookmarks.insert_one(request.form.to_dict())
     return redirect(url_for('user_bookmarks'))
+
+
+@app.route('/remove_bookmark')
+def remove_bookmark():
+    return render_template('delete_bookmark.html')
+
+
+@app.route('/edit_bookmark')
+def edit_bookmark():
+    return render_template('edit_bookmark.html')
 
 
 if __name__ == '__main__':

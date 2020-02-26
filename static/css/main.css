@@ -182,3 +182,10 @@ targeting flashed messages */
 .bookmark-page {
   margin-top: 4rem;
 }
+
+.btn-bookmark-page:link,
+.btn-bookmark-page:visited,
+.btn-bookmark-page:hover,
+.btn-bookmark-page:active {
+  color: #f2f3f7;
+}

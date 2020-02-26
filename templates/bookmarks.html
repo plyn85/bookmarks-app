@@ -11,17 +11,35 @@
   {% for book in bookmarks %}
   <div class="row">
     <div class="col-8 text-barlow">
-      <h3>{{book.bookmark_description}}</h3>
+      <h3>{{book.bookmark_description |truncate (50, killwords=True) }}</h3>
     </div>
   </div>
   <div class="row">
     <div class="col-8 text-barlow">
       <h4>
-        <a href="{{book.add_bookmark_url}}">{{book.add_bookmark_url}}</a>
+        <a href="{{book.add_bookmark_url}}"
+          >{{book.add_bookmark_url| truncate(30, killwords=True) }}</a
+        >
       </h4>
     </div>
   </div>
-  {% endfor %}
+
+  <button
+    type="button"
+    class="btn btn-primary btn-small btn-link btn-bookmark-page"
+  >
+    <a href="{{url_for('remove_bookmark')}}" class="btn-bookmark-page"
+      >Delete</a
+    >
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary btn-small btn-link btn-bookmark-page"
+  >
+    <a href="{{url_for('edit_bookmark')}}" class="btn-bookmark-page"> Edit</a>
+  </button>
+
   <div class="hr"></div>
+  {% endfor %}
 </section>
 {% endblock content%}
