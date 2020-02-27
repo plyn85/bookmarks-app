@@ -28,7 +28,9 @@
     type="button"
     class="btn btn-primary btn-small btn-link btn-bookmark-page"
   >
-    <a href="{{url_for('remove_bookmark')}}" class="btn-bookmark-page"
+    <a
+      href="{{url_for('remove_bookmark',bookmarks_id=bookmarks._id)}}"
+      class="btn-bookmark-page"
       >Delete</a
     >
   </button>

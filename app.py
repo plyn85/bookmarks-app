@@ -1,7 +1,8 @@
+import sys
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
-import bcrypt
 from bson.objectid import ObjectId
+import bcrypt
 
 
 import os
@@ -73,8 +74,7 @@ def logout():
 
 @app.route('/user_bookmarks')
 def user_bookmarks():
-    bookmarks = mongo.db.bookmarks.find()
-    return render_template('bookmarks.html', bookmarks=bookmarks)
+    return render_template('bookmarks.html', bookmarks=mongo.db.bookmarks.find())
 
 
 @app.route('/add_bookmark')
@@ -89,8 +89,14 @@ def insert_bookmark():
     return redirect(url_for('user_bookmarks'))
 
 
-@app.route('/remove_bookmark')
-def remove_bookmark():
+@app.route('/remove_bookmark/<bookmarks_id>')
+def remove(bookmarks_id):
+    mongo.db.bookmarks.remove({'_id': ObjectId(bookmarks_id)})
+    return redirect(url_for('user_bookmarks'))
+
+
+@app.route('/delete_bookmark')
+def delete_bookmark():
     return render_template('delete_bookmark.html')
 
 
@@ -98,6 +104,10 @@ def remove_bookmark():
 def edit_bookmark():
     return render_template('edit_bookmark.html')
 
+
+modulename = 'ObjectId'
+if modulename not in sys.modules:
+    print('You have not imported the {} module').format(modulename)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
