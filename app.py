@@ -1,7 +1,7 @@
 import sys
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
-from bson.objectid import ObjectId
+from bson import ObjectId
 import bcrypt
 
 
@@ -104,10 +104,6 @@ def delete_bookmark():
 def edit_bookmark():
     return render_template('edit_bookmark.html')
 
-
-modulename = 'ObjectId'
-if modulename not in sys.modules:
-    print('You have not imported the {} module').format(modulename)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
