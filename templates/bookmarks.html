@@ -1,47 +1,54 @@
 {% extends 'base.html' %} {% block content %}
 <section class="yellow-background bookmark-page">
-  <div class="row">
-    <div class="col-8">
-      <h2 class="bookmarks-header text-oswald">
+  <div class="row justify-content-center">
+    <div class="col-lg-4">
+      <h2 class="bookmarks-header text-oswald mt-5 text-center">
         Bookmarks for {{session.username}}
       </h2>
     </div>
   </div>
-  <div class="hr"></div>
-  {% for book in bookmark %}
-  <div class="row">
-    <div class="col-8 text-barlow">
-      <h3>{{book.bookmark_description |truncate (50, killwords=True) }}</h3>
+
+  <div class="card-columns">
+    {% for book in bookmark %}
+    <div class="card yellow-background">
+      <div class="card-body text-center">
+        <div class="row">
+          <div class="col text-barlow">
+            <h3>
+              {{book.bookmark_description |truncate (50, killwords=True) }}
+            </h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-barlow">
+            <h4>
+              <a href="{{book.add_bookmark_url}}"
+                >{{book.add_bookmark_url| truncate(30, killwords=True) }}</a
+              >
+            </h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button
+              type="button"
+              class="btn btn-primary btn-small btn-link btn-bookmark-page"
+            >
+              <a href="" class="btn-bookmark-page">Delete</a>
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary btn-small btn-link btn-bookmark-page"
+            >
+              <a href="{{url_for('edit_bookmark')}}" class="btn-bookmark-page">
+                Edit</a
+              >
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+    {% endfor %}
   </div>
-  <div class="row">
-    <div class="col-8 text-barlow">
-      <h4>
-        <a href="{{book.add_bookmark_url}}"
-          >{{book.add_bookmark_url| truncate(30, killwords=True) }}</a
-        >
-      </h4>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <button
-        type="button"
-        class="btn btn-primary btn-small btn-link btn-bookmark-page"
-      >
-        <a href="" class="btn-bookmark-page">Delete</a>
-      </button>
-      <button
-        type="button"
-        class="btn btn-primary btn-small btn-link btn-bookmark-page"
-      >
-        <a href="{{url_for('edit_bookmark')}}" class="btn-bookmark-page">
-          Edit</a
-        >
-      </button>
-    </div>
-  </div>
-  <div class="hr"></div>
-  {% endfor %}
 </section>
 {% endblock content%}
