@@ -12,8 +12,11 @@
   color: #ffffff;
 }
 
+/* setting yellow background and height  here  as 100vh doesnt work well on bookmarks page*/
 .yellow-background {
   background-color: #ffc107;
+}
+.background-height {
   height: 100vh;
 }
 .hr {

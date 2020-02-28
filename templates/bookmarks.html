@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="hr"></div>
-  {% for book in bookmarks %}
+  {% for book in bookmark %}
   <div class="row">
     <div class="col-8 text-barlow">
       <h3>{{book.bookmark_description |truncate (50, killwords=True) }}</h3>
@@ -23,25 +23,24 @@
       </h4>
     </div>
   </div>
-
-  <button
-    type="button"
-    class="btn btn-primary btn-small btn-link btn-bookmark-page"
-  >
-    <a
-      href="
-    {{url_for('remove_bookmark',bookmark_id=bookmark._id)}}"
-      class="btn-bookmark-page"
-      >Delete</a
-    >
-  </button>
-  <button
-    type="button"
-    class="btn btn-primary btn-small btn-link btn-bookmark-page"
-  >
-    <a href="{{url_for('edit_bookmark')}}" class="btn-bookmark-page"> Edit</a>
-  </button>
-
+  <div class="row">
+    <div class="col">
+      <button
+        type="button"
+        class="btn btn-primary btn-small btn-link btn-bookmark-page"
+      >
+        <a href="" class="btn-bookmark-page">Delete</a>
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary btn-small btn-link btn-bookmark-page"
+      >
+        <a href="{{url_for('edit_bookmark')}}" class="btn-bookmark-page">
+          Edit</a
+        >
+      </button>
+    </div>
+  </div>
   <div class="hr"></div>
   {% endfor %}
 </section>

@@ -1,11 +1,10 @@
-import sys
+import os
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
-from bson import ObjectId
+from bson.objectid import ObjectId
 import bcrypt
 
 
-import os
 from os import path
 if path.exists('env.py'):
     import env
@@ -15,6 +14,7 @@ app = Flask(__name__)
 app.config['MONGO_DBNAME'] = os.environ.get('MONGO_DBNAME')
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+
 
 mongo = PyMongo(app)
 
@@ -74,7 +74,7 @@ def logout():
 
 @app.route('/user_bookmarks')
 def user_bookmarks():
-    return render_template('bookmarks.html', bookmarks=mongo.db.bookmarks.find())
+    return render_template('bookmarks.html', bookmark=mongo.db.bookmarks.find())
 
 
 @app.route('/add_bookmark')
@@ -82,16 +82,16 @@ def add_bookmark():
     return render_template('add_bookmark.html')
 
 
-@app.route('/insert_bookmark', methods=['POST'])
+@app.route('/insert_bookmark',  methods=["GET", "POST"])
 def insert_bookmark():
     bookmarks = mongo.db.bookmarks
     bookmarks.insert_one(request.form.to_dict())
     return redirect(url_for('user_bookmarks'))
 
 
-@app.route('/remove_bookmark/<bookmarks_id>')
-def remove(bookmarks_id):
-    mongo.db.bookmarks.remove({'_id': ObjectId(bookmarks_id)})
+@app.route('/remove/<bookmark_id>', methods=['POST'])
+def remove(bookmark_id):
+    mongo.db.bookmarks.remove({'_id': ObjectId(bookmark_id)})
     return redirect(url_for('user_bookmarks'))
 
 
@@ -103,6 +103,24 @@ def delete_bookmark():
 @app.route('/edit_bookmark')
 def edit_bookmark():
     return render_template('edit_bookmark.html')
+
+
+@app.route('/get_categories')
+def get_categories():
+    return render_template('categories.html',  categories=mongo.db.categories.find())
+
+
+@app.route("/insert_category", methods=["POST"])
+def insert_category():
+    categories = mongo.db.categories
+    category_doc = {"category_name": request.form.get("category_name")}
+    categories.insert_one(category_doc)
+    return redirect(url_for("get_categories"))
+
+
+@app.route('/add_category')
+def add_category():
+    return render_template('add_category.html')
 
 
 if __name__ == '__main__':
