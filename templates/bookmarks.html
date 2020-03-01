@@ -8,10 +8,10 @@
     </div>
   </div>
 
-  <div class="card-columns">
-    {% for book in bookmark %}
-    <div class="card yellow-background">
-      <div class="card-body text-center">
+  {% for book in bookmark %}
+  <div class="row justify-content-center">
+    <div class="card">
+      <div class="card-body text-center yellow-background">
         <div class="row">
           <div class="col text-barlow">
             <h3>
@@ -48,7 +48,7 @@
         </div>
       </div>
     </div>
-    {% endfor %}
   </div>
+  {% endfor %}
 </section>
 {% endblock content%}
