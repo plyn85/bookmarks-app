@@ -93,9 +93,9 @@ def edit_bookmark():
     return render_template('edit_bookmark.html')
 
 
-@app.route("/remove/<bookmark_id>")
+@app.route('/remove/<bookmark_id>')
 def remove(bookmark_id):
-    mongo.db.bookmarks.remove({"_id": ObjectId(bookmark_id)})
+    mongo.db.bookmarks.remove({'_id': ObjectId(bookmark_id)})
     return redirect(url_for('user_bookmarks'))
 
 
