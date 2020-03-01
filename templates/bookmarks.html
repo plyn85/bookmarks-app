@@ -34,7 +34,9 @@
               type="button"
               class="btn btn-primary btn-small btn-link btn-bookmark-page"
             >
-              <a href="{{url_for('delete_bookmark')}}" class="btn-bookmark-page"
+              <a
+                href="{{url_for('remove', bookmark_id=bookmark._id)}}"
+                class="btn-bookmark-page"
                 >Delete</a
               >
             </button>
@@ -61,4 +63,4 @@
   </div>
   {% endfor %}
 </section>
-{% endblock content%}
+{% endblock %}
