@@ -21,7 +21,6 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def index():
-
     return render_template('index.html')
 
 
@@ -110,12 +109,11 @@ def get_categories():
     return render_template('categories.html',  categories=mongo.db.categories.find())
 
 
-@app.route("/insert_category", methods=["POST"])
+@app.route('/insert_category',  methods=["GET", "POST"])
 def insert_category():
     categories = mongo.db.categories
-    category_doc = {"category_name": request.form.get("category_name")}
-    categories.insert_one(category_doc)
-    return redirect(url_for("get_categories"))
+    categories.insert_one(request.form.to_dict())
+    return redirect(url_for('get_categories'))
 
 
 @app.route('/add_category')

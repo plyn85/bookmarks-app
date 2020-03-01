@@ -13,7 +13,7 @@
 }
 
 /* setting yellow background and height  here  as 100vh doesnt work well on bookmarks page*/
-.yellow-background {
+body {
   background-color: #ffc107;
 }
 .background-height {
@@ -192,7 +192,7 @@ targeting flashed messages */
 .btn-bookmark-page:active {
   color: #f2f3f7;
 }
-/* changing card border color */
+/* changing bootstrap cards to suit sight layout */
 .card {
   min-width: 50%;
   border: 2px solid #007bff;
