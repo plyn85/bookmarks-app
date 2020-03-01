@@ -1,8 +1,8 @@
 {% extends 'base.html' %} {% block content %}
 <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
-<section class="yellow-background background-height">
+<section>
   <div class="signup-form mt-5">
-    <form action="{{ url_for('insert_bookmark') }}" method="post">
+    <form action="" method="post">
       <h2 class="text-center text-barlow">
         Edit bookmark and description below
       </h2>
@@ -10,8 +10,8 @@
         <input
           type="text"
           class="form-control"
-          name="delete_bookmark_url"
-          placeholder=""
+          name="add_bookmark_url"
+          placeholder="{{book.add_bookmark_url| truncate(30, killwords=True) }}"
           required="required"
         />
       </div>
@@ -20,7 +20,9 @@
           class="form-control text-barlow"
           name="bookmark_description"
           rows="5"
-        ></textarea>
+        >
+{{book.bookmark_description |truncate (50, killwords=True) }}</textarea
+        >
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block text-barlow">

@@ -94,11 +94,6 @@ def remove(bookmark_id):
     return redirect(url_for('user_bookmarks'))
 
 
-@app.route('/delete_bookmark')
-def delete_bookmark():
-    return render_template('delete_bookmark.html')
-
-
 @app.route('/edit_bookmark')
 def edit_bookmark():
     return render_template('edit_bookmark.html')
