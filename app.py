@@ -1,7 +1,9 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, session, flash
+from flask_login import LoginManager, UserMixin
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from flask_login import current_user, login_user, logout_user, login_required
 import bcrypt
 
 
@@ -18,6 +20,17 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 mongo = PyMongo(app)
 
+login_manager = LoginManager(app)
+login_manager.login_view = "login"
+
+
+@login_manager.user_loader
+def load_user(username):
+    u = mongo.db.users.find_one({"name": username})
+    if not u:
+        return None
+    return User(username=u['name'])
+
 
 @app.route('/')
 def index():
@@ -26,6 +39,8 @@ def index():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     # taken an altered from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE
     if request.method == 'POST':
         users = mongo.db.users
