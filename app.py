@@ -24,7 +24,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = "login"
 login_manager.login_message_category = 'danger'
 
-'''taken an modified from a tutorial found 
+'''taken an modified from a tutorial found
 https://stackoverflow.com/questions/54992412/flask-login-usermixin-class-with-a-mongodb
 to use flask login with mongo db'''
 
@@ -39,7 +39,7 @@ def load_user(username):
 
 @app.route('/')
 def index():
-    return render_template('index.html',bookmarks=mongo.db.bookmarks.find())
+    return render_template('index.html', bookmarks=mongo.db.bookmarks.find())
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -54,7 +54,7 @@ def login():
                 session['username'] = request.form.get('username')
                 session['logged_in'] = True
                 flash(f'You are logged in!', 'success')
-                return redirect(url_for('user'))
+                return redirect(url_for('index'))
             else:
                 flash(
                     f'Login  Unsuccessful. Please check username and password', 'danger')
@@ -92,7 +92,9 @@ def logout():
 
 @app.route('/user_bookmarks')
 def user_bookmarks():
-    return render_template('bookmarks.html',  bookmarks=mongo.db.bookmarks.find())
+    bookmarks = mongo.db.bookmarks.find()
+    username = mongo.db.users.find()
+    return render_template('bookmarks.html', bookmarks=bookmarks, username=username)
 
 
 @app.route('/add_bookmark')
@@ -103,7 +105,13 @@ def add_bookmark():
 @app.route('/insert_bookmark',  methods=["GET", "POST"])
 def insert_bookmark():
     bookmarks = mongo.db.bookmarks
-    bookmarks.insert_one(request.form.to_dict())
+    bookmarks.insert_one({
+        'username': session['username'],
+        'add_bookmark_url': request.form.get('add_bookmark_url'),
+        'bookmark_description': request.form.get('bookmark_description')
+
+    })
+
     return redirect(url_for('user_bookmarks'))
 
 
@@ -112,10 +120,10 @@ def edit_bookmark():
     return render_template('edit_bookmark.html')
 
 
-@app.route('/remove/<bookmarks_id>')
-def remove(bookmarks_id):
+@app.route('/remove_bookmark/<bookmarks_id>', methods=["POST"])
+def remove_bookmark(bookmarks_id):
     mongo.db.bookmarks.remove({'_id': ObjectId(bookmarks_id)})
-    return render_template('bookmark.html')
+    return redirect(url_for('user_bookmarks'))
 
 
 @app.route('/get_categories')

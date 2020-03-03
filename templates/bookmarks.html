@@ -1,9 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 <section class="bookmark-page">
+  {% for user in username %} {% if user.name == session['username'] %}
   <div class="row justify-content-center">
     <div class="col-lg-4">
       <h2 class="bookmarks-header text-oswald mt-5 text-center">
-        Bookmarks for {{session.username}}
+        Bookmarks for {{user.name}}
       </h2>
     </div>
   </div>
@@ -56,6 +57,6 @@
       </div>
     </div>
   </div>
-  {% endfor %}
+  {% endfor %} {% endif %} {% endfor %}
 </section>
 {% endblock %}
