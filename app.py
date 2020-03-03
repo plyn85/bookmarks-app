@@ -1,9 +1,9 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_login import LoginManager, UserMixin
+from flask_login import current_user, login_user, logout_user, login_required
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from flask_login import current_user, login_user, logout_user, login_required
 import bcrypt
 
 
@@ -22,6 +22,11 @@ mongo = PyMongo(app)
 
 login_manager = LoginManager(app)
 login_manager.login_view = "login"
+login_manager.login_message_category = 'danger'
+
+'''taken an modified from a tutorial found 
+https://stackoverflow.com/questions/54992412/flask-login-usermixin-class-with-a-mongodb
+to use flask login with mongo db'''
 
 
 @login_manager.user_loader
@@ -34,13 +39,12 @@ def load_user(username):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html',bookmarks=mongo.db.bookmarks.find())
 
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
+
     # taken an altered from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE
     if request.method == 'POST':
         users = mongo.db.users
@@ -50,7 +54,7 @@ def login():
                 session['username'] = request.form.get('username')
                 session['logged_in'] = True
                 flash(f'You are logged in!', 'success')
-                return redirect(url_for('index'))
+                return redirect(url_for('user'))
             else:
                 flash(
                     f'Login  Unsuccessful. Please check username and password', 'danger')
@@ -88,7 +92,7 @@ def logout():
 
 @app.route('/user_bookmarks')
 def user_bookmarks():
-    return render_template('bookmarks.html', bookmark=mongo.db.bookmarks.find())
+    return render_template('bookmarks.html',  bookmarks=mongo.db.bookmarks.find())
 
 
 @app.route('/add_bookmark')
@@ -108,10 +112,10 @@ def edit_bookmark():
     return render_template('edit_bookmark.html')
 
 
-@app.route('/remove/<bookmark_id>')
-def remove(bookmark_id):
-    mongo.db.bookmarks.remove({'_id': ObjectId(bookmark_id)})
-    return redirect(url_for('user_bookmarks'))
+@app.route('/remove/<bookmarks_id>')
+def remove(bookmarks_id):
+    mongo.db.bookmarks.remove({'_id': ObjectId(bookmarks_id)})
+    return render_template('bookmark.html')
 
 
 @app.route('/get_categories')

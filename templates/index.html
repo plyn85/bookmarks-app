@@ -33,5 +33,49 @@
       </div>
     </div>
   </section>
+  <section class="bookmark-page">
+    <div class="row justify-content-center">
+      <div class="col-lg-4">
+        <h2 class="bookmarks-header text-oswald mt-5 text-center">
+          Most recently added bookmarks
+        </h2>
+      </div>
+    </div>
+
+    {% for book in bookmarks %}
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body text-center yellow-background">
+            <div class="row">
+              <div class="col text-barlow">
+                <h3>
+                  {{book.bookmark_description |truncate (50, killwords=True) }}
+                </h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col text-barlow">
+                <h4>
+                  <a href="{{book.add_bookmark_url}}" target="_blank"
+                    >{{book.add_bookmark_url| truncate(30, killwords=True) }}</a
+                  >
+                </h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h4 class="text-barlow mt-2">
+                  Added by {{session.username}}
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  {% endblock content %}
 </div>
-{% endblock content %}
