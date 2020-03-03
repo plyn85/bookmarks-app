@@ -93,8 +93,7 @@ def logout():
 @app.route('/user_bookmarks')
 def user_bookmarks():
     bookmarks = mongo.db.bookmarks.find()
-    username = mongo.db.users.find()
-    return render_template('bookmarks.html', bookmarks=bookmarks, username=username)
+    return render_template('bookmarks.html', bookmarks=bookmarks)
 
 
 @app.route('/add_bookmark')
@@ -120,9 +119,9 @@ def edit_bookmark():
     return render_template('edit_bookmark.html')
 
 
-@app.route('/remove_bookmark/<bookmarks_id>', methods=["POST"])
-def remove_bookmark(bookmarks_id):
-    mongo.db.bookmarks.remove({'_id': ObjectId(bookmarks_id)})
+@app.route('/remove_bookmark/<book_id>')
+def remove_bookmark(book_id):
+    mongo.db.bookmarks.remove({'_id': ObjectId(book_id)})
     return redirect(url_for('user_bookmarks'))
 
 

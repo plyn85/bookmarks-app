@@ -1,14 +1,13 @@
 {% extends 'base.html' %} {% block content %}
 <section class="bookmark-page">
-  {% for user in username %} {% if user.name == session['username'] %}
   <div class="row justify-content-center">
     <div class="col-lg-4">
       <h2 class="bookmarks-header text-oswald mt-5 text-center">
-        Bookmarks for {{user.name}}
+        Bookmarks for {{session.username}}
       </h2>
     </div>
   </div>
-  {% for book in bookmarks %}
+  {% for book in bookmarks %} {% if book.username == session['username'] %}
   <div class="row justify-content-center">
     <div class="card">
       <div class="card-body text-center yellow-background">
@@ -34,7 +33,11 @@
               type="button"
               class="btn btn-primary btn-small btn-link btn-bookmark-page"
             >
-              <a href="" class="btn-bookmark-page">Delete</a>
+              <a
+                href="{{url_for('remove_bookmark', book_id=book._id)}}"
+                class="btn-bookmark-page"
+                >Delete</a
+              >
             </button>
             <button
               type="button"
@@ -57,6 +60,6 @@
       </div>
     </div>
   </div>
-  {% endfor %} {% endif %} {% endfor %}
+  {% endif %} {% endfor %}
 </section>
 {% endblock %}
