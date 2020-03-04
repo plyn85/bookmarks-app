@@ -17,7 +17,6 @@
     <header>
       <!-- copy an pasted an altered from https://getbootstrap.com/docs/4.3/components/navbar/ -->
       <!-- start of navbar -->
-      <!-- navbar brand an home visable on all pages an bring user to home page -->
       <nav
         class="navbar navbar-expand-lg bg-primary navbar-dark navbar-fixed-top"
       >
@@ -93,9 +92,8 @@
           {{session.username}} {{ message }} {% endfor %}
         </div>
       </div>
-      <main>
-        {% endif %} {% endwith%}
-      </main>
+
+      {% endif %} {% endwith%}
     </div>
     <div class="container-fluid position-relative">
       {% block content %}{% endblock %}

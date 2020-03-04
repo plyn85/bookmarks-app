@@ -42,6 +42,7 @@ def login():
             else:
                 flash(
                     f'Login  Unsuccessful. Please check username and password', 'danger')
+
     return render_template('login.html')
 
 
@@ -104,8 +105,8 @@ def edit_bookmark(book_id):
     return render_template("edit_bookmark.html", book=the_bookmark)
 
 
-@app.route('/update_bookmark/<book_id>',  methods=["GET", "POST"])
-def update_(book_id):
+@app.route('/update_bookmark/<book_id>', methods=["POST"])
+def update_bookmark(book_id):
     tasks = mongo.db.bookmarks
     tasks.update({'_id': ObjectId(book_id)},
                  {
@@ -159,6 +160,12 @@ def update_category(cat_id):
     mongo.db.categories.update(
         {'_id': ObjectId(cat_id)},
         {'category_name': request.form.get('category_name')})
+    return redirect(url_for('user_categories'))
+
+
+@app.route('/delete_category/<cat_id>')
+def delete_category(cat_id):
+    mongo.db.categories.remove({'_id': ObjectId(cat_id)})
     return redirect(url_for('user_categories'))
 
 

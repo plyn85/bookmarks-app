@@ -53,9 +53,7 @@ html {
 /* 
 targeting flashed messages */
 .flashed-messages {
-  position: fixed;
-  top: 10;
-  left: 10;
+  margin-top: 5rem;
   width: 100%;
   font-size: 1.3rem;
   z-index: 1;
@@ -198,4 +196,8 @@ targeting flashed messages */
   border: 2px solid #007bff;
   margin-top: 1rem;
   border-radius: 0.5rem;
+}
+
+* {
+  border: 1px solid red;
 }
