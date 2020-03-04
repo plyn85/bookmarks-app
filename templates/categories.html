@@ -14,7 +14,7 @@
         <div class="row">
           <div class="col text-barlow">
             <h3>
-              {{cat.category_name }}
+              {{cat.category_name| truncate(30, killwords=True) }}
             </h3>
           </div>
         </div>
@@ -30,7 +30,12 @@
               type="button"
               class="btn btn-primary btn-small btn-link btn-bookmark-page"
             >
-              <a href="" class="btn-bookmark-page"> Edit</a>
+              <a
+                href="{{url_for('edit_category', cat_id=cat._id)}}"
+                class="btn-bookmark-page"
+              >
+                Edit</a
+              >
             </button>
           </div>
         </div>

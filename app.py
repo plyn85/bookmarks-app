@@ -146,6 +146,22 @@ def insert_category():
     return redirect(url_for('user_categories'))
 
 
+@app.route('/edit_category/<cat_id>')
+def edit_category(cat_id):
+    category = mongo.db.categories.find_one(
+        {'_id': ObjectId(cat_id)})
+    return render_template('edit_category.html', cat=category
+                           )
+
+
+@app.route('/update_category/<cat_id>', methods=['POST'])
+def update_category(cat_id):
+    mongo.db.categories.update(
+        {'_id': ObjectId(cat_id)},
+        {'category_name': request.form.get('category_name')})
+    return redirect(url_for('user_categories'))
+
+
 #  end categories section ---------------------------------------------------------------------
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

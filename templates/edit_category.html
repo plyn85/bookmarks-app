@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block content %}
+<!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
+<section class="yellow-background background-height">
+  <div class="signup-form mt-5">
+    <form action="{{url_for('update_category', cat_id=cat._id)}}" method="post">
+      <h2 class="text-center text-barlow">Edit Category</h2>
+      <p class="hint-text text-barlow">
+        Edit your category below
+      </p>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control text-barlow"
+          name="category_name"
+          placeholder=" {{cat.category_name| truncate(30, killwords=True) }}"
+          required="required"
+        />
+      </div>
+      <p class="hint-text text-barlow">
+        Edit your Category Below
+      </p>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block text-barlow">
+          Edit Category
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock content %}
