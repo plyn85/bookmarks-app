@@ -16,7 +16,8 @@
   <body>
     <header>
       <!-- copy an pasted an altered from https://getbootstrap.com/docs/4.3/components/navbar/ -->
-
+      <!-- start of navbar -->
+      <!-- navbar brand an home visable on all pages an bring user to home page -->
       <nav
         class="navbar navbar-expand-lg bg-primary navbar-dark navbar-fixed-top"
       >
@@ -37,45 +38,44 @@
           id="navbarNav"
         >
           <ul class="navbar-nav">
-            <!-- these four links will only visable when in the bookmarks section -->
-            {% if request.path == url_for('user_bookmarks')%}
-            <li class="nav-item">
-              <a class="nav-link" href="">Add Category</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{url_for('add_bookmark')}}">
-                Add Bookmark</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="">Edit Bookmark</a>
-            </li>
-            <li class="nav-item mr-5">
-              <a class="nav-link" href="">Add Category</a>
-            </li>
-            {% endif %}
-
             <li class="nav-item active">
               <a class="nav-link" href="{{url_for('index')}}"
                 >Home <span class="sr-only">(current)</span></a
               >
             </li>
-
             {% if session['logged_in'] == True %}
             <li class="nav-item">
               <a class="nav-link" href="{{url_for('user_bookmarks')}}"
                 >Bookmarks</a
               >
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('add_bookmark')}}">
+                Add Bookmark</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('user_categories')}}"
+                >Categories</a
+              >
+            </li>
+
+            <li class="nav-item mr-5">
+              <a class="nav-link" href="{{url_for('add_category')}}"
+                >Add Category</a
+              >
+            </li>
+            {%endif%} {% if session['logged_in'] == True %}
             <li class="nav-item">
               <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
             </li>
-
+            <!-- only show if no user is logged in -->
             {% else %}
             <li class="nav-item">
               <a class="nav-link" href="{{url_for('login')}}">Login</a>
             </li>
-            {% endif %} {% if not session['logged_in'] == True %}
             <li class="nav-item">
               <a class="nav-link" href="{{url_for('register')}}">Register</a>
             </li>
@@ -83,6 +83,7 @@
           </ul>
         </div>
       </nav>
+      <!-- end of navbar -->
     </header>
     <div class="row justify-content-center">
       <div class="col-4 flashed-messages">
