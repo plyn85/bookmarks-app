@@ -22,6 +22,7 @@ mongo = PyMongo(app)
 
 
 @app.route('/index')
+@app.route('/')
 def index():
     return render_template('index.html')
 
@@ -74,7 +75,6 @@ def logout():
 # bookmarks section ---------------------------------------------------------------------
 
 
-@app.route('/')
 @app.route('/user_bookmarks')
 def user_bookmarks():
     bookmarks = mongo.db.bookmarks.find()
@@ -104,7 +104,7 @@ def edit_bookmark(book_id):
     return render_template("edit_bookmark.html", book=the_bookmark)
 
 
-@app.route('/update_bookmark/<book_id>', methods=["POST"])
+@app.route('/update_bookmark/<book_id>',  methods=["GET", "POST"])
 def update_(book_id):
     tasks = mongo.db.bookmarks
     tasks.update({'_id': ObjectId(book_id)},
@@ -126,7 +126,12 @@ def remove_bookmark(book_id):
 @app.route('/user_categories')
 def user_categories():
     categories = mongo.db.categories.find()
-    return render_template('categories.html', categoreis=categories)
+    return render_template('categories.html', categories=categories)
+
+
+@app.route('/add_category')
+def add_category():
+    return render_template('add_category.html')
 
 
 #  end categories section ---------------------------------------------------------------------
