@@ -114,32 +114,16 @@ def insert_bookmark():
     return redirect(url_for('user_bookmarks'))
 
 
-@app.route('/edit_bookmark')
-def edit_bookmark():
-    return render_template('edit_bookmark.html')
+@app.route("/edit_bookmark/<book_id>")
+def edit_bookmark(book_id):
+    the_bookmark = mongo.db.bookmarks.find_one({"_id": ObjectId(book_id)})
+    return render_template("edit_bookmark.html", bookmarks=the_bookmark)
 
 
 @app.route('/remove_bookmark/<book_id>')
 def remove_bookmark(book_id):
     mongo.db.bookmarks.remove({'_id': ObjectId(book_id)})
     return redirect(url_for('user_bookmarks'))
-
-
-@app.route('/get_categories')
-def get_categories():
-    return render_template('categories.html',  categories=mongo.db.categories.find())
-
-
-@app.route('/insert_category',  methods=["GET", "POST"])
-def insert_category():
-    categories = mongo.db.categories
-    categories.insert_one(request.form.to_dict())
-    return redirect(url_for('get_categories'))
-
-
-@app.route('/add_category')
-def add_category():
-    return render_template('add_category.html')
 
 
 if __name__ == '__main__':

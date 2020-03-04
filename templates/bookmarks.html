@@ -43,7 +43,10 @@
               type="button"
               class="btn btn-primary btn-small btn-link btn-bookmark-page"
             >
-              <a href="{{url_for('edit_bookmark')}}" class="btn-bookmark-page">
+              <a
+                href="{{url_for('edit_bookmark', book_id=book._id)}}"
+                class="btn-bookmark-page"
+              >
                 Edit</a
               >
             </button>
@@ -51,9 +54,7 @@
               type="button"
               class="btn btn-primary btn-small btn-link btn-bookmark-page"
             >
-              <a href="{{url_for('add_category')}}" class="btn-bookmark-page">
-                Add Category</a
-              >
+              <a href="" class="btn-bookmark-page"> Add Category</a>
             </button>
           </div>
         </div>
