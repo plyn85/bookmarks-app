@@ -1,7 +1,5 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, session, flash
-from flask_login import LoginManager, UserMixin
-from flask_login import current_user, login_user, logout_user, login_required
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import bcrypt
@@ -20,21 +18,9 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 mongo = PyMongo(app)
 
-login_manager = LoginManager(app)
-login_manager.login_view = "login"
-login_manager.login_message_category = 'danger'
-
 '''taken an modified from a tutorial found
 https://stackoverflow.com/questions/54992412/flask-login-usermixin-class-with-a-mongodb
 to use flask login with mongo db'''
-
-
-@login_manager.user_loader
-def load_user(username):
-    u = mongo.db.users.find_one({"name": username})
-    if not u:
-        return None
-    return User(username=u['name'])
 
 
 @app.route('/')
@@ -117,7 +103,19 @@ def insert_bookmark():
 @app.route("/edit_bookmark/<book_id>")
 def edit_bookmark(book_id):
     the_bookmark = mongo.db.bookmarks.find_one({"_id": ObjectId(book_id)})
-    return render_template("edit_bookmark.html", bookmarks=the_bookmark)
+    return render_template("edit_bookmark.html", book=the_bookmark)
+
+
+@app.route('/update_bookmark/<book_id>', methods=["POST"])
+def update_bookmark(book_id):
+    tasks = mongo.db.bookmarks
+    tasks.update({'_id': ObjectId(book_id)},
+                 {
+        'add_bookmark_url': request.form.get('add_bookmark_url'),
+        'bookmark_description': request.form.get('bookmark_description')
+
+    })
+    return redirect(url_for('user_bookmarks'))
 
 
 @app.route('/remove_bookmark/<book_id>')
