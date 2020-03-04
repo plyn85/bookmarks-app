@@ -134,6 +134,18 @@ def add_category():
     return render_template('add_category.html')
 
 
+@app.route('/insert_category', methods=["POST"])
+def insert_category():
+    category = mongo.db.categories
+    category.insert_one({
+        'username': session['username'],
+        'category_name': request.form.get('category_name')
+
+
+    })
+    return redirect(url_for('user_categories'))
+
+
 #  end categories section ---------------------------------------------------------------------
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
