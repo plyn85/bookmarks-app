@@ -1,16 +1,18 @@
+# Imports
 import os
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import bcrypt
 
-
+# Importing path from env.py
 from os import path
 if path.exists('env.py'):
     import env
 
 
 app = Flask(__name__)
+#  configuring enviroment variables which are set in env.py
 app.config['MONGO_DBNAME'] = os.environ.get('MONGO_DBNAME')
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
@@ -19,8 +21,6 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 mongo = PyMongo(app)
 
 # index,  login, register, and log out section -----------------------------------------
-
-
 @app.route('/index')
 @app.route('/')
 def index():
@@ -28,6 +28,10 @@ def index():
 
 
 @app.route('/login', methods=['POST', 'GET'])
+# First we find the logged in user in the data base
+#    If it the user exists In the database we compare the
+#    encncipted password from the form and the database
+#    password with the database password. The username is added to the session
 def login():
     # taken an altered from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE
     if request.method == 'POST':
@@ -39,9 +43,8 @@ def login():
                 session['logged_in'] = True
                 flash(f'You are logged in!', 'success')
                 return redirect(url_for('index'))
-            else:
-                flash(
-                    f'Login  Unsuccessful. Please check username and password', 'danger')
+        flash(
+            f'Login  Unsuccessful. Please check username/password conbination', 'danger')
 
     return render_template('login.html')
 
@@ -74,8 +77,6 @@ def logout():
     return redirect(url_for('index'))
 
 # bookmarks section ---------------------------------------------------------------------
-
-
 @app.route('/user_bookmarks')
 def user_bookmarks():
     bookmarks = mongo.db.bookmarks.find()
