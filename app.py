@@ -79,12 +79,14 @@ def logout():
 @app.route('/user_bookmarks')
 def user_bookmarks():
     bookmarks = mongo.db.bookmarks.find()
-    return render_template('bookmarks.html', bookmarks=bookmarks)
+    categories = mongo.db.categories.find()
+    return render_template('bookmarks.html', bookmarks=bookmarks, categories=categories)
 
 
 @app.route('/add_bookmark')
 def add_bookmark():
-    return render_template('add_bookmark.html')
+    categories = mongo.db.categories.find()
+    return render_template('add_bookmark.html', categories=categories)
 
 
 @app.route('/insert_bookmark',  methods=["GET", "POST"])

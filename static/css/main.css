@@ -23,6 +23,11 @@ body {
   border: 0.5px solid black;
   width: 50%;
 }
+/* reuse for smaller links  */
+.dropdown-item-cat {
+  font-size: 1.4rem;
+  font-weight: 900;
+}
 /* inital set up */
 /* Setting default font size for page */
 body,

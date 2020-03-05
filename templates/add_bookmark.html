@@ -33,8 +33,19 @@
         <div
           class="dropdown-menu text-barlow"
           aria-labelledby="dropdownMenuButton"
+          name="category_name"
         >
-          <a class="dropdown-item" href="#">Action</a>
+          {% for cat in categories %}
+          <li
+            class="dropdown-item dropdown-item-cat text-barlow"
+            value="{{cat.category_name}}"
+          >
+            {{cat.category_name}}
+          </li>
+
+          <li>
+            {%endfor%}
+          </li>
         </div>
       </div>
       <p class="hint-text text-barlow">
