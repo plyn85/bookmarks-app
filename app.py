@@ -4,7 +4,7 @@ from flask import Flask, render_template, redirect, request, url_for, session, f
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import bcrypt
-
+from flask_moment import Moment
 # Importing path from env.py
 from os import path
 if path.exists('env.py'):
@@ -19,7 +19,7 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 
 mongo = PyMongo(app)
-
+moment = Moment(app)
 # index,  login, register, and log out section -----------------------------------------
 @app.route('/index')
 @app.route('/')

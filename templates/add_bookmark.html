@@ -30,24 +30,23 @@
         >
           Choose Category
         </button>
+
         <div
           class="dropdown-menu text-barlow"
           aria-labelledby="dropdownMenuButton"
           name="category_name"
         >
           {% for cat in categories %}
-          <li
+          <option
             class="dropdown-item dropdown-item-cat text-barlow"
             value="{{cat.category_name}}"
           >
             {{cat.category_name}}
-          </li>
-
-          <li>
-            {%endfor%}
-          </li>
+          </option>
+          {%endfor%}
         </div>
       </div>
+
       <p class="hint-text text-barlow">
         Add a description for your bookmark below
       </p>
