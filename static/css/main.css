@@ -14,6 +14,39 @@
 .uppercase {
   text-transform: uppercase;
 }
+
+.txt-lg {
+  font-size: 1.5;
+}
+/* changing all input placeholders text below
+barlow repeated as it takes less code that way
+*/
+
+input::-webkit-input-placeholder {
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: "Barlow Semi Condensed", sans-serif;
+}
+
+input::-moz-placeholder {
+  font-size: 1.5rem;
+}
+
+input:-ms-input-placeholder {
+  font-size: 1.5rem;
+}
+
+input::-ms-input-placeholder {
+  font-size: 1.5rem;
+}
+
+input::-webkit-input-placeholder {
+  font-size: 1.5rem;
+}
+
+input::placeholder {
+  font-size: 1.5rem;
+}
 /* setting yellow background and height  here  as 100vh doesnt work well on bookmarks page*/
 body {
   background-color: #ffc107;

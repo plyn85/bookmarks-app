@@ -2,20 +2,16 @@
 <section class="bookmark-page">
   <div class="row justify-content-center">
     <div class="col-lg-4">
-      <h2 class="bookmarks-header text-oswald mt-5 text-center">
+      <h2 class="bookmarks-header text-oswald mt-5 text-center uppercase">
         Bookmarks for {{session.username}}
         <hr class="hr-color" />
       </h2>
     </div>
   </div>
-  {% for book in bookmarks %} {% for cat in categories %}
+  {% for book in bookmarks %}
   <div class="row justify-content-center">
     <div class="card">
       <div class="card-body text-center yellow-background">
-        <h1 class="text-barlow uppercase">
-          {{ cat.category_name}}
-        </h1>
-        <hr class="hr-color" />
         <div class="row">
           <div class="col text-barlow">
             <h3>
@@ -32,7 +28,6 @@
             </h4>
           </div>
         </div>
-
         <h5 class="text-barlow">
           Added on {{ moment().format('MMMM Do YYYY') }}
         </h5>
@@ -64,6 +59,6 @@
       </div>
     </div>
   </div>
-  {% endfor %} {% endfor %}
+  {% endfor %}
 </section>
 {% endblock %}

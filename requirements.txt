@@ -8,6 +8,7 @@ Click==7.0
 colorama==0.4.3
 dnspython==1.16.0
 Flask==1.1.1
+Flask-Moment==0.9.0
 Flask-PyMongo==2.3.0
 gunicorn==20.0.4
 isort==4.3.21

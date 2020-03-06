@@ -2,7 +2,7 @@
 <section class="bookmark-page">
   <div class="row justify-content-center">
     <div class="col-lg-4">
-      <h2 class="bookmarks-header text-oswald mt-5 text-center">
+      <h2 class="bookmarks-header text-oswald mt-5 text-center uppercase">
         Categories for {{session.username}}
       </h2>
       <hr class="hr-color" />
@@ -14,7 +14,7 @@
     <div class="card">
       <div class="card-body text-center yellow-background">
         <div class="row">
-          <div class="col text-barlow">
+          <div class="col text-oswald uppercase">
             <h3>
               {{cat.category_name| truncate(30, killwords=True) }}
             </h3>

@@ -96,8 +96,7 @@ def insert_bookmark():
     bookmarks.insert_one({
         'username': session['username'],
         'add_bookmark_url': request.form.get('add_bookmark_url'),
-        'bookmark_description': request.form.get('bookmark_description')
-
+        'bookmark_description': request.form.get('bookmark_description'),
     })
     return redirect(url_for('user_bookmarks'))
 
