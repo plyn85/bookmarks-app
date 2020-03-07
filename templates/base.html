@@ -45,7 +45,7 @@
             </li>
             {% if session['logged_in'] == True %}
             <li class="nav-item">
-              <a class="nav-link" href="{{url_for('user_bookmarks')}}"
+              <a class="nav-link" href="{{url_for('users')}}"
               >Bookmarks</a
               >
             </li>
@@ -90,7 +90,7 @@
         {%with messages = get_flashed_messages(with_categories=true) %} {%if
           messages%} {% for category, message in messages %}
           <div class="alert-{{ category}} text-center">
-            {{session.username}} {{ message }} {% endfor %}
+            {{ message }} {% endfor %}
           </div>
         </div>
         

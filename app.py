@@ -76,16 +76,14 @@ def logout():
     flash(f'You are now  logged out!', 'danger')
     return redirect(url_for('index'))
 
-
+# user section
 @app.route('/users')
 def users():
-    return render_template('users.html')
-# bookmarks section ---------------------------------------------------------------------
-@app.route('/user_bookmarks')
-def user_bookmarks():
+    users = mongo.db.users.find()
     categories = mongo.db.categories.find()
     bookmarks = mongo.db.bookmarks.find()
-    return render_template('bookmarks.html', bookmarks=bookmarks, categories=categories)
+    return render_template('users.html', users=users, bookmarks=bookmarks, categories=categories)
+# bookmarks section ---------------------------------------------------------------------
 
 
 @app.route('/add_bookmark')
@@ -103,7 +101,7 @@ def insert_bookmark():
         'add_bookmark_url': request.form.get('add_bookmark_url'),
         'bookmark_description': request.form.get('bookmark_description'),
     })
-    return redirect(url_for('user_bookmarks'))
+    return redirect(url_for('users'))
 
 
 @app.route("/edit_bookmark/<book_id>")
@@ -121,13 +119,13 @@ def update_bookmark(book_id):
         'bookmark_description': request.form.get('bookmark_description')
 
     })
-    return redirect(url_for('user_bookmarks'))
+    return redirect(url_for('users'))
 
 
 @app.route('/remove_bookmark/<book_id>')
 def remove_bookmark(book_id):
     mongo.db.bookmarks.remove({'_id': ObjectId(book_id)})
-    return redirect(url_for('user_bookmarks'))
+    return redirect(url_for('users'))
 # end bookmarks section ------------------------------------------------------------------
 
 #  categories section -----------------------------------------------------------------------
