@@ -76,11 +76,15 @@ def logout():
     flash(f'You are now  logged out!', 'danger')
     return redirect(url_for('index'))
 
+
+@app.route('/users')
+def users():
+    return render_template('users.html')
 # bookmarks section ---------------------------------------------------------------------
 @app.route('/user_bookmarks')
 def user_bookmarks():
-    bookmarks = mongo.db.bookmarks.find()
     categories = mongo.db.categories.find()
+    bookmarks = mongo.db.bookmarks.find()
     return render_template('bookmarks.html', bookmarks=bookmarks, categories=categories)
 
 
@@ -95,6 +99,7 @@ def insert_bookmark():
     bookmarks = mongo.db.bookmarks
     bookmarks.insert_one({
         'username': session['username'],
+        'category_name': request.form.get('category_name'),
         'add_bookmark_url': request.form.get('add_bookmark_url'),
         'bookmark_description': request.form.get('bookmark_description'),
     })

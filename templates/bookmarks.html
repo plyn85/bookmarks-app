@@ -1,17 +1,18 @@
-{% extends 'base.html' %} {% block content %}
 <section class="bookmark-page">
-  <div class="row justify-content-center">
-    <div class="col-lg-4">
-      <h2 class="bookmarks-header text-oswald mt-5 text-center uppercase">
-        Bookmarks for {{session.username}}
-        <hr class="hr-color" />
-      </h2>
-    </div>
-  </div>
-  {% for book in bookmarks %}
+  {%for cat in categories%} {% for book in bookmarks %}
   <div class="row justify-content-center">
     <div class="card">
       <div class="card-body text-center yellow-background">
+        <div class="row">
+          <div class="col text-oswald uppercase">
+            {% if cat.category_name == book.category_name %}
+            <h3>
+              {{cat.category_name| truncate(30, killwords=True) }}
+            </h3>
+            {%endif%}
+            <hr class="hr-color" />
+          </div>
+        </div>
         <div class="row">
           <div class="col text-barlow">
             <h3>
@@ -31,6 +32,7 @@
         <h5 class="text-barlow">
           Added on {{ moment().format('MMMM Do YYYY') }}
         </h5>
+
         <div class="row">
           <div class="col">
             <button
@@ -59,6 +61,5 @@
       </div>
     </div>
   </div>
-  {% endfor %}
+  {% endfor %}{%endfor%}
 </section>
-{% endblock %}
