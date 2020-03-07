@@ -7,5 +7,4 @@
     </h2>
   </div>
 </div>
-{% for book in bookmarks %} {%if session.username==book.username%} {% include
-"bookmarks.html" %}{%endif%}{%endfor%} {%endblock%}
+{% include "bookmarks.html" %} {%endblock%}

@@ -14,9 +14,11 @@
 .uppercase {
   text-transform: uppercase;
 }
-
+.card p {
+  font-size: 1.5rem;
+}
 .txt-lg {
-  font-size: 1.5;
+  font-size: 1.4;
 }
 /* changing all input placeholders text below
 barlow repeated as it takes less code that way
