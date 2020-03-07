@@ -7,7 +7,5 @@
     </h2>
   </div>
 </div>
-<!-- looping trough bookmarks and if the session 
-  username equals data base username for the bookmarks 
-  then that users bookmarks will be dispalyed-->
-{% include "bookmarks.html" %} {%endblock%}
+{% for book in bookmarks %} {%if session.username==book.username%} {% include
+"bookmarks.html" %}{%endif%}{%endfor%} {%endblock%}

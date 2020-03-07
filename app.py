@@ -72,7 +72,7 @@ def register():
 
 @app.route('/logout')
 def logout():
-    session.pop('logged_in', None)
+    session.clear()
     flash(f'You are now  logged out!', 'danger')
     return redirect(url_for('index'))
 
@@ -84,8 +84,6 @@ def users():
     bookmarks = mongo.db.bookmarks.find()
     return render_template('users.html', users=users, bookmarks=bookmarks, categories=categories)
 # bookmarks section ---------------------------------------------------------------------
-
-
 @app.route('/add_bookmark')
 def add_bookmark():
     categories = mongo.db.categories.find()

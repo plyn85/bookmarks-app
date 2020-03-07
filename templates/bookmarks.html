@@ -1,15 +1,15 @@
 <section class="bookmark-page">
-  {%for cat in categories%} {% for book in bookmarks %}
   <div class="row justify-content-center">
     <div class="card">
       <div class="card-body text-center yellow-background">
         <div class="row">
+          {%for cat in categories%}
           <div class="col text-oswald uppercase">
             {% if cat.category_name == book.category_name %}
             <h3>
               {{cat.category_name| truncate(30, killwords=True) }}
             </h3>
-            {%endif%}
+            {%endif%}{%endfor%}
             <hr class="hr-color" />
           </div>
         </div>
@@ -61,5 +61,4 @@
       </div>
     </div>
   </div>
-  {% endfor %}{%endfor%}
 </section>
