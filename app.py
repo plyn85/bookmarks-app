@@ -104,15 +104,18 @@ def insert_bookmark():
 
 @app.route("/edit_bookmark/<book_id>")
 def edit_bookmark(book_id):
+    all_categories = mongo.db.categories.find()
     the_bookmark = mongo.db.bookmarks.find_one({"_id": ObjectId(book_id)})
-    return render_template("edit_bookmark.html", book=the_bookmark)
+    return render_template("edit_bookmark.html", book=the_bookmark, categories=all_categories)
 
 
 @app.route('/update_bookmark/<book_id>', methods=["POST"])
 def update_bookmark(book_id):
-    tasks = mongo.db.bookmarks
-    tasks.update({'_id': ObjectId(book_id)},
-                 {
+    bookmarks = mongo.db.bookmarks
+    bookmarks.update({'_id': ObjectId(book_id)},
+                     {
+        'username': session['username'],
+        'category_name': request.form.get('category_name'),
         'add_bookmark_url': request.form.get('add_bookmark_url'),
         'bookmark_description': request.form.get('bookmark_description')
 
