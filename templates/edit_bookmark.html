@@ -22,14 +22,7 @@
       <p class="hint-text text-barlow">
         Choose a Category for you bookmark below
       </p>
-      <div class="form-group" class="row">
-        <select class="col" name="category_name">
-          <option value="" disable selected>category name </option>
-          {%for cat in categories%}
-          <option value="{{cat.category_name}}">{{cat.category_name}}</option>
-          {%endfor%}
-        </select>
-      </div>
+      {%include "list_categories.html"%}
       <div class="form-group">
         <textarea
           id="bookmark_description"

@@ -19,14 +19,7 @@
       <p class="hint-text text-barlow">
         Add your category below
       </p>
-      <div class="form-group" class="row">
-        <select class="col" name="category_name">
-          <option value="" disable selected>category name </option>
-          {%for cat in categories%}
-          <option value="{{cat.category_name}}">{{cat.category_name}}</option>
-          {%endfor%}
-        </select>
-      </div>
+      {%include "list_categories.html"%}
       <p class="hint-text text-barlow">
         Add a description for your bookmark below
       </p>
