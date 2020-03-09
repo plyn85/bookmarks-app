@@ -1,10 +1,10 @@
 <div class="form-group form-group-categories" class="row">
   <select class="col" name="category_name">
     <option value="" disable selected>category name </option>
-    {%for cat in categories%}
+    {%for cat in categories%} {%if session.username==cat.username%}
     <option value="{{cat.category_name}}" selected
       >{{cat.category_name}}</option
     >
-    {%endfor%}
+    {%endif%} {%endfor%}
   </select>
 </div>

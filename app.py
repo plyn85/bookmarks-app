@@ -90,7 +90,8 @@ def users():
 @app.route('/add_bookmark')
 def add_bookmark():
     categories = mongo.db.categories.find()
-    return render_template('add_bookmark.html', categories=categories)
+    users = mongo.db.users.find()
+    return render_template('add_bookmark.html', categories=categories, users=users)
 
 
 @app.route('/insert_bookmark',  methods=["GET", "POST"])
