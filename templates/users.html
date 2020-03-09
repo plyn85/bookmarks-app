@@ -12,7 +12,7 @@ the name of which ever username they set up there account with will be displayed
 <!-- all the bookmarks of each user from the bookmarks html page -->
 {% include "bookmarks.html" %}
 <!-- this block will be dispalyed when a new user first logs in and has not added any bookmarks yet -->
-{% for book in bookmarks %} {%if book.bookmarks == [] %}
+{% for book in bookmarks %} {%if book.bookmarks == false%}
 <p>
   {{session.username}} Your bookmark list is empty please add a bookmark by
   clicking the buttton

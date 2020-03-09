@@ -1,16 +1,15 @@
 <section class="bookmark-page">
   <div class="row">
-    {% for book in bookmarks %} {%if session.username==book.username%}
+    {%for cat in categories%} {% for book in bookmarks %} {%if
+    session.username==book.username%}
     <div class="col-lg-4">
       <div class="card">
         <div class="card-body text-center">
-          {%for cat in categories%} {% if cat.category_name ==
-          book.category_name %}
+          {% if cat.category_name == book.category_name %} {%endif%}
           <h2 class="card-title text-oswald uppercase">
-            {{cat.category_name| truncate(30, killwords=True) }}
+            {{book.category_name| truncate(30, killwords=True) }}
           </h2>
           <hr class="hr-color" />
-          {%endif%} {%endfor%}
           <p class="card-text text-barlow">
             <a href="{{book.add_bookmark_url}}" target="_blank"
               >{{book.add_bookmark_url| truncate(30, killwords=True) }}</a
@@ -35,6 +34,6 @@
         </div>
       </div>
     </div>
-    {%endif%} {%endfor%}
+    {%endif%} {%endfor%}{%endfor%}
   </div>
 </section>

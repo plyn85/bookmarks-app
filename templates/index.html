@@ -2,14 +2,14 @@
 <div id="callout-text">
   <section class="img-wrapper callout-container row">
     <div class="col-10 col-md-8">
-      {% if not session['logged_in'] == True %}
+      {% if not session['logged_in']%}
       <p class="text-oswald white callout-main-text">
         Tired of having a long list of bookmarks and no Idea of what you
         bookmarked, when you bookmarked it and why? The answer to all your
         problems is here organize your bookmarks with our bookmarks organiser
         app. Please register and then login In to use the app.
       </p>
-      {% endif %} {% if session['logged_in'] == True %}
+      {% endif %} {% if session['logged_in']%}
       <p class="text-oswald white callout-main-text">
         You are now logged In an free to add, delete update and create your
         bookmarks please look at our examples below and the head to the
@@ -17,13 +17,13 @@
       </p>
       {% endif %}
       <div class="row justify-content-center">
-        {% if not session['logged_in'] == True %}
+        {% if not session['logged_in']%}
         <button type="button" class="data-btn col-md-3  btn-primary">
           <a href="{{url_for('register')}}" class="text-oswald white">
             Register here</a
           >
         </button>
-        {% endif %} {% if session['logged_in'] == True %}
+        {% endif %} {% if session['logged_in']%}
         <button type="button" class="data-btn col-md-3  btn-primary">
           <a href="{{url_for('users')}}" class="text-oswald white">
             Bookmarks</a

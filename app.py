@@ -24,7 +24,10 @@ moment = Moment(app)
 @app.route('/index')
 @app.route('/')
 def index():
-    return render_template('index.html')
+    users = mongo.db.users.find()
+    categories = mongo.db.categories.find()
+    bookmarks = mongo.db.bookmarks.find()
+    return render_template('index.html', categories=categories, bookmarks=bookmarks, users=users)
 
 
 @app.route('/login', methods=['POST', 'GET'])
