@@ -107,9 +107,10 @@ def insert_bookmark():
 
 @app.route("/edit_bookmark/<book_id>")
 def edit_bookmark(book_id):
+    users = mongo.db.users.find()
     all_categories = mongo.db.categories.find()
     the_bookmark = mongo.db.bookmarks.find_one({"_id": ObjectId(book_id)})
-    return render_template("edit_bookmark.html", book=the_bookmark, categories=all_categories)
+    return render_template("edit_bookmark.html", book=the_bookmark, categories=all_categories, users=users)
 
 
 @app.route('/update_bookmark/<book_id>', methods=["POST"])
