@@ -6,9 +6,9 @@
       <div class="card">
         <div class="card-body text-center">
           {% if cat.category_name == book.category_name %} {%endif%}
-          <h3 class="card-title text-oswald uppercase">
+          <h2 class="card-title text-oswald uppercase">
             {{book.category_name| truncate(30, killwords=True) }}
-          </h3>
+          </h2>
           <hr class="hr-color" />
           <p class="card-text text-barlow">
             <a href="{{book.add_bookmark_url}}" target="_blank"
@@ -16,7 +16,7 @@
             >
           </p>
           <p class="card-text">
-            {{book.bookmark_description |truncate (40, killwords=True) }}
+            {{book.bookmark_description |truncate (50, killwords=True) }}
           </p>
           <p class="card-text text-barlow">
             Added on {{ moment().format('MMMM Do YYYY') }}
