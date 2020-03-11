@@ -130,9 +130,9 @@ def update_bookmark(book_id):
 
 @app.route('/delete_bookmark/<book_id>', methods=["POST", "GET"])
 def delete_bookmark(book_id):
+    all_categories = mongo.db.categories.find()
     the_bookmark = mongo.db.bookmarks.find_one({"_id": ObjectId(book_id)})
-    flash(f'You are about to permentaly delete a bookmark once you press the confirm delete button this action cannot be undone!', 'warning')
-    return render_template('delete_bookmark.html', book=the_bookmark)
+    return render_template('delete_bookmark.html', book=the_bookmark,  categories=all_categories)
 
 
 @app.route('/remove_bookmark/<book_id>', methods=["POST", "GET"])
@@ -186,8 +186,14 @@ def update_category(cat_id):
     return redirect(url_for('user_categories'))
 
 
-@app.route('/delete_category/<cat_id>')
+@app.route('/delete_category/<cat_id>', methods=["POST", "GET"])
 def delete_category(cat_id):
+    category = mongo.db.categories.find_one({"_id": ObjectId(cat_id)})
+    return render_template('delete_category.html', cat=category)
+
+
+@app.route('/remove_category/<cat_id>')
+def remove_category(cat_id):
     mongo.db.categories.remove({'_id': ObjectId(cat_id)})
     return redirect(url_for('user_categories'))
 
