@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block content %}
+<!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
+{%if session.username==book.username%}
+<section>
+  <div class="signup-form mt-5">
+    <form
+      action="{{ url_for('remove_bookmark', book_id=book._id) }}"
+      method="post"
+    >
+      <h2 class="text-center text-barlow">
+        Confirm bookmark Delete
+      </h2>
+      <div class="form-group">
+        <input
+          id="add_bookmark_url"
+          type="text"
+          class="form-control"
+          name="add_bookmark_url"
+          value="{{book.add_bookmark_url| truncate(30, killwords=True) }}"
+          required="required"
+        />
+      </div>
+      <p class="hint-text text-barlow">
+        Choose a Category for you bookmark below
+      </p>
+      {%include "list_categories.html"%}
+      <div class="form-group">
+        <textarea
+          id="bookmark_description"
+          class="form-control text-barlow"
+          name="bookmark_description"
+          rows="5"
+        >
+{{book.bookmark_description |truncate (50, killwords=True) }}</textarea
+        >
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block text-barlow">
+          Confirm delete
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+{%else%}
+<div class="row justify-content-center">
+  <div class="col-lg-6 text-center text-barlow  mt-5">
+    <h3>
+      Sorry {{session.username}} you do not have permisson to delete other users
+      bookmarks please feel free to edit your own but not other users!
+    </h3>
+    <a href="{{url_for('index')}}">please click here to return to home page</a>
+  </div>
+</div>
+{%endif%} {% endblock content %}

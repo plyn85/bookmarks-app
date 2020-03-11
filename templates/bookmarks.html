@@ -22,7 +22,7 @@
             Added on {{ moment().format('MMMM Do YYYY') }}
           </p>
           <a
-            href="{{url_for('remove_bookmark', book_id=book._id)}}"
+            href="{{url_for('delete_bookmark', book_id=book._id)}}"
             class="btn btn-primary"
             >Delete</a
           >
@@ -34,6 +34,6 @@
         </div>
       </div>
     </div>
-    {%endif%} {%endfor%}{%endfor%}
+    {%else%} {%endif%} {%endfor%}{%endfor%}
   </div>
 </section>

@@ -34,10 +34,18 @@
     </div>
   </section>
 </div>
+{% if session['logged_in']%}
 <section class="bookmark-page">
+  <div class="row justify-content-center mt-4">
+    <div class="col-lg-4">
+      <h2 class="bookmarks-header text-oswald mt-5 text-center uppercase">
+        Bookmarks for all users
+        <hr class="hr-color" />
+      </h2>
+    </div>
+  </div>
   <div class="row">
-    {%for cat in categories%} {% for book in bookmarks %} {% if
-    session['logged_in']%}
+    {%for cat in categories%} {% for book in bookmarks %}
     <div class="col-lg-6">
       <div class="card">
         <div class="card-body text-center">
@@ -56,11 +64,13 @@
           </p>
           {%if book.name== users.name%}
           <p class="card-text text-barlow">
-            Added by {{book.username}} {{ moment().format('MMMM Do YYYY') }}
+            Added by
+            <mark class="text-dark">{{book.username}}</mark> {{
+            moment().format('MMMM Do YYYY') }}
           </p>
           {%endif%}
           <a
-            href="{{url_for('remove_bookmark', book_id=book._id)}}"
+            href="{{url_for('delete_bookmark', book_id=book._id)}}"
             class="btn btn-primary"
             >Delete</a
           >
@@ -72,8 +82,7 @@
         </div>
       </div>
     </div>
-    {%endif%} {%endfor%}{%endfor%}
+    {%endfor%}{%endfor%}
   </div>
 </section>
-
-{% endblock content %}
+{%endif%} {% endblock content %}

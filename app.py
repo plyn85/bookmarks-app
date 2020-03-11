@@ -102,6 +102,7 @@ def insert_bookmark():
         'add_bookmark_url': request.form.get('add_bookmark_url'),
         'bookmark_description': request.form.get('bookmark_description'),
     })
+    flash(f'You have added a new bookmark!', 'success')
     return redirect(url_for('users'))
 
 
@@ -127,8 +128,16 @@ def update_bookmark(book_id):
     return redirect(url_for('users'))
 
 
-@app.route('/remove_bookmark/<book_id>')
+@app.route('/delete_bookmark/<book_id>', methods=["POST", "GET"])
+def delete_bookmark(book_id):
+    the_bookmark = mongo.db.bookmarks.find_one({"_id": ObjectId(book_id)})
+    flash(f'You are about to permentaly delete a bookmark once you press the confirm delete button this action cannot be undone!', 'warning')
+    return render_template('delete_bookmark.html', book=the_bookmark)
+
+
+@app.route('/remove_bookmark/<book_id>', methods=["POST", "GET"])
 def remove_bookmark(book_id):
+    flash(f'Your bookmark has been removed!', 'success')
     mongo.db.bookmarks.remove({'_id': ObjectId(book_id)})
     return redirect(url_for('users'))
 # end bookmarks section ------------------------------------------------------------------
@@ -137,7 +146,9 @@ def remove_bookmark(book_id):
 @app.route('/user_categories')
 def user_categories():
     categories = mongo.db.categories.find()
-    return render_template('categories.html', categories=categories)
+    bookmarks = mongo.db.bookmarks.find()
+    users = mongo.db.users.find()
+    return render_template('categories.html', categories=categories, bookmarks=bookmarks, users=users)
 
 
 @app.route('/add_category')
