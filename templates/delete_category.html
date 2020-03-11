@@ -2,7 +2,7 @@
 <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
 <section class="yellow-background background-height">
   <div class="signup-form mt-5">
-    <form action="{{url_for('update_category', cat_id=cat._id)}}" method="post">
+    <form action="{{url_for('remove_category', cat_id=cat._id)}}" method="post">
       <h2 class="text-center text-barlow">Delete Category</h2>
       <p class="hint-text text-barlow">
         Delete your category below
@@ -13,7 +13,6 @@
           class="form-control"
           name="category_name"
           placeholder="{{cat.category_name| truncate(30, killwords=True) }}"
-          required="required"
         />
       </div>
       <div class="row">

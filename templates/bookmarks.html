@@ -19,7 +19,7 @@
             {{book.bookmark_description |truncate (50, killwords=True) }}
           </p>
           <p class="card-text text-barlow">
-            Added on {{ moment().format('MMMM Do YYYY') }}
+            Added on {{ moment().fromNow() }}
           </p>
           <a
             href="{{url_for('delete_bookmark', book_id=book._id)}}"

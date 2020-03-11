@@ -5,6 +5,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import bcrypt
 from flask_moment import Moment
+from datetime import datetime
 # Importing path from env.py
 from os import path
 if path.exists('env.py'):
@@ -158,6 +159,7 @@ def add_category():
 
 @app.route('/insert_category', methods=["POST"])
 def insert_category():
+    flash(f'Your category has been added!', 'success')
     category = mongo.db.categories
     category.insert_one({
         'username': session['username'],
@@ -192,8 +194,9 @@ def delete_category(cat_id):
     return render_template('delete_category.html', cat=category)
 
 
-@app.route('/remove_category/<cat_id>')
+@app.route('/remove_category/<cat_id>', methods=["POST", "GET"])
 def remove_category(cat_id):
+    flash(f'Your category has been deleted!', 'success')
     mongo.db.categories.remove({'_id': ObjectId(cat_id)})
     return redirect(url_for('user_categories'))
 
