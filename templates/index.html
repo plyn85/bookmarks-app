@@ -65,8 +65,8 @@
           {%if book.name== users.name%}
           <p class="card-text text-barlow">
             Added by
-            <mark class="text-dark">{{book.username}}</mark> {{
-            moment().fromNow() }}
+            <mark class="text-dark">{{book.username}}</mark> Added on {{
+            moment().format('MMMM Do YYYY') }}
           </p>
           {%endif%}
           <a
