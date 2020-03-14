@@ -21,12 +21,13 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 mongo = PyMongo(app)
 moment = Moment(app)
 
+
 # index,  login, register, and log out section -----------------------------------------
 @app.route('/index')
 @app.route('/')
 def index():
     categories = mongo.db.categories.find()
-    bookmarks = mongo.db.bookmarks.find()
+    bookmarks = mongo.db.bookmarks.find().sort("_id", -1)
     users = mongo.db.users.find()
     return render_template('index.html', categories=categories, bookmarks=bookmarks, users=users)
 
@@ -87,13 +88,13 @@ def logout():
 def users():
     users = mongo.db.users.find()
     categories = mongo.db.categories.find()
-    bookmarks = mongo.db.bookmarks.find()
+    bookmarks = mongo.db.bookmarks.find().sort("_id", -1)
     book_name = mongo.db.bookmarks.find_one(
         {'username': session.get('username')})
     if book_name is None:
         return render_template('newuser.html')
 
-    return render_template('users.html', users=users, bookmarks=bookmarks, categories=categories)
+    return render_template('users.html', users=users, bookmarks=bookmarks, categories=categories, current_time=datetime.utcnow())
 
     # bookmarks section ---------------------------------------------------------------------
 
@@ -156,6 +157,8 @@ def remove_bookmark(book_id):
 #  categories section -----------------------------------------------------------------------
 @app.route('/user_categories')
 def user_categories():
+    # if a user has not yet added a category the newuser_cat  page will be rendered
+    # and if the user has categories already added the categories page will render
     categories = mongo.db.categories.find()
     bookmarks = mongo.db.bookmarks.find()
     user = mongo.db.users.find()
