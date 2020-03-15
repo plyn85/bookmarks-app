@@ -159,7 +159,7 @@ def remove_bookmark(book_id):
 def user_categories():
     # if a user has not yet added a category the newuser_cat  page will be rendered
     # and if the user has categories already added the categories page will render
-    categories = mongo.db.categories.find()
+    categories = mongo.db.categories.find().sort("_id", -1)
     bookmarks = mongo.db.bookmarks.find()
     user = mongo.db.users.find()
     cat_name = mongo.db.categories.find_one(
