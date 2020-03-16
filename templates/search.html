@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block content %}
+ <!-- bookmarks section -->
+ <div class="row">
+     {%for r in results%}
+   
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body text-center">
+          {% if r.category_name == r.category_name %} {%endif%}
+          <h2 class="card-title text-oswald uppercase">
+            {{r.category_name| truncate(30, killwords=True) }}
+          </h2>
+          <hr class="hr-color" />
+          <p class="card-text text-barlow">
+            <a href="{{r.add_bookmark_url}}" target="_blank"
+              >{{r.add_bookmark_url| truncate(30, killwords=True) }}</a
+            >
+          </p>
+          <p class="card-text">
+            {{r.bookmark_description |truncate (50, killwords=True) }}
+          </p>
+          {%if r.name== r.name%}
+          <p class="card-text text-barlow">
+            Added by
+            <mark class="text-dark">{{r.username}}</mark> on {{
+            moment().format('MMMM Do YYYY') }}
+          </p>
+          {%endif%}
+          <a
+            href="{{url_for('delete_bookmark', book_id=r._id)}}"
+            class="btn btn-primary"
+            >Delete</a
+          >
+          <a
+            href="{{url_for('edit_bookmark', book_id=r._id)}}"
+            class="btn btn-primary"
+            >Edit</a
+          >
+        </div>
+      </div>
+    </div>
+   {%endfor%}  
+  </div>
+</section>
+ {% endblock content %}

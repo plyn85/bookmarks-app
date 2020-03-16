@@ -83,15 +83,12 @@ def logout():
 # search bar section
 
 
-@app.route('/search_bar', methods=['POST'])
+@app.route('/search_bar', methods=['POST', 'GET'])
 def search_bar():
     if request.method == "POST":
-        mongo.db.bookmarks.create_index([('$**', 'text')])
-        query = request.form.get('search-bar-one')
+        query = request.form.get('search_bar')
         results = mongo.db.bookmarks.find({'$text': {'$search': query}})
-        for r in results:
-            print(r)
-        return redirect(url_for('index', results=results))
+        return render_template('search.html', results=results)
 
 
 # user section
