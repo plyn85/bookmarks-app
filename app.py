@@ -83,6 +83,17 @@ def logout():
 # search bar section
 
 
+@app.route('/search_bar', methods=['POST'])
+def search_bar():
+    if request.method == "POST":
+        mongo.db.bookmarks.create_index([('$**', 'text')])
+        query = request.form.get('search-bar-one')
+        results = mongo.db.bookmarks.find({'$text': {'$search': query}})
+        for r in results:
+            print(r)
+        return redirect(url_for('index', results=results))
+
+
 # user section
 @app.route('/users')
 # if a user has not yet added a bookmark the newuser page will be render

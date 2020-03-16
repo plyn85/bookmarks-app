@@ -25,6 +25,12 @@
   display: none;
 }
 
+.search-wrapper {
+  border: 3px solid #0275d8;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
 /* changing all input placeholders text below
 barlow repeated as it takes less code that way
 */

@@ -44,25 +44,67 @@
       </h2>
     </div>
   </div>
+  
+  <!-- search bar section -->
   <div class="row  mt-4">
     <div class="col text-center">
-  <form action="{{url_for('search_bar')}}" method="post">
+      <form action="{{url_for('search_bar')}}" method="post">
+        <a
+          type="text"
+          class="btn btn-primary text-barlow white"
+          id="search-bookmarks"
+          >Search all bookmarks</a
+        >
+        <!-- wraps the 3 search buttons and results -->
+        <div class=" mt-5  search-wrapper" id="search">
+        <div class="row">
+        <!-- category search button -->
+          <div class="col-4">
+            <input
+              type="text"
+              id="search-bar-one"
+              name="search-bar-one"
+              placeholder="Search"
+            />
+            <button type="submit" class="btn-primary text-barlow">
+              Search by category
+            </button>
+          </div>
+             <!-- username search button -->
+          <div class="col-lg-4">
+            <input
+              type="text"
+              id="search-bar-two"
+              name="search-bar-two"
+              placeholder="Search"
+            />
+            <button type="submit" class="btn-primary text-barlow">
+              Search by username
+            </button>
+          </div>
+              <!-- keyword search button -->
+          <div class="col-lg-4">
+            <input
+              type="text"
+              id="search-bar-three"
+              name="search-bar-three"
+              placeholder="Search"
+            />
+            <button type="submit" class="btn-primary text-barlow">
+              Search by keyword
+            </button>
+          </div>
+        
+        </div>
+        <div class="row mt-5"><div class="col">
+          <h3 class="mr-4 text-barlow">Bookmarks found :
+           {%for r in results%} <li>{{r.results}}</li>{%endfor%}</h3></div></div>
+      </div>
+      </form>
+    </div>
 
-    <a
-    type=""
-    class="btn btn-primary text-barlow white" id="search-bookmarks"
-    >Search all bookmarks</a
-    >
-    <div class="row mt-5 hide-content" id="search"><div class="col-4"><input type="text" id="search-bar-one" name="search-bar-one" placeholder="Search">
-      <button type="submit" class="btn-primary text-barlow">Search by category</button></div><div class="col-lg-4"><input type="text" id="search-bar-two" name="search-bar-two" placeholder="Search">
-        <button type="submit" class="btn-primary text-barlow">Search by username</button></div><div class="col-lg-4"><input type="text" id="search-bar-three" name="search-bar-three" placeholder="Search">
-          <button type="submit" class="btn-primary text-barlow">Search by keyword</button></div></div>
-  </form>
-  
- 
-</h2>
-</div>
-</div>
+  <!-- end search bar section -->
+    <!-- bookmarks section -->
   <div class="row">
     {%for cat in categories%} {% for book in bookmarks %}
     <div class="col-lg-6">
