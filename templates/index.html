@@ -44,6 +44,25 @@
       </h2>
     </div>
   </div>
+  <div class="row  mt-4">
+    <div class="col text-center">
+  <form action="{{url_for('search_bar')}}" method="post">
+
+    <a
+    type=""
+    class="btn btn-primary text-barlow white" id="search-bookmarks"
+    >Search all bookmarks</a
+    >
+    <div class="row mt-5 hide-content" id="search"><div class="col-4"><input type="text" id="search-bar-one" name="search-bar-one" placeholder="Search">
+      <button type="submit" class="btn-primary text-barlow">Search by category</button></div><div class="col-lg-4"><input type="text" id="search-bar-two" name="search-bar-two" placeholder="Search">
+        <button type="submit" class="btn-primary text-barlow">Search by username</button></div><div class="col-lg-4"><input type="text" id="search-bar-three" name="search-bar-three" placeholder="Search">
+          <button type="submit" class="btn-primary text-barlow">Search by keyword</button></div></div>
+  </form>
+  
+ 
+</h2>
+</div>
+</div>
   <div class="row">
     {%for cat in categories%} {% for book in bookmarks %}
     <div class="col-lg-6">

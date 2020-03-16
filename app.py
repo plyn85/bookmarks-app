@@ -80,6 +80,8 @@ def logout():
     session.clear()
     flash(f'You are now  logged out!', 'danger')
     return redirect(url_for('index'))
+# search bar section
+
 
 # user section
 @app.route('/users')
