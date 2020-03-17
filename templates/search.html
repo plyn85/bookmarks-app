@@ -2,7 +2,6 @@
  <!-- bookmarks section -->
  <div class="row">
      {%for r in results%}
-   
     <div class="col-lg-6">
       <div class="card">
         <div class="card-body text-center">
@@ -22,8 +21,7 @@
           {%if r.name== r.name%}
           <p class="card-text text-barlow">
             Added by
-            <mark class="text-dark">{{r.username}}</mark> on {{
-            moment().format('MMMM Do YYYY') }}
+            <mark class="text-dark">{{r.username}}</mark> on   Added on {{r.last_modified}}
           </p>
           {%endif%}
           <a

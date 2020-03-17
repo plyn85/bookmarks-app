@@ -4,7 +4,6 @@ from flask import Flask, render_template, redirect, request, url_for, session, f
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import bcrypt
-from flask_moment import Moment
 from datetime import datetime
 # Importing path from env.py
 from os import path
@@ -19,8 +18,6 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 
 mongo = PyMongo(app)
-moment = Moment(app)
-
 
 # index,  login, register, and log out section -----------------------------------------
 @app.route('/index')
@@ -90,7 +87,6 @@ def search_bar():
         results = mongo.db.bookmarks.find({'$text': {'$search': query}})
         return render_template('search.html', results=results)
 
-
 # user section
 @app.route('/users')
 # if a user has not yet added a bookmark the newuser page will be render
@@ -118,7 +114,10 @@ def add_bookmark():
 @app.route('/insert_bookmark',  methods=["GET", "POST"])
 def insert_bookmark():
     bookmarks = mongo.db.bookmarks
+    date = datetime.utcnow()
+    format_date = date.strftime("%a %B %d")
     bookmarks.insert_one({
+        "last_modified":  format_date,
         'username': session['username'],
         'category_name': request.form.get('category_name'),
         'add_bookmark_url': request.form.get('add_bookmark_url'),
@@ -139,8 +138,11 @@ def edit_bookmark(book_id):
 @app.route('/update_bookmark/<book_id>', methods=["POST"])
 def update_bookmark(book_id):
     bookmarks = mongo.db.bookmarks
+    date = datetime.utcnow()
+    format_date = date.strftime("%a %B %d")
     bookmarks.update({'_id': ObjectId(book_id)},
                      {
+        "last_modified": format_date,
         'username': session['username'],
         'category_name': request.form.get('category_name'),
         'add_bookmark_url': request.form.get('add_bookmark_url'),
