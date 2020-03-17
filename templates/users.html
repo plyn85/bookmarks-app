@@ -9,4 +9,19 @@ the name of which ever username they set up there account with will be displayed
     </h2>
   </div>
 </div>
-{%include 'bookmarks.html'%}} {%endblock%}
+<!-- search bar section -->
+<div class="row  mt-4">
+  <div class="col text-center">
+    <form action="{{ url_for('search_bar') }}" method="POST">
+      <input
+        type="text"
+        id="search_bar"
+        name="search_bar"
+        placeholder="Search"
+      />
+      <button type="submit">Search</button>
+    </form>
+  </div>
+  <!-- end search bar section -->
+  {%include 'bookmarks.html'%}} {%endblock%}
+</div>
