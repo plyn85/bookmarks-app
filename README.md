@@ -15,6 +15,21 @@ something useful to me. I was  sure It would be useful to other users.
 A live demo can be found [here]
 
 ## UX
+This website was designed with mainly the colors blue yellow and white.
+The intention to be easy on the eye for the user and myself. 
+I wanted to create an app for myself and other users where I can easily store, 
+edit, delete and update bookmarks as well as assign each bookmark to a category. 
+Search through the bookmarks and find them using the category name, a word from the description, 
+the date or month it was added or a word from the url itself. I also wanted this to be a site where all 
+bookmarks are added by each user and are shared among the community as I feel links to useful 
+websites when learning a new skill can be a valuable resource. It could also be used to store a shopping 
+wish list and for many other purposes.  Each user also has their own unique bookmarks on a user page 
+and only they can edit or delete their own bookmarks. I myself as the admin could also directly delete 
+them from the database.   
+
+ 
+
+## Database Schemea 
 
 ## Client stories
 
