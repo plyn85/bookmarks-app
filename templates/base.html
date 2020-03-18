@@ -11,8 +11,12 @@
     />
     <link rel='stylesheet' href='{{url_for('static', filename =
     'css/main.css')}}' />
-   
-    <title>Bookmarks app</title>
+   <!-- taken from a tutorial found at https://www.youtube.com/watch?v=QnDWIZuWYW0 -->
+   <!-- If no title has been passed in just bookmarks app will be displayed other wise bookamrks app plus the passed in title will be -->
+   {%if title%} 
+   <title>bookmarks-{{title}}</title>
+   {%else%}<title>bookmarks-app</title>
+   {%endif%}
   </head>
   <body>
     <header>
