@@ -18,8 +18,11 @@ A live demo can be found [here]
 This website was designed with mainly the colors blue yellow and white.
 The intention to be easy on the eye for the user and myself. 
 I wanted to create an app for myself and other users where I can easily store, 
-edit, delete and update bookmarks as well as assign each bookmark to a category. 
-Search through the bookmarks and find them using the category name, a word from the description, 
+edit, delete and update bookmarks as well as assign each bookmark to a category.  
+I began using this app for myself as soon as the very basic functionality was set up. 
+I used it to store useful links for building the app which gave me a good feel for what 
+worked and what did not. What was a good user experience and what was not.
+You can Search through the bookmarks and find them using the category name, a word from the description, 
 the date or month it was added or a word from the url itself. I also wanted this to be a site where all 
 bookmarks are added by each user and are shared among the community as I feel links to useful 
 websites when learning a new skill can be a valuable resource. It could also be used to store a shopping 

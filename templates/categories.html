@@ -9,46 +9,48 @@
     </div>
   </div>
 
-  {% for cat in categories %} {%if session.username==cat.username%}
-  <div class="row justify-content-center">
-    <div class="card">
-      <div class="card-body text-center yellow-background">
-        <div class="row">
-          <div class="col text-oswald uppercase">
-            <h3>
-              {{cat.category_name| truncate(30, killwords=True) }}
-            </h3>
-            <hr class="hr-color" />
+  <div class="row">
+    {% for cat in categories %} {%if session.username==cat.username%}
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body text-center yellow-background">
+          <div class="row">
+            <div class="col text-oswald uppercase">
+              <h3>
+                {{cat.category_name| truncate(30, killwords=True) }}
+              </h3>
+              <hr class="hr-color" />
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <button
-              type="button"
-              class="btn btn-primary btn-small btn-link btn-bookmark-page"
-            >
-              <a
-                href="{{url_for('delete_category', cat_id=cat._id)}}"
-                class="btn-bookmark-page"
-                >Delete</a
+          <div class="row">
+            <div class="col">
+              <button
+                type="button"
+                class="btn btn-primary btn-small btn-link btn-bookmark-page"
               >
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary btn-small btn-link btn-bookmark-page"
-            >
-              <a
-                href="{{url_for('edit_category', cat_id=cat._id)}}"
-                class="btn-bookmark-page"
+                <a
+                  href="{{url_for('delete_category', cat_id=cat._id)}}"
+                  class="btn-bookmark-page"
+                  >Delete</a
+                >
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary btn-small btn-link btn-bookmark-page"
               >
-                Edit</a
-              >
-            </button>
+                <a
+                  href="{{url_for('edit_category', cat_id=cat._id)}}"
+                  class="btn-bookmark-page"
+                >
+                  Edit</a
+                >
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    {%endif%} {% endfor %}
   </div>
-  {%endif%} {% endfor %}
 </section>
 {% endblock content%}
