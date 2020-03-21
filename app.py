@@ -1,5 +1,6 @@
 # Imports
 import os
+import math
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -23,10 +24,19 @@ mongo = PyMongo(app)
 @app.route('/index')
 @app.route('/')
 def index():
-    categories = mongo.db.categories.find()
-    bookmarks = mongo.db.bookmarks.find().sort("_id", -1)
+    # setting limit
+    limit = 6
+    # getting current page
+    page = request.args.get('page', 1, type=int)
+    # getting total bookmarks
+    total_bookmarks = mongo.db.bookmarks.count()
+    pages = range(1, int(math.ceil(total_bookmarks / limit)) + 1)
+    bookmarks = mongo.db.bookmarks.find().sort(
+        "_id", -1).skip((page-1)*limit).limit(limit)
     users = mongo.db.users.find()
-    return render_template('index.html', categories=categories, bookmarks=bookmarks, users=users)
+    categories = mongo.db.categories.find()
+
+    return render_template('index.html', categories=categories, bookmarks=bookmarks, users=users, page=page, _page=pages)
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -48,7 +58,7 @@ def login():
         flash(
             f'Login  Unsuccessful. Please check username/password combination', 'danger')
 
-    return render_template('login.html',title="Login")
+    return render_template('login.html', title="Login")
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -69,7 +79,7 @@ def register():
         else:
             flash(
                 f'Registraion Unsuccessful. Please check username and password', 'danger')
-    return render_template('register.html',title="Regsiter")
+    return render_template('register.html', title="Regsiter")
 
 
 @app.route('/logout')
@@ -85,7 +95,7 @@ def search_bar():
     if request.method == "POST":
         query = request.form.get('search_bar')
         results = mongo.db.bookmarks.find({'$text': {'$search': query}})
-        return render_template('search.html', results=results,title="Search result")
+        return render_template('search.html', results=results, title="Search result")
 
 # user section
 @app.route('/users')
@@ -101,7 +111,7 @@ def users():
     if book_name is None:
         return render_template('newuser.html')
 
-    return render_template('users.html', users=users, bookmarks=bookmarks, categories=categories,title=username)
+    return render_template('users.html', users=users, bookmarks=bookmarks, categories=categories, title=username)
 
     # bookmarks section ---------------------------------------------------------------------
 
@@ -109,7 +119,7 @@ def users():
 @app.route('/add_bookmark')
 def add_bookmark():
     categories = mongo.db.categories.find()
-    return render_template('add_bookmark.html', categories=categories,title="Add bookmark")
+    return render_template('add_bookmark.html', categories=categories, title="Add bookmark")
 
 
 @app.route('/insert_bookmark',  methods=["GET", "POST"])
@@ -133,7 +143,7 @@ def edit_bookmark(book_id):
     user = mongo.db.users.find()
     all_categories = mongo.db.categories.find()
     the_bookmark = mongo.db.bookmarks.find_one({"_id": ObjectId(book_id)})
-    return render_template("edit_bookmark.html", book=the_bookmark, categories=all_categories, user=user,title="edit bookmark")
+    return render_template("edit_bookmark.html", book=the_bookmark, categories=all_categories, user=user, title="edit bookmark")
 
 
 @app.route('/update_bookmark/<book_id>', methods=["POST"])
@@ -157,7 +167,7 @@ def update_bookmark(book_id):
 def delete_bookmark(book_id):
     all_categories = mongo.db.categories.find()
     the_bookmark = mongo.db.bookmarks.find_one({"_id": ObjectId(book_id)})
-    return render_template('delete_bookmark.html', book=the_bookmark,  categories=all_categories,title="edit bookmark")
+    return render_template('delete_bookmark.html', book=the_bookmark,  categories=all_categories, title="edit bookmark")
 
 
 @app.route('/remove_bookmark/<book_id>', methods=["POST", "GET"])
@@ -179,12 +189,12 @@ def user_categories():
         {'username': session.get('username')})
     if cat_name is None:
         return render_template('newuser_cat.html')
-    return render_template('categories.html', categories=categories, bookmarks=bookmarks, user=user,title="Categories")
+    return render_template('categories.html', categories=categories, bookmarks=bookmarks, user=user, title="Categories")
 
 
 @app.route('/add_category')
 def add_category():
-    return render_template('add_category.html',title="Add category")
+    return render_template('add_category.html', title="Add category")
 
 
 @app.route('/insert_category', methods=["POST"])
@@ -204,7 +214,7 @@ def insert_category():
 def edit_category(cat_id):
     category = mongo.db.categories.find_one(
         {'_id': ObjectId(cat_id)})
-    return render_template('edit_category.html', cat=category,title="Edit category"
+    return render_template('edit_category.html', cat=category, title="Edit category"
                            )
 
 
@@ -221,7 +231,7 @@ def update_category(cat_id):
 @app.route('/delete_category/<cat_id>', methods=["POST", "GET"])
 def delete_category(cat_id):
     category = mongo.db.categories.find_one({"_id": ObjectId(cat_id)})
-    return render_template('delete_category.html', cat=category,title ="Delete category")
+    return render_template('delete_category.html', cat=category, title="Delete category")
 
 
 @app.route('/remove_category/<cat_id>', methods=["POST", "GET"])
