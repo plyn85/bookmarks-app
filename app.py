@@ -23,20 +23,28 @@ mongo = PyMongo(app)
 # index,  login, register, and log out section -----------------------------------------
 @app.route('/index')
 @app.route('/')
+# pagination taken an altered from a tutorial found in slack archives and at
+# https://github.com/MiroslavSvec/DCD_lead/tree/pagination
 def index():
-    # setting limit
-    limit = 6
-    # getting current page
-    page = request.args.get('page', 1, type=int)
-    # getting total bookmarks
-    total_bookmarks = mongo.db.bookmarks.count()
-    pages = range(1, int(math.ceil(total_bookmarks / limit)) + 1)
-    bookmarks = mongo.db.bookmarks.find().sort(
-        "_id", -1).skip((page-1)*limit).limit(limit)
+    bookmarks = mongo.db.bookmarks.find()
+    num_results = mongo.db.bookmarks.count()
     users = mongo.db.users.find()
     categories = mongo.db.categories.find()
+    p_limit = int(request.args.get('limit', 6))
+    p_offset = int(request.args.get('offset', 0))
+    bookmarks = mongo.db.bookmarks.find().sort(
+        "_id", -1).limit(p_limit).skip(p_offset)
 
-    return render_template('index.html', categories=categories, bookmarks=bookmarks, users=users, page=page, _page=pages)
+    args = {
+        "p_limit": p_limit,
+        "p_offset": p_offset,
+        "num_results": num_results,
+        "next_url": f"/index?limit={str(p_limit)}&offset={str(p_offset + p_limit)}",
+        "prev_url": f"/index?limit={str(p_limit)}&offset={str(p_offset - p_limit)}",
+        "bookmarks": bookmarks
+    }
+
+    return render_template('index.html', categories=categories, bookmarks=bookmarks, users=users, args=args)
 
 
 @app.route('/login', methods=['POST', 'GET'])
