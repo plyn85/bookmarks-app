@@ -20,19 +20,24 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 mongo = PyMongo(app)
 
+# global collection varibales set here
+users_collection = mongo.db.users
+bookmarks_collection = mongo.db.bookmarks
+categories_collection = mongo.db.categories
+
 # index,  login, register, and log out section -----------------------------------------
 @app.route('/index')
 @app.route('/')
 # pagination taken an altered from a tutorial found in slack archives and at
 # https://github.com/MiroslavSvec/DCD_lead/tree/pagination
 def index():
-    bookmarks = mongo.db.bookmarks.find()
-    num_results = mongo.db.bookmarks.count()
-    users = mongo.db.users.find()
+
+    num_results = bookmarks_collection.count()
+    users = users_collection.find()
     categories = mongo.db.categories.find()
     p_limit = int(request.args.get('limit', 6))
     p_offset = int(request.args.get('offset', 0))
-    bookmarks = mongo.db.bookmarks.find().sort(
+    bookmarks = bookmarks_collection.find().sort(
         "_id", -1).limit(p_limit).skip(p_offset)
 
     args = {
@@ -55,8 +60,8 @@ def index():
 def login():
     # taken an altered from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE
     if request.method == 'POST':
-        users = mongo.db.users
-        login_user = users.find_one({'name': request.form['username']})
+        login_user = users_collection.find_one(
+            {'name': request.form['username']})
         if login_user:
             if bcrypt.hashpw(request.form.get('password').encode('utf-8'), login_user['password']) == login_user['password']:
                 session['username'] = request.form.get('username')
@@ -73,13 +78,13 @@ def login():
 def register():
     '''taken an altered from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE'''
     if request.method == 'POST':
-        users = mongo.db.users
-        existing_user = users.find_one({'name': request.form['username']})
+        existing_user = users_collection.find_one(
+            {'name': request.form['username']})
 
         if existing_user is None:
             hashpass = bcrypt.hashpw(
                 request.form['password'].encode('utf-8'), bcrypt.gensalt())
-            users.insert(
+            users_collection.insert(
                 {'name': request.form['username'], 'password': hashpass})
             session['username'] = request.form['username']
             flash(f'You are now regsitered please login!', 'success')
@@ -102,7 +107,7 @@ def logout():
 def search_bar():
     if request.method == "POST":
         query = request.form.get('search_bar')
-        results = mongo.db.bookmarks.find({'$text': {'$search': query}})
+        results = bookmarks_collection.find({'$text': {'$search': query}})
         return render_template('search.html', results=results, title="Search result")
 
 # user section
@@ -111,10 +116,10 @@ def search_bar():
 # and if the user has bookmarks already added the user page will render
 def users():
     username = session.get('username')
-    users = mongo.db.users.find()
-    categories = mongo.db.categories.find()
-    bookmarks = mongo.db.bookmarks.find().sort("_id", -1)
-    book_name = mongo.db.bookmarks.find_one(
+    users = users_collection.find()
+    categories = categories_collection.find()
+    bookmarks = bookmarks_collection.find().sort("_id", -1)
+    book_name = bookmarks_collection.find_one(
         {'username': session.get('username')})
     if book_name is None:
         return render_template('newuser.html')
@@ -126,16 +131,15 @@ def users():
 
 @app.route('/add_bookmark')
 def add_bookmark():
-    categories = mongo.db.categories.find()
+    categories = categories_collection.find()
     return render_template('add_bookmark.html', categories=categories, title="Add bookmark")
 
 
 @app.route('/insert_bookmark',  methods=["GET", "POST"])
 def insert_bookmark():
-    bookmarks = mongo.db.bookmarks
     date = datetime.utcnow()
     format_date = date.strftime("%a %B %d")
-    bookmarks.insert_one({
+    bookmarks_collection.insert_one({
         "last_modified":  format_date,
         'username': session['username'],
         'category_name': request.form.get('category_name'),
@@ -148,19 +152,18 @@ def insert_bookmark():
 
 @app.route("/edit_bookmark/<book_id>")
 def edit_bookmark(book_id):
-    user = mongo.db.users.find()
-    all_categories = mongo.db.categories.find()
-    the_bookmark = mongo.db.bookmarks.find_one({"_id": ObjectId(book_id)})
+    user = users_collection.find()
+    all_categories = categories_collection.find()
+    the_bookmark = bookmarks_collection.find_one({"_id": ObjectId(book_id)})
     return render_template("edit_bookmark.html", book=the_bookmark, categories=all_categories, user=user, title="edit bookmark")
 
 
 @app.route('/update_bookmark/<book_id>', methods=["POST"])
 def update_bookmark(book_id):
-    bookmarks = mongo.db.bookmarks
     date = datetime.utcnow()
     format_date = date.strftime("%a %B %d")
-    bookmarks.update({'_id': ObjectId(book_id)},
-                     {
+    bookmarks_collection.update({'_id': ObjectId(book_id)},
+                                {
         "last_modified": format_date,
         'username': session['username'],
         'category_name': request.form.get('category_name'),
@@ -173,15 +176,15 @@ def update_bookmark(book_id):
 
 @app.route('/delete_bookmark/<book_id>', methods=["POST", "GET"])
 def delete_bookmark(book_id):
-    all_categories = mongo.db.categories.find()
-    the_bookmark = mongo.db.bookmarks.find_one({"_id": ObjectId(book_id)})
+    all_categories = categories_collection.find()
+    the_bookmark = bookmarks_collection.find_one({"_id": ObjectId(book_id)})
     return render_template('delete_bookmark.html', book=the_bookmark,  categories=all_categories, title="edit bookmark")
 
 
 @app.route('/remove_bookmark/<book_id>', methods=["POST", "GET"])
 def remove_bookmark(book_id):
     flash(f'Your bookmark has been removed!', 'success')
-    mongo.db.bookmarks.remove({'_id': ObjectId(book_id)})
+    bookmarks_collection.remove({'_id': ObjectId(book_id)})
     return redirect(url_for('users'))
 # end bookmarks section ------------------------------------------------------------------
 
@@ -190,10 +193,10 @@ def remove_bookmark(book_id):
 def user_categories():
     # if a user has not yet added a category the newuser_cat  page will be rendered
     # and if the user has categories already added the categories page will render
-    categories = mongo.db.categories.find().sort("_id", -1)
-    bookmarks = mongo.db.bookmarks.find()
-    user = mongo.db.users.find()
-    cat_name = mongo.db.categories.find_one(
+    categories = categories_collection.find().sort("_id", -1)
+    bookmarks = bookmarks_collection.find()
+    user = users_collection.find()
+    cat_name = categories_collection.find_one(
         {'username': session.get('username')})
     if cat_name is None:
         return render_template('newuser_cat.html')
@@ -208,8 +211,7 @@ def add_category():
 @app.route('/insert_category', methods=["POST"])
 def insert_category():
     flash(f'Your category has been added! It will be now be available in the add bookmarks section In the dropdown menu', 'success')
-    category = mongo.db.categories
-    category.insert_one({
+    categories_collection.insert_one({
         'username': session['username'],
         'category_name': request.form.get('category_name')
 
@@ -220,7 +222,7 @@ def insert_category():
 
 @app.route('/edit_category/<cat_id>')
 def edit_category(cat_id):
-    category = mongo.db.categories.find_one(
+    category = categories_collection.find_one(
         {'_id': ObjectId(cat_id)})
     return render_template('edit_category.html', cat=category, title="Edit category"
                            )
@@ -228,7 +230,7 @@ def edit_category(cat_id):
 
 @app.route('/update_category/<cat_id>', methods=['POST'])
 def update_category(cat_id):
-    mongo.db.categories.update(
+    categories_collection.update(
         {'_id': ObjectId(cat_id)},
         {'category_name': request.form.get('category_name'),
          'username': session['username']
@@ -238,14 +240,14 @@ def update_category(cat_id):
 
 @app.route('/delete_category/<cat_id>', methods=["POST", "GET"])
 def delete_category(cat_id):
-    category = mongo.db.categories.find_one({"_id": ObjectId(cat_id)})
+    category = categories_collection.find_one({"_id": ObjectId(cat_id)})
     return render_template('delete_category.html', cat=category, title="Delete category")
 
 
 @app.route('/remove_category/<cat_id>', methods=["POST", "GET"])
 def remove_category(cat_id):
     flash(f'Your category has been deleted!', 'success')
-    mongo.db.categories.remove({'_id': ObjectId(cat_id)})
+    categories_collection.remove({'_id': ObjectId(cat_id)})
     return redirect(url_for('user_categories'))
 
 

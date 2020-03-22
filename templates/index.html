@@ -128,9 +128,7 @@
 			prev_url link should not be displayed 
 		-->
     {% if args.p_offset + args.p_limit < args.num_results %}
-    <a href="{{args.next_url}}" class="text-barlow">
-      <i class="fas fa-angle-right fa-4x "></i
-    ></a>
+    <a href="{{args.next_url}}"> <i class="fas fa-angle-right fa-4x "></i></a>
     {% endif %}
   </div>
 </div>
