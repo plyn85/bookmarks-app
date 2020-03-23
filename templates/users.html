@@ -12,14 +12,14 @@ the name of which ever username they set up there account with will be displayed
 <!-- search bar section -->
 <div class="row  mt-2">
   <div class="col text-center">
-    <form action="{{ url_for('search_bar') }}" method="POST">
+    <form action="{{ url_for('user_search_results') }}" method="POST">
       <div class="row justify-content-center">
         <input
           class="col-8"
           type="text"
           id="search_bar"
-          name="search_bar"
-          placeholder="Search"
+          name="user_search_bar"
+          placeholder="Search your bookmarks"
         />
         <button class="btn-primary text-barlow col-1" type="submit">
           Go

@@ -101,13 +101,22 @@ def logout():
     return redirect(url_for('index'))
 # search bar section
 
-
+# search bar
 @app.route('/search_bar', methods=['POST', 'GET'])
 def search_bar():
     if request.method == "POST":
         query = request.form.get('search_bar')
         results = bookmarks_collection.find({'$text': {'$search': query}})
         return render_template('search.html', results=results, title="Search result")
+
+# user search page only the bookmarks unique to each user will ne returned on this page
+@app.route('/user_search_results', methods=['POST', 'GET'])
+def user_search_results():
+    if request.method == "POST":
+        query = request.form.get('user_search_bar')
+        results = bookmarks_collection.find({'$text': {'$search': query}})
+        return render_template('user_search_results.html', results=results, title="User Search result")
+
 
 # user section
 @app.route('/users')
@@ -120,11 +129,11 @@ def users():
     p_limit = int(request.args.get('limit', 6))
     p_offset = int(request.args.get('offset', 0))
     num_results = bookmarks_collection.count(
-        {'username': session.get('username')})
-    bookmarks = bookmarks_collection.find({'username': session.get('username')}).sort(
+        {'username': username})
+    bookmarks = bookmarks_collection.find({'username': username}).sort(
         "_id", -1).limit(p_limit).skip(p_offset)
     book_name = bookmarks_collection.find_one(
-        {'username': session.get('username')})
+        {'username': username})
     args = {
         "p_limit": p_limit,
         "p_offset": p_offset,
