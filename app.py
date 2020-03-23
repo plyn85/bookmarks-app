@@ -167,7 +167,7 @@ def insert_bookmark():
         'category_name': request.form.get('category_name'),
         'add_bookmark_url': request.form.get('add_bookmark_url'),
         'bookmark_description': request.form.get('bookmark_description'),
-        'upvotes': int(1)
+        'upvotes': int(0)
     })
     flash(f'You have added a new bookmark!', 'success')
     return redirect(url_for('users'))

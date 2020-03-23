@@ -31,6 +31,10 @@
   padding: 1rem;
 }
 
+.upvote {
+  font-size: 2rem;
+}
+
 /* changing all input placeholders text below
 barlow repeated as it takes less code that way
 */

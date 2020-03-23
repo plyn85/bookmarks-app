@@ -91,9 +91,23 @@
             on {{book.last_modified}}
           </p>
           {%endif%}
-          <button>
-            <a href="{{ url_for('upvote', book_id=book._id) }} ">Upvote</a>
-          </button>
+
+          <p class="card-text text-barlow">
+            <!-- if likes are equal to one user other number users is displayed -->
+            Liked by {% if book.upvotes == 1%}
+            <span class="text-primary mx-2">{{book.upvotes}}</span>Other user
+            {%else%}
+            <span class="text-primary mx-2">{{book.upvotes}}</span>Other users
+            {%endif%}
+          </p>
+          <div class="row mb-3">
+            <div class="col">
+              <a href="{{ url_for('upvote', book_id=book._id) }}" class="upvote"
+                ><i class="fas fa-thumbs-up mr-1 upvote"></i> Like</a
+              >
+            </div>
+          </div>
+
           <a
             href="{{url_for('delete_bookmark', book_id=book._id)}}"
             class="btn btn-primary"
