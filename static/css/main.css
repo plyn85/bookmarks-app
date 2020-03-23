@@ -31,6 +31,9 @@
   padding: 1rem;
 }
 
+.hand-point {
+  font-size: 5rem;
+}
 .upvote {
   font-size: 2rem;
 }

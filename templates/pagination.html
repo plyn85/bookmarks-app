@@ -12,7 +12,9 @@
     -->
       <div class="col-4">
         {% if args.p_offset > 0 %}
-        <a href="{{args.prev_url}}"><i class="fas fa-angle-left fa-4x"></i></a>
+        <a href="{{args.prev_url}}"
+          ><i class="fas fa-hand-point-left hand-point"></i
+        ></a>
         {% endif %}
       </div>
 
@@ -21,7 +23,9 @@
 			next_url link should not be displayed 
 		-->
       {% if args.p_offset + args.p_limit < args.num_results %}
-      <a href="{{args.next_url}}"> <i class="fas fa-angle-right fa-4x "></i></a>
+      <a href="{{args.next_url}}">
+        <i class="fas fa-hand-point-right hand-point"></i
+      ></a>
       {% endif %} {% endif %}
     </div>
   </div>
