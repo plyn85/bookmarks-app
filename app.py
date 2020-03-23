@@ -167,6 +167,7 @@ def insert_bookmark():
         'category_name': request.form.get('category_name'),
         'add_bookmark_url': request.form.get('add_bookmark_url'),
         'bookmark_description': request.form.get('bookmark_description'),
+        'upvotes': int(1)
     })
     flash(f'You have added a new bookmark!', 'success')
     return redirect(url_for('users'))
@@ -208,6 +209,15 @@ def remove_bookmark(book_id):
     flash(f'Your bookmark has been removed!', 'success')
     bookmarks_collection.remove({'_id': ObjectId(book_id)})
     return redirect(url_for('users'))
+
+# up voting route
+@app.route('/upvote/<book_id>')
+def upvote(book_id):
+    bookmarks_collection.find_one_and_update(
+        {'_id': ObjectId(book_id)},
+        {'$inc': {'upvotes': 1}}
+    )
+    return redirect(url_for('index', book_id=book_id))
 # end bookmarks section ------------------------------------------------------------------
 
 #  categories section -----------------------------------------------------------------------

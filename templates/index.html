@@ -91,6 +91,9 @@
             on {{book.last_modified}}
           </p>
           {%endif%}
+          <button>
+            <a href="{{ url_for('upvote', book_id=book._id) }} ">Upvote</a>
+          </button>
           <a
             href="{{url_for('delete_bookmark', book_id=book._id)}}"
             class="btn btn-primary"
