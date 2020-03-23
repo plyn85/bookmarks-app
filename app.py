@@ -34,19 +34,18 @@ def index():
 
     num_results = bookmarks_collection.count()
     users = users_collection.find()
-    categories = mongo.db.categories.find()
+    categories = categories_collection.find()
     p_limit = int(request.args.get('limit', 6))
     p_offset = int(request.args.get('offset', 0))
     bookmarks = bookmarks_collection.find().sort(
         "_id", -1).limit(p_limit).skip(p_offset)
-
     args = {
         "p_limit": p_limit,
         "p_offset": p_offset,
         "num_results": num_results,
         "next_url": f"/index?limit={str(p_limit)}&offset={str(p_offset + p_limit)}",
         "prev_url": f"/index?limit={str(p_limit)}&offset={str(p_offset - p_limit)}",
-        "bookmarks": bookmarks
+
     }
 
     return render_template('index.html', categories=categories, bookmarks=bookmarks, users=users, args=args)
@@ -118,13 +117,27 @@ def users():
     username = session.get('username')
     users = users_collection.find()
     categories = categories_collection.find()
-    bookmarks = bookmarks_collection.find().sort("_id", -1)
+    p_limit = int(request.args.get('limit', 6))
+    p_offset = int(request.args.get('offset', 0))
+    num_results = bookmarks_collection.count(
+        {'username': session.get('username')})
+    bookmarks = bookmarks_collection.find({'username': session.get('username')}).sort(
+        "_id", -1).limit(p_limit).skip(p_offset)
     book_name = bookmarks_collection.find_one(
         {'username': session.get('username')})
+    args = {
+        "p_limit": p_limit,
+        "p_offset": p_offset,
+        "book_name": book_name,
+        "num_results": num_results,
+        "next_url": f"/users?limit={str(p_limit)}&offset={str(p_offset + p_limit)}",
+        "prev_url": f"/users?limit={str(p_limit)}&offset={str(p_offset - p_limit)}",
+
+    }
     if book_name is None:
         return render_template('newuser.html')
 
-    return render_template('users.html', users=users, bookmarks=bookmarks, categories=categories, title=username)
+    return render_template('users.html', users=users, bookmarks=bookmarks, categories=categories, args=args, title=username)
 
     # bookmarks section ---------------------------------------------------------------------
 
