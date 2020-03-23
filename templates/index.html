@@ -101,26 +101,23 @@
             {%endif%}
           </p>
           <div class="row mb-3">
-            <div class="col">
-              <a href="{{ url_for('upvote', book_id=book._id) }}" class="upvote"
-                ><i class="fas fa-thumbs-up mr-1 upvote"></i> Like</a
+            <a
+              href="{{ url_for('upvote', book_id=book._id) }}"
+              class="upvote col-6 text-right"
+              ><i class="fas fa-thumbs-up mr-1 upvote"></i> Like</a
+            >
+            <a>
+              <a
+                href="{{url_for('delete_bookmark', book_id=book._id)}}"
+                class="btn btn-primary"
+                >Delete</a
               >
-            </div>
+            </a>
           </div>
-
-          <a
-            href="{{url_for('delete_bookmark', book_id=book._id)}}"
-            class="btn btn-primary"
-            >Delete</a
-          >
-          <a
-            href="{{url_for('edit_bookmark', book_id=book._id)}}"
-            class="btn btn-primary"
-            >Edit</a
-          >
         </div>
       </div>
     </div>
+
     {%endfor%}{%endfor%}
   </div>
 </section>
