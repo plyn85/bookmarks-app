@@ -92,28 +92,35 @@
           </p>
           {%endif%}
 
-          <p class="card-text text-barlow">
-            <!-- if likes are equal to one user other number users is displayed -->
-            Liked by {% if book.upvotes == 1%}
-            <span class="text-primary mx-2">{{book.upvotes}}</span>Other user
-            {%else%}
-            <span class="text-primary mx-2">{{book.upvotes}}</span>Other users
-            {%endif%}
-          </p>
           <div class="row mb-3">
+            <!-- to prevent user from liking there own bookmark -->
+            {%if book.username != session['username']%}
             <a
               href="{{ url_for('upvote', book_id=book._id) }}"
-              class="upvote col-6 text-right"
-              ><i class="fas fa-thumbs-up mr-1 upvote"></i> Like</a
+              class="upvote col   
+              "
+              ><i class="fas fa-thumbs-up  upvote"></i> Like</a
             >
-
-            {%if book.username == session['username']%}
-            <a
-              href="{{url_for('delete_bookmark', book_id=book._id)}}"
-              class="btn btn-primary"
-              >Delete</a
-            >{%endif%}
+            {%endif%}
           </div>
+          <div class="row">
+            <p class="col card-text text-barlow">
+              <!-- if likes are  one user is displayed for any other number users is displayed -->
+              Liked by {% if book.upvotes == 1%}
+              <span class="text-primary mx-2">{{book.upvotes}}</span>Other user
+              {%else%}
+              <span class="text-primary mx-2">{{book.upvotes}}</span>Other users
+              {%endif%}
+            </p>
+          </div>
+          <!-- delete button can only be seen on users own bookmarks -->
+          {%if book.username == session['username']%}
+          <a href="{{url_for('delete_bookmark', book_id=book._id)}}">
+            <button type="button" class="btn btn-primary btn-sm mt-2">
+              Delete
+            </button></a
+          >
+          {%endif%}
         </div>
       </div>
     </div>

@@ -35,7 +35,7 @@
   font-size: 3rem;
 }
 .upvote {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 /* changing all input placeholders text below
@@ -257,6 +257,6 @@ targeting flashed messages */
   border-radius: 0.5rem;
 }
 
-/*  {
+* {
   border: 0.3px solid red;
-} */
+}
