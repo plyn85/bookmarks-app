@@ -32,7 +32,7 @@
 }
 
 .hand-point {
-  font-size: 5rem;
+  font-size: 3rem;
 }
 .upvote {
   font-size: 2rem;
@@ -257,6 +257,6 @@ targeting flashed messages */
   border-radius: 0.5rem;
 }
 
-/* {
-  border: 1px solid red;
+/*  {
+  border: 0.3px solid red;
 } */

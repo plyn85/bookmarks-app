@@ -4,29 +4,33 @@
 <!-- pagination section -->
 <section>
   {% if args.num_results > args.p_limit %}
-  <div class="container">
+ 
     <div class="row justify-content-around">
       <!-- 
 			If this is first page (offset == 0) 
 			prev_url link should not be displayed 
     -->
-      <div class="col-4">
         {% if args.p_offset > 0 %}
-        <a href="{{args.prev_url}}"
-          ><i class="fas fa-hand-point-left hand-point"></i
-        ></a>
+        <a
+        href="{{ args.prev_url }}"
+        class="upvote col-3 text-right"
+        ><i class="fas fa-hand-point-left hand-point mr-1 mt-3"></i> Prev</a
+      >
+      <a>
         {% endif %}
-      </div>
-
       <!-- 
 			If this is last page (offset + limit == lenght of the documents) 
 			next_url link should not be displayed 
 		-->
       {% if args.p_offset + args.p_limit < args.num_results %}
-      <a href="{{args.next_url}}">
-        <i class="fas fa-hand-point-right hand-point"></i
-      ></a>
+    
+        <a
+          href="{{ args.next_url }}"
+          class="upvote col-3 text-right"
+          >Next<i class="fas fa-hand-point-right hand-point ml-1 mt-3"></i> </a
+        >
+        <a>
+      </div>
+  
       {% endif %} {% endif %}
-    </div>
-  </div>
 </section>

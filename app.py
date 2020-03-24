@@ -38,7 +38,7 @@ def index():
     p_limit = int(request.args.get('limit', 6))
     p_offset = int(request.args.get('offset', 0))
     bookmarks = bookmarks_collection.find().sort(
-        "_id", -1).limit(p_limit).skip(p_offset)
+        "upvotes", -1).limit(p_limit).skip(p_offset)
     args = {
         "p_limit": p_limit,
         "p_offset": p_offset,
