@@ -47,14 +47,4 @@
     </form>
   </div>
 </section>
-{%else%}
-<div class="row justify-content-center">
-  <div class="col-lg-6 text-center text-barlow  mt-5">
-    <h3>
-      Sorry {{session.username}} you do not have permisson to delete other users
-      bookmarks please feel free to edit your own but not other users!
-    </h3>
-    <a href="{{url_for('index')}}">please click here to return to home page</a>
-  </div>
-</div>
 {%endif%} {% endblock content %}

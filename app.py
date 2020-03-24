@@ -2,7 +2,7 @@
 import os
 import math
 from flask import Flask, render_template, redirect, request, url_for, session, flash
-from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 import bcrypt
 from datetime import datetime
@@ -37,8 +37,8 @@ def index():
     categories = categories_collection.find()
     p_limit = int(request.args.get('limit', 6))
     p_offset = int(request.args.get('offset', 0))
-    bookmarks = bookmarks_collection.find().sort(
-        "upvotes", -1).limit(p_limit).skip(p_offset)
+    bookmarks = bookmarks_collection.find().sort([
+        ("upvotes", -1), ("_id", -1)]).limit(p_limit).skip(p_offset)
     args = {
         "p_limit": p_limit,
         "p_offset": p_offset,

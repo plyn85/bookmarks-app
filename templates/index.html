@@ -12,8 +12,8 @@
       {% endif %} {% if session['logged_in']%}
       <p class="text-oswald white callout-main-text">
         You are now logged In an free to add, delete update and create your
-        bookmarks please look at our examples below and the head to the
-        bookmarks section to begin creating your own unique bookmarks orginser.
+        bookmarks collection. Please check out other users bookmarks below. Feel
+        free to click the like button on ones you find usefull.
       </p>
       {% endif %}
       <div class="row justify-content-center">
@@ -26,7 +26,7 @@
         {% endif %} {% if session['logged_in']%}
         <button type="button" class="data-btn col-md-3  btn-primary">
           <a href="{{url_for('users')}}" class="text-oswald white">
-            Bookmarks</a
+            My Bookmarks</a
           >
         </button>
         {% endif %}
@@ -39,7 +39,7 @@
   <div class="row justify-content-center mt-4">
     <div class="col-lg-4">
       <h2 class="bookmarks-header text-oswald mt-5 text-center uppercase">
-        Latest Bookmarks
+        Most Popular Bookmarks
         <hr class="hr-color" />
       </h2>
     </div>
@@ -106,13 +106,13 @@
               class="upvote col-6 text-right"
               ><i class="fas fa-thumbs-up mr-1 upvote"></i> Like</a
             >
-            <a>
-              <a
-                href="{{url_for('delete_bookmark', book_id=book._id)}}"
-                class="btn btn-primary"
-                >Delete</a
-              >
-            </a>
+
+            {%if book.username == session['username']%}
+            <a
+              href="{{url_for('delete_bookmark', book_id=book._id)}}"
+              class="btn btn-primary"
+              >Delete</a
+            >{%endif%}
           </div>
         </div>
       </div>

@@ -5,32 +5,33 @@
 <section>
   {% if args.num_results > args.p_limit %}
  
-    <div class="row justify-content-around">
+    <div class="row justify-content-around mt-4">
       <!-- 
 			If this is first page (offset == 0) 
 			prev_url link should not be displayed 
     -->
         {% if args.p_offset > 0 %}
-        <a
-        href="{{ args.prev_url }}"
-        class="upvote col-3 text-right"
-        ><i class="fas fa-hand-point-left hand-point mr-1 mt-3"></i> Prev</a
-      >
-      <a>
+       <a
+          href="{{ args.prev_url }}"
+          class="upvote text-center col-6"
+          ><i class="fas fa-hand-point-left hand-point"></i> Prev</a
+        >
+        <a>
+        
         {% endif %}
       <!-- 
 			If this is last page (offset + limit == lenght of the documents) 
 			next_url link should not be displayed 
 		-->
       {% if args.p_offset + args.p_limit < args.num_results %}
-    
-        <a
-          href="{{ args.next_url }}"
-          class="upvote col-3 text-right"
-          >Next<i class="fas fa-hand-point-right hand-point ml-1 mt-3"></i> </a
-        >
-        <a>
+     <a
+      href="{{ args.next_url }}"
+      class="upvote text-center col-6"
+      >Next<i class="fas fa-hand-point-right hand-point"></i> </a
+    >
+
+    {% endif %} {% endif %}
       </div>
   
-      {% endif %} {% endif %}
+      
 </section>
