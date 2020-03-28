@@ -26,27 +26,28 @@ bookmarks_collection = mongo.db.bookmarks
 categories_collection = mongo.db.categories
 
 # index,  login, register, and log out section -----------------------------------------
-@app.route('/index')
+@app.route('/index', methods=['GET'])
 @app.route('/')
-# pagination taken an altered from a tutorial found in slack archives and at
-# https://github.com/MiroslavSvec/DCD_lead/tree/pagination
+# User authentication with thanks to Miroslav Svec, DCD Channel lead.
+# altered from https://github.com/MiroslavSvec/DCD_lead/tree/pagination
 def index():
 
     num_results = bookmarks_collection.count()
     users = users_collection.find()
     categories = categories_collection.find()
-    p_limit = int(request.args.get('limit', 6))
-    p_offset = int(request.args.get('offset', 0))
-    bookmarks = bookmarks_collection.find().sort([
-        ("upvotes", -1), ("_id", -1)]).limit(p_limit).skip(p_offset)
-    args = {
-        "p_limit": p_limit,
-        "p_offset": p_offset,
-        "num_results": num_results,
-        "next_url": f"/index?limit={str(p_limit)}&offset={str(p_offset + p_limit)}",
-        "prev_url": f"/index?limit={str(p_limit)}&offset={str(p_offset - p_limit)}",
+    if request.method == "GET":
+        p_limit = int(request.args.get('limit', 6))
+        p_offset = int(request.args.get('offset', 0))
+        bookmarks = bookmarks_collection.find().sort([
+            ("upvotes", -1), ("_id", -1)]).limit(p_limit).skip(p_offset)
+        args = {
+            "p_limit": p_limit,
+            "p_offset": p_offset,
+            "num_results": num_results,
+            "next_url": f"/index?limit={str(p_limit)}&offset={str(p_offset + p_limit)}",
+            "prev_url": f"/index?limit={str(p_limit)}&offset={str(p_offset - p_limit)}",
 
-    }
+        }
 
     return render_template('index.html', categories=categories, bookmarks=bookmarks, users=users, args=args)
 
@@ -90,7 +91,7 @@ def register():
             return redirect(url_for('login'))
         else:
             flash(
-                f'Registraion Unsuccessful. Please check username and password', 'danger')
+                f'Username Is in Use. Please Try a different username', 'danger')
     return render_template('register.html', title="Regsiter")
 
 
@@ -102,21 +103,30 @@ def logout():
 # search bar section
 
 # search bar
-@app.route('/search_bar', methods=['POST', 'GET'])
-def search_bar():
+@app.route('/search_results', methods=['POST', 'GET'])
+def search_results():
     if request.method == "POST":
+        bookmarks = bookmarks_collection.find()
         query = request.form.get('search_bar')
         results = bookmarks_collection.find({'$text': {'$search': query}})
-        return render_template('search.html', results=results, title="Search result")
+        if query == "":
+            flash(
+                f'This those not match any Bookmarks! please return to home page change your search text and try again', 'danger')
+
+        return render_template('search_results.html', results=results, title="Search result", bookmarks=bookmarks)
+
 
 # user search page only the bookmarks unique to each user will ne returned on this page
+
 @app.route('/user_search_results', methods=['POST', 'GET'])
 def user_search_results():
     if request.method == "POST":
         query = request.form.get('user_search_bar')
         results = bookmarks_collection.find({'$text': {'$search': query}})
+        if query == "":
+            flash(
+                f'This those not match any Bookmarks! please return tomy bookmarks change your search text and try again', 'danger')
         return render_template('user_search_results.html', results=results, title="User Search result")
-
 
 # user section
 @app.route('/users')

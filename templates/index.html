@@ -12,7 +12,8 @@
       {% endif %} {% if session['logged_in']%}
       <p class="text-oswald white callout-main-text">
         You are now logged In an free to add, delete update and create your
-        bookmarks collection. Please check out other users bookmarks below. Feel
+        bookmarks collection. Head to the my bookmarks section to start your own
+        unique collection.Please check out other users bookmarks below. Feel
         free to click the like button on ones you find usefull.
       </p>
       {% endif %}
@@ -48,7 +49,7 @@
   <!-- search bar section -->
   <div class="row  mt-2">
     <div class="col text-center">
-      <form action="{{ url_for('search_bar') }}" method="POST">
+      <form action="{{ url_for('search_results') }}" method="POST">
         <div class="row justify-content-center">
           <input
             class="col-8"
@@ -68,6 +69,7 @@
   <!-- bookmarks section -->
   <div class="row">
     {%for cat in categories%} {% for book in bookmarks %}
+
     <div class="col-lg-6">
       <div class="card">
         <div class="card-body text-center">
@@ -96,7 +98,7 @@
             <!-- to prevent user from liking there own bookmark -->
             {%if book.username != session['username']%}
             <a
-              href="{{ url_for('upvote', book_id=book._id) }}"
+              href="{{ url_for('upvote', book_id=book._id,_anchor='like_btn') }}"
               class="upvote col   
               "
               ><i class="fas fa-thumbs-up  upvote"></i> Like</a
@@ -104,7 +106,9 @@
             {%endif%}
           </div>
           <div class="row">
-            <p class="col card-text text-barlow">
+            <p class="col card-text text-barlow" >
+          {%if args.p_offset == args.num_results%}
+              <div id="like_btn"></div>{%endif%}
               <!-- if likes are  one user is displayed for any other number users is displayed -->
               Liked by {% if book.upvotes == 1%}
               <span class="text-primary mx-2">{{book.upvotes}}</span>Other user
