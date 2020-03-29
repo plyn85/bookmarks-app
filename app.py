@@ -125,7 +125,7 @@ def user_search_results():
         results = bookmarks_collection.find({'$text': {'$search': query}})
         if query == "":
             flash(
-                f'This those not match any Bookmarks! please return tomy bookmarks change your search text and try again', 'danger')
+                f'This those not match any Bookmarks! please return tomy change your search text and try again', 'danger')
         return render_template('user_search_results.html', results=results, title="User Search result")
 
 # user section

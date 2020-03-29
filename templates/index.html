@@ -106,9 +106,7 @@
             {%endif%}
           </div>
           <div class="row">
-            <p class="col card-text text-barlow" >
-          {%if args.p_offset == args.num_results%}
-              <div id="like_btn"></div>{%endif%}
+            <p class="col card-text text-barlow">
               <!-- if likes are  one user is displayed for any other number users is displayed -->
               Liked by {% if book.upvotes == 1%}
               <span class="text-primary mx-2">{{book.upvotes}}</span>Other user
@@ -132,4 +130,4 @@
     {%endfor%}{%endfor%}
   </div>
 </section>
-{%include 'pagination.html'%} {%endif%} {% endblock content %}
+{%include 'partials/pagination.html'%} {%endif%} {% endblock content %}
