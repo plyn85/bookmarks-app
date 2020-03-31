@@ -38,7 +38,7 @@
   font-size: 1.5rem;
 }
 .hide-content {
-  display: hidden;
+  display: none;
 }
 /* changing all input placeholders text below
 barlow repeated as it takes less code that way
@@ -73,9 +73,7 @@ input::placeholder {
 body {
   background-color: #ffc107;
 }
-.background-height {
-  height: 100vh;
-}
+
 .hr-color {
   border: 0.5px solid#0275d8;
 }
@@ -251,10 +249,24 @@ targeting flashed messages */
 .btn-bookmark-page:active {
   color: #f2f3f7;
 }
-/* changing bootstrap cards to suit sight layout */
+/* changing bootstrap cards to suit website layout */
 .card {
   min-width: 50%;
   border: 2px solid #007bff;
   margin-top: 1rem;
   border-radius: 0.5rem;
+}
+/* media queries */
+/* for smallest devices */
+@media (max-width: 375px) {
+  .callout-main-text {
+    font-size: 1.4rem;
+  }
+}
+
+/* for all smaller devices ipad an below  */
+@media (max-width: 768px) {
+  .bookmarks-btn a {
+    font-size: 1rem;
+  }
 }

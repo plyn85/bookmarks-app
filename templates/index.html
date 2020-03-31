@@ -19,13 +19,13 @@
       {% endif %}
       <div class="row justify-content-center">
         {% if not session['logged_in']%}
-        <button type="button" class="data-btn col-md-3  btn-primary">
+        <button type="button" class="bookmarks-btn  col-md-3  btn-primary">
           <a href="{{url_for('register')}}" class="text-oswald white">
             Register here</a
           >
         </button>
         {% endif %} {% if session['logged_in']%}
-        <button type="button" class="data-btn col-md-3  btn-primary">
+        <button type="button" class="bookmarks-btn  col-md-3  btn-primary">
           <a href="{{url_for('users')}}" class="text-oswald white">
             My Bookmarks</a
           >
