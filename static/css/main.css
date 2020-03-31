@@ -38,7 +38,7 @@
   font-size: 1.5rem;
 }
 .hide-content {
-  display: none;
+  display: hidden;
 }
 /* changing all input placeholders text below
 barlow repeated as it takes less code that way

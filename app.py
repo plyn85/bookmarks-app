@@ -1,7 +1,7 @@
 # Imports
 import os
 import math
-from flask import Flask, render_template, redirect, request, url_for, session, flash
+from flask import Flask, render_template, redirect, request, url_for, session, flash, jsonify
 from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 import bcrypt
@@ -35,21 +35,35 @@ def index():
     num_results = bookmarks_collection.count()
     users = users_collection.find()
     categories = categories_collection.find()
-    if request.method == "GET":
-        p_limit = int(request.args.get('limit', 6))
-        p_offset = int(request.args.get('offset', 0))
-        bookmarks = bookmarks_collection.find().sort([
-            ("upvotes", -1), ("_id", -1)]).limit(p_limit).skip(p_offset)
-        args = {
-            "p_limit": p_limit,
-            "p_offset": p_offset,
-            "num_results": num_results,
-            "next_url": f"/index?limit={str(p_limit)}&offset={str(p_offset + p_limit)}",
-            "prev_url": f"/index?limit={str(p_limit)}&offset={str(p_offset - p_limit)}",
+    p_limit = int(request.args.get('limit', 6))
+    p_offset = int(request.args.get('offset', 0))
+    bookmarks = bookmarks_collection.find().sort([
+        ("upvotes", -1), ("_id", -1)]).limit(p_limit).skip(p_offset)
+    args = {
+        "p_limit": p_limit,
+        "p_offset": p_offset,
+        "num_results": num_results,
+        "next_url": f"/index?limit={str(p_limit)}&offset={str(p_offset + p_limit)}",
+        "prev_url": f"/index?limit={str(p_limit)}&offset={str(p_offset - p_limit)}",
 
-        }
+    }
 
     return render_template('index.html', categories=categories, bookmarks=bookmarks, users=users, args=args)
+
+
+# up voting route
+
+
+@app.route('/upvote/<book_id>', methods=["GET", "POST"])
+def upvote(book_id):
+    # getting current page here an passing into redirect so
+    # user is redirected to  the page the are on  after upvote/like button is clicked
+    bookmarks_collection.find_one_and_update(
+        {'_id': ObjectId(book_id)},
+        {'$inc': {'upvotes': 1}}
+    )
+
+    return redirect(url_for('index',  book_id=book_id))
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -220,14 +234,6 @@ def remove_bookmark(book_id):
     bookmarks_collection.remove({'_id': ObjectId(book_id)})
     return redirect(url_for('users'))
 
-# up voting route
-@app.route('/upvote/<book_id>')
-def upvote(book_id):
-    bookmarks_collection.find_one_and_update(
-        {'_id': ObjectId(book_id)},
-        {'$inc': {'upvotes': 1}}
-    )
-    return redirect(url_for('index', book_id=book_id))
 # end bookmarks section ------------------------------------------------------------------
 
 #  categories section -----------------------------------------------------------------------

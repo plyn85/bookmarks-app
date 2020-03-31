@@ -1,8 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
-  likeBtn = document.getElementById("like-btn");
+  let likeBtn = document.getElementsByClassName("like-btn");
   callOutSection = document.getElementById("callout-text");
 
-  likeBtn.addEventListener("click", function() {
-    callOutSection.classList.add("hide-content");
-  });
+  for (let i = 0; i < likeBtn.length; i++) {
+    likeBtn[i].addEventListener("click", function(event) {
+      if (confirm("Is this working?")) {
+        event.preventDefault();
+        callOutSection.classList.add("hide-content");
+      }
+    });
+  }
 });

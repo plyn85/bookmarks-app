@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
-<div id="callout-text">
-  <section class="img-wrapper callout-container row">
+
+  <section class="img-wrapper callout-container row" id="callout-text">
     <div class="col-10 col-md-8">
       {% if not session['logged_in']%}
       <p class="text-oswald white callout-main-text">
@@ -66,68 +66,5 @@
     </div>
   </div>
   <!-- end search bar section -->
-  <!-- bookmarks section -->
-  <div class="row">
-    {%for cat in categories%} {% for book in bookmarks %}
-
-    <div class="col-lg-6">
-      <div class="card">
-        <div class="card-body text-center">
-          {% if cat.category_name == book.category_name %} {%endif%}
-          <h2 class="card-title text-oswald uppercase">
-            {{book.category_name| truncate(30, killwords=True) }}
-          </h2>
-          <hr class="hr-color" />
-          <p class="card-text text-barlow">
-            <a href="{{book.add_bookmark_url}}" target="_blank"
-              >{{book.add_bookmark_url| truncate(30, killwords=True) }}</a
-            >
-          </p>
-          <p class="card-text">
-            {{book.bookmark_description |truncate (50, killwords=True) }}
-          </p>
-          {%if book.name== users.name%}
-          <p class="card-text text-barlow">
-            Added by
-            <mark class="text-dark">{{book.username}}</mark>
-            on {{book.last_modified}}
-          </p>
-          {%endif%}
-
-          <div class="row mb-3">
-            <!-- to prevent user from liking there own bookmark -->
-            {%if book.username != session['username']%}
-            <a
-              href="{{ url_for('upvote', book_id=book._id,_anchor='like_btn') }}"
-              class="upvote col   
-              "
-              ><i class="fas fa-thumbs-up  upvote"></i> Like</a
-            >
-            {%endif%}
-          </div>
-          <div class="row">
-            <p class="col card-text text-barlow">
-              <!-- if likes are  one user is displayed for any other number users is displayed -->
-              Liked by {% if book.upvotes == 1%}
-              <span class="text-primary mx-2">{{book.upvotes}}</span>Other user
-              {%else%}
-              <span class="text-primary mx-2">{{book.upvotes}}</span>Other users
-              {%endif%}
-            </p>
-          </div>
-          <!-- delete button can only be seen on users own bookmarks -->
-          {%if book.username == session['username']%}
-          <a href="{{url_for('delete_bookmark', book_id=book._id)}}">
-            <button type="button" class="btn btn-primary btn-sm mt-2">
-              Delete
-            </button></a
-          >
-          {%endif%}
-        </div>
-      </div>
-    </div>
-
-    {%endfor%}{%endfor%}
-  </div>
 </section>
-{%include 'partials/pagination.html'%} {%endif%} {% endblock content %}
+{%include 'partials/_pagination.html'%} {%endif%} {% endblock content %}
