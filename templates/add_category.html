@@ -1,13 +1,17 @@
+<!-- extends base html here -->
 {% extends 'base.html' %} {% block content %}
 <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
+<!-- add category  form -->
 <section class="yellow-background background-height">
   <div class="signup-form mt-5">
+      <!-- action form submit will use add category  route from app.py -->
     <form action="{{url_for('insert_category')}}" method="post">
       <h2 class="text-center text-barlow">Add Category</h2>
       <p class="hint-text text-barlow">
         Add your category below
       </p>
       <div class="form-group">
+        <!-- user will insert the url of the category  they want to save here -->
         <input
           type="text"
           class="form-control"
@@ -21,6 +25,8 @@
       </p>
 
       <div class="form-group">
+          <!-- user submits the form here adding all the infomation a bootstrap card which displays in 
+          both user  an index html pages -->
         <button type="submit" class="btn btn-primary btn-block text-barlow">
           Add Category
         </button>

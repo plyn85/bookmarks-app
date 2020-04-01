@@ -121,10 +121,10 @@ targeting flashed messages */
 /* buttons */
 /* targeting the reset data button and callout main text here  */
 
-.data-btn {
+.bookmarks-btn {
   border-radius: 5px;
   width: 50%;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 700;
 }
 /* main body */

@@ -1,13 +1,17 @@
+<!-- extended base html here  -->
 {% extends 'base.html' %} {% block content %}
 <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
-<section class="background-height">
+<!-- add bookmark form -->
+<section>
   <div class="signup-form mt-5">
+    <!-- action form submit will use insert bookmark route from app.py -->
     <form action="{{ url_for('insert_bookmark') }}" method="post">
       <h2 class="text-center text-barlow">Add bookmark</h2>
       <p class="hint-text text-barlow">
         Copy and paste your bookmark url below
       </p>
       <div class="form-group">
+        <!-- user will insert the url of the bookmark they want to save here -->
         <input
           type="text"
           class="form-control"
@@ -19,11 +23,13 @@
       <p class="hint-text text-barlow">
         Add your category below
       </p>
+      <!-- user will add a category here categories in separate non rendered html file -->
       {%include "partials/_list_categories.html"%}
       <p class="hint-text text-barlow">
         Add a description for your bookmark below
       </p>
       <div class="form-group">
+        <!-- user will add a descrption of the bookmark here  -->
         <textarea
           class="form-control text-barlow"
           name="bookmark_description"
@@ -33,6 +39,8 @@ Enter text here...</textarea
         >
       </div>
       <div class="form-group">
+        <!-- user submits the form here adding all the infomation a bootstrap card which displays in 
+          both user  an index html pages -->
         <button type="submit" class="btn btn-primary btn-block text-barlow">
           Add bookmark
         </button>
