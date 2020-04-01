@@ -1,16 +1,36 @@
-{% extends 'base.html' %} {% block content %}
-<!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
+<!-- extends base html -->
+{% extends 'base.html' %}
+
+<!-- start block content -->
+ {% block content %}
+
+ <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
+
+<!-- defensive element section can only be viewied if the session username matches the username of the bookmark -->
 {%if session.username==book.username%}
+
+<!-- start section -->
 <section>
+  
+  <!-- start of div that wraps the entire form -->
   <div class="signup-form mt-5">
+   
+    <!-- start of form activates remove bookmark route located in app.py-->
     <form
       action="{{ url_for('remove_bookmark', book_id=book._id) }}"
       method="post"
     >
+
+    <!--form header -->
       <h2 class="text-center text-barlow">
         Confirm bookmark Delete
       </h2>
+      <!-- end header -->
+
+      <!--start of input form group -->
       <div class="form-group">
+        
+        <!-- input displays url of the bookmark delete button was clicked on  -->
         <input
           id="add_bookmark_url"
           type="text"
@@ -20,8 +40,16 @@
           required="required"
         />
       </div>
-      {%include "partials/list_categories.html"%}
+      <!-- end form group -->
+      
+      <!-- displays category of the bookmark that delete button was clicked on  -->
+      {%include "partials/_list_categories.html"%}
+      <!-- end category -->
+     
+<!-- strat of form group that displays bookmark description -->
       <div class="form-group">
+        
+        <!-- textarea thta displays bookmarks description -->
         <textarea
           id="bookmark_description"
           class="form-control text-barlow"
@@ -31,20 +59,45 @@
 {{book.bookmark_description |truncate (50, killwords=True) }}</textarea
         >
       </div>
+      <!-- end form group -->
+
+      <!-- start of row that wraps warning -->
       <div class="row">
+      
+        <!-- start of col -->
         <div class="col text-barlow text-center text-danger">
+          
+          <!-- delete warning -->
           <h5>
             By clicking this button you will permently delete a bookmark. This
             action cannot be undone!
           </h5>
+      
         </div>
+        <!-- end of col -->
+
       </div>
+      <!-- end of row -->
+
+      <!-- start of form group that wraps confirm delete button -->
       <div class="form-group mt-2">
+
+        <!-- confirm delete button -->
         <button type="submit" class="btn btn-primary btn-block text-barlow">
           Confirm delete
         </button>
+      
       </div>
+      <!-- end form group -->
     </form>
+    <!-- end form -->
   </div>
+  <!-- end from wrapper div -->
 </section>
-{%endif%} {% endblock content %}
+<!-- end section -->
+
+{%endif%}
+<!-- end defensive element if statment -->
+ 
+{% endblock content %}
+<!-- end block content -->

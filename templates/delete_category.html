@@ -1,13 +1,37 @@
-{% extends 'base.html' %} {% block content %}
-<!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
-<section class="yellow-background background-height">
+<!-- extends base html -->
+{% extends 'base.html' %}
+
+<!-- start block content -->
+ {% block content %}
+
+ <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
+
+<!-- defensive element section can only be viewied if the session username matches the username of the bookmark -->
+{%if session.username==cat.username%}
+
+<!-- start section -->
+<section>
+  
+  <!-- start of div that wraps the entire form -->
   <div class="signup-form mt-5">
+   
+    <!-- start of form activates remove category route located in app.py-->
     <form action="{{url_for('remove_category', cat_id=cat._id)}}" method="post">
+      
+         <!--form header -->
       <h2 class="text-center text-barlow">Delete Category</h2>
+        <!-- end header -->
+
+          <!-- expliantion text pargraph-->
       <p class="hint-text text-barlow">
         Delete your category below
       </p>
+      <!-- end paragraph -->
+
+         <!--start of input form group -->
       <div class="form-group">
+        
+          <!-- input displays url of the category delete button was clicked on-->
         <input
           type="text"
           class="form-control"
@@ -15,22 +39,47 @@
           placeholder="{{cat.category_name| truncate(30, killwords=True) }}"
         />
       </div>
-      <div class="row">
+       <!-- end form group -->
+      
+       <!-- start of row which wraps warning text -->
+       <div class="row">
+
+        <!-- start of col -->
         <div class="col text-barlow text-center text-danger">
+         
+            <!-- delete warning -->
           <h6>
             By clicking this button you will permently delete a Category. This
             will also delete all bookmarks conatained with in the category. This
             action cannot be undone!
           </h6>
+          <!-- end warning -->
+        
         </div>
-      </div>
+       <!-- end col -->
 
+      </div>
+ <!-- end row  -->
+
+  <!-- start of form group that wraps confirm delete button -->
       <div class="form-group mt-2">
+        
+         <!-- confirm delete button -->
         <button type="submit" class="btn btn-primary btn-block text-barlow">
           Confirm Delete
         </button>
+
       </div>
-    </form>
+        <!-- end form group -->
+      </form>
+        <!-- end form -->
   </div>
+    <!-- end from wrapper div -->
 </section>
+<!-- end section -->
+
+{%endif%}
+<!-- end defensive element if statment -->
+
 {% endblock content %}
+<!-- end block content -->
