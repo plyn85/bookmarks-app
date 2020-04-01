@@ -1,28 +1,50 @@
-{% extends 'base.html' %} {% block content %}
+<!-- extends base html  -->
+{% extends 'base.html' %} 
+<!-- starts block content -->
+{% block content %}
+<!-- bookmarks section  -->
 <section class="bookmark-page">
+  <!--row displays categoreis for along with the name of  which ever user is logged in  -->
   <div class="row justify-content-center">
+    <!--start of  col -->
     <div class="col-lg-4">
       <h2 class="bookmarks-header text-oswald mt-5 text-center uppercase">
         Categories for {{session.username}}
       </h2>
       <hr class="hr-color" />
     </div>
+    <!-- end of col -->
   </div>
+<!-- end of row-->
 
+<!-- start of row which wraps the bootstrap cards which displays the categories-->
   <div class="row">
-    {% for cat in categories %} {%if session.username==cat.username%}
+    <!--first loop through categories -->
+    {% for cat in categories %}
+    <!-- denfensive element categories will only be displayed if the session username matches the username for that category from the database -->
+ {%if session.username==cat.username%}
+ <!-- start of col  which wraps entrie bootstrap card-->
     <div class="col-md-6">
+      <!-- start of card -->
       <div class="card">
+        <!-- card body -->
         <div class="card-body text-center yellow-background">
+          <!-- start of row which wraps the category name -->
           <div class="row">
+              <!-- start of col  -->
             <div class="col text-oswald uppercase">
               <h3>
                 {{cat.category_name| truncate(30, killwords=True) }}
               </h3>
               <hr class="hr-color" />
             </div>
+            <!-- end of col -->
           </div>
+          <!-- end of row -->
+
+           <!-- start of row which wraps the edit an delete buttons -->
           <div class="row">
+            <!-- start of col -->
             <div class="col">
                  <a href="{{url_for('delete_category', cat_id=cat._id)}}"
                  class="btn btn-primary btn-small btn-link btn-bookmark-page"  >Delete</a
@@ -34,16 +56,24 @@
                  Edit</a
                >    
               </div>
+              <!-- end of col -->
             </div>
-                    
+               <!-- end of row-->
           </div>
+          <!-- end of card body -->
         </div>
+        <!-- end of card -->
       </div>
-      {%endif%} {% endfor %}
+      {%endif%}
+      <!-- end of if statement -->
+       {% endfor %}
+       <!-- end of for loop -->
     </div>
   </section>
+  <!-- ends ection -->
   {% endblock content%}
-            
+  <!-- end block content -->
+             
               
            
          
