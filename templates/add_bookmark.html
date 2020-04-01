@@ -6,12 +6,22 @@
   <div class="signup-form mt-5">
     <!-- action form submit will use insert bookmark route from app.py -->
     <form action="{{ url_for('insert_bookmark') }}" method="post">
+
+        <!-- form header -->
       <h2 class="text-center text-barlow">Add bookmark</h2>
+        <!-- end header -->
+
+        <!-- instruction text -->
       <p class="hint-text text-barlow">
         Copy and paste your bookmark url below
       </p>
+           <!-- end text -->
+
+      <!-- start form group-->
       <div class="form-group">
         <!-- user will insert the url of the bookmark they want to save here -->
+
+          <!-- user will insert the url of the bookmark  they want to save here -->
         <input
           type="text"
           class="form-control"
@@ -19,15 +29,26 @@
           placeholder="Add your url here"
           required="required"
         />
+        <!-- end input -->
       </div>
+<!-- end form group -->
+
+<!-- instruction text -->
       <p class="hint-text text-barlow">
         Add your category below
       </p>
+      <!-- end text -->
+
       <!-- user will add a category here categories in separate non rendered html file -->
       {%include "partials/_list_categories.html"%}
+
+      <!-- instuction text -->
       <p class="hint-text text-barlow">
         Add a description for your bookmark below
       </p>
+      <!-- end text -->
+
+      <!-- start form group -->
       <div class="form-group">
         <!-- user will add a descrption of the bookmark here  -->
         <textarea
@@ -37,15 +58,23 @@
         >
 Enter text here...</textarea
         >
+        <!-- end text area -->
       </div>
+      <!-- end form group -->
+
+      <!-- start from group -->
       <div class="form-group">
         <!-- user submits the form here adding all the infomation a bootstrap card which displays in 
           both user  an index html pages -->
         <button type="submit" class="btn btn-primary btn-block text-barlow">
           Add bookmark
         </button>
-      </div>
+       <!-- end form group -->
     </form>
+    <!-- end form -->
   </div>
+  <!-- end sigin form wrapper -->
 </section>
+<!-- end section -->
 {% endblock content %}
+<!-- end block content -->
