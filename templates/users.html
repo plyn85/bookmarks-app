@@ -1,32 +1,84 @@
-{% extends 'base.html' %} {% block content %}
-<!-- users will see this having added a book mark the 
-the name of which ever username they set up there account with will be displayed -->
+<!-- extends base.html -->
+{% extends 'base.html' %} 
+
+<!-- start of  block content -->
+{% block content %}
+
+<!-- bookmarks section  -->
+<section>
+
+    <!--row displays bookmarks for user along with the name of  which ever user is logged in  -->
 <div class="row justify-content-center mt-4">
+      <!--start of  col -->
   <div class="col-lg-4">
     <h4 class="bookmarks-header text-oswald mt-5 text-center uppercase">
       Bookmarks for {{session.username}}
-      <hr class="hr-color" />
     </h4>
+    <hr class="hr-color" />
   </div>
+   <!-- end of col -->
 </div>
-<!-- search bar section -->
-<div class="row  mt-2">
-  <div class="col text-center">
-    <form action="{{ url_for('user_search_results') }}" method="POST">
-      <div class="row justify-content-center">
-        <input
-          class="col-8"
-          type="text"
-          id="search_bar"
-          name="user_search_bar"
-          placeholder="Search your bookmarks"
-        />
-        <button class="btn-primary text-barlow col-3  col-lg-1" type="submit">
-          Go
-        </button>
-      </div>
-    </form>
+<!-- end of row-->
+
+<!-- start  of search bar section-->
+
+  <!-- start of row  that wraps header-->
+  <div class="row justify-content-center mt-4">
+    
+    <!-- col that wraps header-->
+    <div class="col-lg-4">
+
+      <!-- bookmarks header -->
+      <h4 class="bookmarks-header text-oswald mt-5 text-center uppercase">
+        Most Popular Bookmarks
+      </h4>
+      <hr class="hr-color" />
+      <!-- end header -->
+    </div>
+    <!-- end col -->
   </div>
-</div>
-  {%include 'partials/_bookmarks.html'%}} {%include 'partials/_pagination.html'%}{%endblock%}
-</div>
+  <!-- end row -->
+
+  <!-- row wraps search bar -->
+  <div  class="row  mt-2">
+
+    <!-- col that  wraps search bar  -->
+    <div class="col text-center">
+
+      <!-- search bar form activates search results route located in app.py -->
+      <form action="{{ url_for('user_search_results') }}" method="POST">
+       
+       <!-- row wraps search bar input  -->
+        <div class="row justify-content-center">
+
+          <!-- input search text goes here  -->
+          <input
+            class="col-8"
+            type="text"
+            id="search_bar"
+            name="user_search_bar"
+            placeholder="Search"
+          />
+          <!-- end input -->
+
+   <!-- submit button for search bar  -->
+          <button class="btn-primary text-barlow col-3 col-lg-1" type="submit">
+            Go
+          </button>
+          <!-- end button -->
+        </div>
+        <!-- end row -->
+        </form>
+        <!-- end form -->
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+  </section>
+  <!-- end  section -->
+
+  <!-- pagination html page added here  -->
+{%include 'partials/_pagination.html'%} 
+
+{% endblock content %}
+<!-- end block content -->
