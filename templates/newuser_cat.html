@@ -1,21 +1,43 @@
-{% extends 'base.html' %} {% block content %}
+<!-- extends base.html -->
+{% extends 'base.html' %} 
+<!-- strats block content -->
+{% block content %}
+<!-- starts page that will only ever been seen by a new user or if a repeat user has no categories added -->
 <section>
+
+  <!-- row wraps instuctions for user  -->
   <div class="row justify-content-center mt-4">
+    
+    <!-- start of col -->
     <div class="col-lg-4">
+
+      <!-- user instuctions along with users name displayed here  -->
       <h5 class="bookmarks-header text-oswald mt-5 text-center">
+
         <mark class="text-dark text-center">{{session.username}}</mark>
         you have no categories added. Please head to the add categories page.
-        <hr class="hr-color" />
       </h5>
+      <hr class="hr-color" />
+   
     </div>
+    <!-- end col -->
   </div>
-  <div class="row justify-content-center">
+  <!-- end row -->
+
+  <!-- row wraps add category button -->
+    <div class="row justify-content-center">
+      <!-- start col -->
     <div class="col-lg-3 text-center">
+<!-- button -->
       <a href="{{url_for('add_category')}}" class="btn btn-primary"
         >Add category</a
       >
+      <!-- end button -->
     </div>
+    <!-- end col -->
   </div>
+  <!-- end row -->
 </section>
-
+<!-- end section -->
 {% endblock content%}
+<!-- end block content -->

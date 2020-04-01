@@ -1,50 +1,94 @@
-{% extends 'base.html' %} {% block content %}
-<!-- taken an modified from tutorial at  https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-registration-form -->
+<!-- extends base.html -->
+{% extends 'base.html' %} 
+<!-- start block content -->
+{% block content %}
+<!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
+<!--start of  login form section -->
 <section>
+
+  <!-- login in form wrapper -->
+
   <div class="signup-form mt-5">
+
+    <!-- form start action button activates register route located in app.py -->
     <form action="{{ url_for('register') }}" method="POST">
+
+        <!-- register header -->
       <h2>Register</h2>
+      <!-- end header -->
       <p class="hint-text">
         Create your account. It's free and only takes a minute.
       </p>
+      <!-- end header -->
+
+      <!-- start form group for username -->
       <div class="form-group">
+        
+          <!-- username input box -->
         <input
-          type="name"
+          type="text"
           class="form-control"
           name="username"
           placeholder="username"
-          required="required"
+        
         />
+        <!-- end input box -->
       </div>
+      <!-- end form group -->
+
+      <!-- start from group for password -->
       <div class="form-group">
+        
+        <!-- input box for password -->
         <input
-          type="password"
+          type="text"
           class="form-control"
           name="password"
-          placeholder="Password"
+          placeholder="password"
           required="required"
-          autocomplete="password"
+          autocomplete="current-password"
         />
+        <!-- end input box -->
       </div>
+      <!-- end form group -->
+
+      <!-- start form group for confirm password -->
       <div class="form-group">
+       
+       <!-- input box for repeat password -->
         <input
-          type="password"
+          type="text"
           class="form-control"
-          name="password"
-          placeholder="Confirm Password"
+          name="confirm-password"
+          placeholder="confirm password"
           required="required"
-          autocomplete="confirm password"
+          autocomplete="current-password"
         />
+        <!-- end input box -->
       </div>
+      <!-- end form group -->
+
+      <!-- start form group for register button -->
       <div class="form-group">
+
+        <!-- button -->
         <button type="submit" class="btn btn-primary btn-lg btn-block">
           Register Now
         </button>
+        <!-- end button -->
       </div>
+      <!-- end form group -->
+
+      <!--brings user to sign in page if the already have an account -->
       <div class="text-center">
         Already have an account? <a href="{{url_for('login')}}">Sign in</a>
       </div>
+      <!-- ends sigin in div -->
     </form>
+    <!-- ends form  -->
   </div>
+  <!-- ends from wrapper -->
 </section>
+<!-- ends section -->
 {% endblock content %}
+<!-- ends block content -->

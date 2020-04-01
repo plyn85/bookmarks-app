@@ -1,13 +1,30 @@
-{% extends 'base.html' %} {% block content %}
+<!-- extends base.html -->
+{% extends 'base.html' %} 
+<!-- start block content -->
+{% block content %}
 <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
+<!--start of  login form section -->
 <section>
+
+  <!-- login in form wrapper -->
   <div class="signup-form mt-5">
-    <form action="{{ url_for('login') }}" method="post">
+  
+    <!-- form start action button activates login route located in app.py -->
+    <form action="{{ url_for('login') }}" method="POST">
+      
+      <!-- login header -->
       <h2 class="text-center text-barlow">Log in</h2>
+      <!-- end header -->
+
+<!-- instructions text -->
       <p class="hint-text text-barlow">
         Login In below an enjoy the use the bookmarks app
-      </p>
+      <!-- </pend text -->
+
+      <!-- start form group for username-->
       <div class="form-group">
+        
+        <!-- username input box -->
         <input
           type="text"
           class="form-control"
@@ -15,25 +32,48 @@
           placeholder="username"
           required="required"
           autocomplete="username"
+
         />
+        <!-- end input box -->
       </div>
+      <!-- end form group -->
+      
+      <!-- start form group password-->
       <div class="form-group">
+       
+       <!-- input box for username -->
         <input
           type="password"
           class="form-control"
           name="password"
           placeholder="Password"
           required="required"
-          autocomplete="password"
+          autocomplete="current-password"
         />
+        <!-- end input box -->
       </div>
+      <!-- end form group -->
+
+      <!-- start from group login button-->
       <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block">Log in</button>
+<!-- button -->
+        <button type="submit" class="btn btn-primary btn-block">Log in
+        </button>
+        <!-- end button -->
       </div>
+      <!-- end form group -->
+
+      <!-- create an account link brings user to register page if they yet to create an account-->
       <p class="text-center text-barlow">
         <a href="{{url_for('register')}}">Create an Account</a>
       </p>
+      <!-- end create an account link -->
+    
     </form>
+    <!-- end form  -->
   </div>
+  <!-- end wrapper div -->
 </section>
+<!-- end section -->
 {% endblock content %}
+<!-- end block content -->
