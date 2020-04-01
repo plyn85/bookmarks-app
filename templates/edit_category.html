@@ -1,12 +1,34 @@
-{% extends 'base.html' %} {% block content %}
-<!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
-<section class="yellow-background background-height">
+<!-- extends base html -->
+{% extends 'base.html' %}
+
+<!-- start block content -->
+ {% block content %}
+
+ <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
+
+<!-- defensive element section can only be viewied if the session username matches the username of the category -->
+{%if session.username==cat.username%}
+
+<!-- start section -->
+<section>
+  
+  <!-- start of div that wraps the entire form -->
   <div class="signup-form mt-5">
+   
+    <!-- start of form activates update category route located in app.py-->
     <form action="{{url_for('update_category', cat_id=cat._id)}}" method="post">
+      
+        <!--form header -->
       <h2 class="text-center text-barlow">Edit Category</h2>
+          <!-- end header -->
+
+          <!-- instructions paragraph -->
       <p class="hint-text text-barlow">
         Edit your category below
       </p>
+        <!-- end paragraph -->
+
+            <!-- input displays url of the category when edit  button was clicked   -->
       <div class="form-group">
         <input
           type="text"
@@ -16,16 +38,32 @@
           required="required"
         />
       </div>
+              <!-- end form group -->
+
+              <!-- instructions paragraph -->
       <p class="hint-text text-barlow">
         Edit your Category Below
       </p>
+         <!-- end paragraph -->
 
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block text-barlow">
-          Edit Category
+         <!-- start of form group that wraps confirm delete button -->
+         <div class="form-group">
+         
+        <!-- confirm delete button -->
+         <button type="submit" class="btn btn-primary btn-block text-barlow">
+          Edit category
         </button>
+           <!-- confirm delete button -->
       </div>
+          <!-- end form group -->
     </form>
+        <!-- end form -->
   </div>
+   <!-- end from wrapper div -->
 </section>
+<!-- end section -->
+{%endif%}
+<!-- end defensive element if statment -->
 {% endblock content %}
+<!-- end block content -->
+
