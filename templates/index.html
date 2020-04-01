@@ -1,70 +1,139 @@
-{% extends 'base.html' %} {% block content %}
+<!-- extends base html -->
+{% extends 'base.html' %}
 
+<!-- start block content -->
+ {% block content %}
+
+ <!-- start callout section and row which wraps entire callout section -->
   <section class="img-wrapper callout-container row" id="callout-text">
+
+    <!--start of col which wraps entrie callout section-->
     <div class="col-10 col-md-8">
+      <!-- if statment to prevent logged in user seeing this -->
       {% if not session['logged_in']%}
+      
+      <!-- text for non logged in user -->
       <p class="text-oswald white callout-main-text">
         Tired of having a long list of bookmarks and no Idea of what you
         bookmarked, when you bookmarked it and why? The answer to all your
         problems is here organize your bookmarks with our bookmarks organiser
-        app. Please register and then login In to use the app.
+        app. Please register and then login In to use the app. Or if your already registered please login.
       </p>
-      {% endif %} {% if session['logged_in']%}
+      <!-- end text -->
+
+      <!-- only displays when  user is logged in gives the user instructions-->
+
+       <!-- elif statment to prevent non logged in user seeing this -->
+       {% elif session['logged_in']%}
       <p class="text-oswald white callout-main-text">
         You are now logged In an free to add, delete update and create your
         bookmarks collection. Head to the my bookmarks section to start your own
         unique collection.Please check out other users bookmarks below. Feel
         free to click the like button on ones you find usefull.
       </p>
+      <!-- end text -->
+     
       {% endif %}
+      <!-- end if -->
+
+<!-- start of row which wraps both buttons  -->
       <div class="row justify-content-center">
+        
+        <!--start of if statement button is only displayed if no user ia logged in -->
         {% if not session['logged_in']%}
-        <button type="button" class="bookmarks-btn  col-md-3  btn-primary">
-          <a href="{{url_for('register')}}" class="text-oswald white">
-            Register here</a
-          >
-        </button>
-        {% endif %} {% if session['logged_in']%}
-        <button type="button" class="bookmarks-btn  col-md-3  btn-primary">
-          <a href="{{url_for('users')}}" class="text-oswald white">
+
+        <!-- button -->
+        <a href="{{url_for('register')}}" class="bookmarks-btn  btn-primary  col-md-3  text-oswald text-center white p-2">
+        Register here</a
+        >  
+<!-- end button -->
+      
+        <!-- elif statment button only displays if user is logged in -->
+         {% elif session['logged_in']%}
+
+         <!-- button -->
+          <a href="{{url_for('users')}}" class="bookmarks-btn  btn-primary  col-md-3  text-oswald text-center white p-2">
             My Bookmarks</a
-          >
-        </button>
-        {% endif %}
+          >  
+<!-- end button -->
+       
+{% endif %}
+<!-- end of if statement -->
+       </div>
+<!-- end of row  which wraps callout both buttons-->
+
       </div>
-    </div>
-  </section>
-</div>
+<!-- end of col which wraps callout section -->
+ 
+</section>
+<!-- end callout section -->
+
+<!-- start of denfensive element bookmarks and search bar can only be veiwed by registered users -->
 {% if session['logged_in']%}
-<section class="bookmark-page">
+
+<!-- start  of search bar section-->
+<section>
+
+  <!-- start of row  that wraps header-->
   <div class="row justify-content-center mt-4">
+    
+    <!-- col that wraps header-->
     <div class="col-lg-4">
+
+      <!-- bookmarks header -->
       <h4 class="bookmarks-header text-oswald mt-5 text-center uppercase">
         Most Popular Bookmarks
-        <hr class="hr-color" />
       </h4>
+      <hr class="hr-color" />
+      <!-- end header -->
     </div>
+    <!-- end col -->
   </div>
+  <!-- end row -->
 
-  <!-- search bar section -->
-  <div class="row  mt-2">
+  <!-- row wraps search bar -->
+  <div  class="row  mt-2">
+
+    <!-- col that  wraps search bar  -->
     <div class="col text-center">
+
+      <!-- search bar form activates search results route located in app.py -->
       <form action="{{ url_for('search_results') }}" method="POST">
+       
+       <!-- row wraps search bar input  -->
         <div class="row justify-content-center">
+
+          <!-- input search text goes here  -->
           <input
             class="col-8"
             type="text"
             id="search_bar"
             name="search_bar"
-            placeholder="Search all bookmarks"
+            placeholder="Search"
           />
+          <!-- end input -->
+
+   <!-- submit button for search bar  -->
           <button class="btn-primary text-barlow col-3 col-lg-1" type="submit">
             Go
           </button>
+          <!-- end button -->
         </div>
-      </form>
+        <!-- end row -->
+        </form>
+        <!-- end form -->
+        </div>
+        <!-- end col -->
     </div>
-  </div>
+    <!-- end row -->
+  </section>
   <!-- end search bar section -->
-</section>
-{%include 'partials/_pagination.html'%} {%endif%} {% endblock content %}
+
+  <!-- pagination html page added here  -->
+{%include 'partials/_pagination.html'%} 
+
+{%endif%} 
+<!-- end defensive element if statement -->
+
+{% endblock content %}
+<!-- end block content -->
