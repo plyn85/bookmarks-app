@@ -1,6 +1,35 @@
 @import url("https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Oswald&display=swap:,600,700,800");
 
+/* inital set up */
+
+/* Setting default font size for page */
+
+body,
+html {
+  font-size: 16px;
+}
+
+/* setting fonts */
+
+.callout-main-text,
+.navbar-brand,
+.navbar-nav .nav-link {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* removing all margins and padding from bootsrap rows an cols */
+
+.container-fluid,
+.container,
+.row {
+  margin: 0;
+  padding: 0;
+}
+
 /* reusable components */
+
 .text-oswald {
   font-family: "Oswald", sans-serif;
 }
@@ -40,6 +69,7 @@
 .hide-content {
   display: none;
 }
+
 /* changing all input placeholders text below
 barlow repeated as it takes less code that way
 */
@@ -69,7 +99,11 @@ input::-webkit-input-placeholder {
 input::placeholder {
   font-size: 1.5rem;
 }
+
+/* main body */
+
 /* setting yellow background and height  here  as 100vh doesnt work well on bookmarks page*/
+
 body {
   background-color: #ffc107;
 }
@@ -81,12 +115,6 @@ body {
 .dropdown-item-cat {
   font-size: 1.4rem;
   font-weight: 900;
-}
-/* inital set up */
-/* Setting default font size for page */
-body,
-html {
-  font-size: 16px;
 }
 
 /* navbar */
@@ -100,15 +128,6 @@ html {
   z-index: 1;
 }
 
-/* removing all margins and padding from bootsrap rows an cols */
-.container-fluid,
-.container,
-.row {
-  margin: 0;
-  padding: 0;
-}
-
-/* end Inital setup */
 /* 
 targeting flashed messages */
 .flashed-messages {
@@ -127,16 +146,8 @@ targeting flashed messages */
   font-size: 1rem;
   font-weight: 700;
 }
-/* main body */
 
-/* setting fonts */
-.callout-main-text,
-.navbar-brand,
-.navbar-nav .nav-link {
-  font-family: "Barlow Semi Condensed", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-}
+/* callout section */
 
 .callout-main-text {
   font-size: 1.8rem;
@@ -144,7 +155,6 @@ targeting flashed messages */
   color: #000000;
 }
 
-/* callout section */
 /* wrapper for callout Image */
 .img-wrapper {
   height: 100%;
@@ -180,13 +190,13 @@ targeting flashed messages */
 /* signup/registration/logout/login/bookmarks was reused on all these pages */
 
 .signup-form {
-  width: 400px;
+  width: 18rem;
   margin: 0 auto;
-  padding: 30px 0;
+  padding: 2rem  0;
 }
 .signup-form h2 {
   color: #636363;
-  margin: 0 0 15px;
+  margin: 0 0 1rem;
   position: relative;
   text-align: center;
 }
@@ -198,34 +208,34 @@ targeting flashed messages */
 }
 .signup-form .hint-text {
   color: #000000;
-  margin-bottom: 30px;
+  margin-bottom: 2rem;
   text-align: center;
 }
 .signup-form form {
   color: #999;
-  border-radius: 3px;
-  margin-bottom: 15px;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
   background: #f2f3f7;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  padding: 30px;
+  padding: 2rem;
 }
 .signup-form .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 1.3rem;
 }
 .signup-form input[type="checkbox"] {
-  margin-top: 3px;
+  margin-top: 0.25rem;
 }
 .signup-form .btn {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: bold;
-  min-width: 140px;
+  min-width: 6rem;
   outline: none !important;
 }
 .signup-form .row div:first-child {
-  padding-right: 10px;
+  padding-right: 0.7rem;
 }
 .signup-form .row div:last-child {
-  padding-left: 10px;
+  padding-left: 0.7rem;
 }
 .signup-form a {
   color: #182491;
@@ -237,7 +247,7 @@ targeting flashed messages */
 
 /*end */
 
-/* bookmark page */
+/* bookmark/pagination  page */
 
 .bookmark-page {
   margin-top: 4rem;
@@ -249,15 +259,20 @@ targeting flashed messages */
 .btn-bookmark-page:active {
   color: #f2f3f7;
 }
+
 /* changing bootstrap cards to suit website layout */
+
 .card {
   min-width: 50%;
   border: 2px solid #007bff;
   margin-top: 1rem;
   border-radius: 0.5rem;
 }
+
 /* media queries */
+
 /* for smallest devices */
+
 @media (max-width: 375px) {
   .callout-main-text {
     font-size: 1.4rem;
@@ -265,6 +280,7 @@ targeting flashed messages */
 }
 
 /* for all smaller devices ipad an below  */
+
 @media (max-width: 768px) {
   .bookmarks-btn a {
     font-size: 1rem;
