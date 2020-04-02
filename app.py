@@ -6,6 +6,7 @@ from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 import bcrypt
 from datetime import datetime
+
 # Importing path from env.py
 from os import path
 if path.exists('env.py'):
@@ -25,12 +26,19 @@ users_collection = mongo.db.users
 bookmarks_collection = mongo.db.bookmarks
 categories_collection = mongo.db.categories
 
-# index,  login, register, and log out section -----------------------------------------
+# ---------------- #
+# APP ROUTES  #
+# ---------------- #
+
+# ----- index, index page search,  login, register, and log out routes ----- #
+
+
 @app.route('/index', methods=['GET'])
 @app.route('/')
-# User authentication with thanks to Miroslav Svec, DCD Channel lead.
-# altered from https://github.com/MiroslavSvec/DCD_lead/tree/pagination
 def index():
+    """ Pagintion with thanks to Miroslav Svec, DCD Channel lead.
+        altered from https://github.com/MiroslavSvec/DCD_lead/tree/pagination
+        paginated results to be displayed on index page  by upvotes and Id"""
 
     num_results = bookmarks_collection.count()
     users = users_collection.find()
@@ -51,28 +59,16 @@ def index():
     return render_template('index.html', categories=categories, bookmarks=bookmarks, users=users, args=args)
 
 
-# up voting route
-
-
-@app.route('/upvote/<book_id>', methods=["GET", "POST"])
-def upvote(book_id):
-    # getting current page here an passing into redirect so
-    # user is redirected to  the page the are on  after upvote/like button is clicked
-    bookmarks_collection.find_one_and_update(
-        {'_id': ObjectId(book_id)},
-        {'$inc': {'upvotes': 1}}
-    )
-
-    return redirect(url_for('index',  book_id=book_id))
-
-
 @app.route('/login', methods=['POST', 'GET'])
-# First we find the logged in user in the data base
-#    If it the user exists In the database we compare the
-#    encncipted password from the form and the database
-#    password with the database password. The username is added to the session
 def login():
-    # taken an altered from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE
+
+
+""" First we find the logged in user in the data base
+    If it the user exists In the database we compare the
+    encncipted password from the form and the database
+    password with the database password. The username is added to the session
+    altered from a tutorial found at https://www.youtube.com/watchv=vVx1737auSE """
+
     if request.method == 'POST':
         login_user = users_collection.find_one(
             {'name': request.form['username']})
@@ -90,17 +86,21 @@ def login():
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-    '''taken an altered from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE'''
+    """First we find the existing user in user in the data base
+    If it the user does not exist In the database we insert the user to the database
+    along with there encripted password. If the session username Is the same as the username enetered to the form the user is redirect to the login page
+    taken an altered from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE"""
+
     if request.method == 'POST':
         existing_user = users_collection.find_one(
             {'name': request.form['username']})
 
         if existing_user is None:
             hashpass = bcrypt.hashpw(
-                request.form['password'].encode('utf-8'), bcrypt.gensalt())
+                request.form.get('password').encode('utf-8'), bcrypt.gensalt())
             users_collection.insert(
-                {'name': request.form['username'], 'password': hashpass})
-            session['username'] = request.form['username']
+                {'name': request.form.get('username'), 'password': hashpass})
+            session.get('username') = request.form.get('username')
             flash(f'You are now regsitered please login!', 'success')
             return redirect(url_for('login'))
         else:
@@ -114,65 +114,14 @@ def logout():
     session.clear()
     flash(f'You are now  logged out!', 'danger')
     return redirect(url_for('index'))
-# search bar section
 
-# search bar
-@app.route('/search_results', methods=['POST', 'GET'])
-def search_results():
-    if request.method == "POST":
-        bookmarks = bookmarks_collection.find()
-        query = request.form.get('search_bar')
-        results = bookmarks_collection.find({'$text': {'$search': query}})
-        if query == "":
-            flash(
-                f'This those not match any Bookmarks! please return to home page change your search text and try again', 'danger')
+# -----  end of index, login, register, and log out routes ----- #
 
-        return render_template('search_results.html', results=results, title="Search result", bookmarks=bookmarks)
+# ------------------------------------------- #
+#    CRUD: Create | Read | Update | Delete    #
+# ------------------------------------------- #
 
-
-# user search page only the bookmarks unique to each user will ne returned on this page
-
-@app.route('/user_search_results', methods=['POST', 'GET'])
-def user_search_results():
-    if request.method == "POST":
-        query = request.form.get('user_search_bar')
-        results = bookmarks_collection.find({'$text': {'$search': query}})
-        if query == "":
-            flash(
-                f'This those not match any Bookmarks! please return tomy change your search text and try again', 'danger')
-        return render_template('user_search_results.html', results=results, title="User Search result")
-
-# user section
-@app.route('/users')
-# if a user has not yet added a bookmark the newuser page will be render
-# and if the user has bookmarks already added the user page will render
-def users():
-    username = session.get('username')
-    users = users_collection.find()
-    categories = categories_collection.find()
-    p_limit = int(request.args.get('limit', 6))
-    p_offset = int(request.args.get('offset', 0))
-    num_results = bookmarks_collection.count(
-        {'username': username})
-    bookmarks = bookmarks_collection.find({'username': username}).sort(
-        "_id", -1).limit(p_limit).skip(p_offset)
-    book_name = bookmarks_collection.find_one(
-        {'username': username})
-    args = {
-        "p_limit": p_limit,
-        "p_offset": p_offset,
-        "book_name": book_name,
-        "num_results": num_results,
-        "next_url": f"/users?limit={str(p_limit)}&offset={str(p_offset + p_limit)}",
-        "prev_url": f"/users?limit={str(p_limit)}&offset={str(p_offset - p_limit)}",
-
-    }
-    if book_name is None:
-        return render_template('newuser.html')
-
-    return render_template('users.html', users=users, bookmarks=bookmarks, categories=categories, args=args, title=username)
-
-    # bookmarks section ---------------------------------------------------------------------
+# ----- CREATE ----- #
 
 
 @app.route('/add_bookmark')
@@ -195,6 +144,25 @@ def insert_bookmark():
     })
     flash(f'You have added a new bookmark!', 'success')
     return redirect(url_for('users'))
+
+
+@app.route('/add_category')
+def add_category():
+    return render_template('add_category.html', title="Add category")
+
+
+@app.route('/insert_category', methods=["POST"])
+def insert_category():
+    flash(f'Your category has been added! It will be now be available in the add bookmarks section In the dropdown menu', 'success')
+    categories_collection.insert_one({
+        'username': session['username'],
+        'category_name': request.form.get('category_name')
+
+
+    })
+    return redirect(url_for('user_categories'))
+
+# ----- Update ----- #
 
 
 @app.route("/edit_bookmark/<book_id>")
@@ -221,53 +189,6 @@ def update_bookmark(book_id):
     return redirect(url_for('users'))
 
 
-@app.route('/delete_bookmark/<book_id>', methods=["POST", "GET"])
-def delete_bookmark(book_id):
-    all_categories = categories_collection.find()
-    the_bookmark = bookmarks_collection.find_one({"_id": ObjectId(book_id)})
-    return render_template('delete_bookmark.html', book=the_bookmark,  categories=all_categories, title="edit bookmark")
-
-
-@app.route('/remove_bookmark/<book_id>', methods=["POST", "GET"])
-def remove_bookmark(book_id):
-    flash(f'Your bookmark has been removed!', 'success')
-    bookmarks_collection.remove({'_id': ObjectId(book_id)})
-    return redirect(url_for('users'))
-
-# end bookmarks section ------------------------------------------------------------------
-
-#  categories section -----------------------------------------------------------------------
-@app.route('/user_categories')
-def user_categories():
-    # if a user has not yet added a category the newuser_cat  page will be rendered
-    # and if the user has categories already added the categories page will render
-    categories = categories_collection.find().sort("_id", -1)
-    bookmarks = bookmarks_collection.find()
-    user = users_collection.find()
-    cat_name = categories_collection.find_one(
-        {'username': session.get('username')})
-    if cat_name is None:
-        return render_template('newuser_cat.html')
-    return render_template('categories.html', categories=categories, bookmarks=bookmarks, user=user, title="Categories")
-
-
-@app.route('/add_category')
-def add_category():
-    return render_template('add_category.html', title="Add category")
-
-
-@app.route('/insert_category', methods=["POST"])
-def insert_category():
-    flash(f'Your category has been added! It will be now be available in the add bookmarks section In the dropdown menu', 'success')
-    categories_collection.insert_one({
-        'username': session['username'],
-        'category_name': request.form.get('category_name')
-
-
-    })
-    return redirect(url_for('user_categories'))
-
-
 @app.route('/edit_category/<cat_id>')
 def edit_category(cat_id):
     category = categories_collection.find_one(
@@ -285,6 +206,22 @@ def update_category(cat_id):
          })
     return redirect(url_for('user_categories'))
 
+# ----- Delete ----- #
+
+
+@app.route('/delete_bookmark/<book_id>', methods=["POST", "GET"])
+def delete_bookmark(book_id):
+    all_categories = categories_collection.find()
+    the_bookmark = bookmarks_collection.find_one({"_id": ObjectId(book_id)})
+    return render_template('delete_bookmark.html', book=the_bookmark,  categories=all_categories, title="edit bookmark")
+
+
+@app.route('/remove_bookmark/<book_id>', methods=["POST", "GET"])
+def remove_bookmark(book_id):
+    flash(f'Your bookmark has been removed!', 'success')
+    bookmarks_collection.remove({'_id': ObjectId(book_id)})
+    return redirect(url_for('users'))
+
 
 @app.route('/delete_category/<cat_id>', methods=["POST", "GET"])
 def delete_category(cat_id):
@@ -298,8 +235,86 @@ def remove_category(cat_id):
     categories_collection.remove({'_id': ObjectId(cat_id)})
     return redirect(url_for('user_categories'))
 
+# ----- Read ----- #
 
-#  end categories section ---------------------------------------------------------------------
+
+@app.route('/users')
+def users():
+    """ Here thu users search results are paginated and displayed on the users page
+          only there unique results will be shown. if a user has not yet added a bookmark the newuser page will be render and if the user has bookmarks already added the user page will render """
+
+    username = session.get('username')
+    users = users_collection.find()
+    categories = categories_collection.find()
+    p_limit = int(request.args.get('limit', 6))
+    p_offset = int(request.args.get('offset', 0))
+    num_results = bookmarks_collection.count(
+        {'username': username})
+    bookmarks = bookmarks_collection.find({'username': username}).sort(
+        "_id", -1).limit(p_limit).skip(p_offset)
+    book_name = bookmarks_collection.find_one(
+        {'username': username})
+    args = {
+        "p_limit": p_limit,
+        "p_offset": p_offset,
+        "book_name": book_name,
+        "num_results": num_results,
+        "next_url": f"/users?limit={str(p_limit)}&offset={str(p_offset + p_limit)}",
+        "prev_url": f"/users?limit={str(p_limit)}&offset={str(p_offset - p_limit)}",
+
+    }
+    if book_name is None:
+        return render_template('newuser.html')
+
+    return render_template('users.html', users=users, bookmarks=bookmarks, categories=categories, args=args, title=username)
+
+
+@app.route('/user_search_results', methods=['POST', 'GET'])
+def user_search_results():
+    """ Query from the search bar on the users page taken here an matched with the results
+         of the text search qurey from the data base if the qurey is empty an warning is issued"""
+
+    if request.method == "POST":
+        query = request.form.get('user_search_bar')
+        results = bookmarks_collection.find({'$text': {'$search': query}})
+        if query == "":
+            flash(
+                f'This those not match any Bookmarks! please return tomy change your search text and try again', 'danger')
+        return render_template('user_search_results.html', results=results, title="User Search result")
+
+
+@app.route('/search_results', methods=['POST', 'GET'])
+def search_results():
+     """Here the index page search results are paginated and displayed on the index page
+        If the search result Is blank a warning Is issued"""
+
+    if request.method == "POST":
+        bookmarks = bookmarks_collection.find()
+        query = request.form.get('search_bar')
+        results = bookmarks_collection.find({'$text': {'$search': query}})
+        if query == "":
+            flash(
+                f'This those not match any Bookmarks! please return to home page change your search text and try again', 'danger')
+
+        return render_template('search_results.html', results=results, title="Search result", bookmarks=bookmarks)
+
+
+@app.route('/user_categories')
+def user_categories():
+    """ if a user has not yet added a category the newuser_cat  page will be rendered
+         and if the user has categories already added the categories page will render """
+    
+    categories = categories_collection.find().sort("_id", -1)
+    bookmarks = bookmarks_collection.find()
+    user = users_collection.find()
+    cat_name = categories_collection.find_one(
+        {'username': session.get('username')})
+    if cat_name is None:
+        return render_template('newuser_cat.html')
+    return render_template('categories.html', categories=categories, bookmarks=bookmarks, user=user, title="Categories")
+
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
