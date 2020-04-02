@@ -1,19 +1,16 @@
 <!-- extends base.html -->
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 <!-- start block content -->
 {% block content %}
 <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
 <!--start of  login form section -->
 <section>
-
   <!-- login in form wrapper -->
 
   <div class="signup-form mt-5">
-
     <!-- form start action button activates register route located in app.py -->
     <form action="{{ url_for('register') }}" method="POST">
-
-        <!-- register header -->
+      <!-- register header -->
       <h2>Register</h2>
       <!-- end header -->
       <p class="hint-text">
@@ -23,14 +20,12 @@
 
       <!-- start form group for username -->
       <div class="form-group">
-        
-          <!-- username input box -->
+        <!-- username input box -->
         <input
           type="text"
           class="form-control"
           name="username"
           placeholder="username"
-        
         />
         <!-- end input box -->
       </div>
@@ -38,7 +33,6 @@
 
       <!-- start from group for password -->
       <div class="form-group">
-        
         <!-- input box for password -->
         <input
           type="text"
@@ -54,8 +48,7 @@
 
       <!-- start form group for confirm password -->
       <div class="form-group">
-       
-       <!-- input box for repeat password -->
+        <!-- input box for repeat password -->
         <input
           type="text"
           class="form-control"
@@ -70,7 +63,6 @@
 
       <!-- start form group for register button -->
       <div class="form-group">
-
         <!-- button -->
         <button type="submit" class="btn btn-primary btn-lg btn-block">
           Register Now

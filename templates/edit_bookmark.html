@@ -2,35 +2,31 @@
 {% extends 'base.html' %}
 
 <!-- start block content -->
- {% block content %}
+{% block content %}
 
- <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
+<!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
 
 <!-- defensive element section can only be viewied if the session username matches the username of the bookmark -->
 {%if session.username==book.username%}
 
 <!-- start section -->
 <section>
-  
   <!-- start of div that wraps the entire form -->
   <div class="signup-form mt-5">
-   
     <!-- start of form activates update bookmark route located in app.py-->
     <form
       action="{{ url_for('update_bookmark', book_id=book._id) }}"
       method="post"
     >
-
-       <!--form header -->
+      <!--form header -->
       <h2 class="text-center text-barlow">
         Edit bookmark and description below
       </h2>
-           <!-- end header -->
+      <!-- end header -->
 
-              <!--start of input form group -->
+      <!--start of input form group -->
       <div class="form-group">
-        
-           <!-- input displays url of the bookmark delete button was clicked   -->
+        <!-- input displays url of the bookmark delete button was clicked   -->
         <input
           id="add_bookmark_url"
           type="text"
@@ -40,9 +36,9 @@
           required="required"
         />
       </div>
-        <!-- end form group -->
-      
-<!-- instructions paragraph -->
+      <!-- end form group -->
+
+      <!-- instructions paragraph -->
       <p class="hint-text text-barlow">
         Edit the Category for you bookmark below
       </p>
@@ -51,11 +47,10 @@
       <!-- option to edit category using dropdown menu here categories in paritals -->
       {%include "partials/_list_categories.html"%}
       <!-- end categories dropdown menu -->
-      
+
       <!-- start of form group that displays bookmark description -->
       <div class="form-group">
-
-          <!-- textarea thta displays bookmarks description this can be edited here-->
+        <!-- textarea thta displays bookmarks description this can be edited here-->
         <textarea
           id="bookmark_description"
           class="form-control text-barlow"
@@ -65,22 +60,21 @@
 {{book.bookmark_description |truncate (50, killwords=True) }}</textarea
         >
       </div>
-         <!-- end form group -->
+      <!-- end form group -->
 
-           <!-- start of form group that wraps confirm delete button -->
+      <!-- start of form group that wraps confirm delete button -->
       <div class="form-group">
-
-           <!-- confirm delete button -->
+        <!-- confirm delete button -->
         <button type="submit" class="btn btn-primary btn-block text-barlow">
           Edit bookmark
         </button>
-           <!-- confirm delete button -->
+        <!-- confirm delete button -->
       </div>
-          <!-- end form group -->
+      <!-- end form group -->
     </form>
-        <!-- end form -->
+    <!-- end form -->
   </div>
-   <!-- end from wrapper div -->
+  <!-- end from wrapper div -->
 </section>
 <!-- end section -->
 {%endif%}

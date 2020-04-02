@@ -1,26 +1,23 @@
 <!-- unrendered html file included  in user and index html pages -->
 
 <!--start bookmarks pagination section-->
-  <section>
-   <!-- this row warps the entire bookmarks section -->
-   <div class="row">
- <!-- for loop that loops trough the categories -->
-    {%for cat in categories%} 
+<section>
+  <!-- this row warps the entire bookmarks section -->
+  <div class="row">
+    <!-- for loop that loops trough the categories -->
+    {%for cat in categories%}
     <!-- for loop that loops trough the bookmarks -->
     {% for book in bookmarks %}
 
     <!-- col the wraps the entire bookmarks section -->
     <div class="col-lg-6" id="bookmarks">
-     
       <!-- bootstrap card that all the bookmarks Infomation is contained In -->
       <div class="card">
-
-<!-- card body -->
+        <!-- card body -->
         <div class="card-body text-center">
-
           <!-- If the categories username matches the bookmarks username-->
           {% if cat.username == book.username %} {%endif%}
-       
+
           <!-- Then the  category which was chosen by the user in add the bookmarks section
           will be displayed as the main header of each bookmark -->
           <h2 class="card-title text-oswald uppercase">
@@ -31,7 +28,6 @@
 
           <!-- card text paragraph -->
           <p class="card-text text-barlow">
-            
             <!-- url thats being added by the user in add bookmarks is displayed here -->
             <a href="{{book.add_bookmark_url}}" target="_blank"
               >{{book.add_bookmark_url| truncate(30, killwords=True) }}</a
@@ -41,7 +37,6 @@
 
           <!-- card text parargraph -->
           <p class="card-text">
-            
             <!-- bookmark description added by the user in add bookmarks displayed here -->
             {{book.bookmark_description |truncate (50, killwords=True) }}
           </p>
@@ -54,18 +49,18 @@
           <p class="card-text text-barlow">
             <!-- then the name of the user will be added to that bookmark along with the date it was added or modified -->
             Added
-              
-            <!-- if statement added here so that name of the user that added the bookmark is only seen by other users on the index page -->
-            {%if book.username != session.username%} 
-          
-            <!-- users name  -->
-           by<mark class="text-dark">  {{book.username}}</mark>
-           <!-- end usersname -->
-        
-           {%endif%}
-           <!-- end if statement  -->
 
-           <!-- the day, month and day  the user added the bookmark displayed here-->
+            <!-- if statement added here so that name of the user that added the bookmark is only seen by other users on the index page -->
+            {%if book.username != session.username%}
+
+            <!-- users name  -->
+            by<mark class="text-dark"> {{book.username}}</mark>
+            <!-- end usersname -->
+
+            {%endif%}
+            <!-- end if statement  -->
+
+            <!-- the day, month and day  the user added the bookmark displayed here-->
             on {{book.last_modified}}
           </p>
           <!-- end paragraph text -->
@@ -76,42 +71,39 @@
 
           <!-- row wraps the like button-->
           <div class="row mb-3">
-            
             <!-- if statment will only allow the like button to be seen by other users so a user cannot like there own bookmark-->
             {%if book.username != session.username%}
-          
+
             <!-- like button link which activates the upvote route in app.py an will add a like to the users bookmark-->
             <a
-            href="{{ url_for('upvote', book_id=book._id) }}"
-            class="upvote col like-btn   
-            " id="test">
-          
-            <i class="fas fa-thumbs-up  upvote"></i> Like</a
+              href="{{ url_for('upvote', book_id=book._id) }}"
+              class="upvote col like-btn   
+            "
+              id="test"
+            >
+              <i class="fas fa-thumbs-up  upvote"></i> Like</a
             >
             <!--end like button link  -->
             {%endif%}
             <!-- end of if statement -->
           </div>
-         <!-- end row -->
+          <!-- end row -->
 
-         <!-- row wraps the like button text -->
+          <!-- row wraps the like button text -->
           <div class="row">
-            
             <!-- paragraph wraps the like button text -->
             <p class="col card-text text-barlow">
-              
               <!-- If the amount of likes/ upvotes a users bookmark gets is one user is displayed for correct grammar-->
               Liked by {% if book.upvotes == 1%}
-               
+
               <!-- here the number of upvotes/ likes recived will be displayed on the bookmark -->
               <span class="text-primary mx-2">{{book.upvotes}}</span>Other user
-              
-                  <!-- If the amount of likes/ upvotes a users bookmark gets is anything but 1 users Is displayed for correct grammar-->
+
+              <!-- If the amount of likes/ upvotes a users bookmark gets is anything but 1 users Is displayed for correct grammar-->
               {%else%}
 
-                 <!-- here the number of upvotes/ likes recived will be displayed on the bookmark -->
+              <!-- here the number of upvotes/ likes recived will be displayed on the bookmark -->
               <span class="text-primary mx-2">{{book.upvotes}}</span>Other users
-             
               {%endif%}
               <!-- end if statement -->
             </p>
@@ -121,19 +113,25 @@
 
           <!--if statement so delete and edit  button can only be seen on users own bookmarks 
             defensive design so only the user own owns the bookmark can delete or edit  it -->
-            {%if book.username == session['username']%}
-        
-            <!-- delete button activates delete_bookmark route located in app.py-->
-          <a href="{{url_for('delete_bookmark', book_id=book._id)}}" class="btn btn-primary btn-sm mt-2">
-              Delete
-            </a>
-         <!--end delete  button -->
+          {%if book.username == session['username']%}
 
-         <!-- edit button -->
-            <a href="{{url_for('edit_bookmark', book_id=book._id)}}" class="btn btn-primary btn-sm mt-2">
-              Edit
-            </a>
-            <!-- end edit button -->
+          <!-- delete button activates delete_bookmark route located in app.py-->
+          <a
+            href="{{url_for('delete_bookmark', book_id=book._id)}}"
+            class="btn btn-primary btn-sm mt-2"
+          >
+            Delete
+          </a>
+          <!--end delete  button -->
+
+          <!-- edit button -->
+          <a
+            href="{{url_for('edit_bookmark', book_id=book._id)}}"
+            class="btn btn-primary btn-sm mt-2"
+          >
+            Edit
+          </a>
+          <!-- end edit button -->
           {%endif%}
           <!-- end if statement -->
         </div>
@@ -141,51 +139,49 @@
       </div>
       <!-- end card -->
     </div>
-  <!-- end col -->
+    <!-- end col -->
     {%endfor%}
     <!-- end bookmarks for loop -->
     {%endfor%}
     <!-- end categories for loop -->
   </div>
-<!-- end row -->
-
+  <!-- end row -->
 
   <!-- pagination section taken an altered from a tutorial found in slack archives and at  
    https://github.com/MiroslavSvec/DCD_lead/tree/pagination -->
 
-<!-- pagination section -->
+  <!-- pagination section -->
 
-<!-- if the number of bookmarks less  as the page limit 
+  <!-- if the number of bookmarks less  as the page limit 
   which is set to 6 in both the users an index routes in app.py no need for pagination so the section will not display -->
   {% if args.num_results > args.p_limit %}
- 
+
   <!-- row wraps the pagination buttons -->
-    <div class="row justify-content-around mt-4">
-      
-      <!-- 	If this is first page (offset == 0) 	prev_url link should not be displayed -->
-		 {% if args.p_offset > 0 %}
-       
-     <!-- Prev page link grabs the prev page from the args set in both index an user routes -->
-     <a  href="{{ args.prev_url }}"
-          class="upvote text-center col-6"
-          ><i class="fas fa-hand-point-left hand-point"></i> Prev</a>
-     <!--end link -->
-        {% endif %}
-     <!-- end if -->
-     
-        <!-- If this is last page (offset + limit == lenght of the documents) next_url link should not be displayed -->  
-        {% if args.p_offset + args.p_limit < args.num_results %}
-  
-      <!-- Next  page link grabs the prev page from the args set in both index an user routes -->
-        <a   href="{{ args.next_url }}"
-              class="upvote text-center col-6"
-            >Next<i class="fas fa-hand-point-right hand-point"></i> </a>
-               <!--end link -->
-        {% endif %}
-        <!-- end if for last page-->
-      {% endif %} 
-      <!--end if for entire section not to display if less the 6 bookmarks are displayed -->
-    </div>
-    <!-- end ro that wraps pagination buttons-->
+  <div class="row justify-content-around mt-4">
+    <!-- 	If this is first page (offset == 0) 	prev_url link should not be displayed -->
+    {% if args.p_offset > 0 %}
+
+    <!-- Prev page link grabs the prev page from the args set in both index an user routes -->
+    <a href="{{ args.prev_url }}" class="upvote text-center col-6"
+      ><i class="fas fa-hand-point-left hand-point"></i> Prev</a
+    >
+    <!--end link -->
+    {% endif %}
+    <!-- end if -->
+
+    <!-- If this is last page (offset + limit == lenght of the documents) next_url link should not be displayed -->
+    {% if args.p_offset + args.p_limit < args.num_results %}
+
+    <!-- Next  page link grabs the prev page from the args set in both index an user routes -->
+    <a href="{{ args.next_url }}" class="upvote text-center col-6"
+      >Next<i class="fas fa-hand-point-right hand-point"></i>
+    </a>
+    <!--end link -->
+    {% endif %}
+    <!-- end if for last page-->
+    {% endif %}
+    <!--end if for entire section not to display if less the 6 bookmarks are displayed -->
+  </div>
+  <!-- end ro that wraps pagination buttons-->
 </section>
 <!-- end bookmarks pagination section -->

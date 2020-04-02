@@ -61,13 +61,11 @@ def index():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-
-
-""" First we find the logged in user in the data base
+    """ First we find the logged in user in the data base
     If it the user exists In the database we compare the
     encncipted password from the form and the database
     password with the database password. The username is added to the session
-    altered from a tutorial found at https://www.youtube.com/watchv=vVx1737auSE """
+    and from a tutorial found at www.youtube.com/watchv=vVx1737auSE """
 
     if request.method == 'POST':
         login_user = users_collection.find_one(
@@ -100,7 +98,7 @@ def register():
                 request.form.get('password').encode('utf-8'), bcrypt.gensalt())
             users_collection.insert(
                 {'name': request.form.get('username'), 'password': hashpass})
-            session.get('username') = request.form.get('username')
+            session.get['username'] = request.form.get('username')
             flash(f'You are now regsitered please login!', 'success')
             return redirect(url_for('login'))
         else:
@@ -206,6 +204,19 @@ def update_category(cat_id):
          })
     return redirect(url_for('user_categories'))
 
+
+@app.route('/upvote/<book_id>', methods=["GET", "POST"])
+def upvote(book_id):
+    """ getting current page here an passing into redirect so
+          user is redirected to  the page the are on  after upvote/like button is clicked """
+    bookmarks_collection.find_one_and_update(
+        {'_id': ObjectId(book_id)},
+        {'$inc': {'upvotes': 1}}
+    )
+
+    return redirect(url_for('index',  book_id=book_id))
+
+
 # ----- Delete ----- #
 
 
@@ -285,8 +296,8 @@ def user_search_results():
 
 @app.route('/search_results', methods=['POST', 'GET'])
 def search_results():
-     """Here the index page search results are paginated and displayed on the index page
-        If the search result Is blank a warning Is issued"""
+    """Here the index page search results are paginated and displayed on the index page
+       If the search result Is blank a warning Is issued"""
 
     if request.method == "POST":
         bookmarks = bookmarks_collection.find()
@@ -303,7 +314,7 @@ def search_results():
 def user_categories():
     """ if a user has not yet added a category the newuser_cat  page will be rendered
          and if the user has categories already added the categories page will render """
-    
+
     categories = categories_collection.find().sort("_id", -1)
     bookmarks = bookmarks_collection.find()
     user = users_collection.find()
@@ -312,7 +323,6 @@ def user_categories():
     if cat_name is None:
         return render_template('newuser_cat.html')
     return render_template('categories.html', categories=categories, bookmarks=bookmarks, user=user, title="Categories")
-
 
 
 if __name__ == '__main__':

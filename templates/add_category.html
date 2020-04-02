@@ -3,12 +3,9 @@
 <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
 <!-- add category  form  section-->
 <section class="yellow-background background-height">
-  
   <div class="signup-form mt-5">
-      
     <!-- action form submit will use add category  route from app.py -->
     <form action="{{url_for('insert_category')}}" method="post">
-    
       <!-- form header -->
       <h2 class="text-center text-barlow">Add Category</h2>
       <!-- end header -->
@@ -21,7 +18,6 @@
 
       <!-- start form group-->
       <div class="form-group">
-        
         <!-- user will insert the url of the category  they want to save here -->
         <input
           type="text"
@@ -34,19 +30,19 @@
       </div>
       <!-- end form group -->
 
-          <!-- instruction text -->
+      <!-- instruction text -->
       <p class="hint-text text-barlow">
         Confirm your Category Below
       </p>
-<!-- end text -->
+      <!-- end text -->
 
-<!-- start form group -->
+      <!-- start form group -->
       <div class="form-group">
-          <!-- user submits the form here adding all the infomation a bootstrap card which displays in 
+        <!-- user submits the form here adding all the infomation a bootstrap card which displays in 
           both user  an index html pages -->
-        
-          <!-- button -->
-          <button type="submit" class="btn btn-primary btn-block text-barlow">
+
+        <!-- button -->
+        <button type="submit" class="btn btn-primary btn-block text-barlow">
           Add Category
         </button>
         <!-- end button -->

@@ -1,5 +1,5 @@
 <!-- extends base html  -->
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 <!-- starts block content -->
 {% block content %}
 <!-- categories  section  -->
@@ -15,15 +15,15 @@
     </div>
     <!-- end of col -->
   </div>
-<!-- end of row-->
+  <!-- end of row-->
 
-<!-- start of row which wraps the bootstrap cards which displays the categories-->
+  <!-- start of row which wraps the bootstrap cards which displays the categories-->
   <div class="row">
     <!--first loop through categories -->
     {% for cat in categories %}
     <!-- denfensive element categories will only be displayed if the session username matches the username for that category from the database -->
- {%if session.username==cat.username%}
- <!-- start of col  which wraps entrie bootstrap card-->
+    {%if session.username==cat.username%}
+    <!-- start of col  which wraps entrie bootstrap card-->
     <div class="col-md-6">
       <!-- start of card -->
       <div class="card">
@@ -31,7 +31,7 @@
         <div class="card-body text-center yellow-background">
           <!-- start of row which wraps the category name -->
           <div class="row">
-              <!-- start of col  -->
+            <!-- start of col  -->
             <div class="col text-oswald uppercase">
               <h3>
                 {{cat.category_name| truncate(30, killwords=True) }}
@@ -42,39 +42,36 @@
           </div>
           <!-- end of row -->
 
-           <!-- start of row which wraps the edit an delete buttons -->
+          <!-- start of row which wraps the edit an delete buttons -->
           <div class="row">
             <!-- start of col -->
             <div class="col">
-                 <a href="{{url_for('delete_category', cat_id=cat._id)}}"
-                 class="btn btn-primary btn-small btn-link btn-bookmark-page"  >Delete</a
-                 >
-                 <a
-                 href="{{url_for('edit_category', cat_id=cat._id)}}"
-                 class="btn btn-primary btn-small btn-link btn-bookmark-page"
-               >
-                 Edit</a
-               >    
-              </div>
-              <!-- end of col -->
+              <a
+                href="{{url_for('delete_category', cat_id=cat._id)}}"
+                class="btn btn-primary btn-small btn-link btn-bookmark-page"
+                >Delete</a
+              >
+              <a
+                href="{{url_for('edit_category', cat_id=cat._id)}}"
+                class="btn btn-primary btn-small btn-link btn-bookmark-page"
+              >
+                Edit</a
+              >
             </div>
-               <!-- end of row-->
+            <!-- end of col -->
           </div>
-          <!-- end of card body -->
+          <!-- end of row-->
         </div>
-        <!-- end of card -->
+        <!-- end of card body -->
       </div>
-      {%endif%}
-      <!-- end of if statement -->
-       {% endfor %}
-       <!-- end of for loop -->
+      <!-- end of card -->
     </div>
-  </section>
-  <!-- ends ection -->
-  {% endblock content%}
-  <!-- end block content -->
-             
-              
-           
-         
-        
+    {%endif%}
+    <!-- end of if statement -->
+    {% endfor %}
+    <!-- end of for loop -->
+  </div>
+</section>
+<!-- ends ection -->
+{% endblock content%}
+<!-- end block content -->
