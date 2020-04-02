@@ -190,7 +190,7 @@ targeting flashed messages */
 /* signup/registration/logout/login/bookmarks was reused on all these pages */
 
 .signup-form {
-  width: 22rem;
+  width: 34rem;
   margin: 0 auto;
   padding: 2rem 0;
 }

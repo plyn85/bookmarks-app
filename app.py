@@ -207,8 +207,8 @@ def update_category(cat_id):
 
 @app.route('/upvote/<book_id>', methods=["GET", "POST"])
 def upvote(book_id):
-    """ getting current page here an passing into redirect so
-          user is redirected to  the page the are on  after upvote/like button is clicked """
+    """ Upvote route add likes to user bookmarks on index and pagination pages"""
+    # finds upvotes In bookmarks collection and adds one when button is clicked
     bookmarks_collection.find_one_and_update(
         {'_id': ObjectId(book_id)},
         {'$inc': {'upvotes': 1}}
@@ -222,13 +222,17 @@ def upvote(book_id):
 
 @app.route('/delete_bookmark/<book_id>', methods=["POST", "GET"])
 def delete_bookmark(book_id):
+    """ route acitvated when delete bookmark button is clicked entire bookmark is sent to
+    delete bookmark from to confirm the bookmark delete  """
+    # getting categories an bookmarks Id from data base
     all_categories = categories_collection.find()
     the_bookmark = bookmarks_collection.find_one({"_id": ObjectId(book_id)})
-    return render_template('delete_bookmark.html', book=the_bookmark,  categories=all_categories, title="edit bookmark")
+    return render_template('delete_bookmark.html', book=the_bookmark,  categories=all_categories, title=" delete bookmark")
 
 
 @app.route('/remove_bookmark/<book_id>', methods=["POST", "GET"])
 def remove_bookmark(book_id):
+    """ Route confirms delete an redirect user to there user bookmarks page  """
     flash(f'Your bookmark has been removed!', 'success')
     bookmarks_collection.remove({'_id': ObjectId(book_id)})
     return redirect(url_for('users'))
@@ -236,15 +240,20 @@ def remove_bookmark(book_id):
 
 @app.route('/delete_category/<cat_id>', methods=["POST", "GET"])
 def delete_category(cat_id):
+    """ route acitvated when delete category  button is clicked entire bookmark is sent to
+    delete bookmark from to confirm the categoy  delete """
+    # getting  category id from the data base
     category = categories_collection.find_one({"_id": ObjectId(cat_id)})
     return render_template('delete_category.html', cat=category, title="Delete category")
 
 
 @app.route('/remove_category/<cat_id>', methods=["POST", "GET"])
 def remove_category(cat_id):
+    """ Route confirms delete an redirect user to there user categorys page  """
     flash(f'Your category has been deleted!', 'success')
     categories_collection.remove({'_id': ObjectId(cat_id)})
     return redirect(url_for('user_categories'))
+
 
 # ----- Read ----- #
 
@@ -253,18 +262,21 @@ def remove_category(cat_id):
 def users():
     """ Here thu users search results are paginated and displayed on the users page
           only there unique results will be shown. if a user has not yet added a bookmark the newuser page will be render and if the user has bookmarks already added the user page will render """
-
+    # getting the session username
     username = session.get('username')
+    # getting  users and  categories collections from database
     users = users_collection.find()
     categories = categories_collection.find()
+    # setting args variables
     p_limit = int(request.args.get('limit', 6))
     p_offset = int(request.args.get('offset', 0))
     num_results = bookmarks_collection.count(
         {'username': username})
-    bookmarks = bookmarks_collection.find({'username': username}).sort(
-        "_id", -1).limit(p_limit).skip(p_offset)
     book_name = bookmarks_collection.find_one(
         {'username': username})
+    # getting bookmarks by username and reversing order
+    bookmarks = bookmarks_collection.find({'username': username}).sort(
+        "_id", -1).limit(p_limit).skip(p_offset)
     args = {
         "p_limit": p_limit,
         "p_offset": p_offset,
@@ -274,6 +286,7 @@ def users():
         "prev_url": f"/users?limit={str(p_limit)}&offset={str(p_offset - p_limit)}",
 
     }
+    # if user has no bookmarks new user page rendered
     if book_name is None:
         return render_template('newuser.html')
 
@@ -283,46 +296,51 @@ def users():
 @app.route('/user_search_results', methods=['POST', 'GET'])
 def user_search_results():
     """ Query from the search bar on the users page taken here an matched with the results
-         of the text search qurey from the data base if the qurey is empty an warning is issued"""
+         of the text search qurey from the data base if the qurey is empty user is redirected back to users page"""
 
     if request.method == "POST":
+        # get search bar post
         query = request.form.get('user_search_bar')
+        # text search on the bookmarks collection
         results = bookmarks_collection.find({'$text': {'$search': query}})
+        # if the qurey is blank
         if query == "":
             flash(
-                f'This those not match any Bookmarks! please return tomy change your search text and try again', 'danger')
+                f'This those not match any Bookmarks! please change your search text and try again', 'danger')
+            return redirect(url_for('users'))
         return render_template('user_search_results.html', results=results, title="User Search result")
 
 
 @app.route('/search_results', methods=['POST', 'GET'])
 def search_results():
-    """Here the index page search results are paginated and displayed on the index page
-       If the search result Is blank a warning Is issued"""
-
+    """ Query from the search bar on the index  page taken here an matched with the results
+        of the text search qurey from the data base if the qurey is empty user is redirected back to index page"""
     if request.method == "POST":
-        bookmarks = bookmarks_collection.find()
+      # get search bar post
         query = request.form.get('search_bar')
+        # text search on the bookmarks collection
         results = bookmarks_collection.find({'$text': {'$search': query}})
+        # if the qurey is blank
         if query == "":
             flash(
-                f'This those not match any Bookmarks! please return to home page change your search text and try again', 'danger')
-
-        return render_template('search_results.html', results=results, title="Search result", bookmarks=bookmarks)
+                f'This those not match any Bookmarks! please change your search text and try again', 'danger')
+            return redirect(url_for('index'))
+        return render_template('search_results.html', results=results, title="Search result")
 
 
 @app.route('/user_categories')
 def user_categories():
     """ if a user has not yet added a category the newuser_cat  page will be rendered
          and if the user has categories already added the categories page will render """
-
+    # getting  categories collection and reversing order
     categories = categories_collection.find().sort("_id", -1)
-    bookmarks = bookmarks_collection.find()
-    user = users_collection.find()
+    # finding all categories for the user
     cat_name = categories_collection.find_one(
         {'username': session.get('username')})
+    # if the user has no categories
     if cat_name is None:
         return render_template('newuser_cat.html')
-    return render_template('categories.html', categories=categories, bookmarks=bookmarks, user=user, title="Categories")
+    return render_template('categories.html', categories=categories, title="Categories")
 
 
 if __name__ == '__main__':
