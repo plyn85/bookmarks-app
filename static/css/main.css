@@ -190,7 +190,7 @@ targeting flashed messages */
 /* signup/registration/logout/login/bookmarks was reused on all these pages */
 
 .signup-form {
-  width: 18rem;
+  width: 22rem;
   margin: 0 auto;
   padding: 2rem 0;
 }
@@ -277,12 +277,16 @@ targeting flashed messages */
   .callout-main-text {
     font-size: 1.4rem;
   }
-}
 
-/* for all smaller devices ipad an below  */
+  .signup-form {
+    width: 18rem;
+  }
 
-@media (max-width: 768px) {
-  .bookmarks-btn a {
-    font-size: 1rem;
+  /* for all smaller devices ipad an below  */
+
+  @media (max-width: 768px) {
+    .bookmarks-btn a {
+      font-size: 1rem;
+    }
   }
 }
