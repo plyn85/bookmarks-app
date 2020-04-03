@@ -144,20 +144,19 @@ def insert_bookmark():
     flash(f'You have added a new bookmark!', 'success')
     return redirect(url_for('users'))
 
-
 @app.route('/add_category')
 def add_category():
     return render_template('add_category.html', title="Add category")
 
 
-@app.route('/insert_category', methods=["GET","POST"])
+@app.route('/insert_category', methods=["POST","GET"])
 def insert_category():
-   
-   
+    format_date = date.strftime("%a %B %d")
     flash(f'Your category has been added! It will be now be available in the add bookmarks section In the dropdown menu', 'success')
     categories_collection.insert_one({
         'username': session['username'],
-        'category_name': request.form.get('category_name')
+        'category_name': request.form.get('category_name'),
+        "last_modified":  format_date,
 
 
     })
