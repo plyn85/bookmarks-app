@@ -37,6 +37,137 @@ them from the database.
 
 ## Client stories
 
+## Wireframe mockups
+  Wireframing for this project was done the same as I like to do all my projects with a pencil and paper. Some of the forms pages would be near Identical on both mobile and larger devices so this was written on the sketch rather than sketching It out twice.
+
+<details>
+<summary>Home page</summary>
+<br>
+<table>
+   <tr>
+    <td>Mobile version<img src="https://res.cloudinary.com/plyn85/image/upload/v1585946844/bookmarks-app/bookmarks%20wireframes/IMG_20200403_204146_kzcfmb.jpg" alt="wireframe mockup" style="width: 375px;"/> </td>
+    <td>Tablets ard larger  <img src="https://res.cloudinary.com/plyn85/image/upload/v1585939072/bookmarks-app/bookmarks%20wireframes/IMG_20200403_180417_dhzhtx.jpg" alt="wireframe mockup" style="width: 375px;"/> </td>
+    </tr>
+</table>
+</details>
+<br>
+<details>
+<summary>Register page</summary>
+<br>
+<table>
+   <tr>
+   For all devices
+    <td> <img src="https://res.cloudinary.com/plyn85/image/upload/v1585939999/bookmarks-app/bookmarks%20wireframes/IMG_20200403_180614_mqmh24.jpg" alt="wireframe mockup" style="width:375px;"/> </td>
+</table>
+</details>
+
+<br>
+<details>
+<summary>Login page</summary>
+<table>
+   <tr>
+   For all devices
+    <td> <img src="https://res.cloudinary.com/plyn85/image/upload/v1585940239/bookmarks-app/bookmarks%20wireframes/IMG_20200403_180628_s0bm24.jpg" alt="wireframe mockup" style="width: 375px;"/> </td>
+</table>
+</details>
+
+<br>
+<details>
+<summary>User Bookmarks page</summary>
+<br>
+<table>
+   <tr>
+    <td>Mobile version<img src="https://res.cloudinary.com/plyn85/image/upload/v1585946002/bookmarks-app/bookmarks%20wireframes/IMG_20200403_212751_am1rug.jpg" alt="wireframe mockup" style="width:375px;"/> </td>
+    <td>Tablets and larger<img src="https://res.cloudinary.com/plyn85/image/upload/v1585941434/bookmarks-app/bookmarks%20wireframes/IMG_20200403_180520_tmu3e8.jpg" alt="wireframe mockup" style="width: 375px;"/> </td>
+    </tr>
+</table>
+</details>
+
+
+<br>
+<details>
+<summary>User Categories page</summary>
+<table>
+   <tr>
+    <td>For mobile devices<img src="https://res.cloudinary.com/plyn85/image/upload/v1585946419/bookmarks-app/bookmarks%20wireframes/IMG_20200403_213108_fs3p8w.jpg" alt="wireframe mockup" style="width: 375px;"/> </td>
+     <td>For Tablets and larger <img src="https://res.cloudinary.com/plyn85/image/upload/v1585941243/bookmarks-app/bookmarks%20wireframes/IMG_20200403_180535_x5yxjl.jpg" alt="wireframe mockup" style="width: 250px;"/> </td>
+</table>
+</details>
+
+<br>
+<details>
+<summary>Add Bookmarks page</summary>
+<br>
+<table>
+   <tr>
+   For all devices
+    <td> <img src="https://res.cloudinary.com/plyn85/image/upload/v1585941787/bookmarks-app/bookmarks%20wireframes/IMG_20200403_180603_jpjb8i.jpg" style="width: 375px;"/> </td>
+    </tr>
+</table>
+</details>
+
+<br>
+<details>
+<summary>Add Category page</summary>
+<br>
+<table>
+   <tr>
+    <td>For all devices <img src="https://res.cloudinary.com/plyn85/image/upload/v1585941958/bookmarks-app/bookmarks%20wireframes/IMG_20200403_180544_sb0cdl.jpg" style="width: 375px;"/> </td>
+    </tr>
+</table>
+</details>
+
+<br>
+<details>
+<summary>Confirm delete bookmark page</summary>
+<br>
+<table>
+   <tr>
+   For all devices
+    <td> <img src="https://res.cloudinary.com/plyn85/image/upload/v1585944020/bookmarks-app/bookmarks%20wireframes/IMG_20200403_204353_zutzsh.jpg" style="width: 375px;"/> </td>
+    </tr>
+</table>
+</details>
+
+<br>
+<details>
+<summary>Confirm delete bookmark page</summary>
+<br>
+<table>
+   <tr>
+   For all devices
+    <td> <img src="https://res.cloudinary.com/plyn85/image/upload/v1585945090/bookmarks-app/bookmarks%20wireframes/IMG_20200403_211610_l2eyfw.jpg" style="width: 375px;"/> </td>
+    </tr>
+</table>
+</details>
+
+<br>
+<details>
+<summary>Index page search results page</summary>
+<br>
+<table>
+   <tr>
+    <td>Tablets ard larger <img src="https://res.cloudinary.com/plyn85/image/upload/v1585944020/bookmarks-app/bookmarks%20wireframes/IMG_20200403_204549_cev6fi.jpg" alt="wireframe mockup" style="width: 375px;"/> </td>
+    <td>Mobile version<img src="https://res.cloudinary.com/plyn85/image/upload/v1585944024/bookmarks-app/bookmarks%20wireframes/IMG_20200403_205104_fnggng.jpg" alt="wireframe mockup" style="width: 375px;"/> </td>
+    </tr>
+</table>
+</details>
+
+<br>
+<details>
+<summary>User bookmarks  page search results page</summary>
+<br>
+<table>
+   <tr>
+    <td>Mobile version <img src="https://res.cloudinary.com/plyn85/image/upload/v1585942660/bookmarks-app/bookmarks%20wireframes/IMG_20200403_180707_p3ut3s.jpg" alt="wireframe mockup" style="width: 375px;"/> </td>
+    <td>For tablets and larger<img src="https://res.cloudinary.com/plyn85/image/upload/v1585944679/bookmarks-app/bookmarks%20wireframes/IMG_20200403_210802_wsrgve.jpg" alt="wireframe mockup" style="width:375px;"/> </td>
+    </tr>
+</table>
+</details>
+
+
+
+
 ## Features
 
 ## Features left to Implement

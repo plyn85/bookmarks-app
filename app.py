@@ -50,7 +50,7 @@ def index():
     # getting bookmarks collection orderding by votes and adding pagination
     bookmarks = bookmarks_collection.find().sort([
         ("upvotes", -1), ("_id", -1)]).limit(p_limit).skip(p_offset)
-    # args added here to be used on pagintion page   
+    # args added here to be used on pagintion page
     args = {
         "p_limit": p_limit,
         "p_offset": p_offset,
@@ -77,11 +77,11 @@ def login():
             {'name': request.form['username']})
         # If the user exists
         if login_user:
-            #  if the encryptied password from the form and database match 
+            #  if the encryptied password from the form and database match
             if bcrypt.hashpw(request.form.get('password').encode('utf-8'), login_user['password']) == login_user['password']:
                 # If the session username and form username match
                 session['username'] = request.form.get('username')
-                # If any user is logged in 
+                # If any user is logged in
                 session['logged_in'] = True
                 # alert flashed on user is redirect to the home page
                 flash(f'You are logged in!', 'success')
@@ -147,11 +147,11 @@ def add_bookmark():
 
 @app.route('/insert_bookmark',  methods=["GET", "POST"])
 def insert_bookmark():
-       """ route activated when add bookmark submit button post request recived from form in
+    """ route activated when add bookmark submit button post request recived from form in
         add bookmark page user then redirected to users page"""
-      # date formated by day, month, date  
+    # date formated by day, month, date
     format_date = date.strftime("%a %B %d")
-       # inserting data to bookmarks collection In the database
+    # inserting data to bookmarks collection In the database
     bookmarks_collection.insert_one({
         "last_modified":  format_date,
         'username': session['username'],
@@ -160,21 +160,22 @@ def insert_bookmark():
         'bookmark_description': request.form.get('bookmark_description'),
         'upvotes': int(0)
     })
-       # user alert If succesfully added bookmark
+    # user alert If succesfully added bookmark
     flash(f'You have added a new bookmark!', 'success')
     return redirect(url_for('users'))
 
+
 @app.route('/add_category')
-""" add category page render when add category link In navbar clicked"""
 def add_category():
+    """ add category page render when add category link In navbar clicked"""
     return render_template('add_category.html', title="Add category")
 
 
-@app.route('/insert_category', methods=["POST","GET"])
+@app.route('/insert_category', methods=["POST", "GET"])
 def insert_category():
     """ route activated when add category submit button post request recived from form in
         add category page user then redirected to user categories page"""
-    # date formated by day, month, date  
+    # date formated by day, month, date
     format_date = date.strftime("%a %B %d")
     # user alert If succesfully added category
     flash(f'Your category has been added! It will be now be available in the add bookmarks section In the dropdown menu', 'success')
@@ -206,7 +207,7 @@ def edit_bookmark(book_id):
 def update_bookmark(book_id):
     """Route updates bookmarks collection for the user in the database after the 
         Edit bookmark form Is submited user Is then redirect back to user bookmarks page"""
-        # date formated by day, month, date 
+    # date formated by day, month, date
     format_date = date.strftime("%a %B %d")
     # updating the bookmarks collection
     bookmarks_collection.update({'_id': ObjectId(book_id)},
@@ -225,7 +226,7 @@ def update_bookmark(book_id):
 def edit_category(cat_id):
     """Route activated when edit button is clicked in user categories page.
         Gets the categories collection object Id from database an displays the category In a form on the edit category page """
-        # finding the categories collection object Id
+    # finding the categories collection object Id
     category = categories_collection.find_one(
         {'_id': ObjectId(cat_id)})
     return render_template('edit_category.html', cat=category, title="Edit category"
@@ -307,7 +308,7 @@ def users():
     # getting  users and  categories collections from database
     users = users_collection.find()
     categories = categories_collection.find()
-    # setting args variables page limit and offset here 
+    # setting args variables page limit and offset here
     p_limit = int(request.args.get('limit', 6))
     p_offset = int(request.args.get('offset', 0))
     # getting the number of bookmarks for each user
