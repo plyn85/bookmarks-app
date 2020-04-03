@@ -38,10 +38,19 @@
       </div>
       <!-- end form group -->
 
-      <!-- displays category of the bookmark that delete button was clicked on  -->
-      {%include "partials/_list_categories.html"%}
-      <!-- end category -->
-
+    <!--start of input form group -->
+    <div class="form-group">
+      <!-- input displays url of the bookmark delete button was clicked on  -->
+      <input
+        id="category-name"
+        type="text"
+        class="form-control"
+        name="category_name"
+        value="{{book.category_name| truncate(30, killwords=True) }}"
+        required="required"
+      />
+    </div>
+    <!-- end form group -->
       <!-- start of form group that displays bookmark description -->
       <div class="form-group">
         <!-- textarea thta displays bookmarks description -->

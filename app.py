@@ -165,14 +165,18 @@ def insert_category():
 
 @app.route("/edit_bookmark/<book_id>")
 def edit_bookmark(book_id):
-    user = users_collection.find()
+    """Route activated when edit bookmark button is clicked in user bookmarks page.
+        Gets the bookmarks collection  object Id from the database an displays the category In a form on the edit category page """
+
     all_categories = categories_collection.find()
     the_bookmark = bookmarks_collection.find_one({"_id": ObjectId(book_id)})
-    return render_template("edit_bookmark.html", book=the_bookmark, categories=all_categories, user=user, title="edit bookmark")
+    return render_template("edit_bookmark.html", book=the_bookmark, categories=all_categories, title="edit bookmark")
 
 
 @app.route('/update_bookmark/<book_id>', methods=["POST"])
 def update_bookmark(book_id):
+    """Route updates bookmarks  collection for the user in the database after the 
+        Edit bookmark form Is submited user Is then redirect back to user bookmarks page"""
     date = datetime.utcnow()
     format_date = date.strftime("%a %B %d")
     bookmarks_collection.update({'_id': ObjectId(book_id)},
@@ -189,6 +193,8 @@ def update_bookmark(book_id):
 
 @app.route('/edit_category/<cat_id>')
 def edit_category(cat_id):
+    """Route activated when edit button is clicked in user categories page.
+        Gets the categories collection object Id from database an displays the category In a form on the edit category page """
     category = categories_collection.find_one(
         {'_id': ObjectId(cat_id)})
     return render_template('edit_category.html', cat=category, title="Edit category"
@@ -197,6 +203,9 @@ def edit_category(cat_id):
 
 @app.route('/update_category/<cat_id>', methods=['POST'])
 def update_category(cat_id):
+    """Route updates category collection for the user in the database after the 
+        Edit category form Is submited user Is then redirect back to user categories page"""
+    # updating category_name an the categories username in the database
     categories_collection.update(
         {'_id': ObjectId(cat_id)},
         {'category_name': request.form.get('category_name'),
@@ -219,11 +228,10 @@ def upvote(book_id):
 
 # ----- Delete ----- #
 
-
 @app.route('/delete_bookmark/<book_id>', methods=["POST", "GET"])
 def delete_bookmark(book_id):
     """ route acitvated when delete bookmark button is clicked entire bookmark is sent to
-    delete bookmark from to confirm the bookmark delete  """
+    delete bookmark form to confirm the bookmark delete  """
     # getting categories an bookmarks Id from data base
     all_categories = categories_collection.find()
     the_bookmark = bookmarks_collection.find_one({"_id": ObjectId(book_id)})
@@ -267,12 +275,11 @@ def users():
     # getting  users and  categories collections from database
     users = users_collection.find()
     categories = categories_collection.find()
-    # setting args variables
+    # setting args variables page limit and offset here 
     p_limit = int(request.args.get('limit', 6))
     p_offset = int(request.args.get('offset', 0))
+    # getting the number of bookmarks for each user
     num_results = bookmarks_collection.count(
-        {'username': username})
-    book_name = bookmarks_collection.find_one(
         {'username': username})
     # getting bookmarks by username and reversing order
     bookmarks = bookmarks_collection.find({'username': username}).sort(
@@ -280,16 +287,18 @@ def users():
     args = {
         "p_limit": p_limit,
         "p_offset": p_offset,
-        "book_name": book_name,
         "num_results": num_results,
         "next_url": f"/users?limit={str(p_limit)}&offset={str(p_offset + p_limit)}",
         "prev_url": f"/users?limit={str(p_limit)}&offset={str(p_offset - p_limit)}",
 
     }
+    # getting username for each bookmark
+    book_name = bookmarks_collection.find_one(
+        {'username': username})
     # if user has no bookmarks new user page rendered
     if book_name is None:
         return render_template('newuser.html')
-
+    # if the user has bookmarks added users page rendered
     return render_template('users.html', users=users, bookmarks=bookmarks, categories=categories, args=args, title=username)
 
 
