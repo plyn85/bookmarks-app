@@ -40,14 +40,17 @@ def index():
     """ Pagintion with thanks to Miroslav Svec, DCD Channel lead.
         altered from https://github.com/MiroslavSvec/DCD_lead/tree/pagination
         paginated results to be displayed on index page  by upvotes and Id"""
-
+    #  getting categorys collection from database
+    categories = categories_collection.find()
+    #  setting args varibales
     num_results = bookmarks_collection.count()
     users = users_collection.find()
-    categories = categories_collection.find()
     p_limit = int(request.args.get('limit', 6))
     p_offset = int(request.args.get('offset', 0))
+    # getting bookmarks collection orderding by votes and adding pagination
     bookmarks = bookmarks_collection.find().sort([
         ("upvotes", -1), ("_id", -1)]).limit(p_limit).skip(p_offset)
+    # args added here to be used on pagintion page   
     args = {
         "p_limit": p_limit,
         "p_offset": p_offset,
@@ -69,14 +72,21 @@ def login():
     and from a tutorial found at www.youtube.com/watchv=vVx1737auSE """
 
     if request.method == 'POST':
+        # finding user in the database
         login_user = users_collection.find_one(
             {'name': request.form['username']})
+        # If the user exists
         if login_user:
+            #  if the encryptied password from the form and database match 
             if bcrypt.hashpw(request.form.get('password').encode('utf-8'), login_user['password']) == login_user['password']:
+                # If the session username and form username match
                 session['username'] = request.form.get('username')
+                # If any user is logged in 
                 session['logged_in'] = True
+                # alert flashed on user is redirect to the home page
                 flash(f'You are logged in!', 'success')
                 return redirect(url_for('index'))
+                # If login Is unsuccesful warning flashed an user stays on login page
         flash(
             f'Login  Unsuccessful. Please check username/password combination', 'danger')
 
@@ -91,17 +101,21 @@ def register():
     taken an altered from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE"""
 
     if request.method == 'POST':
+        # getting existing user from the database
         existing_user = users_collection.find_one(
             {'name': request.form['username']})
-
+        # If the users name is not In database
         if existing_user is None:
+            # getting users password from register form an encrypting It
             hashpass = bcrypt.hashpw(
                 request.form.get('password').encode('utf-8'), bcrypt.gensalt())
+            # Inserting the data to the users collection In the database
             users_collection.insert(
                 {'name': request.form.get('username'), 'password': hashpass})
             session.get['username'] = request.form.get('username')
             flash(f'You are now regsitered please login!', 'success')
             return redirect(url_for('login'))
+        # If the insertion of the data Is not successful a warning Is issued
         else:
             flash(
                 f'Username Is in Use. Please Try a different username', 'danger')
@@ -125,14 +139,19 @@ def logout():
 
 @app.route('/add_bookmark')
 def add_bookmark():
+    """ add bookmark page render when add category link In navbar clicked"""
+    # find categories collection In database
     categories = categories_collection.find()
     return render_template('add_bookmark.html', categories=categories, title="Add bookmark")
 
 
 @app.route('/insert_bookmark',  methods=["GET", "POST"])
 def insert_bookmark():
-  
+       """ route activated when add bookmark submit button post request recived from form in
+        add bookmark page user then redirected to users page"""
+      # date formated by day, month, date  
     format_date = date.strftime("%a %B %d")
+       # inserting data to bookmarks collection In the database
     bookmarks_collection.insert_one({
         "last_modified":  format_date,
         'username': session['username'],
@@ -141,18 +160,25 @@ def insert_bookmark():
         'bookmark_description': request.form.get('bookmark_description'),
         'upvotes': int(0)
     })
+       # user alert If succesfully added bookmark
     flash(f'You have added a new bookmark!', 'success')
     return redirect(url_for('users'))
 
 @app.route('/add_category')
+""" add category page render when add category link In navbar clicked"""
 def add_category():
     return render_template('add_category.html', title="Add category")
 
 
 @app.route('/insert_category', methods=["POST","GET"])
 def insert_category():
+    """ route activated when add category submit button post request recived from form in
+        add category page user then redirected to user categories page"""
+    # date formated by day, month, date  
     format_date = date.strftime("%a %B %d")
+    # user alert If succesfully added category
     flash(f'Your category has been added! It will be now be available in the add bookmarks section In the dropdown menu', 'success')
+    # inserting data to categories collection In the database
     categories_collection.insert_one({
         'username': session['username'],
         'category_name': request.form.get('category_name'),
