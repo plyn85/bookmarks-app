@@ -37,21 +37,13 @@
         />
       </div>
       <!-- end form group -->
+    
 
       <!-- instructions paragraph -->
-      <p class="hint-text text-barlow">
-        Edit the Category for you bookmark below
-      </p>
+      <h3 class="text-barlow">
+       Added on {{book.last_modified}}
+      </h3>
       <!-- end paragraph -->
-
-    <!-- start of form group  -->
-<div class="form-group form-group-categories row">
-  <!-- start of select drop down menu -->
-  <select class="col" name="category_name">
-    <!-- category name cannot be selected but will Instruct the user If he is yet to add a category -->
-    <!-- first option disabled-->
-    <option value="" disabled selected>Select a Category </option>
-    <!-- end option -->
 
      <!-- user will add a category here categories in separate non rendered html file -->
      {%include "partials/_list_categories.html"%}

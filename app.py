@@ -25,7 +25,8 @@ mongo = PyMongo(app)
 users_collection = mongo.db.users
 bookmarks_collection = mongo.db.bookmarks
 categories_collection = mongo.db.categories
-
+# setting global date variable
+date = datetime.utcnow()
 # ---------------- #
 # APP ROUTES  #
 # ---------------- #
@@ -130,7 +131,7 @@ def add_bookmark():
 
 @app.route('/insert_bookmark',  methods=["GET", "POST"])
 def insert_bookmark():
-    date = datetime.utcnow()
+  
     format_date = date.strftime("%a %B %d")
     bookmarks_collection.insert_one({
         "last_modified":  format_date,
@@ -149,8 +150,10 @@ def add_category():
     return render_template('add_category.html', title="Add category")
 
 
-@app.route('/insert_category', methods=["POST"])
+@app.route('/insert_category', methods=["GET","POST"])
 def insert_category():
+   
+   
     flash(f'Your category has been added! It will be now be available in the add bookmarks section In the dropdown menu', 'success')
     categories_collection.insert_one({
         'username': session['username'],
@@ -167,18 +170,20 @@ def insert_category():
 def edit_bookmark(book_id):
     """Route activated when edit bookmark button is clicked in user bookmarks page.
         Gets the bookmarks collection  object Id from the database an displays the category In a form on the edit category page """
-
+    # finding the categories collection from the data base
     all_categories = categories_collection.find()
+    #  finding the bookmarks collection object Id in the database
     the_bookmark = bookmarks_collection.find_one({"_id": ObjectId(book_id)})
     return render_template("edit_bookmark.html", book=the_bookmark, categories=all_categories, title="edit bookmark")
 
 
 @app.route('/update_bookmark/<book_id>', methods=["POST"])
 def update_bookmark(book_id):
-    """Route updates bookmarks  collection for the user in the database after the 
+    """Route updates bookmarks collection for the user in the database after the 
         Edit bookmark form Is submited user Is then redirect back to user bookmarks page"""
-    date = datetime.utcnow()
+        # date formated by day, month, date 
     format_date = date.strftime("%a %B %d")
+    # updating the bookmarks collection
     bookmarks_collection.update({'_id': ObjectId(book_id)},
                                 {
         "last_modified": format_date,
@@ -195,6 +200,7 @@ def update_bookmark(book_id):
 def edit_category(cat_id):
     """Route activated when edit button is clicked in user categories page.
         Gets the categories collection object Id from database an displays the category In a form on the edit category page """
+        # finding the categories collection object Id
     category = categories_collection.find_one(
         {'_id': ObjectId(cat_id)})
     return render_template('edit_category.html', cat=category, title="Edit category"
@@ -249,7 +255,8 @@ def remove_bookmark(book_id):
 @app.route('/delete_category/<cat_id>', methods=["POST", "GET"])
 def delete_category(cat_id):
     """ route acitvated when delete category  button is clicked entire bookmark is sent to
-    delete bookmark from to confirm the categoy  delete """
+    delete bookmark from to confirm the categoy 
+    delete """
     # getting  category id from the data base
     category = categories_collection.find_one({"_id": ObjectId(cat_id)})
     return render_template('delete_category.html', cat=category, title="Delete category")

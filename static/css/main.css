@@ -194,7 +194,7 @@ targeting flashed messages */
   margin: 0 auto;
   padding: 2rem 0;
 }
-.signup-form h2 {
+.signup-form h2,h3 {
   color: #636363;
   margin: 0 0 1rem;
   position: relative;
