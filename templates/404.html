@@ -1,0 +1,21 @@
+<!-- extends base html  -->
+{% extends 'base.html' %}
+<!-- starts block content -->
+{% block content %}
+<!-- container wrapping 404 page to alert user when something goes wrong -->
+<section>
+  <div class="row text-center">
+    <div class="col">
+      <h2 class="mt-5 text-oswald">Opppps something went wrong!</h2>
+      <hr class="hr-color" />
+      <div class="col">
+        <h5 class="text-barlow txt-lg">
+          Apologies for the Inconvenience please click on the link to the home
+          page below or any our links above to other pages
+        </h5>
+      </div>
+      <h3><a href="/" class="text-oswald">Home</a></h3>
+    </div>
+  </div>
+</section>
+{%endblock%}

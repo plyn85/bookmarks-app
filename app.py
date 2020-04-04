@@ -1,11 +1,12 @@
 # Imports
 import os
 import math
-from flask import Flask, render_template, redirect, request, url_for, session, flash, jsonify
+from flask import Flask, render_template, redirect, request, url_for, session, flash, jsonify, abort
 from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 import bcrypt
 from datetime import datetime
+
 
 # Importing path from env.py
 from os import path
@@ -32,6 +33,10 @@ date = datetime.utcnow()
 # ---------------- #
 
 # ----- index, index page search,  login, register, and log out routes ----- #
+@app.route('/error')
+def error():
+    abort(500)
+    return render_template('errors.html')
 
 
 @app.route('/index', methods=['GET'])
@@ -383,6 +388,13 @@ def user_categories():
     if cat_name is None:
         return render_template('newuser_cat.html')
     return render_template('categories.html', categories=categories, title="Categories")
+
+
+# ----- Error handlers ----- #
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("404.html")
 
 
 if __name__ == '__main__':
