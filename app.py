@@ -210,7 +210,7 @@ def edit_bookmark(book_id):
 
 @app.route('/update_bookmark/<book_id>', methods=["POST"])
 def update_bookmark(book_id):
-    """Route updates bookmarks collection for the user in the database after the 
+    """Route updates bookmarks collection for the user in the database after the
         Edit bookmark form Is submited user Is then redirect back to user bookmarks page"""
     # date formated by day, month, date
     format_date = date.strftime("%a %B %d")
@@ -240,7 +240,7 @@ def edit_category(cat_id):
 
 @app.route('/update_category/<cat_id>', methods=['POST'])
 def update_category(cat_id):
-    """Route updates category collection for the user in the database after the 
+    """Route updates category collection for the user in the database after the
         Edit category form Is submited user Is then redirect back to user categories page"""
     # updating category_name an the categories username in the database
     categories_collection.update(
@@ -286,7 +286,7 @@ def remove_bookmark(book_id):
 @app.route('/delete_category/<cat_id>', methods=["POST", "GET"])
 def delete_category(cat_id):
     """ route acitvated when delete category  button is clicked entire bookmark is sent to
-    delete bookmark from to confirm the categoy 
+    delete bookmark from to confirm the categoy
     delete """
     # getting  category id from the data base
     category = categories_collection.find_one({"_id": ObjectId(cat_id)})
@@ -394,7 +394,14 @@ def user_categories():
 
 @app.errorhandler(404)
 def not_found(e):
-    return render_template("404.html")
+    """ displays custom 404 html page """
+    return render_template("404.html", title="Page not found")
+
+
+@app.errorhandler(500)
+def server_error(e):
+    """ displays custom 500 html page """
+    return render_template("500.html", title="Server error")
 
 
 if __name__ == '__main__':
