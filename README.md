@@ -193,16 +193,20 @@ them from the database.
 
 ## Features left to Implement
 
-## Technologies
--  HTML 
--  CSS
+## Technologies used 
+- Vs code - used as my IDE for coding
+-  HTML - markup text language used  
+-  CSS - used for  cascading style sheets
 - JavaScript 
-- Python 
+- Python - Used as the back end programming language 
 -  Bootstrap - to make the website responsive and used for layout.
--  FontAwesome - to provide icons for the website.
-- Google fonts - used to supply the fonts for this website.
-- Cloudinary - All images where deployed using the cloudinary caching server.
-- Git and Github Git used for version control. GitHub used as a remote repository and the hosting of this site.
+- MongoDb Atlas - Was used to store the database.
+- Cloudinary - All images were deployed using the cloudinary caching server.
+- Pymongo -Used as a python api for MongoDb
+- Flask - used as a microframework 
+- Heroku  -Used to host the app 
+- Git and Github used for version control. GitHub used as a remote repository and the hosting of this site.
+
 
 ## Features
 ### Register  
