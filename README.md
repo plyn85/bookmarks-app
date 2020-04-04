@@ -9,10 +9,11 @@ which become bloated and cluttered. In the pursuit of learning to code,
 shopping online or just finding articles Im Interested In, I found myself bookmarking 
 urls on google or copying and pasting links and texting them to myself as a way of saving when using my mobile. 
 So I wanted to build something that fulfilled all of these needs. If it I could build 
-something useful to me. I was  sure It would be useful to other users.
+something useful to me. I was  sure It would be useful to other users.  [Python](https://docs.python.org/3/), the micro framework [Flask](https://flask.palletsprojects.com/en/1.1.x/) and [Mongodb](https://docs.atlas.mongodb.com/) atlas as the cloud based storgare for the data.  
 
 ## Demo
 A live demo can be found [here]
+![Desktop Demo]("Desktop Demo")
 
 ## UX
 
@@ -36,6 +37,38 @@ them from the database.
 ## Database Schemea 
 
 ## Client stories
+" as u a user I would like to ____________    "
+
+- be able to view the website from device
+
+-  to see Instructions on home to use the website.
+
+-  to be able to register an account and then login
+
+-  what other people have added to the website.
+
+- be able to search what they added with ease.
+
+- to be able to start my own personal collection of bookmarks.
+
+- to add a a category and to edit or delete that category
+
+- to add bookmark  delete or edit that bookmark
+
+- to see my bookmark displayed after i have added it 
+
+- To be able to log out
+
+
+
+
+
+
+
+
+
+
+
 
 ## Wireframe mockups
   Wireframing for this project was done the same as I like to do all my projects with a pencil and paper. Some of the forms pages would be near Identical on both mobile and larger devices so this was written on the sketch rather than sketching It out twice.
