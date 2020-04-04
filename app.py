@@ -1,7 +1,7 @@
 # Imports
 import os
 import math
-from flask import Flask, render_template, redirect, request, url_for, session, flash, jsonify, abort
+from flask import Flask, render_template, redirect, request, url_for, session, flash, abort
 from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 import bcrypt
@@ -33,10 +33,6 @@ date = datetime.utcnow()
 # ---------------- #
 
 # ----- index, index page search,  login, register, and log out routes ----- #
-@app.route('/error')
-def error():
-    abort(500)
-    return render_template('errors.html')
 
 
 @app.route('/index', methods=['GET'])
@@ -271,7 +267,8 @@ def delete_bookmark(book_id):
     delete bookmark form to confirm the bookmark delete  """
     # getting categories an bookmarks Id from data base
     all_categories = categories_collection.find()
-    the_bookmark = bookmarks_collection.find_one({"_id": ObjectId(book_id)})
+    the_bookmark = bookmarks_collection.find_one_or_404(
+        {"_id": ObjectId(book_id)})
     return render_template('delete_bookmark.html', book=the_bookmark,  categories=all_categories, title=" delete bookmark")
 
 
@@ -399,7 +396,7 @@ def not_found(e):
 
 
 @app.errorhandler(500)
-def server_error(e):
+def response_500(e):
     """ displays custom 500 html page """
     return render_template("500.html", title="Server error")
 
