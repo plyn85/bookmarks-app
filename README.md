@@ -194,18 +194,18 @@ them from the database.
 ## Features left to Implement
 
 ## Technologies used 
-- Vs code - used as my IDE for coding
--  HTML - markup text language used  
--  CSS - used for  cascading style sheets
+- [Vs code](https://code.visualstudio.com/) - used as my IDE for coding
+-  [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) - markup text language used  
+-  [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference) - used for  cascading style sheets
 - JavaScript 
-- Python - Used as the back end programming language 
--  Bootstrap - to make the website responsive and used for layout.
-- MongoDb Atlas - Was used to store the database.
-- Cloudinary - All images were deployed using the cloudinary caching server.
-- Pymongo -Used as a python api for MongoDb
-- Flask - used as a microframework 
-- Heroku  -Used to host the app 
-- Git and Github used for version control. GitHub used as a remote repository and the hosting of this site.
+- [Python](https://docs.python.org/3/) - Used as the back end programming language 
+-  [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/)- to make the website responsive and used for layout.
+- [MongoDb Atlas](https://www.mongodb.com/cloud/atlas) - Was used to store the database.
+- [Cloudinary](https://cloudinary.com/home-03-20-20?utm_expid=.VHiV_aImSdyLqXD_FUrhEg.1&utm_referrer=https%3A%2F%2Fwww.google.com%2F) - All images were deployed using the cloudinary caching server.
+- [Pymongo](https://api.mongodb.com/python/current/) -Used as a python api for MongoDb
+- [Flask](https://flask.palletsprojects.com/en/1.1.x) - used as a microframework 
+- [Heroku](www.heroku.com)  -Used to host the app 
+- [Git and Github](https://github.com/) used for version control. GitHub used as a remote repository and the hosting of this site.
 
 
 ## Features
