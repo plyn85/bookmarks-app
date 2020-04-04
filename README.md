@@ -36,18 +36,18 @@ them from the database.
 
 ## Database Schemea 
 
-## Client stories
+## User  stories
 " as u a user I would like to ____________    "
 
-- be able to view the website from device
+- be able to view the website from all devices
 
--  to see Instructions on home to use the website.
+-  to see Instructions on how to use the website.
 
 -  to be able to register an account and then login
 
--  what other people have added to the website.
+- sseeb what other people have added to the website.
 
-- be able to search what they added with ease.
+- be able to search what other users have added with ease.
 
 - to be able to start my own personal collection of bookmarks.
 
@@ -60,15 +60,7 @@ them from the database.
 - To be able to log out
 
 
-
-
-
-
-
-
-
-
-
+## Design
 
 ## Wireframe mockups
   Wireframing for this project was done the same as I like to do all my projects with a pencil and paper. Some of the forms pages would be near Identical on both mobile and larger devices so this was written on the sketch rather than sketching It out twice.
@@ -211,6 +203,55 @@ them from the database.
 - Google fonts - used to supply the fonts for this website.
 - Cloudinary - All images where deployed using the cloudinary caching server.
 - Git and Github Git used for version control. GitHub used as a remote repository and the hosting of this site.
+
+## Features
+### Register  
+ Anyone can sign up, have an account and make use of the app. All passwords encrypted using hashed.
+ 
+### Login 
+If you are an existing user your username and password will be matched with the database before you can login.
+
+### Home page
+- On the home page a user can view every other user's bookmarks. They are displayed 6 at a time and can be navigated using pagination.
+
+### Search 
+- Using the search bar on the home page a user can search through evry users bookmarks. This Is done using a keyword search.  The same feature Is available on the users own bookmarks page the only difference being that the users now only search through their own bookmarks.
+
+### Add a category
+- A user can add a category which will then be displayed In a dropdown menu on the add bookmarks page as well as the users categories page. Defensive programming ensures that the users only see their unique categories in both the drop down menu and on the categories page.
+
+### Add a bookmark
+- A user can add a bookmark which will then be displayed on the user bookmarks page as well as the users home page.
+
+### Edit a bookmark
+- The user can edit their own bookmarks. Defensive programming ensured that no users can alter another users bookmarks.
+
+### Edit a Category
+- The user can edit their own categories. Defensive programming ensured that no users can alter another users categories.
+
+### Delete a bookmark
+- The user can delete their own bookmarks. Defensive programming ensured that no users can delete another users bookmarks.
+
+### Delete a Category
+- The user can delte their own categories. Defensive programming ensured that no users can delete another users categories.
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
 
 ## Testing 
 
