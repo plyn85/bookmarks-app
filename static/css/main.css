@@ -200,32 +200,6 @@ h3 {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   padding: 2rem;
 }
-.signup-form .form-group {
-  margin-bottom: 1.3rem;
-}
-.signup-form input[type="checkbox"] {
-  margin-top: 0.25rem;
-}
-.signup-form .btn {
-  font-size: 1rem;
-  font-weight: bold;
-  min-width: 6rem;
-  outline: none !important;
-}
-.signup-form .row div:first-child {
-  padding-right: 0.7rem;
-}
-.signup-form .row div:last-child {
-  padding-left: 0.7rem;
-}
-.signup-form a {
-  color: #fceed1;
-  text-decoration: underline;
-}
-.signup-form a:hover {
-  color: #fceed1;
-  text-decoration: none;
-}
 
 /*end */
 
@@ -255,7 +229,7 @@ h3 {
   border-radius: 0.5rem;
 }
 .card-body {
-  background-color: #fde7bc;
+  background-color: #fce9c5;
 }
 
 /* media queries */
