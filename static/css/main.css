@@ -102,10 +102,8 @@ input::placeholder {
 
 /* main body */
 
-/* setting yellow background and height  here  as 100vh doesnt work well on bookmarks page*/
-
 body {
-  background-color: #ffc107;
+  background-color: #fceed1;
 }
 
 .hr-color {
@@ -121,6 +119,7 @@ body {
 /* fixed navbar  added here z-index added to put navbar on top of background Image  */
 
 .navbar-fixed-top {
+  background-color: #fceed1;
   position: fixed;
   top: 0;
   left: 0;
@@ -140,7 +139,8 @@ targeting flashed messages */
 /* buttons */
 /* targeting the reset data button and callout main text here  */
 
-.bookmarks-btn {
+.btn {
+  background-color: #7d3cff;
   border-radius: 5px;
   width: 50%;
   font-size: 1rem;
@@ -151,39 +151,8 @@ targeting flashed messages */
 
 .callout-main-text {
   font-size: 1.8rem;
-  font-weight: 900;
-  color: #000000;
-}
-
-/* wrapper for callout Image */
-.img-wrapper {
-  height: 100%;
-  width: 100%;
-}
-
-/* fixed background Image added here to take up full view height */
-.callout-container {
-  height: 100vh;
-  background: url("https://res.cloudinary.com/plyn85/image/upload/v1582221083/bookmarks-app/2x-Blog-Best-eLearning-Websites-Update-animation_emlb26.gif")
-    no-repeat fixed;
-  background-position-x: 50%;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-  position: relative;
-}
-
-/* positioning callout text here  */
-#callout-text {
-  margin-top: 0.4rem;
-  position: relative;
+  font-weight: 300;
+  color: #7d3cff;
 }
 
 /* taken an modified from tutorial at  https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-registration-form  */
@@ -194,7 +163,8 @@ targeting flashed messages */
   margin: 0 auto;
   padding: 2rem 0;
 }
-.signup-form h2,h3 {
+.signup-form h2,
+h3 {
   color: #636363;
   margin: 0 0 1rem;
   position: relative;
@@ -207,7 +177,7 @@ targeting flashed messages */
   right: 0;
 }
 .signup-form .hint-text {
-  color: #000000;
+  color: #7d3cff;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -215,7 +185,7 @@ targeting flashed messages */
   color: #999;
   border-radius: 0.25rem;
   margin-bottom: 1rem;
-  background: #f2f3f7;
+  background: #fdedcc;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   padding: 2rem;
 }
@@ -238,10 +208,11 @@ targeting flashed messages */
   padding-left: 0.7rem;
 }
 .signup-form a {
-  color: #182491;
+  color: #fceed1;
   text-decoration: underline;
 }
 .signup-form a:hover {
+  color: #fceed1;
   text-decoration: none;
 }
 

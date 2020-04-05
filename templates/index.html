@@ -5,67 +5,40 @@
 {% block content %}
 
 <!-- start callout section and row which wraps entire callout section -->
-<section class="img-wrapper callout-container row" id="callout-text">
+<section class="img-wrapper callout-container row justify-content-center">
   <!--start of col which wraps entrie callout section-->
-  <div class="col-10 col-md-8">
-    <!-- if statment to prevent logged in user seeing this -->
-    {% if not session['logged_in']%}
+  <div class="col-10 col-md-8 mt-5">
+        <!-- if statment to prevent logged in user seeing this -->
+        {% if not session['logged_in']%}
 
-    <!-- text for non logged in user -->
-    <p class="text-oswald white callout-main-text">
-      Tired of having a long list of bookmarks and no Idea of what you
-      bookmarked, when you bookmarked it and why? The answer to all your
-      problems is here organize your bookmarks with our bookmarks organiser app.
-      Please register and then login In to use the app. Or if your already
-      registered please login.
-    </p>
-    <!-- end text -->
-
-    <!-- only displays when  user is logged in gives the user instructions-->
-
-    <!-- elif statment to prevent non logged in user seeing this -->
-    {% elif session['logged_in']%}
-    <p class="text-oswald white callout-main-text">
-      You are now logged In an free to add, delete update and create your
-      bookmarks collection. Head to the my bookmarks section to start your own
-      unique collection.Please check out other users bookmarks below. Feel free
-      to click the like button on ones you find usefull.
-    </p>
-    <!-- end text -->
-
-    {% endif %}
-    <!-- end if -->
-
-    <!-- start of row which wraps both buttons  -->
+        <!-- text for non logged in user -->
+        <p class="text-oswald callout-main-text mt-5">
+          Tired of having a long list of bookmarks and no Idea of what you
+          bookmarked, when you bookmarked it and why? The answer to all your
+          problems is here organize your bookmarks with our bookmarks organiser
+          app. Please register and then login In to use the app. Or if your
+          already registered please login.
+        </p>
+        <!-- end text -->
+        <!-- start of row which wraps both buttons  -->
     <div class="row justify-content-center">
-      <!--start of if statement button is only displayed if no user ia logged in -->
-      {% if not session['logged_in']%}
-
       <!-- button -->
       <a
         href="{{url_for('register')}}"
-        class="bookmarks-btn  btn-primary  col-md-3  text-oswald text-center white p-2"
+        class="btn col-md-3 text-oswald text-center white p-2"
       >
         Register here</a
       >
       <!-- end button -->
-
-      <!-- elif statment button only displays if user is logged in -->
-      {% elif session['logged_in']%}
-
-      <!-- button -->
-      <a
-        href="{{url_for('users')}}"
-        class="bookmarks-btn  btn-primary  col-md-3  text-oswald text-center white p-2"
-      >
-        My Bookmarks</a
-      >
-      <!-- end button -->
-
-      {% endif %}
-      <!-- end of if statement -->
     </div>
-    <!-- end of row  which wraps callout both buttons-->
+    <!-- end row -->
+      </div>
+    <!-- end col -->
+  
+    
+    {%endif%}
+    <!-- endif -->
+    <!-- end of row  which wraps callout button-->
   </div>
   <!-- end of col which wraps callout section -->
 </section>
@@ -92,7 +65,7 @@
   <!-- end row -->
 
   <!-- row wraps search bar -->
-  <div class="row  mt-2">
+  <div class="row mt-2">
     <!-- col that  wraps search bar  -->
     <div class="col text-center">
       <!-- search bar form activates search results route located in app.py -->

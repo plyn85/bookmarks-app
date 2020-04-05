@@ -2,10 +2,10 @@
 {% extends 'base.html' %} {% block content %}
 <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
 <!-- add category  form  section-->
-<section class="yellow-background background-height">
+<section>
   <div class="signup-form mt-5">
     <!-- action form submit will use add category  route from app.py -->
-    <form action="{{url_for('insert_category')}}" method="post">
+    <form action="{{url_for('insert_category')}}" method="POST">
       <!-- form header -->
       <h2 class="text-center text-barlow">Add Category</h2>
       <!-- end header -->
@@ -37,12 +37,12 @@
       <!-- end text -->
 
       <!-- start form group -->
-      <div class="form-group">
+      <div class="form-group text-center">
         <!-- user submits the form here adding all the infomation a bootstrap card which displays in 
           both user  an index html pages -->
 
         <!-- button -->
-        <button type="submit" class="btn btn-primary btn-block text-barlow">
+        <button type="submit" class="btn white text-barlow">
           Add Category
         </button>
         <!-- end button -->

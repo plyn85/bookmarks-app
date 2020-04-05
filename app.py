@@ -360,7 +360,7 @@ def search_results():
     """ Query from the search bar on the index  page taken here an matched with the results
         of the text search qurey from the data base if the qurey is empty user is redirected back to index page"""
     if request.method == "POST":
-      # get search bar post
+        # get search bar post
         query = request.form.get('search_bar')
         # text search on the bookmarks collection
         results = bookmarks_collection.find({'$text': {'$search': query}})
@@ -386,8 +386,8 @@ def user_categories():
         return render_template('newuser_cat.html')
     return render_template('categories.html', categories=categories, title="Categories")
 
-
 # ----- Error handlers ----- #
+
 
 @app.errorhandler(404)
 def not_found(e):
