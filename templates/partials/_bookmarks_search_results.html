@@ -1,0 +1,106 @@
+<!-- col wraps entire search results section -->
+<div class="col-lg-6">
+  <!--each  result are displayed in bootstrap card -->
+  <div class="card">
+    <!-- card body -->
+    <div class="card-body text-center">
+      <!-- card title displays the category name  -->
+      <h2 class="card-title text-oswald uppercase">
+        {{r.category_name| truncate(30, killwords=True) }}
+      </h2>
+      <!-- end card title -->
+      <hr class="hr-color" />
+
+      <!-- paragraph displays bookmark url-->
+      <p class="card-text text-barlow">
+        <a href="{{r.add_bookmark_url}}" target="_blank"
+          >{{r.add_bookmark_url| truncate(30, killwords=True) }}</a
+        >
+      </p>
+      <!-- end paragraph -->
+
+      <!--card text displays bookmarks description -->
+      <p class="card-text">
+        {{r.bookmark_description |truncate (50, killwords=True) }}
+      </p>
+      <!-- end paragarph -->
+
+      <!-- paragraph displays the user is was added by and the date on which it was added -->
+      <p class="card-text text-barlow">
+        Added by
+        <mark class="text-dark">{{r.username}}</mark> on Added on
+        {{r.last_modified}}
+      </p>
+      <!-- end paragraph -->
+      <!-- row wraps the like button-->
+      <div class="row mb-3">
+        <!-- if statment will only allow the like button to be seen by other users so a user cannot like there own bookmark-->
+        {%if r.username != session.username%}
+
+        <!-- like button link which activates the upvote route in app.py an will add a like to the users bookmark-->
+        <a
+          href="{{ url_for('upvote', book_id=r._id) }}"
+          class="upvote col like-btn"
+          id="test"
+        >
+          <i class="fas fa-thumbs-up upvote purple"></i> Like</a
+        >
+        <!--end like button link  -->
+        {%endif%}
+        <!-- end of if statement -->
+      </div>
+      <!-- end row -->
+
+      <!-- row wraps the like button text -->
+      <div class="row">
+        <!-- paragraph wraps the like button text -->
+        <p class="col card-text text-barlow">
+          <!-- If the amount of likes/ upvotes a users bookmark gets is one user is displayed for correct grammar-->
+          Liked by {% if r.upvotes == 1%}
+
+          <!-- here the number of upvotes/ likes recived will be displayed on the bookmark -->
+          <span class="purple mx-2">{{r.upvotes}}</span>Other user
+
+          <!-- If the amount of likes/ upvotes a users bookmark gets is anything but 1 users Is displayed for correct grammar-->
+          {%else%}
+
+          <!-- here the number of upvotes/ likes recived will be displayed on the bookmark -->
+          <span class="purple mx-2">{{r.upvotes}}</span>Other users {%endif%}
+          <!-- end if statement -->
+        </p>
+        <!-- end paragraph -->
+      </div>
+      <!-- end row -->
+
+      <!-- defensive desgin added here delete an edit buttons will only be available on the users own bookmarks -->
+      {%if r.username == session['username']%}
+      <!--  delete button here will bring user to page to confirm delete to prevent accidentlly delete a bookmark-->
+      <!-- row wraps both buttons -->
+      <div class="row justify-content-around">
+        <!-- delete button activates delete_bookmark route located in app.py-->
+        <a
+          href="{{url_for('delete_bookmark', book_id=r._id)}}"
+          class="btn white text-barlow mt-2 col-4"
+        >
+          Delete
+        </a>
+        <!--end delete  button -->
+
+        <!-- edit button -->
+        <a
+          href="{{url_for('edit_bookmark', book_id=r._id)}}"
+          class="btn white text-barlow mt-2 col-4"
+        >
+          Edit
+        </a>
+        <!-- end edit button -->
+      </div>
+      <!-- end row -->
+      {%endif%}
+      <!-- end of  defensive desgin  if statement  -->
+    </div>
+    <!-- end card body -->
+  </div>
+  <!-- end card-->
+</div>
+<!-- end col -->
