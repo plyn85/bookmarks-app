@@ -113,7 +113,7 @@ def register():
             # Inserting the data to the users collection In the database
             users_collection.insert(
                 {'name': request.form.get('username'), 'password': hashpass})
-            session.get['username'] = request.form.get('username')
+            session['username'] = request.form.get('username')
             flash(f'You are now regsitered please login!', 'success')
             return redirect(url_for('login'))
         # If the insertion of the data Is not successful a warning Is issued
