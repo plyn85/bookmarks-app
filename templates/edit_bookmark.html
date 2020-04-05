@@ -20,7 +20,7 @@
     >
       <!--form header -->
       <h2 class="text-center text-barlow">
-        Edit bookmark and description below
+        Edit bookmark
       </h2>
       <!-- end header -->
 
@@ -37,17 +37,15 @@
         />
       </div>
       <!-- end form group -->
-    
 
       <!-- instructions paragraph -->
       <h3 class="text-barlow">
-       Added on {{book.last_modified}}
+        Added on {{book.last_modified}}
       </h3>
       <!-- end paragraph -->
 
-     <!-- user will add a category here categories in separate non rendered html file -->
-     {%include "partials/_list_categories.html"%}
-
+      <!-- user will add a category here categories in separate non rendered html file -->
+      {%include "partials/_list_categories.html"%}
 
       <!-- start of form group that displays bookmark description -->
       <div class="form-group">
@@ -64,10 +62,10 @@
       <!-- end form group -->
 
       <!-- start of form group that wraps confirm delete button -->
-      <div class="form-group">
+      <div class="form-group text-center">
         <!-- confirm delete button -->
-        <button type="submit" class="btn btn-primary btn-block text-barlow">
-          Edit bookmark
+        <button type="submit" class="btn white text-barlow">
+          Confirm
         </button>
         <!-- confirm delete button -->
       </div>

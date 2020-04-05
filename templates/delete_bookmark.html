@@ -38,19 +38,19 @@
       </div>
       <!-- end form group -->
 
-    <!--start of input form group -->
-    <div class="form-group">
-      <!-- input displays url of the bookmark delete button was clicked on  -->
-      <input
-        id="category-name"
-        type="text"
-        class="form-control"
-        name="category_name"
-        value="{{book.category_name| truncate(30, killwords=True) }}"
-        required="required"
-      />
-    </div>
-    <!-- end form group -->
+      <!--start of input form group -->
+      <div class="form-group">
+        <!-- input displays url of the bookmark delete button was clicked on  -->
+        <input
+          id="category-name"
+          type="text"
+          class="form-control"
+          name="category_name"
+          value="{{book.category_name| truncate(30, killwords=True) }}"
+          required="required"
+        />
+      </div>
+      <!-- end form group -->
       <!-- start of form group that displays bookmark description -->
       <div class="form-group">
         <!-- textarea thta displays bookmarks description -->
@@ -80,10 +80,10 @@
       <!-- end of row -->
 
       <!-- start of form group that wraps confirm delete button -->
-      <div class="form-group mt-2">
+      <div class="form-group mt-2 text-center">
         <!-- confirm delete button -->
-        <button type="submit" class="btn btn-primary btn-block text-barlow">
-          Confirm delete
+        <button type="submit" class="btn white text-barlow">
+          Confirm
         </button>
         <!-- confirm delete button -->
       </div>

@@ -27,16 +27,19 @@
           <hr class="hr-color" />
 
           <!-- card text paragraph -->
-          <p class="card-text text-barlow">
+          <p class="card-text text-barlow col">
             <!-- url thats being added by the user in add bookmarks is displayed here -->
-            <a href="{{book.add_bookmark_url}}" target="_blank"
+            <a
+              href="{{book.add_bookmark_url}}"
+              target="_blank"
+              id="home-page-cards-link"
               >{{book.add_bookmark_url| truncate(30, killwords=True) }}</a
             >
           </p>
           <!-- end card text paragraph -->
 
           <!-- card text parargraph -->
-          <p class="card-text">
+          <p class="card-text col">
             <!-- bookmark description added by the user in add bookmarks displayed here -->
             {{book.bookmark_description |truncate (50, killwords=True) }}
           </p>
@@ -77,10 +80,10 @@
             <!-- like button link which activates the upvote route in app.py an will add a like to the users bookmark-->
             <a
               href="{{ url_for('upvote', book_id=book._id) }}"
-              class="upvote col like-btn"
+              class="upvote col like-btn purple"
               id="test"
             >
-              <i class="fas fa-thumbs-up upvote"></i> Like</a
+              <i class="fas fa-thumbs-up upvote purple"></i> Like</a
             >
             <!--end like button link  -->
             {%endif%}
@@ -96,13 +99,13 @@
               Liked by {% if book.upvotes == 1%}
 
               <!-- here the number of upvotes/ likes recived will be displayed on the bookmark -->
-              <span class="text-primary mx-2">{{book.upvotes}}</span>Other user
+              <span class="purple mx-2">{{book.upvotes}}</span>Other user
 
               <!-- If the amount of likes/ upvotes a users bookmark gets is anything but 1 users Is displayed for correct grammar-->
               {%else%}
 
               <!-- here the number of upvotes/ likes recived will be displayed on the bookmark -->
-              <span class="text-primary mx-2">{{book.upvotes}}</span>Other users
+              <span class="purple mx-2">{{book.upvotes}}</span>Other users
               {%endif%}
               <!-- end if statement -->
             </p>
@@ -113,24 +116,27 @@
           <!--if statement so delete and edit  button can only be seen on users own bookmarks 
             defensive design so only the user own owns the bookmark can delete or edit  it -->
           {%if book.username == session['username']%}
+          <!-- row wraps both buttons -->
+          <div class="row justify-content-around">
+            <!-- delete button activates delete_bookmark route located in app.py-->
+            <a
+              href="{{url_for('delete_bookmark', book_id=book._id)}}"
+              class="btn white text-barlow mt-2 col-4"
+            >
+              Delete
+            </a>
+            <!--end delete  button -->
 
-          <!-- delete button activates delete_bookmark route located in app.py-->
-          <a
-            href="{{url_for('delete_bookmark', book_id=book._id)}}"
-            class="btn btn-primary btn-sm mt-2"
-          >
-            Delete
-          </a>
-          <!--end delete  button -->
-
-          <!-- edit button -->
-          <a
-            href="{{url_for('edit_bookmark', book_id=book._id)}}"
-            class="btn btn-primary btn-sm mt-2"
-          >
-            Edit
-          </a>
-          <!-- end edit button -->
+            <!-- edit button -->
+            <a
+              href="{{url_for('edit_bookmark', book_id=book._id)}}"
+              class="btn white text-barlow mt-2 col-4"
+            >
+              Edit
+            </a>
+            <!-- end edit button -->
+          </div>
+          <!-- end row -->
           {%endif%}
           <!-- end if statement -->
         </div>
@@ -161,7 +167,7 @@
     {% if args.p_offset > 0 %}
 
     <!-- Prev page link grabs the prev page from the args set in both index an user routes -->
-    <a href="{{ args.prev_url }}" class="upvote text-center col-6"
+    <a href="{{ args.prev_url }}" class="upvote purple text-center col-6"
       ><i class="fas fa-hand-point-left hand-point"></i> Prev</a
     >
     <!--end link -->
@@ -172,7 +178,7 @@
     {% if args.p_offset + args.p_limit < args.num_results %}
 
     <!-- Next  page link grabs the prev page from the args set in both index an user routes -->
-    <a href="{{ args.next_url }}" class="upvote text-center col-6"
+    <a href="{{ args.next_url }}" class="upvote purple text-center col-6"
       >Next<i class="fas fa-hand-point-right hand-point"></i>
     </a>
     <!--end link -->
