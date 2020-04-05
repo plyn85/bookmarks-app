@@ -35,7 +35,7 @@ date = datetime.utcnow()
 # ----- index, index page search,  login, register, and log out routes ----- #
 
 
-@app.route('/index', methods=['GET'])
+@app.route('/index')
 @app.route('/')
 def index():
     """ Pagintion with thanks to Miroslav Svec, DCD Channel lead.
@@ -49,8 +49,8 @@ def index():
     p_limit = int(request.args.get('limit', 6))
     p_offset = int(request.args.get('offset', 0))
     # getting bookmarks collection orderding by votes and adding pagination
-    bookmarks = bookmarks_collection.find().sort([
-        ("upvotes", -1), ("_id", -1)]).limit(p_limit).skip(p_offset)
+    bookmarks = bookmarks_collection.find().sort(
+        "upvotes", -1).limit(p_limit).skip(p_offset)
     # args added here to be used on pagintion page
     args = {
         "p_limit": p_limit,

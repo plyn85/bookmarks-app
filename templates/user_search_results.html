@@ -47,21 +47,48 @@
         </p>
         <!-- end paragraph -->
 
-        <!--  delete button here will bring user to page to confirm delete to prevent accidentlly delete a bookmark-->
-        <a
-          href="{{url_for('delete_bookmark', book_id=r._id)}}"
-          class="btn btn-primary"
-          >Delete</a
-        >
-        <!-- end button -->
+        <!-- start row  -->
+        <div class="row">
+          <!-- paragraph wraps the like button text -->
+          <p class="col card-text text-barlow">
+            <!-- If the amount of likes/ upvotes a users bookmark gets is one user is displayed for correct grammar-->
+            Liked by {% if r.upvotes == 1%}
 
-        <!-- edit  button here will bring user to page to confirm delete to prevent accidentlly delete a bookmark-->
-        <a
-          href="{{url_for('edit_bookmark', book_id=r._id)}}"
-          class="btn btn-primary"
-          >Edit</a
-        >
-        <!-- end button -->
+            <!-- here the number of upvotes/ likes recived will be displayed on the bookmark -->
+            <span class="purple mx-2">{{r.upvotes}}</span>Other user
+
+            <!-- If the amount of likes/ upvotes a users bookmark gets is anything but 1 users Is displayed for correct grammar-->
+            {%else%}
+
+            <!-- here the number of upvotes/ likes recived will be displayed on the bookmark -->
+            <span class="purple mx-2">{{r.upvotes}}</span>Other users {%endif%}
+            <!-- end if statement -->
+          </p>
+          <!-- end paragraph -->
+        </div>
+        <!-- end row -->
+
+        <!-- row wraps both buttons -->
+        <div class="row justify-content-around">
+          <!-- delete button activates delete_bookmark route located in app.py-->
+          <a
+            href="{{url_for('delete_bookmark', book_id=r._id)}}"
+            class="btn white text-barlow mt-2 col-4"
+          >
+            Delete
+          </a>
+          <!--end delete  button -->
+
+          <!-- edit button -->
+          <a
+            href="{{url_for('edit_bookmark', book_id=r._id)}}"
+            class="btn white text-barlow mt-2 col-4"
+          >
+            Edit
+          </a>
+          <!-- end edit button -->
+        </div>
+        <!-- end row -->
       </div>
       <!-- end card body -->
     </div>
