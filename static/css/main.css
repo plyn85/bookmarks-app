@@ -135,6 +135,18 @@ targeting flashed messages */
 }
 
 /* buttons */
+/* adding border to color here to make visable */
+.custom-toggler.navbar-toggler {
+  border-color: #7d3cff;
+}
+
+/* adding navbar hambuger toggler here  */
+/* .navbar .navbar-toggler-icon {
+  background-image: url("https://mdbootstrap.com/img/svg/hamburger6.svg?color=000");
+  font-size: 1.5rem;
+  border: 1px solid #7d3cff;
+} */
+
 /* targeting all buttons but the card buttons here  */
 .btn {
   background-color: #7d3cff;
@@ -164,7 +176,7 @@ targeting flashed messages */
 }
 .signup-form h2,
 h3 {
-  color: #636363;
+  color: #000000;
   margin: 0 0 1rem;
   position: relative;
   text-align: center;
