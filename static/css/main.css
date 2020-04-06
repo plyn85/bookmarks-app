@@ -98,16 +98,14 @@ body {
 .hr-color {
   border: 0.5px solid#7d3cff;
 }
-footer {
-  background-color: #7d3cff;
-}
+
 /* navbar */
 /* fixed navbar  added here z-index added to put navbar on top of background Image  */
 .nav-link {
-  color: #7d3cff;
+  color: #ffffff;
 }
 .navbar-fixed-top {
-  background-color: #fceed1;
+  background-color:#7d3cff;
   position: fixed;
   top: 0;
   left: 0;
@@ -127,7 +125,7 @@ targeting flashed messages */
 /* buttons */
 /* adding border to color here to make visable */
 .custom-toggler.navbar-toggler {
-  border-color: #7d3cff;
+  border-color: #000000;
 }
 
 /* adding navbar hambuger toggler here  */
@@ -202,6 +200,12 @@ h3 {
 }
 .card-body {
   background-color: #fceed1;
+}
+/* footer */
+
+/* setting footer color */
+footer {
+  background-color: #7d3cff;
 }
 
 /* media queries */
