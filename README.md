@@ -16,11 +16,7 @@ A live demo can be found [here]
 ![Desktop Demo]("Desktop Demo")
 
 ## UX
-
-This website was designed with mainly the colors blue yellow and white.
-The intention to be easy on the eye for the user and myself. 
-I wanted to create an app for myself and other users where I can easily store, 
-edit, delete and update bookmarks as well as assign each bookmark to a category.  
+This project Is part of the Code Institute full stack developer course. It focuses on the data centric development module. The main objective is to create a website that uses the CRUD operations of Create,Read,Update, and the delete. With this In mind I wanted to create an app for myself and other users where I Implemented these CRUD operations. My Idea came from a very real need. Over the last year while learning to code I found myself almost everyday bookmarking countless useful websites, stack overflow links, tutorials, as well as links to something I might buy later on amazon! My bookmarks have become extremely bloated and I find it really difficult to search through them. So I decided why not try and build my own bookmark manager. If something Like this could be useful for myself. I hope It could also be useful for other users.   
 I began using this app for myself as soon as the very basic functionality was set up. 
 I used it to store useful links for building the app which gave me a good feel for what 
 worked and what did not. What was a good user experience and what was not.
@@ -61,6 +57,13 @@ them from the database.
 
 
 ## Design
+
+The design for this website was done using bootstrap for layout and although I started out with blue and yellow as my primary colors of choice the developer tools told this was not a good choice as there was a contrast completely different using just to colors which I got from this [Hook agency](https://hookagency.com/website-color-schemes/]) website. At the time of writing this it was number two on the list on the home page which contains website color palette Ideas. The colors used where  <mark> #fceed1</mark> which Is listed as a very light shade of yellow but Is referred to as tan on the  [Hook egency](https://hookagency.com/website-color-schemes/]) website and <mark>#7d3cff</mark>  which Is described as a very light shade of purplish blue. I felt the two complement each other well and the developer contrast tools were happy!
+ 
+
+
+
+
 
 ## Wireframe mockups
   Wireframing for this project was done the same as I like to do all my projects with a pencil and paper. Some of the forms pages would be near Identical on both mobile and larger devices so this was written on the sketch rather than sketching It out twice.
@@ -187,9 +190,6 @@ them from the database.
 </details>
 
 
-
-
-## Features
 
 ## Features left to Implement
 

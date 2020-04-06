@@ -368,8 +368,8 @@ def search_results():
         if query == "":
             flash(
                 f'This those not match any Bookmarks! please change your search text and try again', 'danger')
-            return redirect(url_for('index'))
-        return render_template('search_results.html', results=results, title="Search result")
+            return redirect(url_for('users'))
+        return render_template('search_results.html', results=results, title="User Search result")
 
 
 @app.route('/user_categories')
