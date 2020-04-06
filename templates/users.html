@@ -28,7 +28,7 @@
     <!-- col that  wraps search bar  -->
     <div class="col text-center">
       <!-- search bar form activates search results route located in app.py -->
-      <form action="{{ url_for('user_search_results') }}" method="POST">
+      <form action="{{ url_for('user_search_results') }}" method="post">
         <!-- row wraps search bar input  -->
         <div class="row justify-content-center">
           <!-- input search text goes here  -->
@@ -58,5 +58,5 @@
 <!-- end  section -->
 
 <!-- pagination html page added here  -->
-{%include 'partials/_pagination.html'%} {% endblock content %}
+{%include 'partials/_bookmarks.html'%} {% endblock content %}
 <!-- end block content -->
