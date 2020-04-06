@@ -2,7 +2,7 @@
 import os
 import math
 from flask import Flask, render_template, redirect, request, url_for, session,\
-    flash, abort
+    flash, abort, json
 from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 import bcrypt
@@ -255,12 +255,13 @@ def update_category(cat_id):
 
 @app.route('/upvote/<book_id>', methods=["GET", "POST"])
 def upvote(book_id):
-    """ Upvote route add likes to user bookmarks on index and pagination pages"""
+    """ Upvote route add likes to bookmarks on index and search pages"""
     # finds upvotes In bookmarks collection and adds one when button is clicked
-    bookmarks_collection.find_one_and_update(
-        {'_id': ObjectId(book_id)},
-        {'$inc': {'upvotes': 1}}
-    )
+    if request.method == "POST":
+        bookmarks_collection.find_one_and_update(
+            {'_id': ObjectId(book_id)},
+            {'$inc': {'upvotes': 1}}
+        )
 
     return redirect(url_for('index',  book_id=book_id))
 

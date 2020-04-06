@@ -168,7 +168,6 @@ targeting flashed messages */
 
 /* taken an modified from tutorial at  https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-registration-form  */
 /* signup/registration/logout/login/bookmarks was reused on all these pages */
-
 .signup-form {
   width: 34rem;
   margin: 0 auto;
@@ -240,7 +239,10 @@ h3 {
   .callout-main-text {
     font-size: 1.4rem;
   }
-
+  /* setting smaller btn font for mobile */
+  .btn {
+    font-size: 0.7rem;
+  }
   .signup-form {
     width: 18rem;
   }

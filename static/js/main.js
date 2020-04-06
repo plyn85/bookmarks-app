@@ -1,12 +1,16 @@
-// document.addEventListener("DOMContentLoaded", function() {
-//   let likeBtn = document.getElementsByClassName("like-btn");
-//   callOutSection = document.getElementById("callout-text");
+// document.addEventListener("DOMContentLoaded", function () {
+//   //   function get_current_url() {
+//   //     var url = window.location.href;
+//   //     return url;
+//   //   }
 
-//   for (let i = 0; i < likeBtn.length; i++) {
-//     likeBtn[i].addEventListener("click", function(event) {
-//       if (confirm("Is this working?")) {
+//   let likeBtnForm = document.getElementsByClassName("like-btn-from");
+
+//   for (let i = 0; i < likeBtnForm.length; i++) {
+//     likeBtnForm[i].addEventListener("submit", function (event) {
+//       {
 //         event.preventDefault();
-//         callOutSection.classList.add("hide-content");
+//         window.location = window.location.href;
 //       }
 //     });
 //   }

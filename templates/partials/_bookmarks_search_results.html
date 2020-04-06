@@ -13,7 +13,7 @@
 
       <!-- paragraph displays bookmark url-->
       <p class="card-text text-barlow">
-        <a href="{{r.add_bookmark_url}}" target="_blank"
+        <a href="{{r.add_bookmark_url}}" target="_blank" class="purple"
           >{{r.add_bookmark_url| truncate(30, killwords=True) }}</a
         >
       </p>
@@ -32,24 +32,6 @@
         {{r.last_modified}}
       </p>
       <!-- end paragraph -->
-      <!-- row wraps the like button-->
-      <div class="row mb-3">
-        <!-- if statment will only allow the like button to be seen by other users so a user cannot like there own bookmark-->
-        {%if r.username != session.username%}
-
-        <!-- like button link which activates the upvote route in app.py an will add a like to the users bookmark-->
-        <a
-          href="{{ url_for('upvote', book_id=r._id) }}"
-          class="upvote col like-btn"
-          id="test"
-        >
-          <i class="fas fa-thumbs-up upvote purple"></i> Like</a
-        >
-        <!--end like button link  -->
-        {%endif%}
-        <!-- end of if statement -->
-      </div>
-      <!-- end row -->
 
       <!-- row wraps the like button text -->
       <div class="row">
@@ -71,6 +53,25 @@
         <!-- end paragraph -->
       </div>
       <!-- end row -->
+
+      <!-- if statment will only allow the like button to be seen by other users so a user cannot like there own bookmark-->
+      {%if r.username != session.username%}
+
+      <!-- form  wraps the like button-->
+      <form
+        class="row mt-2 justify-content-center like-btn-form"
+        action="{{ url_for('upvote', book_id=r._id) }}"
+        method="post"
+      >
+        <!-- like button link which activates the upvote route in app.py an will add a like to the users bookmark-->
+        <button type="submit" class="btn white text-barlow col-4">
+          Like
+        </button>
+        <!--end like button link  -->
+        {%endif%}
+        <!-- end of if statement -->
+      </form>
+      <!-- end form  -->
 
       <!-- defensive desgin added here delete an edit buttons will only be available on the users own bookmarks -->
       {%if r.username == session['username']%}

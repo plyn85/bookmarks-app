@@ -72,24 +72,6 @@
 
           <!-- like button/ upvote section of bookmark section -->
 
-          <!-- row wraps the like button-->
-          <div class="row mb-3">
-            <!-- if statment will only allow the like button to be seen by other users so a user cannot like there own bookmark-->
-            {%if book.username != session.username%}
-
-            <!-- like button link which activates the upvote route in app.py an will add a like to the users bookmark-->
-            <a
-              href="{{ url_for('upvote', book_id=book._id) }}"
-              class="upvote col like-btn purple"
-            >
-              <i class="fas fa-thumbs-up upvote"></i> Like</a
-            >
-            <!--end like button link  -->
-            {%endif%}
-            <!-- end of if statement -->
-          </div>
-          <!-- end row -->
-
           <!-- row wraps the like button text -->
           <div class="row">
             <!-- paragraph wraps the like button text -->
@@ -110,6 +92,25 @@
             </p>
             <!-- end paragraph -->
           </div>
+          <!-- end row -->
+
+          <!-- form  wraps the like button-->
+          <form
+            class="row mt-3 justify-content-center like-btn-from"
+            action="{{ url_for('upvote', book_id=book._id) }}"
+            method="post"
+          >
+            <!-- if statment will only allow the like button to be seen by other users so a user cannot like there own bookmark-->
+            {%if book.username != session.username%}
+
+            <!-- like button link which activates the upvote route in app.py an will add a like to the users bookmark-->
+            <button type="submit" class="btn white text-barlow col-4">
+              Like
+            </button>
+            <!--end like button link  -->
+            {%endif%}
+            <!-- end of if statement -->
+          </form>
           <!-- end row -->
 
           <!--if statement so delete and edit  button can only be seen on users own bookmarks 
