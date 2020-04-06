@@ -98,7 +98,9 @@ body {
 .hr-color {
   border: 0.5px solid#7d3cff;
 }
-
+footer {
+  background-color: #7d3cff;
+}
 /* navbar */
 /* fixed navbar  added here z-index added to put navbar on top of background Image  */
 .nav-link {

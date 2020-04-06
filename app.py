@@ -196,10 +196,6 @@ def insert_category():
     return redirect(url_for('user_categories'))
 
 
-@app.route('/add_url')
-def add_url():
-    return render_template('add_url.html')
-
 # ----- Update ----- #
 
 
