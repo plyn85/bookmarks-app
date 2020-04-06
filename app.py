@@ -1,7 +1,8 @@
 # Imports
 import os
 import math
-from flask import Flask, render_template, redirect, request, url_for, session, flash, abort
+from flask import Flask, render_template, redirect, request, url_for, session,\
+    flash, abort
 from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 import bcrypt
@@ -61,7 +62,8 @@ def index():
 
     }
 
-    return render_template('index.html', categories=categories, bookmarks=bookmarks, users=users, args=args)
+    return render_template('index.html', categories=categories,
+                           bookmarks=bookmarks, users=users, args=args)
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -97,9 +99,10 @@ def login():
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     """First we find the existing user in user in the data base
-    If it the user does not exist In the database we insert the user to the database
-    along with there encripted password. If the session username Is the same as the username enetered to the form the user is redirect to the login page
-    taken an altered from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE"""
+    If it the user does not exist In the database we insert the user to the 
+    database along with there encripted password. If the session username 
+    Is the same as the username enetered to the form the user is redirect to the 
+    login page taken an altered from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE"""
 
     if request.method == 'POST':
         # getting existing user from the database
@@ -143,13 +146,14 @@ def add_bookmark():
     """ add bookmark page render when add category link In navbar clicked"""
     # find categories collection In database
     categories = categories_collection.find()
-    return render_template('add_bookmark.html', categories=categories, title="Add bookmark")
+    return render_template('add_bookmark.html',
+                           categories=categories, title="Add bookmark")
 
 
 @app.route('/insert_bookmark',  methods=["GET", "POST"])
 def insert_bookmark():
-    """ route activated when add bookmark submit button post request recived from form in
-        add bookmark page user then redirected to users page"""
+    """ route activated when add bookmark submit button post request recived 
+    from form in add bookmark page user then redirected to users page"""
     # date formated by day, month, date
     format_date = date.strftime("%a %B %d")
     # inserting data to bookmarks collection In the database
@@ -174,8 +178,8 @@ def add_category():
 
 @app.route('/insert_category', methods=["POST", "GET"])
 def insert_category():
-    """ route activated when add category submit button post request recived from form in
-        add category page user then redirected to user categories page"""
+    """ route activated when add category submit button post request recived 
+    from form in add category page user then redirected to user categories page"""
     # date formated by day, month, date
     format_date = date.strftime("%a %B %d")
     # user alert If succesfully added category
@@ -206,8 +210,9 @@ def edit_bookmark(book_id):
 
 @app.route('/update_bookmark/<book_id>', methods=["POST"])
 def update_bookmark(book_id):
-    """Route updates bookmarks collection for the user in the database after the
-        Edit bookmark form Is submited user Is then redirect back to user bookmarks page"""
+    """Route updates bookmarks collection for the user in the database 
+    after the Edit bookmark form Is submited user Is then redirect back to 
+    user bookmarks page"""
     # date formated by day, month, date
     format_date = date.strftime("%a %B %d")
     # updating the bookmarks collection
@@ -236,8 +241,9 @@ def edit_category(cat_id):
 
 @app.route('/update_category/<cat_id>', methods=['POST'])
 def update_category(cat_id):
-    """Route updates category collection for the user in the database after the
-        Edit category form Is submited user Is then redirect back to user categories page"""
+    """Route updates category collection for the user in the database 
+    after the Edit category form Is submited user Is then redirect back to 
+    user categories page"""
     # updating category_name an the categories username in the database
     categories_collection.update(
         {'_id': ObjectId(cat_id)},
@@ -263,8 +269,8 @@ def upvote(book_id):
 
 @app.route('/delete_bookmark/<book_id>', methods=["POST", "GET"])
 def delete_bookmark(book_id):
-    """ route acitvated when delete bookmark button is clicked entire bookmark is sent to
-    delete bookmark form to confirm the bookmark delete  """
+    """ route acitvated when delete bookmark button is clicked entire 
+    bookmark is sent to delete bookmark form to confirm the bookmark delete  """
     # getting categories an bookmarks Id from data base
     all_categories = categories_collection.find()
     the_bookmark = bookmarks_collection.find_one_or_404(
@@ -339,8 +345,9 @@ def users():
 
 @app.route('/user_search_results', methods=['POST', 'GET'])
 def user_search_results():
-    """ Query from the search bar on the users page taken here an matched with the results
-         of the text search qurey from the data base if the qurey is empty user is redirected back to users page"""
+    """ Query from the search bar on the users page taken here an matched 
+    with the results of the text search qurey from the data base if the qurey 
+    is empty user is redirected back to users page"""
 
     if request.method == "POST":
         # get search bar post
@@ -357,8 +364,8 @@ def user_search_results():
 
 @app.route('/search_results', methods=['POST', 'GET'])
 def search_results():
-    """ Query from the search bar on the index  page taken here an matched with the results
-        of the text search qurey from the data base if the qurey is empty user is redirected back to index page"""
+    """ Query from the search bar on the index  page taken here an matched 
+    with the results of the text search qurey from the data base if the qurey is empty user is redirected back to index page"""
     if request.method == "POST":
         # get search bar post
         query = request.form.get('search_bar')
@@ -384,7 +391,8 @@ def user_categories():
     # if the user has no categories
     if cat_name is None:
         return render_template('newuser_cat.html')
-    return render_template('categories.html', categories=categories, title="Categories")
+    return render_template('categories.html',
+                           categories=categories, title="Categories")
 
 # ----- Error handlers ----- #
 

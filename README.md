@@ -58,7 +58,11 @@ them from the database.
 
 ## Design
 
-The design for this website was done using bootstrap for layout and although I started out with blue and yellow as my primary colors of choice the developer tools told this was not a good choice as there was a contrast completely different using just to colors which I got from this [Hook agency](https://hookagency.com/website-color-schemes/]) website. At the time of writing this it was number two on the list on the home page which contains website color palette Ideas. The colors used where  <mark> #fceed1</mark> which Is listed as a very light shade of yellow but Is referred to as tan on the  [Hook egency](https://hookagency.com/website-color-schemes/]) website and <mark>#7d3cff</mark>  which Is described as a very light shade of purplish blue. I felt the two complement each other well and the developer contrast tools were happy!
+- Layout - The design for this website was done using bootstrap for layout. 
+- Colors -  although I started out with blue and yellow as my primary colors of choice the developer tools told this was not a good choice. There was a contrast warning. This lead me to go for something completely different using two colors which I got from this [Hook agency](https://hookagency.com/website-color-schemes/]) website. At the time of writing this it was number two on the list on the home page which contains website color palette Ideas. The colors used where  <mark> #fceed1</mark> which Is listed as a very light shade of yellow but Is referred to as tan on the  [Hook egency](https://hookagency.com/website-color-schemes/]) website and <mark>#7d3cff</mark>  which Is described as a very light shade of purplish blue. I felt the two complement each other well and the developer contrast tools were happy!
+
+- Fonts - The fonts used where taken from google fonts.I used mainly Oswald for larger texts an barlow semi condescended for smaller text I like this combination and i think it goes well together 
+
  
 
 
