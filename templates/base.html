@@ -3,6 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- taken from a tutorial found at https://www.youtube.com/watch?v=QnDWIZuWYW0 -->
+   <!-- If no title has been passed in just bookmarks app will be displayed other wise bookamrks app plus the passed in title will be -->
+   
+   <!-- start if statment -->
+   {%if title%} 
+   <!-- title -->
+   <title>bookmarks-{{title}}</title>
+   <!-- start else block -->
+   {%else%}
+   <!-- title -->
+   <title>bookmarks-app</title>
+   {%endif%}
+    <!-- end if -->
+
+  <!-- adding favicon -->
+    <link
+    rel="shortcut icon"
+    type="image/png"
+    href="https://res.cloudinary.com/plyn85/image/upload/c_scale,w_150/v1586212008/bookmarks-app/magazine-clipart-student-book-6_atesf2.png"
+  />
+<!-- style sheet links -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -11,23 +33,23 @@
     />
     <link rel='stylesheet' href='{{url_for('static', filename =
     'css/main.css')}}' />
-   
-    <!-- taken from a tutorial found at https://www.youtube.com/watch?v=QnDWIZuWYW0 -->
-   <!-- If no title has been passed in just bookmarks app will be displayed other wise bookamrks app plus the passed in title will be -->
-   {%if title%} 
-   <title>bookmarks-{{title}}</title>
-   {%else%}<title>bookmarks-app</title>
-   {%endif%}
+  
   </head>
+  <!-- start body -->
   <body>
+    <!-- start header -->
     <header>
       <!-- copy an pasted an altered from https://getbootstrap.com/docs/4.3/components/navbar/ -->
+
       <!-- start of navbar navbar bar will appear on every page -->
       <nav
       class="navbar navbar-expand-lg navbar-fixed-top"
       >
       <!-- navbar bookmarks logo added here always links to home page -->
       <a class="navbar-brand" href="{{url_for('index')}}"><img src="https://res.cloudinary.com/plyn85/image/upload/c_thumb,e_improve,g_auto,h_50,w_25/v1585732761/bookmarks-app/165-512_slzmom.webp" alt="an image of the bookmarks logo"></a>
+      <!-- end logo -->
+
+      <!-- nav button -->
       <button
       class="navbar-toggler custom-toggler"
       type="button"
@@ -42,6 +64,8 @@
         <i class="fas fa-bars"></i>
     </span>
     </button>
+    <!-- end button -->
+
     <div
     class="collapse navbar-collapse justify-content-end"
     id="navbarNav"
