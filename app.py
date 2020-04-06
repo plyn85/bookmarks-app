@@ -99,9 +99,9 @@ def login():
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     """First we find the existing user in user in the data base
-    If it the user does not exist In the database we insert the user to the 
-    database along with there encripted password. If the session username 
-    Is the same as the username enetered to the form the user is redirect to the 
+    If it the user does not exist In the database we insert the user to the
+    database along with there encripted password. If the session username
+    Is the same as the username enetered to the form the user is redirect to the
     login page taken an altered from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE"""
 
     if request.method == 'POST':
@@ -152,7 +152,7 @@ def add_bookmark():
 
 @app.route('/insert_bookmark',  methods=["GET", "POST"])
 def insert_bookmark():
-    """ route activated when add bookmark submit button post request recived 
+    """ route activated when add bookmark submit button post request recived
     from form in add bookmark page user then redirected to users page"""
     # date formated by day, month, date
     format_date = date.strftime("%a %B %d")
@@ -178,8 +178,9 @@ def add_category():
 
 @app.route('/insert_category', methods=["POST", "GET"])
 def insert_category():
-    """ route activated when add category submit button post request recived 
+    """ route activated when add category submit button post request recived
     from form in add category page user then redirected to user categories page"""
+
     # date formated by day, month, date
     format_date = date.strftime("%a %B %d")
     # user alert If succesfully added category
@@ -193,6 +194,11 @@ def insert_category():
 
     })
     return redirect(url_for('user_categories'))
+
+
+@app.route('/add_url')
+def add_url():
+    return render_template('add_url.html')
 
 # ----- Update ----- #
 

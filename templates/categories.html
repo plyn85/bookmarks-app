@@ -45,9 +45,7 @@
           <div class="row">
             <!-- start of col  -->
             <div class="col text-oswald">
-              <h4>
-                Added on {{cat.last_modified }}
-              </h4>
+              <h4></h4>
             </div>
             <!-- end of col -->
           </div>
@@ -67,6 +65,12 @@
                 class="btn white text-barlow col-3 cat-btn"
               >
                 Edit</a
+              >
+              <a
+                href="{{url_for('add_bookmark')}}"
+                class="btn white text-barlow col-5 col-xl-3 cat-btn"
+              >
+                Add Bookmark</a
               >
             </div>
             <!-- end of col -->

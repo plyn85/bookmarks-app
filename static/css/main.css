@@ -46,13 +46,6 @@ html {
 .card p {
   font-size: 1.5rem;
 }
-.txt-lg {
-  font-size: 1.4;
-}
-
-.hide-content {
-  display: none;
-}
 
 .hand-point {
   font-size: 3rem;
@@ -105,11 +98,6 @@ body {
 .hr-color {
   border: 0.5px solid#7d3cff;
 }
-/* reuse for smaller links  */
-.dropdown-item-cat {
-  font-size: 1.4rem;
-  font-weight: 900;
-}
 
 /* navbar */
 /* fixed navbar  added here z-index added to put navbar on top of background Image  */
@@ -151,13 +139,9 @@ targeting flashed messages */
 .btn {
   background-color: #7d3cff;
   border-radius: 5px;
-  width: 50%;
-  font-size: 1rem;
   font-weight: 700;
 }
-.btn-cards a {
-  color: white;
-}
+
 /* callout section */
 
 .callout-main-text {
@@ -202,19 +186,6 @@ h3 {
 
 /*end */
 
-/* bookmark/pagination  page */
-
-.bookmark-page {
-  margin-top: 4rem;
-}
-
-.btn-bookmark-page:link,
-.btn-bookmark-page:visited,
-.btn-bookmark-page:hover,
-.btn-bookmark-page:active {
-  color: #f2f3f7;
-}
-
 /* changing bootstrap cards to suit website layout */
 #home-page-cards-link {
   font-weight: 700;
@@ -235,7 +206,7 @@ h3 {
 
 /* for smallest devices */
 
-@media (max-width: 375px) {
+@media (max-width: 768px) {
   .callout-main-text {
     font-size: 1.4rem;
   }
@@ -245,13 +216,5 @@ h3 {
   }
   .signup-form {
     width: 18rem;
-  }
-
-  /* for all smaller devices ipad an below  */
-
-  @media (max-width: 768px) {
-    .bookmarks-btn a {
-      font-size: 1rem;
-    }
   }
 }
