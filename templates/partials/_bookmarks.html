@@ -39,7 +39,7 @@
           <!-- end card text paragraph -->
 
           <!-- card text parargraph -->
-          <p class="card-text col">
+          <p class="card-text col font-italic">
             <!-- bookmark description added by the user in add bookmarks displayed here -->
             {{book.bookmark_description |truncate (50, killwords=True) }}
           </p>
@@ -57,7 +57,7 @@
             {%if book.username != session.username%}
 
             <!-- users name  -->
-            by<mark class="text-dark"> {{book.username}}</mark>
+            by<mark class="text-dark font-italic"> {{book.username}}</mark>
             <!-- end usersname -->
 
             {%endif%}
