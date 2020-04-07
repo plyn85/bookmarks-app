@@ -105,7 +105,7 @@ body {
   color: #ffffff;
 }
 .navbar-fixed-top {
-  background-color:#7d3cff;
+  background-color: #7d3cff;
   position: fixed;
   top: 0;
   left: 0;
@@ -123,9 +123,9 @@ targeting flashed messages */
 }
 
 /* navbar toggler icon style set here  */
-.fa-bars{
-color:#ffffff; 
-font-size: 2.2rem;
+.fa-bars {
+  color: #ffffff;
+  font-size: 2.2rem;
 }
 
 /* targeting all buttons but the card buttons here  */
@@ -198,9 +198,9 @@ h3 {
 
 /* setting footer color */
 footer {
-background-color: #7d3cff;
-
- 
+  background-color: #7d3cff;
+  height: 3rem;
+  width: 100%;
 }
 
 /* media queries */
