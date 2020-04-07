@@ -16,6 +16,11 @@
   <!-- end paritals -->
   {%endif%}
   <!-- endif -->
+  <!-- else block only runs If search returns no bookmarks -->
+  {%else%}
+  <!-- partials for failed search -->
+  {%include "partials/_failed_search.html"%}
+  <!-- end parital -->
   {%endfor%}
   <!-- endfor -->
   {% endblock content %}

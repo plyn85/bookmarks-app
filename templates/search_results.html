@@ -11,6 +11,10 @@
   <!-- taken from a partials folder-->
   {%include "partials/_bookmarks_search_results.html"%}
   <!-- end paritals -->
+  {%else%}
+  <!-- partials for failed search -->
+  {%include "partials/_failed_search.html"%}
+  <!-- end parital -->
   {%endfor%}
 </section>
 <!-- end section -->

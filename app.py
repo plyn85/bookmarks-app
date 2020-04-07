@@ -387,11 +387,6 @@ def user_search_results():
         query = request.form.get('user_search_bar')
         # text search on the bookmarks collection
         results = bookmarks_collection.find({'$text': {'$search': query}})
-        # if the qurey is blank
-        if query == "":
-            flash(
-                f'This those not match any Bookmarks! please change your search text and try again', 'danger')
-            return redirect(url_for('users'))
         return render_template('user_search_results.html', results=results, title="User Search result")
 
 
@@ -404,11 +399,6 @@ def search_results():
         query = request.form.get('search_bar')
         # text search on the bookmarks collection
         results = bookmarks_collection.find({'$text': {'$search': query}})
-        # if the qurey is blank
-        if query == "":
-            flash(
-                f'This those not match any Bookmarks! please change your search text and try again', 'danger')
-            return redirect(url_for('users'))
         return render_template('search_results.html', results=results, title="User Search result")
 
 
