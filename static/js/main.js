@@ -1,20 +1,11 @@
-// document.addEventListener("DOMContentLoaded", function () {
-//   //   function get_current_url() {
-//   //     var url = window.location.href;
-//   //     return url;
-//   //   }
+let likeBtnForm = document.getElementsByClassName("like-btn-from");
 
-//   let likeBtnForm = document.getElementsByClassName("like-btn-from");
+for (let i = 0; i < likeBtnForm.length; i++) {
+  likeBtnForm[i].addEventListener("submit", function (event) {
+    event.preventDefault();
+  });
+}
 
-//   for (let i = 0; i < likeBtnForm.length; i++) {
-//     likeBtnForm[i].addEventListener("submit", function (event) {
-//       {
-//         event.preventDefault();
-//         window.location = window.location.href;
-//       }
-//     });
-//   }
-// });
 $(document).ready(function () {
   /* added so flashed messages dissappear after ten seconds */
 

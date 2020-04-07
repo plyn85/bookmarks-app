@@ -285,6 +285,7 @@ def upvote(book_id):
     """ Upvote route add likes to bookmarks on index and search pages"""
     # finds upvotes In bookmarks collection and adds one when button is clicked
     if request.method == "POST":
+
         bookmarks_collection.find_one_and_update(
             {'_id': ObjectId(book_id)},
             {'$inc': {'upvotes': 1}}

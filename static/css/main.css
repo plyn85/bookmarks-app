@@ -3,10 +3,12 @@
 /* inital set up */
 
 /* Setting default font size for page */
-
 body,
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
+  /* added for ios devices */
+  -webkit-overflow-scrolling: touch;
 }
 
 /* setting fonts */
@@ -140,6 +142,13 @@ targeting flashed messages */
 }
 
 /* callout section */
+/* added to sovle microsoft edge an Internet explorer Issue with flex col class */
+
+.flex-box-fix {
+  -webkit-box-flex: 0;
+  flex: none;
+  -ms-flex: none;
+}
 
 .callout-main-text {
   font-size: 1.8rem;
