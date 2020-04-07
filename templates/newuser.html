@@ -24,12 +24,29 @@
   <!-- row wraps add category and add bookmarks buttons -->
   <div class="row justify-content-around">
     <!-- category button-->
-    <a href="{{url_for('add_category')}}" class="btn white col-4">Category</a>
+    <a href="{{url_for('add_category')}}" class="btn white col-5 col-lg-3"
+      >Add Category</a
+    >
     <!-- end button -->
 
     <!-- bookmarks button -->
-    <a href="{{url_for('add_bookmark')}}" class="btn white col-4">Bookmark</a>
+    <a href="{{url_for('add_bookmark')}}" class="btn white col-5 col-lg-3"
+      >Add Bookmark</a
+    >
     <!-- end button-->
+  </div>
+  <!-- start img wrapper row -->
+  <div class="row mt-5">
+    <!-- start img wrapper col -->
+    <div class="col text-center">
+      <!-- start img -->
+      <img
+        src="https://res.cloudinary.com/plyn85/image/upload/c_scale,w_200/v1586212008/bookmarks-app/magazine-clipart-student-book-6_atesf2.png"
+        alt="an image of a book"
+        class="img-fluid"
+      />
+    </div>
+    <!-- end col -->
   </div>
   <!-- end row -->
 </section>
