@@ -198,7 +198,9 @@ h3 {
 
 /* setting footer color */
 footer {
-  background-color: #7d3cff;
+background-color: #7d3cff;
+
+ 
 }
 
 /* media queries */

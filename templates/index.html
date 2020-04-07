@@ -12,44 +12,41 @@
     <!-- start col -->
     <div class="col">
       <!-- welcome text -->
-    <h5 class="text-barlow purple font-weight-bold">Welcome to our Bookmarks app If you are a first time user please go to my bookmarks to start your collection. Have fun!</h5>
-    <!-- end text -->
+      <h5 class="text-barlow purple font-weight-bold">
+        Welcome to our Bookmarks app If you are a first time user please go to
+        my bookmarks to start your collection. Have fun!
+      </h5>
+      <!-- end text -->
 
-    <!--  bookmarks link button col wrapper -->
-    <div class="col text-center">
-      <!-- button -->
-      <a
-      href="{{url_for('users')}}"
-      class="btn white text-barlow mt-2 col-4"
-    >
-    bookmarks
-    </a>
-    <!-- end button -->
+      <!--  bookmarks link button col wrapper -->
+      <div class="col text-center">
+        <!-- button -->
+        <a href="{{url_for('users')}}" class="btn white text-barlow mt-2 col-4">
+          bookmarks
+        </a>
+        <!-- end button -->
+      </div>
+      <!-- end col -->
+    </div>
+    <!-- end col -->
   </div>
-  <!-- end col -->
-  </div>
-<!-- end col -->
-</div>
-<!-- end row -->
-  
-  
+  <!-- end row -->
   {%endif%}
   <!--  -->
   <!--start of col which wraps entrie callout section-->
   <div class="col-10 col-md-8 mt-2">
-        <!-- if statment to prevent logged in user seeing this -->
-        {% if not session['logged_in']%}
+    <!-- if statment to prevent logged in user seeing this -->
+    {% if not session['logged_in']%}
 
-        <!-- text for non logged in user -->
-        <p class="text-oswald callout-main-text mt-5">
-          Tired of having a long list of bookmarks and no Idea of what you
-          bookmarked, when you bookmarked it and why? The answer to all your
-          problems is here organize your bookmarks with our bookmarks organiser
-          app. Please register and then login In to use the app. Or if your
-          already registered please login.
-        </p>
-        <!-- end text -->
-        <!-- start of row which wraps both buttons  -->
+    <!-- text for non logged in user -->
+    <p class="text-barlow callout-main-text mt-md-5">
+      Tired of having a long list of bookmarks and no Idea of what you
+      bookmarked, when you bookmarked it and why? The answer to all your
+      problems is here with our bookmarks organiser app. Please register and
+      login to use the app. Or if your already registered login.
+    </p>
+    <!-- end text -->
+    <!-- start of row which wraps both buttons  -->
     <div class="row justify-content-center">
       <!-- button -->
       <a
@@ -60,22 +57,24 @@
       >
       <!-- end button -->
     </div>
-    <!-- end row -->
-      </div>
-    <!-- end col -->
-  
-    
-    {%endif%}
-    <!-- endif -->
-    <!-- end of row  which wraps callout button-->
+    <!-- end col  -->
   </div>
-  <!-- end of col which wraps callout section -->
+  <!-- end row  -->
+  {%endif%}
+  <!-- endif -->
+  <div class="row mt-3">
+    <div class="text-center">
+      <h4 class="purple text-barlow">
+        Check out our other members bookmarks below. You can search through them
+        give them a like or go to add bookmarks to add your own
+      </h4>
+    </div>
+  </div>
 </section>
 <!-- end callout section -->
 
 <!-- start of denfensive element bookmarks and search bar can only be veiwed by registered users -->
 {% if session['logged_in']%}
-
 <!-- start  of search bar section-->
 <section>
   <!-- start of row  that wraps header-->
