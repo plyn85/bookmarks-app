@@ -19,6 +19,6 @@ $(document).ready(function () {
   /* added so flashed messages dissappear after ten seconds */
 
   setTimeout(function () {
-    $("#flashed-message").hide("fast");
+    $("#flashed-message").hide("slow");
   }, 10000);
 });

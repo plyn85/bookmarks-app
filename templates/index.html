@@ -5,10 +5,10 @@
 {% block content %}
 
 <!-- start callout section and row which wraps entire callout section -->
-<section class="img-wrapper callout-container row justify-content-center">
+<section class="row justify-content-center mt-5">
   {%if session['logged_in']%}
   <!-- website instuctions row start -->
-  <div class="row mt-3 justify-content-center">
+  <div class="row mt-5 justify-content-center">
     <!-- start col -->
     <div class="col">
       <!-- welcome text -->
@@ -39,7 +39,7 @@
     {% if not session['logged_in']%}
 
     <!-- text for non logged in user -->
-    <p class="text-barlow callout-main-text mt-md-5">
+    <p class="text-barlow callout-main-text mt-3">
       Tired of having a long list of bookmarks and no Idea of what you
       bookmarked, when you bookmarked it and why? The answer to all your
       problems is here with our bookmarks organiser app. Please register and
@@ -60,8 +60,7 @@
     <!-- end col  -->
   </div>
   <!-- end row  -->
-  {%endif%}
-  <!-- endif -->
+  {%elif session ['logged in']%}
   <div class="row mt-3">
     <div class="text-center">
       <h4 class="purple text-barlow">
@@ -70,6 +69,8 @@
       </h4>
     </div>
   </div>
+  {%endif%}
+  <!-- endif -->
 </section>
 <!-- end callout section -->
 
