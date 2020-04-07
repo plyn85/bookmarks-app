@@ -175,17 +175,16 @@ def insert_bookmark():
     from form in add bookmark page user then redirected to users page"""
     # date formated by day, month, date
     format_date = date.strftime("%a %B %d")
-    # user alert If succesfully added bookmark
-    flash(f'Your bookmark has been added!')
-    # inserting data to bookmarks collection In the database
-    bookmarks_collection.insert_one({
-        "last_modified":  format_date,
-        'username': session['username'],
-        'category_name': request.form.get('category_name'),
-        'add_bookmark_url': request.form.get('add_bookmark_url'),
-        'bookmark_description': request.form.get('bookmark_description'),
-        'upvotes': int(0)
-    })
+    if request.method == "POST":
+        # inserting data to bookmarks collection In the database
+        bookmarks_collection.insert_one({
+            "last_modified":  format_date,
+            'username': session['username'],
+            'category_name': request.form.get('category_name'),
+            'add_bookmark_url': request.form.get('add_bookmark_url'),
+            'bookmark_description': request.form.get('bookmark_description'),
+            'upvotes': int(0)
+        })
     # user alert If succesfully added bookmark
     flash(f'You have added a new bookmark!', 'success')
     return redirect(url_for('users'))
@@ -204,16 +203,17 @@ def insert_category():
 
     # date formated by day, month, date
     format_date = date.strftime("%a %B %d")
+    if request.method == "POST":
+        # inserting data to categories collection In the database
+        categories_collection.insert_one({
+            'username': session['username'],
+            'category_name': request.form.get('category_name'),
+            "last_modified":  format_date,
+
+
+        })
     # user alert If succesfully added category
     flash(f'Your category has been added! It will be now be available in the add bookmarks section In the dropdown menu', 'success')
-    # inserting data to categories collection In the database
-    categories_collection.insert_one({
-        'username': session['username'],
-        'category_name': request.form.get('category_name'),
-        "last_modified":  format_date,
-
-
-    })
     return redirect(url_for('user_categories'))
 
 
@@ -238,18 +238,19 @@ def update_bookmark(book_id):
     user bookmarks page"""
     # date formated by day, month, date
     format_date = date.strftime("%a %B %d")
-    # alerting user after bookmark has been edited
-    flash(f'Your bookmark  has been edited!', 'success')
-    # updating the bookmarks collection
-    bookmarks_collection.update({'_id': ObjectId(book_id)},
-                                {
-        "last_modified": format_date,
-        'username': session['username'],
-        'category_name': request.form.get('category_name'),
-        'add_bookmark_url': request.form.get('add_bookmark_url'),
-        'bookmark_description': request.form.get('bookmark_description')
+    if request.method == "POST":
+        # updating the bookmarks collection
+        bookmarks_collection.update({'_id': ObjectId(book_id)},
+                                    {
+            "last_modified": format_date,
+            'username': session['username'],
+            'category_name': request.form.get('category_name'),
+            'add_bookmark_url': request.form.get('add_bookmark_url'),
+            'bookmark_description': request.form.get('bookmark_description')
 
-    })
+        })
+        # alerting user after bookmark has been edited
+        flash(f'Your bookmark  has been edited!', 'success')
     return redirect(url_for('users'))
 
 
@@ -269,14 +270,15 @@ def update_category(cat_id):
     """Route updates category collection for the user in the database 
     after the Edit category form Is submited user Is then redirect back to 
     user categories page"""
+    # updating category_name an the categories username in the database
+    if request.method == "POST":
+        categories_collection.update(
+            {'_id': ObjectId(cat_id)},
+            {'category_name': request.form.get('category_name'),
+             'username': session['username']
+             })
     # alerting user after bookmark has been edited
     flash(f'Your bookmark  has been edited!', 'success')
-    # updating category_name an the categories username in the database
-    categories_collection.update(
-        {'_id': ObjectId(cat_id)},
-        {'category_name': request.form.get('category_name'),
-         'username': session['username']
-         })
     return redirect(url_for('user_categories'))
 
 
@@ -310,8 +312,9 @@ def delete_bookmark(book_id):
 @app.route('/remove_bookmark/<book_id>', methods=["POST", "GET"])
 def remove_bookmark(book_id):
     """ Route confirms delete an redirect user to there user bookmarks page  """
-    flash(f'Your bookmark has been removed!', 'success')
-    bookmarks_collection.remove({'_id': ObjectId(book_id)})
+    if request.method == "POST":
+        bookmarks_collection.remove({'_id': ObjectId(book_id)})
+        flash(f'Your bookmark has been removed!', 'success')
     return redirect(url_for('users'))
 
 
@@ -328,8 +331,9 @@ def delete_category(cat_id):
 @app.route('/remove_category/<cat_id>', methods=["POST", "GET"])
 def remove_category(cat_id):
     """ Route confirms delete an redirect user to there user categorys page  """
-    flash(f'Your category has been deleted!', 'success')
-    categories_collection.remove({'_id': ObjectId(cat_id)})
+    if request.method == "POST":
+        categories_collection.remove({'_id': ObjectId(cat_id)})
+        flash(f'Your category has been deleted!', 'success')
     return redirect(url_for('user_categories'))
 
 
