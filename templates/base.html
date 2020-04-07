@@ -124,28 +124,7 @@
           </div>
       </nav>
       <!-- end of navbar -->
-    </header>
-    <!-- taken  from a corey schefuer tutorial at https://www.youtube.com/watch?v=UIJKdCIEXUQ&list=PL-osiE80TeTs4UjLw5MM6OjgkjFeUxCYH&index=3 -->
-    <div class="flashed-messages" id="flashed-message">
-      <!-- get  flashed messgaes used here will be available for use on every page-->
-        {%with messages = get_flashed_messages(with_categories=true) %} 
-        <!-- return any messages if any are returned from the get flashed messages function -->
-        {%if messages%} 
-        <!-- looping over flashed messages -->
-        {% for category, message in messages %}
-        <!-- printing message here -->
-        <div class="alert-{{ category}} text-center">
-          {{ message }}
-        </div>
-        {% endfor %}
-        <!-- end for loop -->
-        {% endif %}
-        <!--  end if  -->
-         {% endwith%}
-         <!--end with -->
-      </div>
-      <!-- end flash messages -->
-           
+    </header>           
       <!-- conatiner fluid postion added here will wrap every section used on all pages -->
       <div class="container-fluid mt-5">
         {% block content %}{% endblock %}

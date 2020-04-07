@@ -127,6 +127,10 @@ targeting flashed messages */
   color: #ffffff;
   font-size: 2.2rem;
 }
+/* targeting user search results page  */
+.search-results {
+  margin-top: 6rem;
+}
 
 /* targeting all buttons but the card buttons here  */
 .btn {

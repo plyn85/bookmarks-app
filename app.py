@@ -156,6 +156,8 @@ def insert_bookmark():
     from form in add bookmark page user then redirected to users page"""
     # date formated by day, month, date
     format_date = date.strftime("%a %B %d")
+    # user alert If succesfully added bookmark
+    flash(f'Your bookmark has been added!')
     # inserting data to bookmarks collection In the database
     bookmarks_collection.insert_one({
         "last_modified":  format_date,
@@ -217,6 +219,8 @@ def update_bookmark(book_id):
     user bookmarks page"""
     # date formated by day, month, date
     format_date = date.strftime("%a %B %d")
+    # alerting user after bookmark has been edited
+    flash(f'Your bookmark  has been edited!', 'success')
     # updating the bookmarks collection
     bookmarks_collection.update({'_id': ObjectId(book_id)},
                                 {
@@ -246,6 +250,8 @@ def update_category(cat_id):
     """Route updates category collection for the user in the database 
     after the Edit category form Is submited user Is then redirect back to 
     user categories page"""
+    # alerting user after bookmark has been edited
+    flash(f'Your bookmark  has been edited!', 'success')
     # updating category_name an the categories username in the database
     categories_collection.update(
         {'_id': ObjectId(cat_id)},
