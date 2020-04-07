@@ -1,8 +1,7 @@
 # Imports
 import os
 import math
-from flask import Flask, render_template, redirect, request, url_for, session,\
-    flash, abort, json
+from flask import Flask, render_template, redirect, request, url_for, session, flash, abort, json
 from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 import bcrypt
@@ -75,23 +74,30 @@ def login():
     and from a tutorial found at www.youtube.com/watchv=vVx1737auSE """
 
     if request.method == 'POST':
+        # getting username and password from register form
+        username = request.form['username']
+        password = request.form['password']
         # finding user in the database
         login_user = users_collection.find_one(
-            {'name': request.form['username']})
+            {'name': username})
         # If the user exists
         if login_user:
-            #  if the encryptied password from the form and database match
-            if bcrypt.hashpw(request.form.get('password').encode('utf-8'), login_user['password']) == login_user['password']:
+            #  if the password from the form and database match
+            if bcrypt.hashpw(password.encode('utf-8'), login_user['password']) == login_user['password']:
                 # If the session username and form username match
-                session['username'] = request.form.get('username')
+                session['username'] = username
                 # If any user is logged in
                 session['logged_in'] = True
                 # alert flashed on user is redirect to the home page
                 flash(f'You are logged in!', 'success')
                 return redirect(url_for('index'))
                 # If login Is unsuccesful warning flashed an user stays on login page
-        flash(
-            f'Login  Unsuccessful. Please check username/password combination', 'danger')
+        if not login_user:
+            flash(
+                f'Login  Unsuccessful. Please check username!', 'danger')
+        else:
+            flash(
+                f'Login  Unsuccessful. Please check password!', 'danger')
 
     return render_template('login.html', title="Login")
 
