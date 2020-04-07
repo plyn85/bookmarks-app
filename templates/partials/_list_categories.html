@@ -1,9 +1,9 @@
 <!-- unrendered html file incuded  in add bookmarks an delete bookmarksm html pages inside a from-->
 
 <!-- start of form group  -->
-<div class="form-group form-group-categories row">
+<div class="form-group row">
   <!-- start of select drop dowm menu -->
-  <select class="col" name="category_name">
+  <select class="col form-control" name="category_name">
     <!-- category name cannot be selected but will Instruct the user If he is yet to add a category -->
     <!-- first option disabled-->
     <option value="" disabled selected>Select a Category </option>
@@ -12,12 +12,16 @@
     <!-- a for loop that loops trough the categories collection -->
     {%for cat in categories%}
     <!-- and if the session username matches the categories username that users categories will be displayed in the drop down menu this is to ensure the categories added by every user are not show  -->
-    {%if session.username==cat.username%}
+    {%if session.username != cat.username %}
+    <h2>you have yet add a category plaease go to add categorys</h2>
+
+    {%elif session.username==cat.username%}
     <!-- second option can be selected-->
     <option value="{{cat.category_name}}" selected
       >{{cat.category_name}}</option
     >
     <!-- end option -->
+
     {%endif%}
     <!-- end if  -->
     {%endfor%}
