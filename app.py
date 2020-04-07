@@ -105,24 +105,37 @@ def register():
     login page taken an altered from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE"""
 
     if request.method == 'POST':
+        # getting username,password an comfrim-password from register form
+        username = request.form['username']
+        password = request.form['password']
+        confirm_password = request.form['confirm_password']
         # getting existing user from the database
         existing_user = users_collection.find_one(
-            {'name': request.form['username']})
-        # If the users name is not In database
-        if existing_user is None:
+            {'name': username})
+        # If the users name is not In database and passwords match
+        if existing_user is None and password == confirm_password:
             # getting users password from register form an encrypting It
             hashpass = bcrypt.hashpw(
-                request.form.get('password').encode('utf-8'), bcrypt.gensalt())
+                password.encode('utf-8'), bcrypt.gensalt())
             # Inserting the data to the users collection In the database
             users_collection.insert(
-                {'name': request.form.get('username'), 'password': hashpass})
-            session['username'] = request.form.get('username')
+                {'name': username, 'password': hashpass})
+            session['username'] = username
             flash(f'You are now regsitered please login!', 'success')
             return redirect(url_for('login'))
-        # If the insertion of the data Is not successful a warning Is issued
-        else:
+        # If username already exists and passwords do not match
+        if existing_user and password != confirm_password:
             flash(
-                f'Username Is in Use. Please Try a different username', 'danger')
+                f'Username Is In use and and passwords do not match!', 'danger')
+        # If username is not in use an passwords do not match
+        if existing_user is None and password != confirm_password:
+            flash(
+                f'Your passwords do not match!', 'danger')
+        # If username Is In use but passwords match
+        elif existing_user:
+            flash(
+                f'Username In use! Please try another username', 'danger')
+
     return render_template('register.html', title="Regsiter")
 
 
