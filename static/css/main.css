@@ -139,8 +139,7 @@ targeting flashed messages */
   padding: 2rem 0;
 }
 .signup-form input[type="text"] {
-  height: 2em;
-  padding-bottom: 1rem;
+  padding: 1rem 1.5rem;
   font-size: 1.2rem;
 }
 .signup-form .hint-text {
