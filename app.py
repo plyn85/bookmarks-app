@@ -213,7 +213,7 @@ def insert_category():
 
         })
     # user alert If succesfully added category
-    flash(f'Your category has been added! It will be now be available in the add bookmarks section In the dropdown menu', 'success')
+    flash(f'Your category has been added! ', 'success')
     return redirect(url_for('user_categories'))
 
 
@@ -304,7 +304,7 @@ def delete_bookmark(book_id):
     bookmark is sent to delete bookmark form to confirm the bookmark delete  """
     # getting categories an bookmarks Id from data base
     all_categories = categories_collection.find()
-    the_bookmark = bookmarks_collection.find_one_or_404(
+    the_bookmark = bookmarks_collection.find(
         {"_id": ObjectId(book_id)})
     return render_template('delete_bookmark.html', book=the_bookmark,  categories=all_categories, title=" delete bookmark")
 
