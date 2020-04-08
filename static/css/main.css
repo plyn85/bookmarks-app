@@ -68,8 +68,8 @@ html {
 barlow repeated as it takes less code that way
 */
 
-input::-webkit-input-placeholder {
-  line-height: normal;
+.form-control {
+  line-height: normal !important;
 }
 
 /* main body */
