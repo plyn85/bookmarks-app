@@ -214,10 +214,10 @@ them from the database.
 
 ## Features
 ### Register  
- Anyone can sign up, have an account and make use of the app. All passwords encrypted using hashed.
+ - Anyone can sign up, have an account and make use of the app. All passwords encrypted using hashed.
  
 ### Login 
-If you are an existing user your username and password will be matched with the database before you can login.
+ - If you are an existing user your username and password will be matched with the database before you can login.
 
 ### Home page
 - On the home page a user can view every other user's bookmarks. They are displayed 6 at a time and can be navigated using pagination.
@@ -245,22 +245,6 @@ If you are an existing user your username and password will be matched with the 
 
 
 
-
-
- 
-
-
-
-
-
-
-
-
-
-
- 
-
-
 ## Testing 
 
 ## Manual testing of all elements on website
@@ -270,9 +254,17 @@ If you are an existing user your username and password will be matched with the 
 ## Credits
 
 ### Content
+ - All of the content In the data page was written by myself
 
 ### Media
+The only Image and logo used on the website  where obtained from google Images
+### Acknowledgements
+ - Rahul Patil my Code Institute mentor, for his invaluable advice and guidance.
+- The [Pretty printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ) Youtube channel and amazing resource for building flask apps 
 
-#### Disclaimer
+
+ - The [Corey Schafer](hhttps://www.youtube.com/watch?v=MwZwr5Tvyxo) Python Flask Tutorial. I found myself returning too reagulary for a better understanding of flask
+
+  #### Disclaimer
 
    The content of this Website is for educational purposes only.
