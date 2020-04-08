@@ -65,10 +65,57 @@ html {
   color: #7d3cff;
 }
 /* changing all input placeholders text below
-barlow repeated as it takes less code that way
 */
-
 .form-control {
+  line-height: 1;
+  height: 3em;
+}
+input::-webkit-input-placeholder {
+  line-height: 1;
+  height: 3em;
+}
+
+input::-moz-placeholder {
+  line-height: 1;
+  height: 3em;
+}
+
+input:-ms-input-placeholder {
+  line-height: 1;
+  height: 3em;
+}
+
+input::-ms-input-placeholder {
+  line-height: 1;
+  height: 3em;
+}
+
+input::-webkit-input-placeholder {
+  line-height: 1;
+  height: 3em;
+}
+
+input::-moz-placeholder-webkit-input-placeholder {
+  line-height: 1;
+  height: 3em;
+}
+
+input:-ms-input-placeholder-webkit-input-placeholder {
+  line-height: 1;
+  height: 3em;
+}
+
+input::-ms-input-placeholder-webkit-input-placeholder {
+  line-height: 1;
+  height: 3em;
+}
+
+input::-webkit-input-placeholder-webkit-input-placeholder {
+  line-height: 1;
+  height: 3em;
+}
+
+input::placeholder-webkit-input-placeholder {
   line-height: 1;
   height: 3em;
 }
