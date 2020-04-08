@@ -130,9 +130,12 @@ targeting flashed messages */
 }
 
 /* sign up from */
+
+/* targeting all forms h2 */
 .signup-form h2 {
   text-align: center;
 }
+/* targeting all forms */
 .signup-form {
   width: 34rem;
   margin: 0 auto;
@@ -146,18 +149,20 @@ targeting flashed messages */
 }
 /* solution for ios safari line height bug */
 input::-webkit-input-placeholder {
-  line-height: normal !important;
+  line-height: 1.15 !important;
 }
 input::placeholder,
 input::-webkit-input-placeholder,
 input::-moz-placeholder {
-  line-height: normal !important;
+  line-height: 1.15 !important;
 }
+/* targeting all forms hints texts */
 .signup-form .hint-text {
   color: #7d3cff;
   margin-bottom: 1rem 0 0 2rem;
   text-align: center;
 }
+/* targeting all forms */
 .signup-form form {
   color: #000000;
   border-radius: 0.25rem;
@@ -168,7 +173,6 @@ input::-moz-placeholder {
 }
 
 /* changing bootstrap cards to suit website layout */
-
 .card {
   font-weight: 700;
   min-width: 50%;
