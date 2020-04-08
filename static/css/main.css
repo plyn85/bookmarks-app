@@ -6,6 +6,7 @@
 body,
 html {
   font-size: 16px;
+  background-color: #fceed1;
   scroll-behavior: smooth;
   /* added for ios devices */
   -webkit-overflow-scrolling: touch;
@@ -94,20 +95,18 @@ input::placeholder {
 }
 
 /* main body */
-
-body {
-  background-color: #fceed1;
-}
-
+/* setting color for hr line */
 .hr-color {
   border: 0.5px solid#7d3cff;
 }
 
 /* navbar */
-/* fixed navbar  added here z-index added to put navbar on top of background Image  */
+/* setting nav link */
 .nav-link {
   color: #ffffff;
 }
+
+/* fixed navbar  added here z-index added to put navbar on top of background Image  */
 .navbar-fixed-top {
   background-color: #7d3cff;
   position: fixed;
@@ -144,12 +143,13 @@ targeting flashed messages */
 }
 
 /* callout section */
-/* added to sovle microsoft edge an Internet explorer Issue with flex col class */
+/* added to sovle microsoft edge an Internet explorer Issue with flex col class on index page*/
 
 .flex-box-fix {
   -webkit-box-flex: 0;
   flex: none;
   -ms-flex: none;
+  -moz-box-flex: none;
 }
 
 .callout-main-text {
@@ -158,47 +158,30 @@ targeting flashed messages */
   color: #7d3cff;
 }
 
-/* taken an modified from tutorial at  https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-registration-form  */
-/* signup/registration/logout/login/bookmarks was reused on all these pages */
+/* sign up from */
 .signup-form {
   width: 34rem;
   margin: 0 auto;
   padding: 2rem 0;
 }
-.signup-form h2,
-h3 {
-  color: #000000;
-  margin: 0 0 1rem;
-  position: relative;
-  text-align: center;
-}
-.signup-form h2:before {
-  left: 0;
-}
-.signup-form h2:after {
-  right: 0;
-}
+
 .signup-form .hint-text {
   color: #7d3cff;
   margin-bottom: 2rem;
   text-align: center;
 }
 .signup-form form {
-  color: #999;
+  color: #000000;
   border-radius: 0.25rem;
   margin-bottom: 1rem;
   background: #fdedcc;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   padding: 2rem;
 }
-
 /*end */
 
 /* changing bootstrap cards to suit website layout */
-#home-page-cards-link {
-  font-weight: 700;
-  color: #7d3cff;
-}
+
 .card {
   font-weight: 700;
   min-width: 50%;
@@ -206,12 +189,13 @@ h3 {
   margin-top: 1rem;
   border-radius: 0.5rem;
 }
+/* Setting card body background color */
 .card-body {
   background-color: #fceed1;
 }
 /* footer */
 
-/* setting footer color */
+/* setting footer color, height and width*/
 footer {
   background-color: #7d3cff;
   height: 3rem;
@@ -223,6 +207,7 @@ footer {
 /* for smallest devices */
 
 @media (max-width: 768px) {
+  /* adjust callout text to suit smaller devices */
   .callout-main-text {
     font-size: 1.4rem;
   }
@@ -230,10 +215,8 @@ footer {
   .btn {
     font-size: 0.7rem;
   }
+  /* smaller with for forms on mobile */
   .signup-form {
     width: 18rem;
   }
-}
-.callout-section {
-  margin-top: 7rem;
 }
