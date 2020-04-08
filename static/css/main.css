@@ -182,7 +182,7 @@ targeting flashed messages */
 /* setting footer color, height and width*/
 footer {
   background-color: #7d3cff;
-  height: 3rem;
+  height: 1.5rem;
   width: 100%;
 }
 
@@ -195,7 +195,6 @@ footer {
   .callout-main-text {
     font-size: 1.4rem;
   }
-  /* setting smaller btn font for mobile */
 
   /* smaller with for forms on mobile */
   .signup-form {
