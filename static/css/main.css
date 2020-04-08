@@ -130,6 +130,9 @@ targeting flashed messages */
 }
 
 /* sign up from */
+.signup-form h2 {
+  text-align: center;
+}
 .signup-form {
   width: 34rem;
   margin: 0 auto;
@@ -137,6 +140,7 @@ targeting flashed messages */
 }
 .signup-form input[type="text"] {
   height: 2em;
+  padding-bottom: 1rem;
   font-size: 1.2rem;
 }
 .signup-form .hint-text {
@@ -145,9 +149,7 @@ targeting flashed messages */
   text-align: center;
 }
 .signup-form form {
-  color: #000000;
   border-radius: 0.25rem;
-  margin-bottom: 1rem;
   background: #fdedcc;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   padding: 2rem;
