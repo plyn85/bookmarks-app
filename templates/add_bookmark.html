@@ -1,6 +1,6 @@
 <!-- extended base html here  -->
 {% extends 'base.html' %} {% block content %}
-<!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
+<!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form -->
 <!-- add bookmark form -->
 <section>
   <div class="signup-form">
@@ -17,6 +17,7 @@
 
           <!-- user will insert the url of the bookmark  they want to save here -->
         <input
+         id="placeholder"
           type="text"
           class="form-control"
           name="add_bookmark_url"
@@ -46,11 +47,12 @@
       <div class="form-group">
         <!-- user will add a descrption of the bookmark here  -->
         <textarea
-          class="form-control text-barlow"
+        placeholder="Enter your text here"
+          class="form-control text-barlow txt-lg"
           name="bookmark_description"
           rows="3"
         >
-Enter text here...</textarea
+</textarea
         >
         <!-- end text area -->
       </div>

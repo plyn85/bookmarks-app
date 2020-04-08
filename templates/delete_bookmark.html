@@ -32,7 +32,7 @@
           type="text"
           class="form-control"
           name="add_bookmark_url"
-          value="{{book.add_bookmark_url| truncate(30, killwords=True) }}"
+          placeholder="{{book.add_bookmark_url| truncate(30, killwords=True) }}"
           required="required"
         />
       </div>
@@ -40,13 +40,13 @@
 
       <!--start of input form group -->
       <div class="form-group">
-        <!-- input displays url of the bookmark delete button was clicked on  -->
+        <!-- input displays category name of the bookmark delete button was clicked on  -->
         <input
           id="category-name"
           type="text"
           class="form-control"
           name="category_name"
-          value="{{book.category_name| truncate(30, killwords=True) }}"
+          placeholder="{{book.category_name| truncate(30, killwords=True) }}"
           required="required"
         />
       </div>
@@ -55,13 +55,12 @@
       <div class="form-group">
         <!-- textarea thta displays bookmarks description -->
         <textarea
+          placeholder="{{book.bookmark_description |truncate (50, killwords=True) }}"
           id="bookmark_description"
           class="form-control text-barlow"
           name="bookmark_description"
           rows="5"
-        >
-{{book.bookmark_description |truncate (50, killwords=True) }}</textarea
-        >
+        ></textarea>
       </div>
       <!-- end form group -->
 
