@@ -139,7 +139,7 @@ targeting flashed messages */
   padding: 2rem 0;
 }
 .signup-form input[type="text"] {
-  padding: 1rem 1.5rem;
+  padding: 1.5rem;
   font-size: 1.2rem;
 }
 .signup-form .hint-text {
