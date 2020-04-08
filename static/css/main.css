@@ -69,7 +69,8 @@ barlow repeated as it takes less code that way
 */
 
 .form-control {
-  line-height: normal !important;
+  line-height: 100%;
+  height: 3em;
 }
 
 /* main body */
