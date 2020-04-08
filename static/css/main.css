@@ -196,9 +196,7 @@ footer {
     font-size: 1.4rem;
   }
   /* setting smaller btn font for mobile */
-  .btn {
-    font-size: 0.7rem;
-  }
+
   /* smaller with for forms on mobile */
   .signup-form {
     width: 18rem;
