@@ -138,13 +138,21 @@ targeting flashed messages */
   margin: 0 auto;
   padding: 2rem 0;
 }
+/* over riding bootstrap form control defaults here  */
 .form-control {
   height: 2em;
   font-size: 1.2rem;
-  padding-top: 1rem;
-  padding-bottom: 2rem;
+  padding: 1rem;
 }
-
+/* solution for ios safari line height bug */
+input::-webkit-input-placeholder {
+  line-height: normal !important;
+}
+input::placeholder,
+input::-webkit-input-placeholder,
+input::-moz-placeholder {
+  line-height: normal !important;
+}
 .signup-form .hint-text {
   color: #7d3cff;
   margin-bottom: 1rem 0 0 2rem;
