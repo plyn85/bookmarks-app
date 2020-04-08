@@ -157,6 +157,7 @@ targeting flashed messages */
 }
 /* targeting all forms */
 .signup-form form {
+  margin-top: 3rem;
   color: #000000;
   border-radius: 0.25rem;
   margin-bottom: 1rem;

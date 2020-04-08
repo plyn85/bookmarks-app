@@ -12,7 +12,7 @@
 <!-- start section -->
 <section>
   <!-- start of div that wraps the entire form -->
-  <div class="signup-form mt-5">
+  <div class="signup-form">
     <!-- start of form activates remove bookmark route located in app.py-->
     <form
       action="{{ url_for('remove_bookmark', book_id=book._id) }}"
@@ -20,7 +20,7 @@
     >
       <!--form header -->
       <h2 class="text-center text-barlow">
-        Confirm bookmark Delete
+        Confirm Delete
       </h2>
       <!-- end header -->
 
@@ -70,8 +70,7 @@
         <div class="col text-barlow text-center text-danger">
           <!-- delete warning -->
           <h5>
-            By clicking this button you will permently delete a bookmark. This
-            action cannot be undone!
+            This action cannot be undone!
           </h5>
         </div>
         <!-- end of col -->

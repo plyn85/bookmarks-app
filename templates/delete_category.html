@@ -12,7 +12,7 @@
 <!-- start section -->
 <section>
   <!-- start of div that wraps the entire form -->
-  <div class="signup-form mt-5">
+  <div class="signup-form">
     <!-- start of form activates remove category route located in app.py-->
     <form action="{{url_for('remove_category', cat_id=cat._id)}}" method="post">
       <!--form header -->
@@ -43,8 +43,7 @@
         <div class="col text-barlow text-center text-danger">
           <!-- delete warning -->
           <h6>
-            By clicking this button you will permently delete a Category. This
-            action cannot be undone!
+            This action cannot be undone!
           </h6>
           <!-- end warning -->
         </div>
