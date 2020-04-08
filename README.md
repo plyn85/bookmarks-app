@@ -250,6 +250,23 @@ them from the database.
 ## Manual testing of all elements on website
 
 ## Deployment 
+I deployed this application by:
+ 
+- Pushing the code from my IDE vscode which has a  built In terminal to Github via git. 
+- I created an app on heroku 
+- In Heorku deployment method was set to github and automatic deploys set from the master branch
+- Then the app was then deployed using the following link  [https://bookmarks-app-plyn85.herokuapp.com/](https://bookmarks-app-plyn85.herokuapp.com/)
+
+ 1. On GitHub, navigate to the main page of the repository. Please click the link provided [here](https://github.com/plyn85/bookmarks-app)
+   2. Under the repository name, click Clone or download.
+   3. In the Clone with HTTPs section, click the copy icon to copy the clone URL for the repository.
+   4. Open git bash .
+   5. Change the current working directory to the location where you want the cloned directory to be made.
+   6. Type git clone, and then paste the url provided [here](https://github.com/plyn85/bookmarks-app)
+   7. Press Enter. Your local clone will be created.
+
+
+
 
 ## Credits
 
