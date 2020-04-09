@@ -9,7 +9,6 @@
 <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
 
 <!-- defensive element section can only be viewied if the session username matches the username of the bookmark -->
-{%if session.username==book.username%}
 
 <!-- start section -->
 <section>
@@ -95,7 +94,6 @@
 </section>
 <!-- end section -->
 
-{%endif%}
 <!-- end defensive element if statment -->
 
 {% endblock content %}
