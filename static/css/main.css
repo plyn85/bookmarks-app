@@ -113,6 +113,7 @@ targeting flashed messages */
   border: 2px solid #7d3cff;
   color: #7d3cff;
   font-weight: 900;
+  font-size: 1.1rem;
 }
 /* callout section */
 /* added to sovle microsoft edge an Internet explorer Issue with flex col class on index page*/
