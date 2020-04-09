@@ -5,7 +5,11 @@ $(document).ready(function () {
   }, 10000);
 
   // overriding default on like the like button here
-  $(".like-btn-form").click(function (event) {});
+  $(".like-btn-form").click(function (event) {
+    event.preventDefault();
+    // run flask route here
+    window.location = location.href;
+  });
 
   // this will hide an show the Instructions text on users category an bookmarks
   $(".info-btn").click(function () {

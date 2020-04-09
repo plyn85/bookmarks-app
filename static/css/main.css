@@ -108,13 +108,12 @@ targeting flashed messages */
   margin-top: 6rem;
 }
 
-/* targeting all buttons but the card buttons here  */
+/* targeting all buttons here  */
 .btn {
-  background-color: #7d3cff;
-  border-radius: 5px;
-  font-weight: 700;
+  border: 2px solid #7d3cff;
+  color: #7d3cff;
+  font-weight: 900;
 }
-
 /* callout section */
 /* added to sovle microsoft edge an Internet explorer Issue with flex col class on index page*/
 
