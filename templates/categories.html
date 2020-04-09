@@ -40,7 +40,7 @@
   <!--row displays categoreis for user along with the name of  which ever user is logged in  -->
   <div class="row justify-content-center">
     <!--start of  col -->
-    <div class="col-lg-4">
+    <div class="col col-lg-4">
       <h2 class="text-oswald mt-5 text-center uppercase">
         Categories for {{session.username}}
       </h2>
@@ -90,18 +90,18 @@
             <div class="col">
               <a
                 href="{{url_for('delete_category', cat_id=cat._id)}}"
-                class="btn text-barlow col-3 cat-btn mb-2"
+                class="btn text-barlow col col-md-3 cat-btn mb-2"
                 >Delete</a
               >
               <a
                 href="{{url_for('edit_category', cat_id=cat._id)}}"
-                class="btn text-barlow col-3 cat-btn mb-2"
+                class="btn text-barlow col col-md-3 cat-btn mb-2"
               >
                 Edit</a
               >
               <a
                 href="{{url_for('add_bookmark')}}"
-                class="btn text-barlow col-6 col-xl-3 cat-btn mb-2"
+                class="btn text-barlow col col-md-3 cat-btn mb-2"
               >
                 Add Bookmark</a
               >

@@ -304,17 +304,17 @@ def delete_bookmark(book_id):
     bookmark is sent to delete bookmark form to confirm the bookmark delete  """
     # getting categories an bookmarks Id from data base
     all_categories = categories_collection.find()
-    the_bookmark = bookmarks_collection.find(
+    the_bookmark = bookmarks_collection.find_one(
         {"_id": ObjectId(book_id)})
     return render_template('delete_bookmark.html', book=the_bookmark,  categories=all_categories, title=" delete bookmark")
 
 
-@app.route('/remove_bookmark/<book_id>', methods=["POST", "GET"])
+@app.route('/remove_bookmark/<book_id>', methods=["POST"])
 def remove_bookmark(book_id):
     """ Route confirms delete an redirect user to there user bookmarks page  """
     if request.method == "POST":
         bookmarks_collection.remove({'_id': ObjectId(book_id)})
-        flash(f'Your bookmark has been removed!', 'success')
+
     return redirect(url_for('users'))
 
 

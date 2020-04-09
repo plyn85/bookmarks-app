@@ -1,6 +1,6 @@
 <!-- unrendered html file included  in user and index html pages -->
 
-<!--start bookmarks pagination section-->
+<!--start bookmarks  section-->
 <section>
   <!-- this row warps the entire bookmarks section -->
   <div class="row">
@@ -93,7 +93,7 @@
 
           <!-- form  wraps the like button-->
           <form
-            class="row mt-3 justify-content-center like-btn-form"
+            class="row mt-3 justify-content-center like-btn-from"
             action="{{ url_for('upvote', book_id=book._id) }}"
             method="post"
           >
@@ -101,7 +101,7 @@
             {%if book.username != session.username%}
 
             <!-- like button link which activates the upvote route in app.py an will add a like to the users bookmark-->
-            <button type="submit" class="btn text-barlow col-4">
+            <button type="submit" class="btn white text-barlow col-4">
               Like
             </button>
             <!--end like button link  -->
@@ -118,16 +118,16 @@
             <!-- delete button activates delete_bookmark route located in app.py-->
             <a
               href="{{url_for('delete_bookmark', book_id=book._id)}}"
-              class="btn text-barlow mt-2 col-4"
+              class="btn white text-barlow mt-2 col-4"
             >
               Delete
-            </a>
+            </button>
             <!--end delete  button -->
 
             <!-- edit button -->
             <a
               href="{{url_for('edit_bookmark', book_id=book._id)}}"
-              class="btn text-barlow mt-2 col-4"
+              class="btn white text-barlow mt-2 col-4"
             >
               Edit
             </a>
@@ -148,42 +148,4 @@
     <!-- end categories for loop -->
   </div>
   <!-- end row -->
-
-  <!-- pagination section taken an altered from a tutorial found in slack archives and at  
-   https://github.com/MiroslavSvec/DCD_lead/tree/pagination -->
-
-  <!-- pagination section -->
-
-  <!-- if the number of bookmarks less  as the page limit 
-  which is set to 6 in both the users an index routes in app.py no need for pagination so the section will not display -->
-  {% if args.num_results > args.p_limit %}
-
-  <!-- row wraps the pagination buttons -->
-  <div class="pagination row justify-content-around mt-4 mb-5">
-    <!-- 	If this is first page (offset == 0) 	prev_url link should not be displayed -->
-    {% if args.p_offset > 0 %}
-
-    <!-- Prev page link grabs the prev page from the args set in both index an user routes -->
-    <a href="{{ args.prev_url }}" class="upvote purple text-center col-6"
-      ><i class="fas fa-hand-point-left hand-point"></i> Prev</a
-    >
-    <!--end link -->
-    {% endif %}
-    <!-- end if -->
-
-    <!-- If this is last page (offset + limit == lenght of the documents) next_url link should not be displayed -->
-    {% if args.p_offset + args.p_limit < args.num_results %}
-
-    <!-- Next  page link grabs the prev page from the args set in both index an user routes -->
-    <a href="{{ args.next_url }}" class="upvote purple text-center col-6"
-      >Next<i class="fas fa-hand-point-right hand-point"></i>
-    </a>
-    <!--end link -->
-    {% endif %}
-    <!-- end if for last page-->
-    {% endif %}
-    <!--end if for entire section not to display if less the 6 bookmarks are displayed -->
-  </div>
-  <!-- end ro that wraps pagination buttons-->
 </section>
-<!-- end bookmarks pagination section -->

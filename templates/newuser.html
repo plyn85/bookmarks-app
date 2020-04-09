@@ -8,12 +8,12 @@
 <!-- starts page that will only ever been seen by a new user or if a repeat user has no bookmarks  added -->
 <section>
   <!-- row wraps instuctions for user  -->
-  <div class="row justify-content-center mt-4">
+  <div class="row justify-content-center mt-5">
     <!-- start of col -->
-    <div class="col-lg-4">
+    <div class="col-lg-4 mt-5">
       <!-- user instuctions along with users name displayed here  -->
-      <h5 class="text-oswald mt-5 text-center purple">
-        <mark class="text-dark text-center">{{session.username}}</mark>
+      <h5 class="text-oswald text-center purple mt-5">
+        <mark class="text-center">{{session.username}}</mark>
         you have no bookmarks added. If you have yet to add a category please
         head to add category page. If a category has already been added please
         head to add bookmarks page.
@@ -25,15 +25,15 @@
   <!-- end row -->
 
   <!-- row wraps add category and add bookmarks buttons -->
-  <div class="row justify-content-around">
+  <div class="row justify-content-center">
     <!-- category button-->
-    <a href="{{url_for('add_category')}}" class="btn col-5 col-lg-3"
+    <a href="{{url_for('add_category')}}" class="btn col-5 col-lg-3 mr-2"
       >Add Category</a
     >
     <!-- end button -->
 
     <!-- bookmarks button -->
-    <a href="{{url_for('add_bookmark')}}" class="btn col-5 col-lg-3"
+    <a href="{{url_for('add_bookmark')}}" class="btn col-5 col-lg-3 ml-2"
       >Add Bookmark</a
     >
     <!-- end button-->

@@ -1,0 +1,38 @@
+<!-- pagination section taken an altered from a tutorial found in slack archives and at  
+   https://github.com/MiroslavSvec/DCD_lead/tree/pagination -->
+
+  <!-- pagination section -->
+
+  <!-- if the number of bookmarks less  as the page limit 
+  which is set to 6 in both the users an index routes in app.py no need for pagination so the section will not display -->
+  {% if args.num_results > args.p_limit %}
+
+  <!-- row wraps the pagination buttons -->
+  <div class="pagination row justify-content-around mt-4 mb-5">
+    <!-- 	If this is first page (offset == 0) 	prev_url link should not be displayed -->
+    {% if args.p_offset > 0 %}
+
+    <!-- Prev page link grabs the prev page from the args set in both index an user routes -->
+    <a href="{{ args.prev_url }}" class="upvote purple text-center col-6"
+      ><i class="fas fa-hand-point-left hand-point"></i> Prev</a
+    >
+    <!--end link -->
+    {% endif %}
+    <!-- end if -->
+
+    <!-- If this is last page (offset + limit == lenght of the documents) next_url link should not be displayed -->
+    {% if args.p_offset + args.p_limit < args.num_results %}
+
+    <!-- Next  page link grabs the prev page from the args set in both index an user routes -->
+    <a href="{{ args.next_url }}" class="upvote purple text-center col-6"
+      >Next<i class="fas fa-hand-point-right hand-point"></i>
+    </a>
+    <!--end link -->
+    {% endif %}
+    <!-- end if for last page-->
+    {% endif %}
+    <!--end if for entire section not to display if less the 6 bookmarks are displayed -->
+  </div>
+  <!-- end ro that wraps pagination buttons-->
+</section>
+<!-- end bookmarks pagination section -->

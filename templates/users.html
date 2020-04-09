@@ -14,7 +14,7 @@
   <!-- start row -->
   <div class="row info-btn-wrapper justify-content-center info-btn-wrapper">
     <!-- start button that will toggle Instruction  text-->
-    <button class="btn text-barlow col-6 col-md-3 info-btn">
+    <button class="btn white text-barlow col-6 col-md-3 info-btn">
       Instructions
     </button>
     <!-- end button -->
@@ -58,7 +58,7 @@
     <!-- col that  wraps search bar  -->
     <div class="col text-center">
       <!-- search bar form activates search results route located in app.py -->
-      <form action="{{ url_for('user_search_results') }}" method="post">
+      <form action="{{ url_for('user_search_results') }}" method="POST">
         <!-- row wraps search bar input  -->
         <div class="form-group row justify-content-center">
           <!-- input search text goes here  -->
@@ -87,6 +87,11 @@
 </section>
 <!-- end  section -->
 
-<!-- pagination html page added here  -->
-{%include 'partials/_bookmarks.html'%} {% endblock content %}
+<!-- bookmarks html page added here  -->
+{%include 'partials/_bookmarks.html'%}
+<!-- end parital -->
+<!-- pagintion html page included here  -->
+{%include "partials/_pagination.html"%}
+<!-- end partial -->
+{%endblock content %}
 <!-- end block content -->
