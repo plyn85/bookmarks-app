@@ -167,7 +167,7 @@ targeting flashed messages */
 }
 /* targeting categories an bookmarks userpages text here and Infomation button above it here   */
 .info-btn-wrapper {
-  margin-top: 7rem;
+  margin-top: 6rem;
 }
 /* target user text hidden before Jquery toggle button takes effect */
 .user-text {
