@@ -1,5 +1,10 @@
 <!-- extends base html  -->
 {% extends 'base.html' %}
+<!-- adding navbar as a a partial  -->
+{%block nav%}
+{%include "partials/_navbar.html"%}
+{%endblock%}
+<!-- end navbar -->
 <!-- starts block content -->
 {% block content %}
 <!-- start 500 error handling section -->

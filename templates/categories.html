@@ -1,10 +1,13 @@
 <!-- extends base html  -->
 {% extends 'base.html' %}
+<!-- adding navbar as a a partial  -->
+{%block nav%} {%include "partials/_navbar.html"%} {%endblock%}
+<!-- end navbar -->
 <!-- starts block content -->
+{% block content %}
 <!-- Including paritals flashed messages  -->
 {%include "partials/_flashed_messesges.html"%}
 <!-- end partial -->
-{% block content %}
 <!-- categories  section  -->
 <section>
   <!-- start row -->

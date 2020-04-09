@@ -1,5 +1,6 @@
 <!-- extends base.html -->
 {% extends 'base.html' %}
+
 <!-- start block content -->
 {% block content %}
 <!-- Including paritals flashed messages  -->
@@ -9,8 +10,22 @@
 <!--start of  login form section -->
 <section>
   <!-- login in form wrapper -->
+  <!-- sign up from wrapper -->
   <div class="signup-form">
-    <!-- form start action button activates login route located in app.py -->
+    <!-- row wraps close window Icon -->
+    <div class="row justify-content-end">
+      <!-- start col -->
+      <div class="col-2">
+        <!-- link wraps Icon -->
+        <a href="{{ url_for('index') }}"
+          ><i class="far fa-window-close fa-3x purple"></i
+        ></a>
+        <!-- end link -->
+      </div>
+      <!-- end col -->
+    </div>
+    <!-- end row -->
+    <!-- form start action button activates register route located in app.py -->
     <form action="{{ url_for('login') }}" method="POST" autocomplete="on">
       <!-- login header -->
       <h2 class="text-barlow">Log in</h2>

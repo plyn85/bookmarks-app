@@ -11,6 +11,19 @@
   <!-- login in form wrapper -->
 
   <div class="signup-form">
+    <!-- row wraps close window Icon -->
+    <div class="row justify-content-end">
+      <!-- start col -->
+      <div class="col-2">
+        <!-- link wraps Icon -->
+        <a href="{{ url_for('index') }}"
+          ><i class="far fa-window-close fa-3x purple"></i
+        ></a>
+        <!-- end link -->
+      </div>
+      <!-- end col -->
+    </div>
+    <!-- end row -->
     <!-- form start action button activates register route located in app.py -->
     <form action="{{ url_for('register') }}" method="POST" autocomplete="on">
       <!-- register header -->

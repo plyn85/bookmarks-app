@@ -1,6 +1,14 @@
 <!-- extended base html here  -->
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+<!-- adding navbar as a a partial  -->
+{%block nav%}
+{%include "partials/_navbar.html"%}
+{%endblock%}
+<!-- end navbar -->
+<!-- start block content -->
+{% block content %}
 <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form -->
+
 <!-- add bookmark form -->
 <section>
   <div class="signup-form">

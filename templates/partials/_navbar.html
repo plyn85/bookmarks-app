@@ -1,0 +1,85 @@
+<!-- start header -->
+<header>
+  <!-- copy an pasted an altered from https://getbootstrap.com/docs/4.3/components/navbar/ -->
+
+  <!-- start of navbar navbar bar will appear on every page but login an register -->
+  <nav class="navbar navbar-expand-lg navbar-fixed-top">
+    <!-- navbar bookmarks logo added here always links to home page -->
+    <a class="navbar-brand" href="{{url_for('index')}}"
+      ><img
+        src="https://res.cloudinary.com/plyn85/image/upload/c_scale,w_50/v1586212008/bookmarks-app/magazine-clipart-student-book-6_atesf2.png"
+        alt="an image of the bookmarks logo"
+    /></a>
+    <!-- end logo -->
+
+    <!-- nav button -->
+    <button
+      class="navbar-toggler custom-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon">
+        <!-- setting customer navbar toggler icon -->
+        <i class="fas fa-bars"></i>
+      </span>
+    </button>
+    <!-- end button -->
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <!-- navbar links added here  -->
+      <ul class="navbar-nav">
+        <!-- if any user is logged in  -->
+        {% if session['logged_in']%}
+        <!-- link to home -->
+        <li class="nav-item active">
+          <a class="nav-link" href="{{url_for('index')}}"
+            >Home <span class="sr-only">(current)</span></a
+          >
+        </li>
+        <!-- link to my bookmarks only visable if any user is logged will bring users to there own bookmarks page  -->
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('users')}}">My Bookmarks</a>
+        </li>
+        <!-- link to add a bookmark page for the user only visable if any user is logged in -->
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('add_bookmark')}}">
+            Add Bookmark</a
+          >
+        </li>
+        <!-- link to users categories page only visable when the user is logged in -->
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('user_categories')}}"
+            >Categories</a
+          >
+        </li>
+        <!-- link to add category page only visabale when the user is logged in  -->
+        <li class="nav-item mr-5">
+          <a class="nav-link" href="{{url_for('add_category')}}"
+            >Add Category</a
+          >
+        </li>
+        <!-- allows the user to logout, links to logout route in app.py only visabale when the user is logged in  -->
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+        </li>
+        <!-- both login and register will only be visable if no users are  logged in using the else block-->
+        {% else %}
+        <!-- login -->
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('login')}}">Login</a>
+        </li>
+        <!-- register -->
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('register')}}">Register</a>
+        </li>
+        {% endif %}
+        <!-- if statment ends -->
+      </ul>
+    </div>
+  </nav>
+  <!-- end of navbar -->
+</header>

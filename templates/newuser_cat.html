@@ -1,6 +1,9 @@
 <!-- extends base.html -->
 {% extends 'base.html' %}
 <!-- strats block content -->
+<!-- adding navbar as a a partial  -->
+{%block nav%} {%include "partials/_navbar.html"%} {%endblock%}
+<!-- end navbar -->
 {% block content %}
 <!-- starts page that will only ever been seen by a new user or if a repeat user has no categories added -->
 <section>
