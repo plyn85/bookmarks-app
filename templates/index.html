@@ -35,10 +35,10 @@
   </div>
   <!-- end row -->
   <!-- start row -->
-  <div class="row mt-3">
+  <div class="row mt-3 justify-content-center">
     <!-- start col  -->
     <!-- flex box fix added here for microsoft edge an internet exploer Issue with flex-col class -->
-    <div class="text-center col flex-box-fix">
+    <div class="text-center col col-md-10 flex-box-fix">
       <!-- start text -->
       <h4 class="purple text-barlow">
         Check out our other members bookmarks below. You can search through them
@@ -52,32 +52,79 @@
   {%endif%}
   <!-- if statment to prevent logged in user seeing this -->
   {% if not session['logged_in']%}
+  <div class="row">
+    <!--start of col which wraps entrie callout section-->
+    <div class="col-12 mt-4">
+      <!-- text for non logged in user -->
+      <p class="text-barlow purple txt-lg text-center mt-3 mt-lg-5">
+        Share your bookmarks as well as start a collection!
+      </p>
+      <!-- end text -->
 
-  <!--start of col which wraps entrie callout section-->
-  <div class="col-10 col-md-8 mt-2">
-    <!-- text for non logged in user -->
-    <p class="text-barlow callout-main-text mt-3 mt-lg-5">
+      <!-- start of row which wraps both buttons  -->
+      <div class="row justify-content-center">
+        <!-- button -->
+        <a
+          href="{{url_for('register')}}"
+          class="btn col-md-3 text-oswald text-center white p-2"
+        >
+          Get started</a
+        >
+        <!-- end button -->
+      </div>
+      <!-- end col  -->
+    </div>
+    <!-- start of row wrapping Image -->
+    <div class="col d-none d-md-block mt-4 text-center">
+      <!-- image -->
+      <img
+        src="https://res.cloudinary.com/plyn85/image/upload/c_scale,w_350/v1586427489/bookmarks-app/123_design_blog_best_new_products_spacemark_4-3_vktqbn.jpg"
+        alt=""
+        class="img-fluid"
+      />
+      <!-- end Image -->
+    </div>
+    <!-- end col -->
+  </div>
+  <!-- end row -->
+  <div class="row justify-content-center mt-5">
+    <div class="col-10 col-md-6 white text-barlow txt-lg bk-purple">
       Tired of having a long list of bookmarks and no Idea of what you
       bookmarked, when you bookmarked it and why? The answer to all your
       problems is here with our bookmarks organiser app. Please register and
-      login to use the app. Or if your already registered login.
-    </p>
-    <!-- end text -->
-    <!-- start of row which wraps both buttons  -->
-    <div class="row justify-content-center">
-      <!-- button -->
-      <a
-        href="{{url_for('register')}}"
-        class="btn col-md-3 text-oswald text-center white p-2"
-      >
-        Register here</a
-      >
-      <!-- end button -->
+      login to use the app. Or if your already registered login. Have fun!
     </div>
-    <!-- end col  -->
+  </div>
+
+  <div class="row mt-5">
+    <div class="col text-barlow txt-lg purple uppercase">
+      Members testimonials
+    </div>
+  </div>
+  <div class="row justify-content-around mt-5">
+    <div
+      class="col-10 mb-3 mb-lg-0 col-lg-3 white text-barlow txt-lg bk-purple"
+    >
+      "Really good. I have gotten great pleasure from using the from bookmarks
+      app." - Hendrik O.
+    </div>
+    <div
+      class="col-10 mb-3 mb-lg-0 col-lg-3 white text-barlow txt-lg bk-purple"
+    >
+      "If you want an app that that works and effective implementation -
+      bookmarks app's got you covered. I was amazed at the quality of bookmarks
+      app. It's just amazing. Bookmarks app impressed me on multiple levels." -
+      Del V.
+    </div>
+    <div
+      class="col-10 mb-3 mb-lg-0 col-lg-3 white text-barlow txt-lg bk-purple"
+    >
+      "Needless to say we are extremely satisfied with the results. I don't know
+      what else to say. I love bookmarks app." - Stormie C.
+    </div>
   </div>
   {%endif%}
-  <!-- end row  -->
+  <!-- end if  -->
 </section>
 <!-- end callout section -->
 

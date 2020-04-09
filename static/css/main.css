@@ -64,7 +64,9 @@ html {
 .purple {
   color: #7d3cff;
 }
-
+.bk-purple {
+  background-color: #7d3cff;
+}
 /* main body */
 /* setting color for hr line */
 .hr-color {

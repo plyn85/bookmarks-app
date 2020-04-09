@@ -72,14 +72,14 @@
     >
     <!-- navbar links added here  -->
     <ul class="navbar-nav">
+      <!-- if any user is logged in  -->
+      {% if session['logged_in']%}
       <!-- link to home -->
       <li class="nav-item active">
               <a class="nav-link" href="{{url_for('index')}}"
               >Home <span class="sr-only">(current)</span></a
               >
             </li>
-            <!-- if any user is logged in  -->
-            {% if session['logged_in']%}
             <!-- link to my bookmarks only visable if any user is logged will bring users to there own bookmarks page  -->
             <li class="nav-item">
               <a class="nav-link" href="{{url_for('users')}}"
