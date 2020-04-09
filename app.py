@@ -40,7 +40,7 @@ date = datetime.utcnow()
 def index():
     """ Pagintion with thanks to Miroslav Svec, DCD Channel lead.
         altered from https://github.com/MiroslavSvec/DCD_lead/tree/pagination
-        paginated results to be displayed on index page  by upvotes and Id"""
+        paginated results to be displayed on index page  by upvotes"""
     #  getting categorys collection from database
     categories = categories_collection.find()
     #  setting args varibales
@@ -110,11 +110,11 @@ def register():
     Is the same as the username enetered to the form the user is redirect to the
     login page taken an altered from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE"""
 
+    # getting username,password an comfrim-password from register form
+    username = request.form['username']
+    password = request.form['password']
+    confirm_password = request.form['confirm_password']
     if request.method == 'POST':
-        # getting username,password an comfrim-password from register form
-        username = request.form['username']
-        password = request.form['password']
-        confirm_password = request.form['confirm_password']
         # getting existing user from the database
         existing_user = users_collection.find_one(
             {'name': username})
@@ -233,8 +233,8 @@ def edit_bookmark(book_id):
 
 @app.route('/update_bookmark/<book_id>', methods=["POST"])
 def update_bookmark(book_id):
-    """Route updates bookmarks collection for the user in the database 
-    after the Edit bookmark form Is submited user Is then redirect back to 
+    """Route updates bookmarks collection for the user in the database
+    after the Edit bookmark form Is submited user Is then redirect back to
     user bookmarks page"""
     # date formated by day, month, date
     format_date = date.strftime("%a %B %d")
@@ -267,8 +267,8 @@ def edit_category(cat_id):
 
 @app.route('/update_category/<cat_id>', methods=['POST'])
 def update_category(cat_id):
-    """Route updates category collection for the user in the database 
-    after the Edit category form Is submited user Is then redirect back to 
+    """Route updates category collection for the user in the database
+    after the Edit category form Is submited user Is then redirect back to
     user categories page"""
     # updating category_name an the categories username in the database
     if request.method == "POST":
@@ -285,7 +285,7 @@ def update_category(cat_id):
 @app.route('/upvote/<book_id>', methods=["GET", "POST"])
 def upvote(book_id):
     """ Upvote route add likes to bookmarks on index and search pages"""
-    # finds upvotes In bookmarks collection and adds one when button is clicked
+    # finds upvotes In bookmarks collection and adds one when like  button is clicked
     if request.method == "POST":
 
         bookmarks_collection.find_one_and_update(
@@ -296,7 +296,43 @@ def upvote(book_id):
     return redirect(url_for('index',  book_id=book_id))
 
 
+@app.route('/sort_by_latest', methods=['POST', "GET"])
+def sort_by():
+    """ Pagintion with thanks to Miroslav Svec, DCD Channel lead.
+    altered from https://github.com/MiroslavSvec/DCD_lead/tree/pagination
+    paginated results to be displayed on index page  by pouplarity"""
+
+    users = users_collection.find()
+    categories = categories_collection.find()
+    #  setting args varibales
+    num_results = bookmarks_collection.count()
+    users = users_collection.find()
+    p_limit = int(request.args.get('limit', 6))
+    p_offset = int(request.args.get('offset', 0))
+    # getting bookmarks collection orderding by poupalirty and adding pagination
+    bookmarks = bookmarks_collection.find().sort(
+        "_id", -1).limit(p_limit).skip(p_offset)
+    # args added here to be used on pagintion page
+    args = {
+        "p_limit": p_limit,
+        "p_offset": p_offset,
+        "num_results": num_results,
+        "next_url": f"/sort_by_latest?limit={str(p_limit)}&offset={str(p_offset + p_limit)}",
+        "prev_url": f"/sort_by_latest?limit={str(p_limit)}&offset={str(p_offset - p_limit)}",
+
+    }
+
+    return render_template('sort_by_latest.html', bookmarks=bookmarks, categories=categories, users=users, args=args)
+
+
+@app.route('/sort_by_pop', methods=['POST'])
+def sort_by_pop():
+    if request.method == "POST":
+        return redirect(url_for('index'))
+
+
 # ----- Delete ----- #
+
 
 @app.route('/delete_bookmark/<book_id>', methods=["POST", "GET"])
 def delete_bookmark(book_id):

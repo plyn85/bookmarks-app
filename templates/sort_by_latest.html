@@ -163,7 +163,7 @@
     <div class="col-lg-4">
       <!-- bookmarks header -->
       <h4 class="text-oswald mt-5 text-center uppercase font-weight-bold">
-        Most Popular Bookmarks
+        Our Latest Bookmarks
       </h4>
       <hr class="hr-color" />
       <!-- end header -->
@@ -203,14 +203,14 @@
     <!-- end col -->
     
   </form>
-  <form class="form-inline" method="POST" action="{{url_for('sort_by')}}">
+  <form class="form-inline" method="POST" action="{{url_for('sort_by_pop')}}">
     <div class="form-group">
       <div class="input-group">
           <span class="text-barlow mr-2  purple txt-lg">Sort By</span>
               <select name="sort_by" class="form-control">
                
-                <option value="" selected disabled>Most Popular</option>
-                <option value="">Latest</option>
+                <option value=""selected  disabled>Latest</option>
+                <option value="" >Most Popular</option>
               </select>
       </div>
       <button type="submit" class="btn mr-2">Go</button>
@@ -220,9 +220,9 @@
   <!-- end row -->
 </section>
 <!-- end search bar section -->
-<!-- pagintion html included -->
-{%include "partials/_pagination.html"%}
 
+<!-- pagination parital included -->
+{%include "partials/_pagination.html"%}
 <!-- bookmarks  html page added here  -->
 {%include 'partials/_bookmarks.html'%} {%endif%}
 <!-- end defensive element if statement -->
@@ -249,5 +249,6 @@
 </section>
 <!-- end section -->
 <!-- pagination parital included -->
-{%include "partials/_pagination.html"%} {% endblock content %}
+{%include "partials/_pagination.html"%}
+ {% endblock content %}
 <!-- end block content -->

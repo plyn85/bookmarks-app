@@ -6,7 +6,7 @@ $(document).ready(function () {
 
   // overriding default on like the like button here
   $(".like-btn-form").click(function (event) {
-    event.preventDefault();
+    // event.preventDefault();
     // run flask route here
     window.location = location.href;
   });
