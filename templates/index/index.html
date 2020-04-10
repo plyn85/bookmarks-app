@@ -71,28 +71,38 @@
         method="POST"
         action="{{url_for('sort_by_latest')}}"
       >
+        <!-- row not visable on mobile -->
+        <div class="row">
+          <!-- start col -->
+          <div class="col text-center text-barlow purple txt-lg d-md-none">
+            Sort by
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end row  -->
         <!-- start row  -->
         <div class="form-group row">
           <!-- start col -->
-          <div class="input-group col-10">
-            <!-- staart span -->
-            <span class="text-barlow purple txt-lg">Sort By</span>
+          <div class="input-group">
+            <!--div  hidden on mobile-->
+            <div class="text-barlow purple txt-lg d-none d-md-block">
+              Sort By
+            </div>
             <!-- start select -->
-            <select name="sort_by" class="form-control">
+            <select name="sort_by" class="form-control col">
               <!-- options -->
               <option value="" selected disabled>Most Popular</option>
               <option value="latest">Latest</option>
               <!-- end options -->
             </select>
             <!-- end select -->
+            <!-- submit button for sort by -->
+            <button class="btn text-barlow col-3 col-md-2" type="submit">
+              Go
+            </button>
+            <!-- end button -->
           </div>
           <!-- end input group -->
-
-          <!-- submit button for sort by -->
-          <button class="btn text-barlow col-2" type="submit">
-            Go
-          </button>
-          <!-- end button -->
         </div>
       </form>
       <!-- end form -->

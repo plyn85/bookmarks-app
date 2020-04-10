@@ -214,3 +214,9 @@ footer {
     width: 18rem;
   }
 }
+.dropdown {
+  font-size: 1.3rem;
+}
+* {
+  border: 1px solid red;
+}
