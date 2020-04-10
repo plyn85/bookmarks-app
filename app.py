@@ -424,8 +424,8 @@ def sort_by_latest():
     """ Pagintion with thanks to Miroslav Svec, DCD Channel lead.
     altered from https://github.com/MiroslavSvec/DCD_lead/tree/pagination
     paginated results to be displayed on index page  by pouplarity"""
-
-    users = users_collection.find()
+    if request.method == "POST":
+         users = users_collection.find()
     categories = categories_collection.find()
     #  setting args varibales
     num_results = bookmarks_collection.count()
@@ -445,10 +445,11 @@ def sort_by_latest():
 
     }
 
+   
     return render_template('index/sort_by_latest.html', bookmarks=bookmarks, categories=categories, users=users, args=args)
 
 
-@app.route('/sort_by_pop', methods=['POST'])
+@app.route('/sort_by_pop', methods=['POST','GET'])
 def sort_by_pop():
     """ returns thr user to index page when sort by popularity Is chosen 
     on In the drop down menu on sort_by latest page """
