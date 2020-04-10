@@ -1,13 +1,13 @@
 <!-- pagination section taken an altered from a tutorial found in slack archives and at  
    https://github.com/MiroslavSvec/DCD_lead/tree/pagination -->
 
-  <!-- pagination section -->
+<!-- pagination section -->
 <section>
   <!-- if the number of bookmarks less  as the page limit -->
   {% if args.num_results > args.p_limit %}
 
   <!-- row wraps the pagination buttons -->
-  <div class="pagination row justify-content-around  mb-4">
+  <div class="pagination row justify-content-around mb-4">
     <!-- 	If this is first page (offset == 0) prev_url link should not be displayed -->
     {% if args.p_offset > 0 %}
 

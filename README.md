@@ -246,7 +246,36 @@ them from the database.
 
 
 ## Testing 
+I used [WSC CSS](https://jigsaw.w3.org/css-validator/) Validation and [HTML Markup](https://validator.w3.org/) Validation to validate the html and css. The only errors occurring was with the Jinja templating language which the HTML validator does not recognise   I used [PEP8](https://www.python.org/dev/peps/pep-0008/) to validate python.
 
+Most of the testing was done In as I developed the app 
+Most of the testing was done In as I developed the app. 
+I used the flask built In debugger through the whole development phase. I had It set to flask_debug=1. This was a valuable resource. If there were any errors they were shown here and I used this to solve many Issues through the development process. 
+As you become accustomed to the debugger you're able to quickly Identify what causes the app to crash. 
+
+## TESTING CRUD 
+
+### CREATE 
+
+### READ
+
+### UPDATE 
+
+### DELETE 
+
+My app is fully responsive across a range of devices. This was achieved using the bootstrap grid. 
+The responsiveness and correct displaying of all elements has been tested on a number of devices, browsers, and resolutions. Chrome, Firefox, Opera, Safari, Edge, and IE all display without issue.
+
+Chrome dev tools were used to simulate multiple devices and widths, and no issues were encountered.
+
+The following physical devices where 
+tested with no issues found.
+
+ - Lenovo ideapad 320s
+ - Apple iphone 8
+ - Apple ipad 3 
+ - Samsung galaxy A3
+ - Huawei p20 lite  
 ## Manual testing of all elements on website
 
 ## Deployment 

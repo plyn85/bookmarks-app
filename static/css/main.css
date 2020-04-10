@@ -122,7 +122,7 @@ targeting flashed messages */
 
 .flex-box-fix {
   -webkit-box-flex: 0;
-   flex: none;
+  flex: none;
   -ms-flex: none;
   -moz-box-flex: none;
 }
@@ -165,8 +165,7 @@ targeting flashed messages */
   border-radius: 0.25rem;
   margin-bottom: 1rem;
   background: #fdedcc;
-  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   padding: 2rem;
 }
 /* targeting categories an bookmarks userpages text here and Infomation button above it here   */
@@ -198,7 +197,6 @@ footer {
   width: 100%;
 }
 
-
 /* media queries */
 
 /* for smallest devices */
@@ -213,10 +211,4 @@ footer {
   .signup-form {
     width: 18rem;
   }
-}
-.dropdown {
-  font-size: 1.3rem;
-}
-* {
-  border: 1px solid red;
 }

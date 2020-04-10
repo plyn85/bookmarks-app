@@ -287,7 +287,6 @@ def upvote(book_id):
     """ Upvote route add likes to bookmarks on index and search pages"""
     # finds upvotes In bookmarks collection and adds one when like  button is clicked
     if request.method == "POST":
-
         bookmarks_collection.find_one_and_update(
             {'_id': ObjectId(book_id)},
             {'$inc': {'upvotes': 1}}
@@ -425,7 +424,7 @@ def sort_by_latest():
     altered from https://github.com/MiroslavSvec/DCD_lead/tree/pagination
     paginated results to be displayed on index page  by pouplarity"""
     if request.method == "POST":
-         users = users_collection.find()
+        users = users_collection.find()
     categories = categories_collection.find()
     #  setting args varibales
     num_results = bookmarks_collection.count()
@@ -445,11 +444,10 @@ def sort_by_latest():
 
     }
 
-   
     return render_template('index/sort_by_latest.html', bookmarks=bookmarks, categories=categories, users=users, args=args)
 
 
-@app.route('/sort_by_pop', methods=['POST','GET'])
+@app.route('/sort_by_pop', methods=['POST', 'GET'])
 def sort_by_pop():
     """ returns thr user to index page when sort by popularity Is chosen 
     on In the drop down menu on sort_by latest page """
