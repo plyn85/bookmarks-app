@@ -297,7 +297,7 @@ def upvote(book_id):
 
 
 @app.route('/sort_by_latest', methods=['POST', "GET"])
-def sort_by():
+def sort_by_latest():
     """ Pagintion with thanks to Miroslav Svec, DCD Channel lead.
     altered from https://github.com/MiroslavSvec/DCD_lead/tree/pagination
     paginated results to be displayed on index page  by pouplarity"""
@@ -327,6 +327,8 @@ def sort_by():
 
 @app.route('/sort_by_pop', methods=['POST'])
 def sort_by_pop():
+    """ returns thr user to index page when sort by popularity Is chosen 
+    on In the drop down menu on sort_by latest page """
     if request.method == "POST":
         return redirect(url_for('index'))
 

@@ -8,162 +8,23 @@
 <!-- Including paritals flashed messages  -->
 {%include "partials/_flashed_messesges.html"%}
 <!-- end partial -->
-
-<!-- start callout section and row which wraps entire callout section -->
-<section class="row justify-content-center mt-5">
-  <!--only seen when user Is logged In -->
-  {%if session['logged_in']%}
-  <!-- website instuctions row start -->
-  <div class="row mt-5 justify-content-center">
-    <!-- start col -->
-
-    <div class="col flex-box-fix">
-      <!-- welcome text -->
-      <h5 class="text-barlow purple font-weight-bold">
-        Welcome to our Bookmarks app If you are a first time user please go to
-        my bookmarks to start your collection. Have fun!
-      </h5>
-      <!-- end text -->
-
-      <!--  bookmarks link button col wrapper -->
-      <div class="col text-center">
-        <!-- button -->
-        <a
-          href="{{url_for('users')}}"
-          class="btn text-barlow mt-2 col-6 col-md-3"
-        >
-          My bookmarks
-        </a>
-        <!-- end button -->
-      </div>
-      <!-- end col -->
-    </div>
-    <!-- end col -->
-  </div>
-  <!-- end row -->
-  <!-- start row -->
-  <div class="row mt-3 justify-content-center">
-    <!-- start col  -->
-    <!-- flex box fix added here for microsoft edge an internet exploer Issue with flex-col class -->
-    <div class="text-center col col-md-10 flex-box-fix">
-      <!-- start text -->
-      <h4 class="purple text-barlow">
-        Check out our other members bookmarks below. You can search through them
-        give them a like or go to add bookmarks to add your own.
-      </h4>
-      <!-- end text -->
-    </div>
-    <!-- end col -->
-  </div>
-  <!-- end row -->
-  {%endif%}
-  <!-- end of if that only seen to logged In user -->
-
-  <!-- if statment to prevent logged in user seeing this -->
-  {% if not session['logged_in']%}
-  <div class="row">
-    <!--start of col which wraps entrie callout section-->
-    <div class="col-12 mt-4">
-      <!-- text for non logged in user -->
-      <p class="text-barlow purple txt-lg text-center mt-3 mt-lg-5">
-        Share your bookmarks as well as start a collection!
-      </p>
-      <!-- end text -->
-
-      <!-- start of row which wraps both buttons  -->
-      <div class="row justify-content-center">
-        <!-- button -->
-        <a
-          href="{{url_for('register')}}"
-          class="btn col-md-3 text-oswald text-center p-2"
-        >
-          Get started</a
-        >
-        <!-- end button -->
-      </div>
-      <!-- end col  -->
-    </div>
-    <!-- start of row wrapping Image -->
-    <div class="col d-none d-md-block mt-4 text-center">
-      <!-- image -->
-      <img
-        src="https://res.cloudinary.com/plyn85/image/upload/c_scale,w_350/v1586427489/bookmarks-app/123_design_blog_best_new_products_spacemark_4-3_vktqbn.jpg"
-        alt=""
-        class="img-fluid"
-      />
-      <!-- end Image -->
-    </div>
-    <!-- end col -->
-  </div>
-  <!-- end row -->
-  <!-- start of row-->
-  <div class="row justify-content-center mt-5">
-    <!-- start of col -->
-    <div class="col-10 col-md-6 white text-barlow txt-lg bk-purple">
-      Tired of having a long list of bookmarks and no Idea of what you
-      bookmarked, when you bookmarked it and why? The answer to all your
-      problems is here with our bookmarks organiser app. Please register and
-      login to use the app. Or if your already registered login. Have fun!
-    </div>
-    <!-- end col -->
-  </div>
-  <!-- end row  -->
-
-  <!-- start of testimonials header row -->
-  <div class="row mt-5">
-    <!-- start of col -->
-    <div class="col text-barlow txt-lg purple uppercase">
-      Members testimonials
-    </div>
-    <!-- end col -->
-  </div>
-  <!-- end row -->
-  <!-- start of member testimonials row-->
-  <div class="row justify-content-around mt-5">
-    <!-- start of first col -->
-    <div
-      class="col-10 mb-3 mb-lg-0 col-lg-3 white text-barlow txt-lg bk-purple"
-    >
-      "Really good. I have gotten great pleasure from using the from bookmarks
-      app." - Hendrik O.
-    </div>
-    <!-- end col -->
-    <!-- start of second col -->
-    <div
-      class="col-10 mb-3 mb-lg-0 col-lg-3 white text-barlow txt-lg bk-purple"
-    >
-      "If you want an app that that works and effective implementation -
-      bookmarks app's got you covered. I was amazed at the quality of bookmarks
-      app. It's just amazing. Bookmarks app impressed me on multiple levels." -
-      Del V.
-    </div>
-    <!-- end col -->
-    <!-- start of third col -->
-    <div
-      class="col-10 mb-3 mb-lg-0 col-lg-3 white text-barlow txt-lg bk-purple"
-    >
-      "Needless to say we are extremely satisfied with the results. I don't know
-      what else to say. I love bookmarks app." - Stormie C.
-    </div>
-    <!-- end col -->
-  </div>
-  <!-- end row -->
-  {%endif%}
-  <!-- end if that hides content from logged In user -->
-</section>
-<!-- end callout section -->
-
+<!-- including partials callotsection -->
+{%include "partials/_callout.html"%}
+<!-- end partial -->
+<!-- including partials callotsection -->
+{%include "partials/_callout_loggedout.html"%}
+<!-- end partial -->
 <!-- start of denfensive element bookmarks and search bar can only be veiwed by logged In users -->
 {% if session['logged_in']%}
-<!-- start  of search bar section-->
+<!-- start  of search bar and sort bar section-->
 <section>
   <!-- start of row  that wraps header-->
   <div class="row justify-content-center mt-4">
     <!-- col that wraps header-->
-    <div class="col-lg-4">
+    <div class="col-lg-6">
       <!-- bookmarks header -->
       <h4 class="text-oswald mt-5 text-center uppercase font-weight-bold">
-        Most Popular Bookmarks
+        Our Most Popular Bookmarks
       </h4>
       <hr class="hr-color" />
       <!-- end header -->
@@ -171,11 +32,12 @@
     <!-- end col -->
   </div>
   <!-- end row -->
-  <!-- pagination parital included -->
-  <!-- row wraps search bar -->
-  <div class="row mt-2">
+ 
+
+  <!-- row wraps search bar an sort bars-->
+  <div class="row">
     <!-- col that  wraps search bar  -->
-    <div class="col text-center">
+    <div class="col-lg-6 ml-md-5 ml-lg-0 text-center">
       <!-- search bar form activates search results route located in app.py -->
       <form action="{{ url_for('search_results') }}" method="post">
         <!-- row wraps search bar input  -->
@@ -191,7 +53,7 @@
           <!-- end input -->
 
           <!-- submit button for search bar  -->
-          <button class="btn text-barlow col-3 col-lg-1" type="submit">
+          <button class="btn text-barlow col-2" type="submit">
             Go
           </button>
           <!-- end button -->
@@ -199,55 +61,59 @@
         <!-- end row -->
       </form>
       <!-- end form -->
-    </div>
-    <!-- end col -->
-    
-  </form>
-  <form class="form-inline" method="POST" action="{{url_for('sort_by')}}">
-    <div class="form-group">
-      <div class="input-group">
-          <span class="text-barlow mr-2  purple txt-lg">Sort By</span>
-              <select name="sort_by" class="form-control">
-               
-                <option value="" selected disabled>Most Popular</option>
-                <option value="">Latest</option>
-              </select>
-      </div>
-      <button type="submit" class="btn mr-2">Go</button>
-    </div>
-  </form>
+    </form>
+    <!-- end form -->
   </div>
+  <!-- end col -->
+
+<!-- col wraps sort by bar -->
+<div class="col mt-3 mt-lg-0 mr-3 mr-md-5 mr-lg-0">
+  <!-- start form -->
+  <form class="m-3 m-md-0 text-center" method="POST" action="{{url_for('sort_by_latest')}}">
+    <!-- start row  -->
+    <div class="form-group row">
+      <!-- start col -->
+      <div class="input-group col-10">
+        <!-- staart span -->
+          <span class="text-barlow purple txt-lg">Sort By</span>
+              <!-- start select -->
+          <select name="sort_by" class="form-control">
+                <!-- options -->
+            <option value=""selected disabled >Most Popular</option>
+            <option value="">Latest</option>
+              <!-- end options -->
+            </select>
+            <!-- end select -->
+      </div>
+      <!-- end input group -->
+
+           <!-- submit button for sort by -->
+           <button class="btn text-barlow col-2" type="submit">
+            Go
+          </button>
+          <!-- end button -->
+  </form>
+  <!-- end form -->
+</div>
+<!-- end col -->
+</div>
   <!-- end row -->
 </section>
+
 <!-- end search bar section -->
 <!-- pagintion html included -->
 {%include "partials/_pagination.html"%}
 
 <!-- bookmarks  html page added here  -->
-{%include 'partials/_bookmarks.html'%} {%endif%}
+{%include 'partials/_bookmarks.html'%} 
+<!-- end partials -->
+{%endif%}
 <!-- end defensive element if statement -->
 
-<!--Footer section-->
-<section>
-  <!-- start of footer -->
-  <footer class="fixed-bottom text-center white font-weight-bold text-barlow">
-    <!-- copyright -->
-    <span>© 2020 Copyright</span>
-    <!-- end copyright -->
 
-    <!-- centering footer text here  -->
-    <a href="https://github.com/plyn85" target="_blank" class="white">
-      <!-- git hub icon -->
-      <i class="fab fa-github ml-3"></i>
-      <!-- github link text -->
-      <span class="ml-1">https://github.com/plyn85</span>
-      <!-- end text -->
-    </a>
-    <!-- end link -->
-  </footer>
-  <!-- end of Footer -->
-</section>
-<!-- end section -->
 <!-- pagination parital included -->
 {%include "partials/_pagination.html"%} {% endblock content %}
 <!-- end block content -->
+<!-- adding navbar as a a partial  -->
+{%block footer%} {%include "partials/_footer.html"%} {%endblock%}
+<!-- end navbar -->

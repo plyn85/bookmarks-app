@@ -37,13 +37,15 @@
   </head>
   <!-- start body -->
   <body>
+    <!-- block nav -->
     {% block nav %} {% endblock %}
       <!-- conatiner fluid postion added here will wrap every section used on all pages -->
       <div class="container-fluid mt-3">
         {% block content %}{% endblock %}
     </div>
     <!-- end container -->
-
+    <!-- block footer -->
+    {% block footer %} {% endblock %}
 
     <!-- scripts added here avilable to be across all pages  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
