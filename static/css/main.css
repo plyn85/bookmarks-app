@@ -1,3 +1,5 @@
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+
 @import url("https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Oswald&display=swap:,600,700,800");
 
 /* inital set up */
@@ -120,7 +122,7 @@ targeting flashed messages */
 
 .flex-box-fix {
   -webkit-box-flex: 0;
-  flex: none;
+   flex: none;
   -ms-flex: none;
   -moz-box-flex: none;
 }
@@ -163,7 +165,8 @@ targeting flashed messages */
   border-radius: 0.25rem;
   margin-bottom: 1rem;
   background: #fdedcc;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   padding: 2rem;
 }
 /* targeting categories an bookmarks userpages text here and Infomation button above it here   */
@@ -194,6 +197,7 @@ footer {
   height: 1.5rem;
   width: 100%;
 }
+
 
 /* media queries */
 
