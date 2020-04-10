@@ -75,8 +75,8 @@ def login():
 
     if request.method == 'POST':
         # getting username and password from register form
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form.get('username')
+        password = request.form.get('password')
         # finding user in the database
         login_user = users_collection.find_one(
             {'name': username})
@@ -111,9 +111,9 @@ def register():
     login page taken an altered from a tutorial found at https://www.youtube.com/watch?v=vVx1737auSE"""
 
     # getting username,password an comfrim-password from register form
-    username = request.form['username']
-    password = request.form['password']
-    confirm_password = request.form['confirm_password']
+    username = request.form.get('username')
+    password = request.form.get('password')
+    confirm_password = request.form.get('confirm_password')
     if request.method == 'POST':
         # getting existing user from the database
         existing_user = users_collection.find_one(
@@ -296,43 +296,6 @@ def upvote(book_id):
     return redirect(url_for('index',  book_id=book_id))
 
 
-@app.route('/sort_by_latest', methods=['POST', "GET"])
-def sort_by_latest():
-    """ Pagintion with thanks to Miroslav Svec, DCD Channel lead.
-    altered from https://github.com/MiroslavSvec/DCD_lead/tree/pagination
-    paginated results to be displayed on index page  by pouplarity"""
-
-    users = users_collection.find()
-    categories = categories_collection.find()
-    #  setting args varibales
-    num_results = bookmarks_collection.count()
-    users = users_collection.find()
-    p_limit = int(request.args.get('limit', 6))
-    p_offset = int(request.args.get('offset', 0))
-    # getting bookmarks collection orderding by poupalirty and adding pagination
-    bookmarks = bookmarks_collection.find().sort(
-        "_id", -1).limit(p_limit).skip(p_offset)
-    # args added here to be used on pagintion page
-    args = {
-        "p_limit": p_limit,
-        "p_offset": p_offset,
-        "num_results": num_results,
-        "next_url": f"/sort_by_latest?limit={str(p_limit)}&offset={str(p_offset + p_limit)}",
-        "prev_url": f"/sort_by_latest?limit={str(p_limit)}&offset={str(p_offset - p_limit)}",
-
-    }
-
-    return render_template('index/sort_by_latest.html', bookmarks=bookmarks, categories=categories, users=users, args=args)
-
-
-@app.route('/sort_by_pop', methods=['POST'])
-def sort_by_pop():
-    """ returns thr user to index page when sort by popularity Is chosen 
-    on In the drop down menu on sort_by latest page """
-    if request.method == "POST":
-        return redirect(url_for('index'))
-
-
 # ----- Delete ----- #
 
 
@@ -454,6 +417,43 @@ def user_categories():
         return render_template('user/newuser_cat.html')
     return render_template('user/categories.html',
                            categories=categories, title="Categories")
+
+
+@app.route('/sort_by_latest', methods=['POST', "GET"])
+def sort_by_latest():
+    """ Pagintion with thanks to Miroslav Svec, DCD Channel lead.
+    altered from https://github.com/MiroslavSvec/DCD_lead/tree/pagination
+    paginated results to be displayed on index page  by pouplarity"""
+
+    users = users_collection.find()
+    categories = categories_collection.find()
+    #  setting args varibales
+    num_results = bookmarks_collection.count()
+    users = users_collection.find()
+    p_limit = int(request.args.get('limit', 6))
+    p_offset = int(request.args.get('offset', 0))
+    # getting bookmarks collection orderding by poupalirty and adding pagination
+    bookmarks = bookmarks_collection.find().sort(
+        "_id", -1).limit(p_limit).skip(p_offset)
+    # args added here to be used on pagintion page
+    args = {
+        "p_limit": p_limit,
+        "p_offset": p_offset,
+        "num_results": num_results,
+        "next_url": f"/sort_by_latest?limit={str(p_limit)}&offset={str(p_offset + p_limit)}",
+        "prev_url": f"/sort_by_latest?limit={str(p_limit)}&offset={str(p_offset - p_limit)}",
+
+    }
+
+    return render_template('index/sort_by_latest.html', bookmarks=bookmarks, categories=categories, users=users, args=args)
+
+
+@app.route('/sort_by_pop', methods=['POST'])
+def sort_by_pop():
+    """ returns thr user to index page when sort by popularity Is chosen 
+    on In the drop down menu on sort_by latest page """
+    if request.method == "POST":
+        return redirect(url_for('index'))
 
 # ----- Error handlers ----- #
 

@@ -32,7 +32,6 @@
     <!-- end col -->
   </div>
   <!-- end row -->
- 
 
   <!-- row wraps search bar an sort bars-->
   <div class="row">
@@ -61,42 +60,45 @@
         <!-- end row -->
       </form>
       <!-- end form -->
-    </form>
-    <!-- end form -->
-  </div>
-  <!-- end col -->
+    </div>
+    <!-- end col -->
 
-<!-- col wraps sort by bar -->
-<div class="col mt-3 mt-lg-0 mr-3 mr-md-5 mr-lg-0">
-  <!-- start form -->
-  <form class="m-3 m-md-0 text-center" method="POST" action="{{url_for('sort_by_latest')}}">
-    <!-- start row  -->
-    <div class="form-group row">
-      <!-- start col -->
-      <div class="input-group col-10">
-        <!-- staart span -->
-          <span class="text-barlow purple txt-lg">Sort By</span>
-              <!-- start select -->
-          <select name="sort_by" class="form-control">
-                <!-- options -->
-            <option value=""selected disabled >Most Popular</option>
-            <option value="">Latest</option>
+    <!-- col wraps sort by bar -->
+    <div class="col mt-3 mt-lg-0 mr-3 mr-md-5 mr-lg-0">
+      <!-- start form -->
+      <form
+        class="m-3 m-md-0 text-center"
+        method="POST"
+        action="{{url_for('sort_by_latest')}}"
+      >
+        <!-- start row  -->
+        <div class="form-group row">
+          <!-- start col -->
+          <div class="input-group col-10">
+            <!-- staart span -->
+            <span class="text-barlow purple txt-lg">Sort By</span>
+            <!-- start select -->
+            <select name="sort_by" class="form-control">
+              <!-- options -->
+              <option value="" selected disabled>Most Popular</option>
+              <option value="latest">Latest</option>
               <!-- end options -->
             </select>
             <!-- end select -->
-      </div>
-      <!-- end input group -->
+          </div>
+          <!-- end input group -->
 
-           <!-- submit button for sort by -->
-           <button class="btn text-barlow col-2" type="submit">
+          <!-- submit button for sort by -->
+          <button class="btn text-barlow col-2" type="submit">
             Go
           </button>
           <!-- end button -->
-  </form>
-  <!-- end form -->
-</div>
-<!-- end col -->
-</div>
+        </div>
+      </form>
+      <!-- end form -->
+    </div>
+    <!-- end col -->
+  </div>
   <!-- end row -->
 </section>
 
@@ -105,12 +107,11 @@
 {%include "partials/_pagination.html"%}
 
 <!-- bookmarks  html page added here  -->
-{%include 'partials/_bookmarks.html'%} 
+{%include 'partials/_bookmarks.html'%}
 <!-- pagination parital included -->
-{%include "partials/_pagination.html"%} 
+{%include "partials/_pagination.html"%}
 <!-- end partials -->
-{%endif%}
-{% endblock content %}
+{%endif%} {% endblock content %}
 <!-- end block content -->
 <!-- end defensive element if statement -->
 <!-- adding footer as a a partial  -->

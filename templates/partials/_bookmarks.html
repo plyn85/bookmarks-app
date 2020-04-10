@@ -101,7 +101,10 @@
             {%if book.username != session.username%}
 
             <!-- like button link which activates the upvote route in app.py an will add a like to the users bookmark-->
-            <button type="submit" class="btn white text-barlow col-4 like-btn-form">
+            <button
+              type="submit"
+              class="btn white text-barlow col-4 like-btn-form"
+            >
               Like
             </button>
             <!--end like button link  -->
@@ -120,8 +123,8 @@
               href="{{url_for('delete_bookmark', book_id=book._id)}}"
               class="btn white text-barlow mt-2 col-4"
             >
-              Delete
-            </button>
+              Delete</a
+            >
             <!--end delete  button -->
 
             <!-- edit button -->
