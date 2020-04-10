@@ -106,14 +106,13 @@
 
 <!-- bookmarks  html page added here  -->
 {%include 'partials/_bookmarks.html'%} 
+<!-- pagination parital included -->
+{%include "partials/_pagination.html"%} 
 <!-- end partials -->
 {%endif%}
-<!-- end defensive element if statement -->
-
-
-<!-- pagination parital included -->
-{%include "partials/_pagination.html"%} {% endblock content %}
+{% endblock content %}
 <!-- end block content -->
-<!-- adding navbar as a a partial  -->
+<!-- end defensive element if statement -->
+<!-- adding footer as a a partial  -->
 {%block footer%} {%include "partials/_footer.html"%} {%endblock%}
-<!-- end navbar -->
+<!-- end footer partial -->

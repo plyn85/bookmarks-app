@@ -61,7 +61,7 @@ def index():
 
     }
 
-    return render_template('index.html', categories=categories,
+    return render_template('index/index.html', categories=categories,
                            bookmarks=bookmarks, users=users, args=args)
 
 
@@ -99,7 +99,7 @@ def login():
             flash(
                 f'Login  Unsuccessful. Please check password!', 'danger')
 
-    return render_template('login.html', title="Login")
+    return render_template('forms/login.html', title="Login")
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -142,7 +142,7 @@ def register():
             flash(
                 f'Username In use! Please try another username', 'danger')
 
-    return render_template('register.html', title="Regsiter")
+    return render_template('forms/register.html', title="Regsiter")
 
 
 @app.route('/logout')
@@ -165,7 +165,7 @@ def add_bookmark():
     """ add bookmark page render when add category link In navbar clicked"""
     # find categories collection In database
     categories = categories_collection.find()
-    return render_template('add_bookmark.html',
+    return render_template('forms/add_bookmark.html',
                            categories=categories, title="Add bookmark")
 
 
@@ -193,7 +193,7 @@ def insert_bookmark():
 @app.route('/add_category')
 def add_category():
     """ add category page render when add category link In navbar clicked"""
-    return render_template('add_category.html', title="Add category")
+    return render_template('forms/add_category.html', title="Add category")
 
 
 @app.route('/insert_category', methods=["POST", "GET"])
@@ -228,7 +228,7 @@ def edit_bookmark(book_id):
     all_categories = categories_collection.find()
     #  finding the bookmarks collection object Id in the database
     the_bookmark = bookmarks_collection.find_one({"_id": ObjectId(book_id)})
-    return render_template("edit_bookmark.html", book=the_bookmark, categories=all_categories, title="edit bookmark")
+    return render_template("forms/edit_bookmark.html", book=the_bookmark, categories=all_categories, title="edit bookmark")
 
 
 @app.route('/update_bookmark/<book_id>', methods=["POST"])
@@ -261,7 +261,7 @@ def edit_category(cat_id):
     # finding the categories collection object Id
     category = categories_collection.find_one(
         {'_id': ObjectId(cat_id)})
-    return render_template('edit_category.html', cat=category, title="Edit category"
+    return render_template('forms/edit_category.html', cat=category, title="Edit category"
                            )
 
 
@@ -322,7 +322,7 @@ def sort_by_latest():
 
     }
 
-    return render_template('sort_by_latest.html', bookmarks=bookmarks, categories=categories, users=users, args=args)
+    return render_template('index/sort_by_latest.html', bookmarks=bookmarks, categories=categories, users=users, args=args)
 
 
 @app.route('/sort_by_pop', methods=['POST'])
@@ -344,7 +344,7 @@ def delete_bookmark(book_id):
     all_categories = categories_collection.find()
     the_bookmark = bookmarks_collection.find_one(
         {"_id": ObjectId(book_id)})
-    return render_template('delete_bookmark.html', book=the_bookmark,  categories=all_categories, title=" delete bookmark")
+    return render_template('forms/delete_bookmark.html', book=the_bookmark,  categories=all_categories, title=" delete bookmark")
 
 
 @app.route('/remove_bookmark/<book_id>', methods=["POST"])
@@ -363,7 +363,7 @@ def delete_category(cat_id):
     delete """
     # getting  category id from the data base
     category = categories_collection.find_one({"_id": ObjectId(cat_id)})
-    return render_template('delete_category.html', cat=category, title="Delete category")
+    return render_template('forms/delete_category.html', cat=category, title="Delete category")
 
 
 @app.route('/remove_category/<cat_id>', methods=["POST", "GET"])
@@ -411,7 +411,7 @@ def users():
     if book_name is None:
         return render_template('newuser.html')
     # if the user has bookmarks added users page rendered
-    return render_template('users.html', users=users, bookmarks=bookmarks, categories=categories, args=args, title=username)
+    return render_template('user/users.html', users=users, bookmarks=bookmarks, categories=categories, args=args, title=username)
 
 
 @app.route('/user_search_results', methods=['POST', 'GET'])
@@ -425,7 +425,7 @@ def user_search_results():
         query = request.form.get('user_search_bar')
         # text search on the bookmarks collection
         results = bookmarks_collection.find({'$text': {'$search': query}})
-        return render_template('user_search_results.html', results=results, title="User Search result")
+        return render_template('user/user_search_results.html', results=results, title="User Search result")
 
 
 @app.route('/search_results', methods=['POST', 'GET'])
@@ -437,7 +437,7 @@ def search_results():
         query = request.form.get('search_bar')
         # text search on the bookmarks collection
         results = bookmarks_collection.find({'$text': {'$search': query}})
-        return render_template('search_results.html', results=results, title="User Search result")
+        return render_template('index/search_results.html', results=results, title="User Search result")
 
 
 @app.route('/user_categories')
@@ -451,8 +451,8 @@ def user_categories():
         {'username': session.get('username')})
     # if the user has no categories
     if cat_name is None:
-        return render_template('newuser_cat.html')
-    return render_template('categories.html',
+        return render_template('user/newuser_cat.html')
+    return render_template('user/categories.html',
                            categories=categories, title="Categories")
 
 # ----- Error handlers ----- #
@@ -461,13 +461,13 @@ def user_categories():
 @app.errorhandler(404)
 def not_found(e):
     """ displays custom 404 html page """
-    return render_template("404.html", title="Page not found")
+    return render_template("errors/404.html", title="Page not found")
 
 
 @app.errorhandler(500)
 def response_500(e):
     """ displays custom 500 html page """
-    return render_template("500.html", title="Server error")
+    return render_template("errors/500.html", title="Server error")
 
 
 if __name__ == '__main__':
