@@ -270,7 +270,24 @@ Testing the delete function of both categories and bookmarks was done first  by 
 ### CREATE 
 The testing for creating functionality of the app was done on a continuous basis. From the early stages of development I was using the app to store useful links from various sources. This gave me a great chance for any bugs that arose along the way. I also had my friends and family test it for my and I'm happy that CRUD is working without bugs    
 
-### Defensive 
+### Defensive design 
+A login and registration system was used  access to the main part of the website Is only 
+Available to registered users.
+
+ The defensive design was implemented throughout this project. Mainly my using the Jinia templating language on the front end. Making use of 
+      
+      {%if book.username != session.username%}     
+      {%if cat.username != session.username%}
+This was used to prevent users from having access to certain elements on the page 
+Such as the access to delete or edit buttons on other users bookmarks or categories.
+Or having the ability to like/upvote their own bookmark.
+Certain elements were also hidden from view using 
+
+    {% if session['logged_in']%}
+    {% if session not ['logged_in']%}
+ 
+This would restrict access to all the users bookmarks for an unregistered user just visiting the home page
+
 
 My app is fully responsive across a range of devices. This was achieved using the bootstrap grid. 
 The responsiveness and correct displaying of all elements has been tested on a number of devices, browsers, and resolutions. Chrome, Firefox, Opera, Safari, Edge, and IE all display without issue.
