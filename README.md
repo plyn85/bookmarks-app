@@ -197,7 +197,7 @@ them from the database.
 - [Vs code](https://code.visualstudio.com/) - used as my IDE for coding
 -  [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) - markup text language used  
 -  [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference) - used for  cascading style sheets
-- JavaScript 
+- [JQuery](https://jquery.com/) - Used for Javascript
 - [Python](https://docs.python.org/3/) - Used as the back end programming language 
 -  [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/)- to make the website responsive and used for layout.
 - [MongoDb Atlas](https://www.mongodb.com/cloud/atlas) - Was used to store the database.
