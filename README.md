@@ -191,7 +191,7 @@ them from the database.
 
 
 
-## Features left to Implement
+
 
 ## Technologies used 
 - [Vs code](https://code.visualstudio.com/) - used as my IDE for coding
@@ -239,7 +239,15 @@ them from the database.
 ### Delete a Category
 - The user can delte their own categories. Defensive programming ensured that no users can delete another users categories.
 
+## Features left to Implement
+- As outlined in the the fixes section the first feature I will like to fix is the Issue with like buttons and pagination. 
 
+- To make a quick add feature available to the user in the categories section  as the section does not do a lot but store the users categories. I would like to add a form on the page or a button which links to a form which allows the user to quickly add just a url 
+With the date automatically added which will appear under the category name. This would allow the user the quickly add a url which would not be shared with other users 
+With using the other parts of the app.
+
+- A delete account feature which would allow the user to fully delete their account from the database 
+ 
 
 ## Testing 
 I used [WSC CSS](https://jigsaw.w3.org/css-validator/) Validation and [HTML Markup](https://validator.w3.org/) Validation to validate the html and css. The only errors occurring was with the Jinja templating language which the HTML validator does not recognise   I used [PEP8](https://www.python.org/dev/peps/pep-0008/) to validate python.
@@ -254,9 +262,9 @@ I have created my own account along with 5 fake ones.The authentication for
 Creating an account Is working as expected. I could register login, logout an then log back In Seamlessly.
 
 ### CRUD TESTING
-- As well as my own bookmarks I added ten bookmarks for each of the  5 fake users for testing purposes
+As well as my own bookmarks I added ten bookmarks for each of the  5 fake users for testing purposes
 
-#### READ
+###  READ
 The first aim was to get the categories displaying on the users categories page.   This was done by returning the categories collection from my database to the user categories route an checking to see If displayed correctly. The next step was to get the bookmarks  displaying correctly on both the homepage and the users page. This was done returning all the bookmarks from the bookmarks collection In my database and testing to see If they appeared on both home an index and user pages 
 
 
@@ -356,7 +364,7 @@ The only Image and logo used on the website  where obtained from google Images
 - The [Pretty printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ) Youtube channel and amazing resource for building flask apps 
 
 
- - The [Corey Schafer](hhttps://www.youtube.com/watch?v=MwZwr5Tvyxo) Python Flask Tutorial. I found myself returning too reagulary for a better understanding of flask
+ - The [Corey Schafer](https://www.youtube.com/watch?v=MwZwr5Tvyxo) Python Flask Tutorial. I found myself returning too reagulary for a better understanding of flask
 
   #### Disclaimer
 

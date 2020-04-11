@@ -7,28 +7,27 @@
 {% block content %}
 <!-- starts page that will only ever been seen by a new user or if a repeat user has no categories added -->
 <section>
-  <!-- row wraps instuctions for user  -->
-  <div class="row justify-content-center mt-5">
-    <!-- start of col -->
-    <div class="col-lg-4 mt-5">
-      <!-- user instuctions along with users name displayed here  -->
-      <h5 class="text-oswald mt-5 text-center purple">
+    <!-- row wraps instuctions for user  -->
+    <div class="row justify-content-center mt-5">
+        <!-- start of col -->
+        <div class="col-lg-4 mt-5">
+            <!-- user instuctions along with users name displayed here  -->
+            <h5 class="text-oswald mt-5 text-center purple">
         <mark class="text-dark text-center">{{session.username}}</mark>
         you have no categories added. Please head to the add categories page.
       </h5>
-      <hr class="hr-color" />
+            <hr class="hr-color" />
+        </div>
+        <!-- end col -->
     </div>
-    <!-- end col -->
-  </div>
-  <!-- end row -->
+    <!-- end row -->
 
-  <!-- row wraps add category button -->
-  <div class="row justify-content-center">
-    <!-- start col -->
-    <div class="col-lg-3 text-center">
-      <!-- button -->
-      <a href="{{url_for('add_category')}}" class="btn text-barlow"
-        >Add Category</a
+    <!-- row wraps add category button -->
+    <div class="row justify-content-center">
+        <!-- start col -->
+        <div class="col-lg-3 text-center">
+            <!-- button -->
+            <a href="{{url_for('add_category')}}" class="btn text-barlow">Add Category</a
       >
       <!-- end button -->
     </div>

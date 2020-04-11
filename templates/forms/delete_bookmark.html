@@ -12,83 +12,62 @@
 {%if session.username == book.username%}
 <!-- start section -->
 <section>
-  <!-- start of div that wraps the entire form -->
-  <div class="signup-form">
-    <!-- start of form activates remove bookmark route located in app.py-->
-    <form
-      action="{{ url_for('remove_bookmark', book_id=book._id) }}"
-      method="post"
-    >
-      <!--form header -->
-      <h2 class="text-center text-barlow">
+    <!-- start of div that wraps the entire form -->
+    <div class="signup-form">
+        <!-- start of form activates remove bookmark route located in app.py-->
+        <form action="{{ url_for('remove_bookmark', book_id=book._id) }}" method="post">
+            <!--form header -->
+            <h2 class="text-center text-barlow">
         Confirm Delete
       </h2>
-      <!-- end header -->
+            <!-- end header -->
 
-      <!--start of input form group -->
-      <div class="form-group">
-        <!-- input displays url of the bookmark delete button was clicked on  -->
-        <input
-          id="add_bookmark_url"
-          type="text"
-          class="form-control"
-          name="add_bookmark_url"
-          placeholder="{{book.add_bookmark_url| truncate(30, killwords=True) }}"
-        />
-      </div>
-      <!-- end form group -->
+            <!--start of input form group -->
+            <div class="form-group">
+                <!-- input displays url of the bookmark delete button was clicked on  -->
+                <input id="add_bookmark_url" type="text" class="form-control" name="add_bookmark_url" placeholder="{{book.add_bookmark_url| truncate(30, killwords=True) }}" />
+            </div>
+            <!-- end form group -->
 
-      <!--start of input form group -->
-      <div class="form-group">
-        <!-- input displays category name of the bookmark delete button was clicked on  -->
-        <input
-          id="category-name"
-          type="text"
-          class="form-control"
-          name="category_name"
-          placeholder="{{book.category_name| truncate(30, killwords=True) }}"
-        />
-      </div>
-      <!-- end form group -->
-      <!-- start of form group that displays bookmark description -->
-      <div class="form-group">
-        <!-- textarea thta displays bookmarks description -->
-        <textarea
-          placeholder="{{book.bookmark_description |truncate (50, killwords=True) }}"
-          id="bookmark_description"
-          class="form-control text-barlow"
-          name="bookmark_description"
-          rows="5"
-        ></textarea>
-      </div>
-      <!-- end form group -->
+            <!--start of input form group -->
+            <div class="form-group">
+                <!-- input displays category name of the bookmark delete button was clicked on  -->
+                <input id="category-name" type="text" class="form-control" name="category_name" placeholder="{{book.category_name| truncate(30, killwords=True) }}" />
+            </div>
+            <!-- end form group -->
+            <!-- start of form group that displays bookmark description -->
+            <div class="form-group">
+                <!-- textarea thta displays bookmarks description -->
+                <textarea placeholder="{{book.bookmark_description |truncate (50, killwords=True) }}" id="bookmark_description" class="form-control text-barlow" name="bookmark_description" rows="5"></textarea>
+            </div>
+            <!-- end form group -->
 
-      <!-- start of row that wraps warning -->
-      <div class="row">
-        <!-- start of col -->
-        <div class="col text-barlow text-center text-danger">
-          <!-- delete warning -->
-          <h5>
+            <!-- start of row that wraps warning -->
+            <div class="row">
+                <!-- start of col -->
+                <div class="col text-barlow text-center text-danger">
+                    <!-- delete warning -->
+                    <h5>
             This action cannot be undone!
           </h5>
-        </div>
-        <!-- end of col -->
-      </div>
-      <!-- end of row -->
+                </div>
+                <!-- end of col -->
+            </div>
+            <!-- end of row -->
 
-      <!-- start of form group that wraps confirm delete button -->
-      <div class="form-group mt-2 text-center">
-        <!-- confirm delete button -->
-        <button type="submit" class="btn text-barlow">
-          Confirm
-        </button>
-        <!-- confirm delete button -->
-      </div>
-      <!-- end form group -->
-    </form>
-    <!-- end form -->
-  </div>
-  <!-- end from wrapper div -->
+            <!-- start of form group that wraps confirm delete button -->
+            <div class="form-group mt-2 text-center">
+                <!-- confirm delete button -->
+                <button type="submit" class="btn text-barlow">
+                    Confirm
+                </button>
+                <!-- confirm delete button -->
+            </div>
+            <!-- end form group -->
+        </form>
+        <!-- end form -->
+    </div>
+    <!-- end from wrapper div -->
 </section>
 <!-- end section -->
 

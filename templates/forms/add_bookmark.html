@@ -8,7 +8,74 @@
 <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form -->
 
 <!-- add bookmark form -->
-<section>
+<section><!-- extended base html here  -->
+  {% extends 'base.html' %}
+  <!-- adding navbar as a a partial  -->
+  {%block nav%} {%include "partials/_navbar.html"%} {%endblock%}
+  <!-- end navbar -->
+  <!-- start block content -->
+  {% block content %}
+  <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form -->
+  
+  <!-- add bookmark form -->
+  <section>
+      <div class="signup-form">
+          <!-- action form submit will use insert bookmark route from app.py -->
+          <form action="{{ url_for('insert_bookmark') }}" method="post">
+              <!-- form header -->
+              <h2 class="text-center text-barlow">Add bookmark</h2>
+              <!-- end header -->
+  
+              <!-- start form group-->
+              <div class="form-group">
+                  <!-- user will insert the url of the bookmark they want to save here -->
+  
+                  <!-- user will insert the url of the bookmark  they want to save here -->
+                  <input id="placeholder" type="text" class="form-control" name="add_bookmark_url" placeholder="Add your url here" required="required" />
+                  <!-- end input -->
+              </div>
+              <!-- end form group -->
+  
+              <!-- instruction text -->
+              <p class="hint-text text-barlow">
+                  Add your category below
+              </p>
+              <!-- end text -->
+  
+              <!-- user will add a category here categories in separate non rendered html file -->
+              {%include "partials/_list_categories.html"%}
+  
+              <!-- instuction text -->
+              <p class="hint-text text-barlow">
+                  Add a description for your bookmark below
+              </p>
+              <!-- end text -->
+  
+              <!-- start form group -->
+              <div class="form-group">
+                  <!-- user will add a descrption of the bookmark here  -->
+                  <textarea placeholder="Enter your descrption here" class="form-control text-barlow txt-lg" name="bookmark_description" rows="3"></textarea>
+                  <!-- end text area -->
+              </div>
+              <!-- end form group -->
+  
+              <!-- start from group -->
+              <div class="form-group text-center">
+                  <!-- user submits the form here adding all the infomation a bootstrap card which displays in 
+            both user  an index html pages -->
+                  <button type="submit" class="btn text-barlow">
+                      Add bookmark
+                  </button>
+                  <!-- end form group -->
+              </div>
+          </form>
+          <!-- end form -->
+      </div>
+      <!-- end sigin form wrapper -->
+  </section>
+  <!-- end section -->
+  {% endblock content %}
+  <!-- end block content -->
   <div class="signup-form">
     <!-- action form submit will use insert bookmark route from app.py -->
     <form action="{{ url_for('insert_bookmark') }}" method="post">

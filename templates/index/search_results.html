@@ -8,16 +8,16 @@
 
 <!-- results  section this displays results of bookmarks search from the home page search bar-->
 <section class="row search-results">
-  <!-- all the results of the search are looped trough here  -->
-  {%for r in results%}
-  <!-- taken from a partials folder-->
-  {%include "partials/_bookmarks_search_results.html"%}
-  <!-- end paritals -->
-  {%else%}
-  <!-- partials for failed search -->
-  {%include "partials/_failed_search.html"%}
-  <!-- end parital -->
-  {%endfor%}
+    <!-- all the results of the search are looped trough here  -->
+    {%for r in results%}
+    <!-- taken from a partials folder-->
+    {%include "partials/_bookmarks_search_results.html"%}
+    <!-- end paritals -->
+    {%else%}
+    <!-- partials for failed search -->
+    {%include "partials/_failed_search.html"%}
+    <!-- end parital -->
+    {%endfor%}
 </section>
 <!-- end section -->
 {% endblock content %}

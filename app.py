@@ -1,7 +1,6 @@
 # Imports
 import os
-import math
-from flask import Flask, render_template, redirect, request, url_for, session, flash, abort, jsonify
+from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 import bcrypt

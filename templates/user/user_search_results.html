@@ -7,24 +7,24 @@
 
 <!-- results  section this displays results of bookmarks search from the users  page search bar-->
 <section class="row search-results">
-  <!-- all the results of the search are looped trough here  -->
-  {%for r in results%}
+    <!-- all the results of the search are looped trough here  -->
+    {%for r in results%}
 
-  <!-- if statement to ensure the user is only search trough his own bookmarks -->
-  {%if r.username == session ['username']%}
-  <!-- include this  part as a partial as the only difference being search for users bookmarks only -->
-  {%include "partials/_bookmarks_search_results.html"%}
-  <!-- end paritals -->
-  {%endif%}
-  <!-- endif -->
-  <!-- else block only runs If search returns no bookmarks -->
-  {%else%}
-  <!-- partials for failed search -->
-  {%include "partials/_failed_search.html"%}
-  <!-- end parital -->
-  {%endfor%}
-  <!-- endfor -->
-  {% endblock content %}
-  <!-- end block content -->
+    <!-- if statement to ensure the user is only search trough his own bookmarks -->
+    {%if r.username == session ['username']%}
+    <!-- include this  part as a partial as the only difference being search for users bookmarks only -->
+    {%include "partials/_bookmarks_search_results.html"%}
+    <!-- end paritals -->
+    {%endif%}
+    <!-- endif -->
+    <!-- else block only runs If search returns no bookmarks -->
+    {%else%}
+    <!-- partials for failed search -->
+    {%include "partials/_failed_search.html"%}
+    <!-- end parital -->
+    {%endfor%}
+    <!-- endfor -->
+    {% endblock content %}
+    <!-- end block content -->
 </section>
 <!-- end section -->

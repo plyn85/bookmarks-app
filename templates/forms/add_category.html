@@ -9,55 +9,49 @@
 <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
 <!-- add category  form  section-->
 <section>
-  <div class="signup-form">
-    <!-- action form submit will use add category  route from app.py -->
-    <form action="{{url_for('insert_category')}}" method="post">
-      <!-- form header -->
-      <h2 class="text-center text-barlow">Add Category</h2>
-      <!-- end header -->
+    <div class="signup-form">
+        <!-- action form submit will use add category  route from app.py -->
+        <form action="{{url_for('insert_category')}}" method="post">
+            <!-- form header -->
+            <h2 class="text-center text-barlow">Add Category</h2>
+            <!-- end header -->
 
-      <!-- instruction text -->
-      <p class="hint-text text-barlow">
-        Add your category below
-      </p>
-      <!-- end text -->
+            <!-- instruction text -->
+            <p class="hint-text text-barlow">
+                Add your category below
+            </p>
+            <!-- end text -->
 
-      <!-- start form group-->
-      <div class="form-group">
-        <!-- user will insert the url of the category  they want to save here -->
-        <input
-          type="text"
-          class="form-control"
-          name="category_name"
-          placeholder="Add category"
-          required="required"
-        />
-        <!-- end input  -->
-      </div>
-      <!-- end form group -->
+            <!-- start form group-->
+            <div class="form-group">
+                <!-- user will insert the url of the category  they want to save here -->
+                <input type="text" class="form-control" name="category_name" placeholder="Add category" required="required" />
+                <!-- end input  -->
+            </div>
+            <!-- end form group -->
 
-      <!-- instruction text -->
-      <p class="hint-text text-barlow">
-        Confirm your Category Below
-      </p>
-      <!-- end text -->
+            <!-- instruction text -->
+            <p class="hint-text text-barlow">
+                Confirm your Category Below
+            </p>
+            <!-- end text -->
 
-      <!-- start form group -->
-      <div class="form-group text-center">
-        <!-- user submits the form here adding all the infomation a bootstrap card which displays in 
+            <!-- start form group -->
+            <div class="form-group text-center">
+                <!-- user submits the form here adding all the infomation a bootstrap card which displays in 
           both user  an index html pages -->
 
-        <!-- button -->
-        <button type="submit" class="btn text-barlow">
-          Add Category
-        </button>
-        <!-- end button -->
-      </div>
-      <!-- end form group -->
-    </form>
-    <!-- end form -->
-  </div>
-  <!-- end sigin form wrapper -->
+                <!-- button -->
+                <button type="submit" class="btn text-barlow">
+                    Add Category
+                </button>
+                <!-- end button -->
+            </div>
+            <!-- end form group -->
+        </form>
+        <!-- end form -->
+    </div>
+    <!-- end sigin form wrapper -->
 </section>
 <!-- end section -->
 {% endblock content %}

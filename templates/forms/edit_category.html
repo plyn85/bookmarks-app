@@ -13,51 +13,45 @@
 
 <!-- start section -->
 <section>
-  <!-- start of div that wraps the entire form -->
-  <div class="signup-form mt-5">
-    <!-- start of form activates update category route located in app.py-->
-    <form action="{{url_for('update_category', cat_id=cat._id)}}" method="post">
-      <!--form header -->
-      <h2 class="text-center text-barlow">Edit Category</h2>
-      <!-- end header -->
+    <!-- start of div that wraps the entire form -->
+    <div class="signup-form mt-5">
+        <!-- start of form activates update category route located in app.py-->
+        <form action="{{url_for('update_category', cat_id=cat._id)}}" method="post">
+            <!--form header -->
+            <h2 class="text-center text-barlow">Edit Category</h2>
+            <!-- end header -->
 
-      <!-- instructions paragraph -->
-      <p class="hint-text text-barlow">
-        Edit your category below
-      </p>
-      <!-- end paragraph -->
+            <!-- instructions paragraph -->
+            <p class="hint-text text-barlow">
+                Edit your category below
+            </p>
+            <!-- end paragraph -->
 
-      <!-- input displays url of the category when edit  button was clicked   -->
-      <div class="form-group">
-        <input
-          type="text"
-          class="form-control"
-          name="category_name"
-          placeholder="{{cat.category_name| truncate(30, killwords=True) }}"
-          required="required"
-        />
-      </div>
-      <!-- end form group -->
+            <!-- input displays url of the category when edit  button was clicked   -->
+            <div class="form-group">
+                <input type="text" class="form-control" name="category_name" placeholder="{{cat.category_name| truncate(30, killwords=True) }}" required="required" />
+            </div>
+            <!-- end form group -->
 
-      <!-- instructions paragraph -->
-      <p class="hint-text text-barlow">
-        Edit your Category Below
-      </p>
-      <!-- end paragraph -->
+            <!-- instructions paragraph -->
+            <p class="hint-text text-barlow">
+                Edit your Category Below
+            </p>
+            <!-- end paragraph -->
 
-      <!-- start of form group that wraps confirm delete button -->
-      <div class="form-group text-center">
-        <!-- confirm delete button -->
-        <button type="submit" class="btn text-barlow">
-          Edit category
-        </button>
-        <!-- confirm delete button -->
-      </div>
-      <!-- end form group -->
-    </form>
-    <!-- end form -->
-  </div>
-  <!-- end from wrapper div -->
+            <!-- start of form group that wraps confirm delete button -->
+            <div class="form-group text-center">
+                <!-- confirm delete button -->
+                <button type="submit" class="btn text-barlow">
+                    Edit category
+                </button>
+                <!-- confirm delete button -->
+            </div>
+            <!-- end form group -->
+        </form>
+        <!-- end form -->
+    </div>
+    <!-- end from wrapper div -->
 </section>
 <!-- end section -->
 {%endif%}

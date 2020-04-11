@@ -18,98 +18,88 @@
 {% if session['logged_in']%}
 <!-- start  of search bar and sort bar section-->
 <section>
-  <!-- start of row  that wraps header-->
-  <div class="row justify-content-center mt-4">
-    <!-- col that wraps header-->
-    <div class="col-lg-6">
-      <!-- bookmarks header -->
-      <h4 class="text-oswald mt-5 text-center uppercase font-weight-bold">
+    <!-- start of row  that wraps header-->
+    <div class="row justify-content-center mt-4">
+        <!-- col that wraps header-->
+        <div class="col-lg-6">
+            <!-- bookmarks header -->
+            <h4 class="text-oswald mt-5 text-center uppercase font-weight-bold">
         Our Most Popular Bookmarks
       </h4>
-      <hr class="hr-color" />
-      <!-- end header -->
-    </div>
-    <!-- end col -->
-  </div>
-  <!-- end row -->
-
-  <!-- row wraps search bar an sort bars-->
-  <div class="row">
-    <!-- col that  wraps search bar  -->
-    <div class="col-lg-6 ml-md-5 ml-lg-0 text-center">
-      <!-- search bar form activates search results route located in app.py -->
-      <form action="{{ url_for('search_results') }}" method="post">
-        <!-- row wraps search bar input  -->
-        <div class="form-group row justify-content-center">
-          <!-- input search text goes here  -->
-          <input
-            class="col-8 form-control"
-            type="text"
-            id="search_bar"
-            name="search_bar"
-            placeholder="Search"
-          />
-          <!-- end input -->
-
-          <!-- submit button for search bar  -->
-          <button class="btn text-barlow col-2" type="submit">
-            Go
-          </button>
-          <!-- end button -->
+            <hr class="hr-color" />
+            <!-- end header -->
         </div>
-        <!-- end row -->
-      </form>
-      <!-- end form -->
+        <!-- end col -->
     </div>
-    <!-- end col -->
+    <!-- end row -->
 
-    <!-- col wraps sort by bar -->
-    <div class="col mt-3 mt-lg-0 mr-3 mr-md-5 mr-lg-0">
-      <!-- start form -->
-      <form
-        class="m-3 m-md-0 text-center"
-        method="POST"
-        action="{{url_for('sort_by_latest')}}"
-      >
-        <!-- row not visable on mobile -->
-        <div class="row">
-          <!-- start col -->
-          <div class="col text-center text-barlow purple txt-lg d-md-none">
-            Sort by
-          </div>
-          <!-- end col -->
+    <!-- row wraps search bar an sort bars-->
+    <div class="row">
+        <!-- col that  wraps search bar  -->
+        <div class="col-lg-6 ml-md-5 ml-lg-0 text-center">
+            <!-- search bar form activates search results route located in app.py -->
+            <form action="{{ url_for('search_results') }}" method="post">
+                <!-- row wraps search bar input  -->
+                <div class="form-group row justify-content-center">
+                    <!-- input search text goes here  -->
+                    <input class="col-8 form-control" type="text" id="search_bar" name="search_bar" placeholder="Search" />
+                    <!-- end input -->
+
+                    <!-- submit button for search bar  -->
+                    <button class="btn text-barlow col-2" type="submit">
+                        Go
+                    </button>
+                    <!-- end button -->
+                </div>
+                <!-- end row -->
+            </form>
+            <!-- end form -->
         </div>
-        <!-- end row  -->
-        <!-- start row  -->
-        <div class="form-group row">
-          <!-- start col -->
-          <div class="input-group">
-            <!--div  hidden on mobile-->
-            <div class="text-barlow purple txt-lg d-none d-md-block">
-              Sort By
-            </div>
-            <!-- start select -->
-            <select name="sort_by" class="form-control col">
-              <!-- options -->
-              <option value="" selected disabled>Most Popular</option>
-              <option value="latest">Latest</option>
-              <!-- end options -->
-            </select>
-            <!-- end select -->
-            <!-- submit button for sort by -->
-            <button class="btn text-barlow col-3 col-md-2" type="submit">
-              Go
-            </button>
-            <!-- end button -->
-          </div>
-          <!-- end input group -->
+        <!-- end col -->
+
+        <!-- col wraps sort by bar -->
+        <div class="col mt-3 mt-lg-0 mr-3 mr-md-5 mr-lg-0">
+            <!-- start form -->
+            <form class="m-3 m-md-0 text-center" method="POST" action="{{url_for('sort_by_latest')}}">
+                <!-- row not visable on mobile -->
+                <div class="row">
+                    <!-- start col -->
+                    <div class="col text-center text-barlow purple txt-lg d-md-none">
+                        Sort by
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row  -->
+                <!-- start row  -->
+                <div class="form-group row">
+                    <!-- start col -->
+                    <div class="input-group">
+                        <!--div  hidden on mobile-->
+                        <div class="text-barlow purple txt-lg d-none d-md-block">
+                            Sort By
+                        </div>
+                        <!-- start select -->
+                        <select name="sort_by" class="form-control col">
+                            <!-- options -->
+                            <option value="" selected disabled>Most Popular</option>
+                            <option value="latest">Latest</option>
+                            <!-- end options -->
+                        </select>
+                        <!-- end select -->
+                        <!-- submit button for sort by -->
+                        <button class="btn text-barlow col-3 col-md-2" type="submit">
+                            Go
+                        </button>
+                        <!-- end button -->
+                    </div>
+                    <!-- end input group -->
+                </div>
+            </form>
+            <!-- end form -->
         </div>
-      </form>
-      <!-- end form -->
+        <!-- end col -->
     </div>
-    <!-- end col -->
-  </div>
-  <!-- end row -->
+    <!-- end row -->
 </section>
 
 <!-- end search bar section -->

@@ -4,22 +4,20 @@
 <div class="form-group row">
   <!-- start of select drop dowm menu -->
   <select class="col form-control" name="category_name">
-    <!-- first option disabled-->
-    <option value="" disabled selected>Select a Category </option>
-    <!-- end option -->
-    <!-- a for loop that loops trough the categories collection -->
-    {%for cat in categories%}
-    <!--if the session username matches categories username -->
-    {%if session.username==cat.username%}
-    <!-- second option can be selected-->
-    <option value="{{cat.category_name}}" selected
-      >{{cat.category_name}}</option
-    >
-    <!-- end option -->
-    {%endif%}
-    <!-- end if  -->
-    {%endfor%}
-    <!-- end for loop -->
+      <!-- first option disabled-->
+      <option value="" disabled selected>Select a Category </option>
+      <!-- end option -->
+      <!-- a for loop that loops trough the categories collection -->
+      {%for cat in categories%}
+      <!--if the session username matches categories username -->
+      {%if session.username==cat.username%}
+      <!-- second option can be selected-->
+      <option value="{{cat.category_name}}" selected>{{cat.category_name}}</option>
+      <!-- end option -->
+      {%endif%}
+      <!-- end if  -->
+      {%endfor%}
+      <!-- end for loop -->
   </select>
   <!-- end select group -->
 </div>

@@ -8,30 +8,29 @@
 
   <!-- row wraps the pagination buttons -->
   <div class="pagination row justify-content-around mb-4">
-    <!-- 	If this is first page (offset == 0) prev_url link should not be displayed -->
-    {% if args.p_offset > 0 %}
+      <!-- 	If this is first page (offset == 0) prev_url link should not be displayed -->
+      {% if args.p_offset > 0 %}
 
-    <!-- Prev page link grabs the prev page from the args set in both index an user routes -->
-    <a href="{{ args.prev_url }}" class="upvote purple text-center col-6"
-      ><i class="fas fa-hand-point-left hand-point"></i> Prev</a
-    >
+      <!-- Prev page link grabs the prev page from the args set in both index an user routes -->
+      <a href="{{ args.prev_url }}" class="upvote purple text-center col-6"><i class="fas fa-hand-point-left hand-point"></i> Prev</a
+  >
 
-    <!--end link -->
-    {% endif %}
-    <!-- end if -->
+  <!--end link -->
+  {% endif %}
+  <!-- end if -->
 
-    <!-- If this is last page (offset + limit == lenght) next_url link not be displayed -->
-    {% if args.p_offset + args.p_limit < args.num_results %}
+  <!-- If this is last page (offset + limit == lenght) next_url link not be displayed -->
+  {% if args.p_offset + args.p_limit < args.num_results %}
 
-    <!-- Next  page link grabs the prev page from the args set in both index,user routes -->
-    <a href="{{ args.next_url }}" class="upvote purple text-center col-6"
-      >Next<i class="fas fa-hand-point-right hand-point"></i>
-    </a>
-    <!--end link -->
-    {% endif %}
-    <!-- end if -->
-    {% endif %}
-    <!--end if -->
+  <!-- Next  page link grabs the prev page from the args set in both index,user routes -->
+  <a href="{{ args.next_url }}" class="upvote purple text-center col-6"
+    >Next<i class="fas fa-hand-point-right hand-point"></i>
+  </a>
+      <!--end link -->
+      {% endif %}
+      <!-- end if -->
+      {% endif %}
+      <!--end if -->
   </div>
   <!-- end row-->
 </section>

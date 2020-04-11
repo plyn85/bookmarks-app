@@ -11,58 +11,53 @@
 
 <!-- start section -->
 <section>
-  <!-- start of div that wraps the entire form -->
-  <div class="signup-form">
-    <!-- start of form activates remove category route located in app.py-->
-    <form action="{{url_for('remove_category', cat_id=cat._id)}}" method="post">
-      <!--form header -->
-      <h2 class="text-center text-barlow">Delete Category</h2>
-      <!-- end header -->
+    <!-- start of div that wraps the entire form -->
+    <div class="signup-form">
+        <!-- start of form activates remove category route located in app.py-->
+        <form action="{{url_for('remove_category', cat_id=cat._id)}}" method="post">
+            <!--form header -->
+            <h2 class="text-center text-barlow">Delete Category</h2>
+            <!-- end header -->
 
-      <!-- expliantion text pargraph-->
-      <p class="hint-text text-barlow">
-        Delete your category below
-      </p>
-      <!-- end paragraph -->
+            <!-- expliantion text pargraph-->
+            <p class="hint-text text-barlow">
+                Delete your category below
+            </p>
+            <!-- end paragraph -->
 
-      <!--start of input form group -->
-      <div class="form-group">
-        <!-- input displays url of the category delete button was clicked on-->
-        <input
-          type="text"
-          class="form-control"
-          name="category_name"
-          placeholder="{{cat.category_name| truncate(30, killwords=True) }}"
-        />
-      </div>
-      <!-- end form group -->
+            <!--start of input form group -->
+            <div class="form-group">
+                <!-- input displays url of the category delete button was clicked on-->
+                <input type="text" class="form-control" name="category_name" placeholder="{{cat.category_name| truncate(30, killwords=True) }}" />
+            </div>
+            <!-- end form group -->
 
-      <!-- start of row which wraps warning text -->
-      <div class="row">
-        <!-- start of col -->
-        <div class="col text-barlow text-center text-danger">
-          <!-- delete warning -->
-          <h6>
+            <!-- start of row which wraps warning text -->
+            <div class="row">
+                <!-- start of col -->
+                <div class="col text-barlow text-center text-danger">
+                    <!-- delete warning -->
+                    <h6>
             This action cannot be undone!
           </h6>
-          <!-- end warning -->
-        </div>
-        <!-- end col -->
-      </div>
-      <!-- end row  -->
+                    <!-- end warning -->
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row  -->
 
-      <!-- start of form group that wraps confirm delete button -->
-      <div class="form-group mt-2 text-center">
-        <!-- confirm delete button -->
-        <button type="submit" class="btn text-barlow">
-          Confirm
-        </button>
-      </div>
-      <!-- end form group -->
-    </form>
-    <!-- end form -->
-  </div>
-  <!-- end from wrapper div -->
+            <!-- start of form group that wraps confirm delete button -->
+            <div class="form-group mt-2 text-center">
+                <!-- confirm delete button -->
+                <button type="submit" class="btn text-barlow">
+                    Confirm
+                </button>
+            </div>
+            <!-- end form group -->
+        </form>
+        <!-- end form -->
+    </div>
+    <!-- end from wrapper div -->
 </section>
 <!-- end section -->
 

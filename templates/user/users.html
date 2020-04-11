@@ -11,79 +11,73 @@
 <!-- end partial -->
 <!-- bookmarks section  -->
 <section>
-  <!-- start row -->
-  <div class="row info-btn-wrapper justify-content-center info-btn-wrapper">
-    <!-- start button that will toggle Instruction  text-->
-    <button class="btn white text-barlow col-6 col-md-3 info-btn">
-      Instructions
-    </button>
-    <!-- end button -->
-  </div>
-  <!-- end  row -->
+    <!-- start row -->
+    <div class="row info-btn-wrapper justify-content-center info-btn-wrapper">
+        <!-- start button that will toggle Instruction  text-->
+        <button class="btn white text-barlow col-6 col-md-3 info-btn">
+            Instructions
+        </button>
+        <!-- end button -->
+    </div>
+    <!-- end  row -->
 
-  <!-- start Instruction text row -->
-  <div class="row justify-content-center user-text mt-2">
-    <!-- start col -->
-    <div class="col col-md-10 offset-md-1 text-barlow purple">
-      <!-- start text -->
-      <h4>
+    <!-- start Instruction text row -->
+    <div class="row justify-content-center user-text mt-2">
+        <!-- start col -->
+        <div class="col col-md-10 offset-md-1 text-barlow purple">
+            <!-- start text -->
+            <h4>
         This is your personal bookmarks collection. All bookmarks you add are
         also alabile on the home page where you can view other users bookmarks.
         You can delete and edit bookmarks you have added, You can search your
         bookmarks by the link you added the category, description or even by the
         date you added it. Enjoy!
       </h4>
-      <!-- end text -->
+            <!-- end text -->
+        </div>
+        <!-- end col -->
     </div>
-    <!-- end col -->
-  </div>
-  <!-- end row -->
-  <!--row displays bookmarks for user along with the name of  which ever user is logged in  -->
-  <div class="row justify-content-center mt-4">
-    <!--start of  col -->
-    <div class="col-lg-4">
-      <h4 class="text-oswald mt-5 text-center uppercase font-weight-bold">
+    <!-- end row -->
+    <!--row displays bookmarks for user along with the name of  which ever user is logged in  -->
+    <div class="row justify-content-center mt-4">
+        <!--start of  col -->
+        <div class="col-lg-4">
+            <h4 class="text-oswald mt-5 text-center uppercase font-weight-bold">
         Bookmarks for {{session.username}}
       </h4>
-      <hr class="hr-color" />
-    </div>
-    <!-- end of col -->
-  </div>
-  <!-- end of row-->
-
-  <!-- start  of search bar section-->
-
-  <!-- row wraps search bar -->
-  <div class="row mt-2">
-    <!-- col that  wraps search bar  -->
-    <div class="col text-center">
-      <!-- search bar form activates search results route located in app.py -->
-      <form action="{{ url_for('user_search_results') }}" method="POST">
-        <!-- row wraps search bar input  -->
-        <div class="form-group row justify-content-center">
-          <!-- input search text goes here  -->
-          <input
-            class="col-8 form-control"
-            type="text"
-            id="search_bar"
-            name="user_search_bar"
-            placeholder="Search"
-          />
-          <!-- end input -->
-
-          <!-- submit button for search bar  -->
-          <button class="btn white text-barlow col-3 col-lg-1" type="submit">
-            Go
-          </button>
-          <!-- end button -->
+            <hr class="hr-color" />
         </div>
-        <!-- end row -->
-      </form>
-      <!-- end form -->
+        <!-- end of col -->
     </div>
-    <!-- end col -->
-  </div>
-  <!-- end row -->
+    <!-- end of row-->
+
+    <!-- start  of search bar section-->
+
+    <!-- row wraps search bar -->
+    <div class="row mt-2">
+        <!-- col that  wraps search bar  -->
+        <div class="col text-center">
+            <!-- search bar form activates search results route located in app.py -->
+            <form action="{{ url_for('user_search_results') }}" method="POST">
+                <!-- row wraps search bar input  -->
+                <div class="form-group row justify-content-center">
+                    <!-- input search text goes here  -->
+                    <input class="col-8 form-control" type="text" id="search_bar" name="user_search_bar" placeholder="Search" />
+                    <!-- end input -->
+
+                    <!-- submit button for search bar  -->
+                    <button class="btn white text-barlow col-3 col-lg-1" type="submit">
+                        Go
+                    </button>
+                    <!-- end button -->
+                </div>
+                <!-- end row -->
+            </form>
+            <!-- end form -->
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
 </section>
 <!-- end  section -->
 <!-- pagintion html included here -->

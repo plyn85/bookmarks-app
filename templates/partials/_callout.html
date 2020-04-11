@@ -2,54 +2,51 @@
 <section class="row justify-content-center mt-5">
   <!-- row which wraps entire callout section  -->
   <div class="row justify-content-center mt-5">
-    <!--only seen when user Is logged In -->
-    {%if session['logged_in']%}
-    <!-- website instuctions row start -->
-    <div class="row mt-5 justify-content-center">
-      <!-- start col -->
+      <!--only seen when user Is logged In -->
+      {%if session['logged_in']%}
+      <!-- website instuctions row start -->
+      <div class="row mt-5 justify-content-center">
+          <!-- start col -->
 
-      <div class="col flex-box-fix">
-        <!-- welcome text -->
-        <h5 class="text-barlow purple font-weight-bold">
-          Welcome to our Bookmarks app If you are a first time user please go to
-          my bookmarks to start your collection. Have fun!
-        </h5>
-        <!-- end text -->
+          <div class="col flex-box-fix">
+              <!-- welcome text -->
+              <h5 class="text-barlow purple font-weight-bold">
+        Welcome to our Bookmarks app If you are a first time user please go to
+        my bookmarks to start your collection. Have fun!
+      </h5>
+              <!-- end text -->
 
-        <!--  bookmarks link button col wrapper -->
-        <div class="col text-center">
-          <!-- button -->
-          <a
-            href="{{url_for('users')}}"
-            class="btn text-barlow mt-2 col-6 col-md-3"
-          >
-            My bookmarks
-          </a>
-          <!-- end button -->
-        </div>
-        <!-- end col -->
+              <!--  bookmarks link button col wrapper -->
+              <div class="col text-center">
+                  <!-- button -->
+                  <a href="{{url_for('users')}}" class="btn text-barlow mt-2 col-6 col-md-3">
+          My bookmarks
+        </a>
+                  <!-- end button -->
+              </div>
+              <!-- end col -->
+          </div>
+          <!-- end col -->
       </div>
-      <!-- end col -->
-    </div>
-    <!-- end row -->
-    <!-- start row -->
-    <div class="row mt-3 justify-content-center">
-      <!-- start col  -->
-      <!-- flex box fix added here for microsoft edge an internet exploer Issue with flex-col class -->
-      <div class="text-center col col-md-10 flex-box-fix">
-        <!-- start text -->
-        <h4 class="purple text-barlow">
-          Check out our other members bookmarks below. You can search through
-          them give them a like or go to add bookmarks to add your own.
-        </h4>
-        <!-- end text -->
+      <!-- end row -->
+      <!-- start row -->
+      <div class="row mt-3 justify-content-center">
+          <!-- start col  -->
+          <!-- flex box fix added here for microsoft edge an internet exploer Issue with flex-col class -->
+          <div class="text-center col col-md-10 flex-box-fix">
+              <!-- start text -->
+              <h4 class="purple text-barlow">
+        Check out our other members bookmarks below. You can search through
+        them give them a like or go to add bookmarks to add your own.
+      </h4>
+              <!-- end text -->
+          </div>
+          <!-- end col -->
       </div>
-      <!-- end col -->
-    </div>
-    <!-- end row -->
-    {%endif%}
-    <!-- end of if that only seen to logged In user -->
-    <!-- end wrapper row -->
+      <!-- end row -->
+      {%endif%}
+      <!-- end of if that only seen to logged In user -->
+      <!-- end wrapper row -->
   </div>
 </section>
 <!-- end callout section -->

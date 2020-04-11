@@ -3,150 +3,149 @@
 <section>
   <!-- this row warps the entire bookmarks section -->
   <div class="row">
-    <!-- for loop that loops trough the categories -->
-    {%for cat in categories%}
-    <!-- for loop that loops trough the bookmarks -->
-    {% for book in bookmarks %}
-    <!-- col the wraps the entire bookmarks section -->
-    <div class="col-lg-6" id="bookmarks">
-      <!-- bootstrap card that all the bookmarks Infomation is contained In -->
-      <div class="card">
-        <!-- card body -->
-        <div class="card-body text-center">
-          <!-- If the categories username matches the bookmarks username-->
-          {% if cat.username == book.username %} {%endif%}
+      <!-- for loop that loops trough the categories -->
+      {%for cat in categories%}
+      <!-- for loop that loops trough the bookmarks -->
+      {% for book in bookmarks %}
+      <!-- col the wraps the entire bookmarks section -->
+      <div class="col-lg-6" id="bookmarks">
+          <!-- bootstrap card that all the bookmarks Infomation is contained In -->
+          <div class="card">
+              <!-- card body -->
+              <div class="card-body text-center">
+                  <!-- If the categories username matches the bookmarks username-->
+                  {% if cat.username == book.username %} {%endif%}
 
-          <!-- Then the  category which was chosen by the user in add the bookmarks section
-          will be displayed as the main header of each bookmark -->
-          <h2 class="card-title text-oswald uppercase">
-            {{book.category_name| truncate(30, killwords=True) }}
-          </h2>
-          <!-- end header -->
-          <hr class="hr-color" />
+                  <!-- Then the  category which was chosen by the user in add the bookmarks section
+        will be displayed as the main header of each bookmark -->
+                  <h2 class="card-title text-oswald uppercase">
+          {{book.category_name| truncate(30, killwords=True) }}
+        </h2>
+                  <!-- end header -->
+                  <hr class="hr-color" />
 
-          <!-- card text paragraph -->
-          <p class="card-text text-barlow col">
-            <!-- url thats being added by the user in add bookmarks is displayed here -->
-            <a href="{{book.add_bookmark_url}}" target="_blank" class="purple"
-              >{{book.add_bookmark_url| truncate(30, killwords=True) }}</a
-            >
-          </p>
-          <!-- end card text paragraph -->
+                  <!-- card text paragraph -->
+                  <p class="card-text text-barlow col">
+                      <!-- url thats being added by the user in add bookmarks is displayed here -->
+                      <a href="{{book.add_bookmark_url}}" target="_blank" class="purple">{{book.add_bookmark_url| truncate(30, killwords=True) }}</a
+          >
+        </p>
+        <!-- end card text paragraph -->
 
-          <!-- card text parargraph -->
-          <p class="card-text col font-italic">
-            <!-- bookmark description added by the user in add bookmarks displayed here -->
-            {{book.bookmark_description |truncate (50, killwords=True) }}
-          </p>
-          <!-- end card text paragraph -->
+        <!-- card text parargraph -->
+        <p class="card-text col font-italic">
+          <!-- bookmark description added by the user in add bookmarks displayed here -->
+          {{book.bookmark_description |truncate (50, killwords=True) }}
+        </p>
+        <!-- end card text paragraph -->
 
-          <!-- if the bookmarks name and the name stored in the users collection in the database match -->
-          {%if book.name == users.name%}
+        <!-- if the bookmarks name and the name stored in the users collection in the database match -->
+        {%if book.name == users.name%}
 
-          <!-- paragraph text -->
-          <p class="card-text text-barlow">
-            <!-- then the name of the user will be added to that bookmark along with the date it was added or modified -->
-            Added
+        <!-- paragraph text -->
+        <p class="card-text text-barlow">
+          <!-- then the name of the user will be added to that bookmark along with the date it was added or modified -->
+          Added
 
-            <!-- if statement added here so that name of the user that added the bookmark is only seen by other users on the index page -->
-            {%if book.username != session.username%}
+          <!-- if statement added here so that name of the user that added the bookmark is only seen by other users on the index page -->
+          {%if book.username != session.username%}
 
-            <!-- users name  -->
-            by<span class="font-italic purple"> {{book.username}}</span>
-            <!-- end usersname -->
+          <!-- users name  -->
+          by<span class="font-italic purple"> {{book.username}}</span>
+          <!-- end usersname -->
 
-            {%endif%}
-            <!-- end if statement  -->
-
-            <!-- the day, month and day  the user added the bookmark displayed here-->
-            on {{book.last_modified}}
-          </p>
-          <!-- end paragraph text -->
           {%endif%}
-          <!-- end if statement -->
+          <!-- end if statement  -->
 
-          <!-- like button/ upvote section of bookmark section -->
+          <!-- the day, month and day  the user added the bookmark displayed here-->
+          on {{book.last_modified}}
+        </p>
+        <!-- end paragraph text -->
+        {%endif%}
+        <!-- end if statement -->
 
-          <!-- row wraps the like button text -->
-          <div class="row">
-            <!-- paragraph wraps the like button text -->
-            <p class="col card-text text-barlow">
-              <!-- If the amount of likes/ upvotes a users bookmark gets is one user is displayed for correct grammar-->
-              Liked by {% if book.upvotes == 1%}
+        <!-- like button/ upvote section of bookmark section -->
 
-              <!-- here the number of upvotes/ likes recived will be displayed on the bookmark -->
-              <span class="purple mx-2">{{book.upvotes}}</span>Other user
+        <!-- row wraps the like button text -->
+        <div class="row">
+          <!-- paragraph wraps the like button text -->
+          <p class="col card-text text-barlow">
+            <!-- If the amount of likes/ upvotes a users bookmark gets is one user is displayed for correct grammar-->
+            Liked by {% if book.upvotes == 1%}
 
-              <!-- If the amount of likes/ upvotes a users bookmark gets is anything but 1 users Is displayed for correct grammar-->
-              {%else%}
+            <!-- here the number of upvotes/ likes recived will be displayed on the bookmark -->
+            <span class="purple mx-2">{{book.upvotes}}</span>Other user
 
-              <!-- here the number of upvotes/ likes recived will be displayed on the bookmark -->
-              <span class="purple mx-2">{{book.upvotes}}</span>Other users
+            <!-- If the amount of likes/ upvotes a users bookmark gets is anything but 1 users Is displayed for correct grammar-->
+            {%else%}
+
+            <!-- here the number of upvotes/ likes recived will be displayed on the bookmark -->
+            <span class="purple mx-2">{{book.upvotes}}</span>Other users
+            {%endif%}
+            <!-- end if statement -->
+          </p>
+          <!-- end paragraph -->
+        </div>
+        <!-- end row -->
+
+        <!-- form  wraps the like button-->
+        <form
+          class="row mt-3 justify-content-center"
+          action="{{url_for('upvote',book_id=book._id)}}"
+          method="post"
+        >
+          <!-- if statment will only allow the like button to be seen by other users so a user cannot like there own bookmark-->
+          {%if book.username != session.username%}
+
+          <!-- like button link which activates the upvote route in app.py an will add a like to the users bookmark-->
+          <button
+            type="submit"
+            class="btn white text-barlow col-4 like-btn-form"
+          >
+            Like
+          </button>
+          <!--end like button link  -->
+          {%endif%}
+          <!-- end of if statement -->
+        </form>
+        <!-- end row -->
+
+        <!--if statement so delete and edit  button can only be seen on users own bookmarks 
+          defensive design so only the user own owns the bookmark can delete or edit  it -->
+        {%if book.username == session['username']%}
+        <!-- row wraps both buttons -->
+        <div class="row justify-content-around">
+          <!-- delete button activates delete_bookmark route located in app.py-->
+          <a
+            href="{{url_for('delete_bookmark', book_id=book._id)}}"
+            class="btn white text-barlow mt-2 col-4"
+          >
+            Delete</a
+          >
+          <!--end delete  button -->
+
+          <!-- edit button -->
+          <a
+            href="{{url_for('edit_bookmark', book_id=book._id)}}"
+            class="btn white text-barlow mt-2 col-4"
+          >
+            Edit
+          </a>
+                      <!-- end edit button -->
+              </div>
+              <!-- end row -->
               {%endif%}
               <!-- end if statement -->
-            </p>
-            <!-- end paragraph -->
           </div>
-          <!-- end row -->
-
-          <!-- form  wraps the like button-->
-          <form
-            class="row mt-3 justify-content-center"
-            action="{{url_for('upvote',book_id=book._id)}}"
-            method="post"
-          >
-            <!-- if statment will only allow the like button to be seen by other users so a user cannot like there own bookmark-->
-            {%if book.username != session.username%}
-
-            <!-- like button link which activates the upvote route in app.py an will add a like to the users bookmark-->
-            <button
-              type="submit"
-              class="btn white text-barlow col-4 like-btn-form"
-            >
-              Like
-            </button>
-            <!--end like button link  -->
-            {%endif%}
-            <!-- end of if statement -->
-          </form>
-          <!-- end row -->
-
-          <!--if statement so delete and edit  button can only be seen on users own bookmarks 
-            defensive design so only the user own owns the bookmark can delete or edit  it -->
-          {%if book.username == session['username']%}
-          <!-- row wraps both buttons -->
-          <div class="row justify-content-around">
-            <!-- delete button activates delete_bookmark route located in app.py-->
-            <a
-              href="{{url_for('delete_bookmark', book_id=book._id)}}"
-              class="btn white text-barlow mt-2 col-4"
-            >
-              Delete</a
-            >
-            <!--end delete  button -->
-
-            <!-- edit button -->
-            <a
-              href="{{url_for('edit_bookmark', book_id=book._id)}}"
-              class="btn white text-barlow mt-2 col-4"
-            >
-              Edit
-            </a>
-            <!-- end edit button -->
-          </div>
-          <!-- end row -->
-          {%endif%}
-          <!-- end if statement -->
-        </div>
-        <!-- end card body -->
+          <!-- end card body -->
       </div>
       <!-- end card -->
-    </div>
-    <!-- end col -->
-    {%endfor%}
-    <!-- end bookmarks for loop -->
-    {%endfor%}
-    <!-- end categories for loop -->
+  </div>
+  <!-- end col -->
+  {%endfor%}
+  <!-- end bookmarks for loop -->
+  {%endfor%}
+  <!-- end categories for loop -->
   </div>
   <!-- end row -->
 </section>

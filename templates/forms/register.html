@@ -8,93 +8,74 @@
 <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form-->
 <!--start of  login form section -->
 <section>
-  <!-- login in form wrapper -->
+    <!-- login in form wrapper -->
 
-  <div class="signup-form">
-    <!-- row wraps close window Icon -->
-    <div class="row justify-content-end">
-      <!-- start col -->
-      <div class="col-2">
-        <!-- link wraps Icon -->
-        <a href="{{ url_for('index') }}"
-          ><i class="far fa-window-close fa-3x purple"></i
+    <div class="signup-form">
+        <!-- row wraps close window Icon -->
+        <div class="row justify-content-end">
+            <!-- start col -->
+            <div class="col-2">
+                <!-- link wraps Icon -->
+                <a href="{{ url_for('index') }}"><i class="far fa-window-close fa-3x purple"></i
         ></a>
-        <!-- end link -->
-      </div>
-      <!-- end col -->
+                <!-- end link -->
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- end row -->
+        <!-- form start action button activates register route located in app.py -->
+        <form action="{{ url_for('register') }}" method="POST" autocomplete="on">
+            <!-- register header -->
+            <h2 class="text-barlow">Register</h2>
+            <!-- end header -->
+            <p class="hint-text">
+                Create your account. It's free and only takes a minute.
+            </p>
+            <!-- end header -->
+
+            <!-- start form group for username -->
+            <div class="form-group">
+                <!-- username input box -->
+                <input type="text" class="form-control" name="username" placeholder="username" />
+                <!-- end input box -->
+            </div>
+            <!-- end form group -->
+
+            <!-- start from group for password -->
+            <div class="form-group">
+                <!-- input box for password -->
+                <input type="text" class="form-control" name="password" placeholder="password" required="required" />
+                <!-- end input box -->
+            </div>
+            <!-- end form group -->
+
+            <!-- start form group for confirm password -->
+            <div class="form-group">
+                <!-- input box for repeat password -->
+                <input type="text" class="form-control" name="confirm_password" placeholder="confirm password" required="required" autocomplete="current-password" />
+                <!-- end input box -->
+            </div>
+            <!-- end form group -->
+
+            <!-- start form group for register button -->
+            <div class="form-group text-center">
+                <!-- button -->
+                <button type="submit" class="btn text-barlow">
+                    Register Now
+                </button>
+                <!-- end button -->
+            </div>
+            <!-- end form group -->
+
+            <!--brings user to sign in page if the already have an account -->
+            <div class="text-center">
+                Already have an account? <a href="{{url_for('login')}}">Sign in</a>
+            </div>
+            <!-- ends sigin in div -->
+        </form>
+        <!-- ends form  -->
     </div>
-    <!-- end row -->
-    <!-- form start action button activates register route located in app.py -->
-    <form action="{{ url_for('register') }}" method="POST" autocomplete="on">
-      <!-- register header -->
-      <h2 class="text-barlow">Register</h2>
-      <!-- end header -->
-      <p class="hint-text">
-        Create your account. It's free and only takes a minute.
-      </p>
-      <!-- end header -->
-
-      <!-- start form group for username -->
-      <div class="form-group">
-        <!-- username input box -->
-        <input
-          type="text"
-          class="form-control"
-          name="username"
-          placeholder="username"
-        />
-        <!-- end input box -->
-      </div>
-      <!-- end form group -->
-
-      <!-- start from group for password -->
-      <div class="form-group">
-        <!-- input box for password -->
-        <input
-          type="text"
-          class="form-control"
-          name="password"
-          placeholder="password"
-          required="required"
-        />
-        <!-- end input box -->
-      </div>
-      <!-- end form group -->
-
-      <!-- start form group for confirm password -->
-      <div class="form-group">
-        <!-- input box for repeat password -->
-        <input
-          type="text"
-          class="form-control"
-          name="confirm_password"
-          placeholder="confirm password"
-          required="required"
-          autocomplete="current-password"
-        />
-        <!-- end input box -->
-      </div>
-      <!-- end form group -->
-
-      <!-- start form group for register button -->
-      <div class="form-group text-center">
-        <!-- button -->
-        <button type="submit" class="btn text-barlow">
-          Register Now
-        </button>
-        <!-- end button -->
-      </div>
-      <!-- end form group -->
-
-      <!--brings user to sign in page if the already have an account -->
-      <div class="text-center">
-        Already have an account? <a href="{{url_for('login')}}">Sign in</a>
-      </div>
-      <!-- ends sigin in div -->
-    </form>
-    <!-- ends form  -->
-  </div>
-  <!-- ends from wrapper -->
+    <!-- ends from wrapper -->
 </section>
 <!-- ends section -->
 {% endblock content %}

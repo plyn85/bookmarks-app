@@ -10,79 +10,76 @@
 <!-- end partial -->
 <!-- categories  section  -->
 <section>
-  <!-- start row -->
-  <div class="row justify-content-center info-btn-wrapper">
-    <!-- start button that will toggle Instruction  text-->
-    <button class="btn text-barlow col-6 col-md-3 info-btn">
-      Instructions
-    </button>
-    <!-- end button -->
-  </div>
-  <!-- end  row -->
+    <!-- start row -->
+    <div class="row justify-content-center info-btn-wrapper">
+        <!-- start button that will toggle Instruction  text-->
+        <button class="btn text-barlow col-6 col-md-3 info-btn">
+            Instructions
+        </button>
+        <!-- end button -->
+    </div>
+    <!-- end  row -->
 
-  <!-- start Instruction text row -->
-  <div class="row user-text mt-2">
-    <!-- start col -->
-    <div class="col col-md-10 offset-md-1 text-barlow purple">
-      <!-- start text -->
-      <h4>
+    <!-- start Instruction text row -->
+    <div class="row user-text mt-2">
+        <!-- start col -->
+        <div class="col col-md-10 offset-md-1 text-barlow purple">
+            <!-- start text -->
+            <h4>
         This is your personal categories collection. You can delete and edit
         categories you have added, They will be available In the add bookmarks
         dropdown menu. Click on the add bookmarks button to use the category and
         share your bookmarks with other users. Enjoy!
       </h4>
-      <!-- end text -->
+            <!-- end text -->
+        </div>
+        <!-- end col -->
     </div>
-    <!-- end col -->
-  </div>
-  <!-- end row -->
+    <!-- end row -->
 
-  <!--row displays categoreis for user along with the name of  which ever user is logged in  -->
-  <div class="row justify-content-center">
-    <!--start of  col -->
-    <div class="col col-lg-4">
-      <h2 class="text-oswald mt-5 text-center uppercase">
+    <!--row displays categoreis for user along with the name of  which ever user is logged in  -->
+    <div class="row justify-content-center">
+        <!--start of  col -->
+        <div class="col col-lg-4">
+            <h2 class="text-oswald mt-5 text-center uppercase">
         Categories for {{session.username}}
       </h2>
-      <hr class="hr-color" />
+            <hr class="hr-color" />
+        </div>
+        <!-- end of col -->
     </div>
-    <!-- end of col -->
-  </div>
-  <!-- end of row-->
+    <!-- end of row-->
 
-  <!-- start of row which wraps the bootstrap cards which displays the categories-->
-  <div class="row">
-    <!--first loop through categories -->
-    {% for cat in categories %}
-    <!-- denfensive element categories will only be displayed if the session username matches the username for that category from the database -->
-    {%if session.username==cat.username%}
-    <!-- start of col  which wraps entrie bootstrap card-->
-    <div class="col-md-6">
-      <!-- start of card -->
-      <div class="card">
-        <!-- card body -->
-        <div class="card-body text-center">
-          <!-- start of row which wraps the category name -->
-          <div class="row">
-            <!-- start of col  -->
-            <div class="col text-oswald uppercase card-title">
-              <h3>
+    <!-- start of row which wraps the bootstrap cards which displays the categories-->
+    <div class="row">
+        <!--first loop through categories -->
+        {% for cat in categories %}
+        <!-- denfensive element categories will only be displayed if the session username matches the username for that category from the database -->
+        {%if session.username==cat.username%}
+        <!-- start of col  which wraps entrie bootstrap card-->
+        <div class="col-md-6">
+            <!-- start of card -->
+            <div class="card">
+                <!-- card body -->
+                <div class="card-body text-center">
+                    <!-- start of row which wraps the category name -->
+                    <div class="row">
+                        <!-- start of col  -->
+                        <div class="col text-oswald uppercase card-title">
+                            <h3>
                 {{cat.category_name| truncate(30, killwords=True) }}
               </h3>
-              <hr class="hr-color" />
-            </div>
-            <!-- end of col -->
-          </div>
-          <!-- end of row -->
+                            <hr class="hr-color" />
+                        </div>
+                        <!-- end of col -->
+                    </div>
+                    <!-- end of row -->
 
-          <!-- start of row which wraps the edit an delete buttons -->
-          <div class="row justify-content-around">
-            <!-- start of col -->
-            <div class="col">
-              <a
-                href="{{url_for('delete_category', cat_id=cat._id)}}"
-                class="btn text-barlow col col-md-3 cat-btn mb-2"
-                >Delete</a
+                    <!-- start of row which wraps the edit an delete buttons -->
+                    <div class="row justify-content-around">
+                        <!-- start of col -->
+                        <div class="col">
+                            <a href="{{url_for('delete_category', cat_id=cat._id)}}" class="btn text-barlow col col-md-3 cat-btn mb-2">Delete</a
               >
               <a
                 href="{{url_for('edit_category', cat_id=cat._id)}}"

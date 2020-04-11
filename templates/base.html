@@ -1,46 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- adding favicon -->
-    <link
-    rel="shortcut icon"
-    type="image/png"
-    href="https://res.cloudinary.com/plyn85/image/upload/c_scale,w_150/v1586212008/bookmarks-app/magazine-clipart-student-book-6_atesf2.png"
-  />
+    <link rel="shortcut icon" type="image/png" href="https://res.cloudinary.com/plyn85/image/upload/c_scale,w_150/v1586212008/bookmarks-app/magazine-clipart-student-book-6_atesf2.png" />
     <!-- taken from a tutorial found at https://www.youtube.com/watch?v=QnDWIZuWYW0 -->
-   <!-- If no title has been passed in just bookmarks app will be displayed other wise bookamrks app plus the passed in title will be -->
-   
-   <!-- start if statment -->
-   {%if title%} 
-   <!-- title -->
-   <title>bookmarks-{{title}}</title>
-   <!-- start else block -->
-   {%else%}
-   <!-- title -->
-   <title>bookmarks-app</title>
-   {%endif%}
+    <!-- If no title has been passed in just bookmarks app will be displayed other wise bookamrks app plus the passed in title will be -->
+
+    <!-- start if statment -->
+    {%if title%}
+    <!-- title -->
+    <title>bookmarks-{{title}}</title>
+    <!-- start else block -->
+    {%else%}
+    <!-- title -->
+    <title>bookmarks-app</title>
+    {%endif%}
     <!-- end if -->
 
-  
-<!-- style sheet links -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <link rel='stylesheet' href='{{url_for('static', filename =
-    'css/main.css')}}' />
-  
-  </head>
-  <!-- start body -->
-  <body>
+    <!-- style sheet links -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel='stylesheet' href='{{url_for(' static ', filename =
+    'css/main.css ')}}' />
+
+</head>
+<!-- start body -->
+
+<body>
     <!-- block nav -->
     {% block nav %} {% endblock %}
-      <!-- conatiner fluid postion added here will wrap every section used on all pages -->
-      <div class="container-fluid mt-3">
+    <!-- conatiner fluid postion added here will wrap every section used on all pages -->
+    <div class="container-fluid mt-3">
         {% block content %}{% endblock %}
     </div>
     <!-- end container -->
@@ -52,8 +44,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.bundle.min.js" integrity="sha256-zxevz2MOFpqKf3D9eeNd/gE0X679Aeg6WRhubeSA9Vc=" crossorigin="anonymous"></script>
 
-    <script src='{{url_for('static', filename =
-    'js/main.js')}}'></script>
-  </body>
-  </html>
-  
+    <script src='{{url_for(' static ', filename =
+    'js/main.js ')}}'></script>
+</body>
+
+</html>
