@@ -420,18 +420,15 @@ def user_categories():
 
 @app.route('/sort_by_latest', methods=['POST', "GET"])
 def sort_by_latest():
-    """ Pagintion with thanks to Miroslav Svec, DCD Channel lead.
-    altered from https://github.com/MiroslavSvec/DCD_lead/tree/pagination
-    paginated results to be displayed on index page  by pouplarity"""
-    if request.method == "POST":
-        users = users_collection.find()
+    """ This route returns the most recent paginated results to the user when sort by latest Is clicked In the dropdowm menu """
+    users = users_collection.find()
     categories = categories_collection.find()
     #  setting args varibales
     num_results = bookmarks_collection.count()
     users = users_collection.find()
     p_limit = int(request.args.get('limit', 6))
     p_offset = int(request.args.get('offset', 0))
-    # getting bookmarks collection orderding by poupalirty and adding pagination
+    # getting bookmarks collection ordered by populairty and adding pagination
     bookmarks = bookmarks_collection.find().sort(
         "_id", -1).limit(p_limit).skip(p_offset)
     # args added here to be used on pagintion page

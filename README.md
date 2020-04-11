@@ -287,8 +287,23 @@ tested with no issues found.
  - Huawei p20 lite  
 
  ## Bugs 
-###  Internet Explorer and 
-When veiwing the callour 
+### Heroku error
+ When debugging the application on heroku I found that the sort by feature was  sometimes causing an error. The heroku logs showed this was an [H18 Server Request error](https://devcenter.heroku.com/changelog-items/30) This occurs when  a HTTP request is interrupted by a closed socket before the router receives an HTTP response from your app’s web process as outlined In the heroku dev center documentation. I found through googling the Issue It was common and beyond my ability at this point to fix but something I will look to fix In future as It causes the user to have to reload the page and then It seems to work without error.
+
+###  Internet Explorer and Internet Explorer and microsoft Edge Issue 
+ 
+When veiwing the callout section In both edge and Internet explorer the  callout section text was barely visible. This was a problem I enconterd In milestone one and I used the same fix I used then In my current application. Its a problem  In which the col class from bootstrap was causing the text to condense. It was resolved by adding 
+
+    .flex-box-fix {
+    -webkit-box-flex: 0;
+     flex: none;
+    -ms-flex: none;
+    -moz-box-flex: none;
+    }
+      
+## fixes 
+### upvote/Like button
+The upvote feature combined with pagination caused me a major headache. Although both work as designed when a user likes another user's bookmark they are returned to the first page of the pagination the Index page. The solution In this problem which stops the page reload could be achieved by using ajax to send the data to the server. I tried to Implement It but unfourtally was unable to get It working . Given more time and with an Improved skill set I will return to the Issue as It makes for a bad user experience.  
 
 ## Deployment 
 I deployed this application by:
