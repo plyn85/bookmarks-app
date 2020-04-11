@@ -1,38 +1,5 @@
 <!-- extends base.html -->
 {% extends 'base.html' %}
-<!-- strats block content -->
-<!-- adding navbar as a a partial  -->
-{%block nav%} {%include "partials/_navbar.html"%} {%endblock%}
-<!-- end navbar -->
-{% block content %}
-<!-- starts page that will only ever been seen by a new user or if a repeat user has no categories added -->
-<section>
-    <!-- row wraps instuctions for user  -->
-    <div class="row justify-content-center mt-5">
-        <!-- start of col -->
-        <div class="col-lg-4 mt-5">
-            <!-- user instuctions along with users name displayed here  -->
-            <h5 class="text-oswald mt-5 text-center purple">
-        <mark class="text-dark text-center">{{session.username}}</mark>
-        you have no categories added. Please head to the add categories page.
-      </h5>
-            <hr class="hr-color" />
-        </div>
-        <!-- end col -->
-    </div>
-    <!-- end row -->
-
-    <!-- row wraps add category button -->
-    <div class="row justify-content-center">
-        <!-- start col -->
-        <div class="col-lg-3 text-center">
-            <!-- button -->
-            <a href="{{url_for('add_category')}}" class="btn text-barlow">Add Category</a
-      >
-      <!-- end button -->
-    </div>
-    <!-- end col --><!-- extends base.html -->
-{% extends 'base.html' %}
 <!-- adding navbar as a a partial  -->
 {%block nav%} {%include "partials/_navbar.html"%} {%endblock%}
 <!-- end navbar -->
@@ -40,58 +7,36 @@
 {% block content %}
 <!-- starts page that will only ever been seen by a new user or if a repeat user has no bookmarks  added -->
 <section>
-  <!-- row wraps instuctions for user  -->
-  <div class="row justify-content-center mt-5">
-    <!-- start of col -->
-    <div class="col-lg-4 mt-5">
-      <!-- user instuctions along with users name displayed here  -->
-      <h5 class="text-oswald text-center purple mt-5">
-        <mark class="text-center">{{session.username}}</mark>
+    <!-- row wraps instuctions for user  -->
+    <div class="row justify-content-center mt-5">
+        <!-- start of col -->
+        <div class="col-lg-4">
+            <!-- user instuctions along with users name displayed here  -->
+            <h5 class="text-oswald mt-5 text-center purple">
+        <mark class="text-dark text-center">{{session.username}}</mark>
         you have no bookmarks added. If you have yet to add a category please
         head to add category page. If a category has already been added please
         head to add bookmarks page.
       </h5>
-      <hr class="hr-color" />
+            <hr class="hr-color" />
+        </div>
+        <!-- end col -->
     </div>
-    <!-- end col -->
-  </div>
-  <!-- end row -->
+    <!-- end row -->
 
-  <!-- row wraps add category and add bookmarks buttons -->
-  <div class="row justify-content-center">
-    <!-- category button-->
-    <a href="{{url_for('add_category')}}" class="btn col-5 col-lg-3 mr-2"
-      >Add Category</a
+    <!-- row wraps add category and add bookmarks buttons -->
+    <div class="row justify-content-around">
+        <!-- category button-->
+        <a href="{{url_for('add_category')}}" class="btn col-5 col-lg-3">Add Category</a
     >
     <!-- end button -->
 
     <!-- bookmarks button -->
-    <a href="{{url_for('add_bookmark')}}" class="btn col-5 col-lg-3 ml-2"
+    <a href="{{url_for('add_bookmark')}}" class="btn col-5 col-lg-3"
       >Add Bookmark</a
     >
     <!-- end button-->
   </div>
-  <!-- start img wrapper row -->
-  <div class="row mt-5">
-    <!-- start img wrapper col -->
-    <div class="col text-center">
-      <!-- start img -->
-      <img
-        src="https://res.cloudinary.com/plyn85/image/upload/c_scale,w_200/v1586212008/bookmarks-app/magazine-clipart-student-book-6_atesf2.png"
-        alt="an image of a book"
-        class="img-fluid"
-      />
-    </div>
-    <!-- end col -->
-  </div>
-  <!-- end row -->
-</section>
-<!-- end section -->
-{% endblock content%}
-<!-- end block content -->
-
-  </div>
-  <!-- end row -->
   <!-- start img wrapper row -->
   <div class="row mt-5">
     <!-- start img wrapper col -->
