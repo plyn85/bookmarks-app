@@ -253,15 +253,28 @@ Most of the testing was done In as I developed the app.
 I used the flask built In debugger through the whole development phase. I had It set to flask_debug=1. This was a valuable resource. If there were any errors they were shown here and I used this to solve many Issues through the development process. 
 As you become accustomed to the debugger you're able to quickly Identify what causes the app to crash. 
 
-## TESTING CRUD 
+### Creating an account
+I have created my own account along with 5 fake ones.The authentication for 
+Creating an account Is working as expected. I could register login, logout an then log back In Seamlessly.
 
-### CREATE 
+### CRUD TESTING
+- As well as my own bookmarks I added ten bookmarks for each of the  5 fake users for testing purposes
 
-### READ
+#### READ
+The first aim was to get the categories displaying on the users categories page.   This was done by returning the categories collection from my database to the user categories route an checking to see If displayed correctly. The next step was to get the bookmarks  displaying correctly on both the homepage and the users page. This was done returning all the bookmarks from the bookmarks collection In my database and testing to see If they appeared on both home an index and user pages 
+
 
 ### UPDATE 
+Once a user could display a bookmark  and a category. The next step was to allow them to edit both  bookmarks and categories. This was tested by manually checking the edit categories an edit bookmarks route brought the user to the correct edit categories and edit bookmarks pages. Then the  up_date bookmarks and up_date category routes were checked by confirming the edit In both pages first viewing In the app and then checking It in the database to see If the edit was successful. 
+
 
 ### DELETE 
+Testing the delete function of both categories and bookmarks was done first  by manually checking the delete categories and an edit bookmarks route brought the user to the correct delete  categories and delete bookmarks pages. Then the  up_date bookmarks and up_date category routes were checked by confirming the delete In both pages first viewing In the app and then checking It in the database to see If the delete was successful.
+
+### CREATE 
+The testing for creating functionality of the app was done on a continuous basis. From the early stages of development I was using the app to store useful links from various sources. This gave me a great chance for any bugs that arose along the way. I also had my friends and family test it for my and I'm happy that CRUD is working without bugs    
+
+
 
 My app is fully responsive across a range of devices. This was achieved using the bootstrap grid. 
 The responsiveness and correct displaying of all elements has been tested on a number of devices, browsers, and resolutions. Chrome, Firefox, Opera, Safari, Edge, and IE all display without issue.

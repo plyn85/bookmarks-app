@@ -1,7 +1,7 @@
 # Imports
 import os
 import math
-from flask import Flask, render_template, redirect, request, url_for, session, flash, abort, json
+from flask import Flask, render_template, redirect, request, url_for, session, flash, abort, jsonify
 from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 import bcrypt
@@ -35,6 +35,7 @@ date = datetime.utcnow()
 # ----- index, index page search,  login, register, and log out routes ----- #
 
 
+@app.route('/')
 @app.route('/index')
 @app.route('/')
 def index():
@@ -58,7 +59,6 @@ def index():
         "num_results": num_results,
         "next_url": f"/index?limit={str(p_limit)}&offset={str(p_offset + p_limit)}",
         "prev_url": f"/index?limit={str(p_limit)}&offset={str(p_offset - p_limit)}",
-
     }
 
     return render_template('index/index.html', categories=categories,
