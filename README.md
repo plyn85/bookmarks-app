@@ -270,7 +270,7 @@ Testing the delete function of both categories and bookmarks was done first  by 
 ### CREATE 
 The testing for creating functionality of the app was done on a continuous basis. From the early stages of development I was using the app to store useful links from various sources. This gave me a great chance for any bugs that arose along the way. I also had my friends and family test it for my and I'm happy that CRUD is working without bugs    
 
-
+### Defensive 
 
 My app is fully responsive across a range of devices. This was achieved using the bootstrap grid. 
 The responsiveness and correct displaying of all elements has been tested on a number of devices, browsers, and resolutions. Chrome, Firefox, Opera, Safari, Edge, and IE all display without issue.
@@ -313,12 +313,15 @@ I deployed this application by:
 - In Heorku deployment method was set to github and automatic deploys set from the master branch
 - Then the app was then deployed using the following link  [https://bookmarks-app-plyn85.herokuapp.com/](https://bookmarks-app-plyn85.herokuapp.com/)
 
- 1. On GitHub, navigate to the main page of the repository. Please click the link provided [here](https://github.com/plyn85/bookmarks-app)
+ 
+Should you wish to clone this:
+
+   1. On GitHub, navigate to the main page of the repository.
    2. Under the repository name, click Clone or download.
    3. In the Clone with HTTPs section, click the copy icon to copy the clone URL for the repository.
-   4. Open git bash .
+   4. Open terminal.
    5. Change the current working directory to the location where you want the cloned directory to be made.
-   6. Type git clone, and then paste the url provided [here](https://github.com/plyn85/bookmarks-app)
+   6. Type git clone, and then paste`[https://github.com/plyn85/bookmarks-app](https://github.com/plyn85/bookmarks-app)
    7. Press Enter. Your local clone will be created.
 
 
