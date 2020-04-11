@@ -1,214 +1,184 @@
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
-
 @import url("https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Oswald&display=swap:,600,700,800");
-
 /* inital set up */
-
 /* Setting default font size for page */
-body,
-html {
-  font-size: 16px;
-  background-color: #fceed1;
-  scroll-behavior: smooth;
-  /* added for ios devices */
-  -webkit-overflow-scrolling: touch;
+ body, html {
+     font-size: 16px;
+     background-color: #fceed1;
+     scroll-behavior: smooth;
+    /* added for ios devices */
+     -webkit-overflow-scrolling: touch;
 }
-
 /* setting fonts */
-
-.callout-main-text,
-.navbar-brand,
-.navbar-nav .nav-link {
-  font-family: "Barlow Semi Condensed", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
+ .callout-main-text, .navbar-brand, .navbar-nav .nav-link {
+     font-family: "Barlow Semi Condensed", sans-serif;
+     font-size: 1.5rem;
+     font-weight: 700;
 }
-
 /* removing all margins and padding from bootsrap rows an cols */
-
-.container-fluid,
-.container,
-.row {
-  margin: 0;
-  padding: 0;
+ .container-fluid, .container, .row {
+     margin: 0;
+     padding: 0;
 }
-
 /* reusable components */
-.txt-lg {
-  font-size: 1.5rem;
+ .txt-lg {
+     font-size: 1.5rem;
 }
-.text-oswald {
-  font-family: "Oswald", sans-serif;
+ .text-oswald {
+     font-family: "Oswald", sans-serif;
 }
-.flashed-messages,
-.text-barlow {
-  font-family: "Barlow Semi Condensed", sans-serif;
+ .flashed-messages, .text-barlow {
+     font-family: "Barlow Semi Condensed", sans-serif;
 }
-.white {
-  color: #ffffff;
+ .white {
+     color: #ffffff;
 }
-.uppercase {
-  text-transform: uppercase;
+ .uppercase {
+     text-transform: uppercase;
 }
-.card p {
-  font-size: 1.5rem;
+ .card p {
+     font-size: 1.5rem;
 }
-
-.hand-point {
-  font-size: 3rem;
+ .hand-point {
+     font-size: 3rem;
 }
-.upvote {
-  font-size: 1.5rem;
+ .upvote {
+     font-size: 1.5rem;
 }
-.hide-content {
-  display: none;
+ .hide-content {
+     display: none;
 }
-.purple {
-  color: #7d3cff;
+ .purple {
+     color: #7d3cff;
 }
-.bk-purple {
-  background-color: #7d3cff;
+ .bk-purple {
+     background-color: #7d3cff;
 }
 /* main body */
 /* setting color for hr line */
-.hr-color {
-  border: 0.5px solid#7d3cff;
+ .hr-color {
+     border: 0.5px solid#7d3cff;
 }
-
 /* navbar */
 /* setting nav link */
-.nav-link {
-  color: #ffffff;
+ .nav-link {
+     color: #ffffff;
 }
-
-/* fixed navbar  added here z-index added to put navbar on top of background Image  */
-.navbar-fixed-top {
-  background-color: #7d3cff;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1;
+/* fixed navbar added here z-index added to put navbar on top of background Image */
+ .navbar-fixed-top {
+     background-color: #7d3cff;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     z-index: 1;
 }
-
-/* 
-targeting flashed messages */
-.flashed-messages {
-  margin-top: 5rem;
-  width: 100%;
-  font-size: 1.3rem;
-  z-index: 1;
+/* targeting flashed messages */
+ .flashed-messages {
+     margin-top: 5rem;
+     width: 100%;
+     font-size: 1.3rem;
+     z-index: 1;
 }
-
-/* navbar toggler icon style set here  */
-.fa-bars {
-  color: #ffffff;
-  font-size: 2.2rem;
+/* navbar toggler icon style set here */
+ .fa-bars {
+     color: #ffffff;
+     font-size: 2.2rem;
 }
-/* targeting user search results page  */
-.search-results {
-  margin-top: 6rem;
+/* targeting user search results page */
+ .search-results {
+     margin-top: 6rem;
 }
-
-/* targeting all buttons here  */
-.btn {
-  border: 2px solid #7d3cff;
-  color: #7d3cff;
-  font-weight: 900;
-  font-size: 1.1rem;
+/* targeting all buttons here */
+ .btn {
+     border: 2px solid #7d3cff;
+     color: #7d3cff;
+     font-weight: 900;
+     font-size: 1.1rem;
 }
 /* callout section */
 /* added to sovle microsoft edge an Internet explorer Issue with flex col class on index page*/
-
-.flex-box-fix {
-  -webkit-box-flex: 0;
-  flex: none;
-  -ms-flex: none;
-  -moz-box-flex: none;
+ .flex-box-fix {
+     -webkit-box-flex: 0;
+     flex: none;
+     -ms-flex: none;
+     -moz-box-flex: none;
 }
-
-.callout-main-text {
-  font-size: 1.8rem;
-  font-weight: 300;
-  color: #7d3cff;
+ .callout-main-text {
+     font-size: 1.8rem;
+     font-weight: 300;
+     color: #7d3cff;
 }
-
 /* sign up from */
-
 /* targeting all forms h2 */
-.signup-form h2 {
-  text-align: center;
+ .signup-form h2 {
+     text-align: center;
 }
 /* targeting all forms */
-.signup-form {
-  width: 34rem;
-  margin: 0 auto;
-  padding: 2rem 0;
+ .signup-form {
+     width: 34rem;
+     margin: 0 auto;
+     padding: 2rem 0;
 }
-/* over riding bootstrap form control defaults here  */
-.form-control {
-  line-height: 100%;
-  height: 2em;
-  font-size: 1.2rem;
+/* over riding bootstrap form control defaults here */
+ .form-control {
+     line-height: 100%;
+     height: 2em;
+     font-size: 1.2rem;
 }
-
 /* targeting all forms hints texts */
-.signup-form .hint-text {
-  color: #7d3cff;
-  margin-bottom: 1rem 0 0 2rem;
-  text-align: center;
+ .signup-form .hint-text {
+     color: #7d3cff;
+     margin-bottom: 1rem 0 0 2rem;
+     text-align: center;
 }
 /* targeting all forms */
-.signup-form form {
-  margin-top: 3rem;
-  color: #000000;
-  border-radius: 0.25rem;
-  margin-bottom: 1rem;
-  background: #fdedcc;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  padding: 2rem;
+ .signup-form form {
+     margin-top: 3rem;
+     color: #000000;
+     border-radius: 0.25rem;
+     margin-bottom: 1rem;
+     background: #fdedcc;
+     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+     padding: 2rem;
 }
-/* targeting categories an bookmarks userpages text here and Infomation button above it here   */
-.info-btn-wrapper {
-  margin-top: 6rem;
+/* targeting categories an bookmarks userpages text here and Infomation button above it here */
+ .info-btn-wrapper {
+     margin-top: 6rem;
 }
 /* target user text hidden before Jquery toggle button takes effect */
-.user-text {
-  display: none;
+ .user-text {
+     display: none;
 }
 /* changing bootstrap cards to suit website layout */
-.card {
-  font-weight: 700;
-  min-width: 50%;
-  border: 2px solid #7d3cff;
-  margin-top: 1rem;
-  border-radius: 0.5rem;
+ .card {
+     font-weight: 700;
+     min-width: 50%;
+     border: 2px solid #7d3cff;
+     margin-top: 1rem;
+     border-radius: 0.5rem;
 }
 /* Setting card body background color */
-.card-body {
-  background-color: #fceed1;
+ .card-body {
+     background-color: #fceed1;
 }
 /* footer */
-
 /* setting footer color, height and width*/
-footer {
-  background-color: #7d3cff;
-  height: 1.5rem;
-  width: 100%;
+ footer {
+     background-color: #7d3cff;
+     height: 1.5rem;
+     width: 100%;
 }
-
 /* media queries */
-
 /* for smallest devices */
-
-@media (max-width: 768px) {
-  /* adjust callout text to suit smaller devices */
-  .callout-main-text {
-    font-size: 1.4rem;
-  }
-
-  /* smaller with for forms on mobile */
-  .signup-form {
-    width: 18rem;
-  }
+ @media (max-width: 768px) {
+    /* adjust callout text to suit smaller devices */
+     .callout-main-text {
+         font-size: 1.4rem;
+    }
+    /* smaller with for forms on mobile */
+     .signup-form {
+         width: 18rem;
+    }
 }
+ 
