@@ -1,10 +1,4 @@
-<!-- extended base html here  -->
-{% extends 'base.html' %}
-<!-- adding navbar as a a partial  -->
-{%block nav%} {%include "partials/_navbar.html"%} {%endblock%}
-<!-- end navbar -->
-<!-- start block content -->
-{% block content %}
+
 <!-- taken an modified from tutorial https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=simple-login-form -->
 
 <!-- add bookmark form -->
@@ -74,8 +68,7 @@
       <!-- end sigin form wrapper -->
   </section>
   <!-- end section -->
-  {% endblock content %}
-  <!-- end block content -->
+ 
   <div class="signup-form">
     <!-- action form submit will use insert bookmark route from app.py -->
     <form action="{{ url_for('insert_bookmark') }}" method="post">
