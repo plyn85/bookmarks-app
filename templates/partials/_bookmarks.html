@@ -92,7 +92,7 @@
           <!-- form  wraps the like button-->
           <form
             class="row mt-3 justify-content-center"
-            action="{{url_for('upvote',book_id=book_.id)}}"
+            action="{{url_for('upvote',book_id=book._id)}}"
             method="post"
           >
             <!-- if statment will only allow the like button to be seen by other users so a user cannot like there own bookmark-->

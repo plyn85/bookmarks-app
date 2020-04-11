@@ -7,15 +7,4 @@ $(document).ready(function () {
   $(".info-btn").click(function () {
     $(".user-text").toggle();
   });
-
-//   $(".like-form-btn").on("click", function () {
-//     var book_id = $(this).attr("book_id");
-//     req = $.ajax({
-//       url: "{{url_for('upvote')}}",
-//       type: "POST",
-//       contentType: "application/json;charset=UTF-8",
-//       dataType: "json",
-//       data: { id: up_vote_id },
-//     });
-//   });
-// });
+});

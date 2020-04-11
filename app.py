@@ -292,7 +292,7 @@ def upvote(book_id):
             {'$inc': {'upvotes': 1}}
         )
 
-    return redirect(url_for('index',  book_id=book_id))
+    return redirect(url_for('index', book_id=book_id))
 
 
 # ----- Delete ----- #
@@ -371,7 +371,7 @@ def users():
         {'username': username})
     # if user has no bookmarks new user page rendered
     if book_name is None:
-        return render_template('newuser.html')
+        return render_template('user/newuser.html')
     # if the user has bookmarks added users page rendered
     return render_template('user/users.html', users=users, bookmarks=bookmarks, categories=categories, args=args, title=username)
 

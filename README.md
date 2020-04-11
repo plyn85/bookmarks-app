@@ -11,9 +11,7 @@ urls on google or copying and pasting links and texting them to myself as a way 
 So I wanted to build something that fulfilled all of these needs. If it I could build 
 something useful to me. I was  sure It would be useful to other users.  [Python](https://docs.python.org/3/), the micro framework [Flask](https://flask.palletsprojects.com/en/1.1.x/) and [Mongodb](https://docs.atlas.mongodb.com/) atlas as the cloud based storgare for the data.  
 
-## Demo
-A live demo can be found [here]
-![Desktop Demo]("Desktop Demo")
+
 
 ## UX
 This project Is part of the Code Institute full stack developer course. It focuses on the data centric development module. The main objective is to create a website that uses the CRUD operations of Create,Read,Update, and the delete. With this In mind I wanted to create an app for myself and other users where I Implemented these CRUD operations. My Idea came from a very real need. Over the last year while learning to code I found myself almost everyday bookmarking countless useful websites, stack overflow links, tutorials, as well as links to something I might buy later on amazon! My bookmarks have become extremely bloated and I find it really difficult to search through them. So I decided why not try and build my own bookmark manager. If something Like this could be useful for myself. I hope It could also be useful for other users.   
@@ -30,8 +28,6 @@ them from the database.
 
  
 
-## Database Schemea 
-
 ## User  stories
 " as u a user I would like to ____________    "
 
@@ -41,7 +37,7 @@ them from the database.
 
 -  to be able to register an account and then login
 
-- sseeb what other people have added to the website.
+- see what other people have added to the website.
 
 - be able to search what other users have added with ease.
 
@@ -289,7 +285,10 @@ tested with no issues found.
  - Apple ipad 3 
  - Samsung galaxy A3
  - Huawei p20 lite  
-## Manual testing of all elements on website
+
+ ## Bugs 
+###  Internet Explorer and 
+When veiwing the callour 
 
 ## Deployment 
 I deployed this application by:
